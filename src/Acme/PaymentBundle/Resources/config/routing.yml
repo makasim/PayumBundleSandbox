@@ -1,0 +1,8 @@
+acme_payment_homepage:
+    pattern:  /payment
+    defaults: { _controller: AcmePaymentBundle:Default:index }
+    
+acme_payment_prepare_simple_purchase_paypal_express_checkout:
+    pattern:  /payment/simple_purchase/paypal_express_checkout/prepare
+    defaults: { _controller: AcmePaymentBundle:SimplePurchasePaypalExpressCheckout:prepare }
+

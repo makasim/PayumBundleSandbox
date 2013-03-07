@@ -1,0 +1,6 @@
+acme_payment:
+    resource: "@AcmePaymentBundle/Resources/config/routing.yml"
+    prefix:   /
+
+payum_capture:
+    resource: "@PayumBundle/Resources/config/routing/capture.xml"

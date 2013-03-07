@@ -1,0 +1,10 @@
+/web/bundles/
+/app/bootstrap.php.cache
+/app/cache/*
+/app/logs/*
+/app/config/config_dev_local.yml
+/app/Resources/payments
+/build/
+/vendor/
+/bin/
+/composer.phar
