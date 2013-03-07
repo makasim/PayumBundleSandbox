@@ -34,18 +34,32 @@ Then, use the `create-project` command to generate a new Symfony application:
 Composer will install Symfony and all its dependencies under the
 `path/to/install` directory.
 
-2) Some additional steps to make it work
-----------------------------------------
+2) Checking your System Configuration
+-------------------------------------
 
-To start play with payum bundle you have to do some additional preparations:
+Before starting coding, make sure that your local system is properly
+configured for Symfony.
 
-* Create `config_dev_local.yml` from `config_dev_local.yml.example` and edit parameters in it.
-* Create dir `payments` in `app/Resources`. It will be used for storing your payments details.
+Execute the `check.php` script from the command line:
+
+    php app/check.php
+
+Access the `config.php` script from a browser:
+
+    http://localhost/path/to/symfony/app/web/config.php
+
+If you get any warnings or recommendations, fix them before moving on.
  
 3) Browsing the Demo Application
 --------------------------------
         
-Congratulations! You're now ready to use the application.
+Congratulations! You're now ready to use Symfony.
+
+From the `config.php` page, click the "Bypass configuration and go to the
+Welcome page" link to load up your first Symfony page.
+
+You can also use a web-based configurator by clicking on the "Configure your
+Symfony Application online" link of the `config.php` page.
 
 To see a list of payment demos access the following page:
 
