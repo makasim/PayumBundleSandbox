@@ -29,7 +29,7 @@ http://getcomposer.org/ or just run the following command:
 
 Then, use the `create-project` command to generate a new Symfony application:
 
-    php composer.phar create-project payum/payum-bundle-sandbox path/to/install
+    php composer.phar create-project payum/payum-bundle-sandbox path/to/install --stability=dev
 
 Composer will install Symfony and all its dependencies under the
 `path/to/install` directory.
