@@ -49,6 +49,10 @@ Access the `config.php` script from a browser:
     http://localhost/path/to/symfony/app/web/config.php
 
 If you get any warnings or recommendations, fix them before moving on.
+
+**Warning:**
+
+> Dont forget to configure a payment gateway options in `app/config/parameters.yml`.
  
 3) Browsing the Demo Application
 --------------------------------
