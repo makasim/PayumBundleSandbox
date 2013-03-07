@@ -19,7 +19,8 @@
         "jms/security-extra-bundle": "1.4.*",
         "jms/di-extra-bundle": "1.3.*",
         "payum/payum-bundle": "0.2.*",
-        "payum/paypal-express-checkout-nvp": "0.2.*"
+        "payum/paypal-express-checkout-nvp": "0.2.*",
+        "payum/authorize-net-aim": "0.2.*"
     },
     "scripts": {
         "post-install-cmd": [

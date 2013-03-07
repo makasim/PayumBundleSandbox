@@ -1,0 +1,99 @@
+{% extends "AcmePaymentBundle::layout.html.twig" %}
+
+{% block title "Payment demo - Simple purchase with Paypal Express Checkout - Finished" %}
+
+{% block content %}    
+    <div class="block">
+        Payment status:
+        {% if status.success %}
+            Successfully finished!
+        {% elseif status.canceled %}
+            Canceled!
+        {% elseif status.failed %}
+            Failed!
+        {% elseif status.inProgress %}
+            In progress!
+        {% elseif status.inProgress %}
+            Status unknown!
+        {% endif %}
+    </div>
+
+    <div class="block">
+        <ul>
+            <li>address: {{ status.model.address }}</li>
+            <li>amount: {{ status.model.amount }}</li>
+            <li>auth_code: {{ status.model.authCode }}</li>
+            <li>authentication_indicator: {{ status.model.authenticationIndicator }}</li>
+            <li>bank_aba_code: {{ status.model.bankAbaCode }}</li>
+            <li>bank_acct_name: {{ status.model.bankAcctName }}</li>
+            <li>bank_acct_num: {{ status.model.bankAcctNum }}</li>
+            <li>bank_acct_type: {{ status.model.bankAcctType }}</li>
+            <li>bank_check_number: {{ status.model.bankCheckNumber }}</li>
+            <li>bank_name: {{ status.model.bankName }}</li>
+            <li>card_code: {{ status.model.cardCode }}</li>
+            <li>card_num: {{ status.model.cardNum }}</li>
+            <li>cardholder_authentication_value: {{ status.model.cardholderAuthenticationValue }}</li>
+            <li>city: {{ status.model.city }}</li>
+            <li>company: {{ status.model.company }}</li>
+            <li>country: {{ status.model.country }}</li>
+            <li>cust_id: {{ status.model.custId }}</li>
+            <li>customer_ip: {{ status.model.customerIp }}</li>
+            <li>delim_char: {{ status.model.delimChar }}</li>
+            <li>delim_data: {{ status.model.delimData }}</li>
+            <li>description: {{ status.model.description }}</li>
+            <li>duplicate_window: {{ status.model.duplicateWindow }}</li>
+            <li>duty: {{ status.model.duty }}</li>
+            <li>echeck_type: {{ status.model.echeckType }}</li>
+            <li>email: {{ status.model.email }}</li>
+            <li>email_customer: {{ status.model.emailCustomer }}</li>
+            <li>encap_char: {{ status.model.encapChar }}</li>
+            <li>exp_date: {{ status.model.expDate }}</li>
+            <li>fax: {{ status.model.fax }}</li>
+            <li>first_name: {{ status.model.firstName }}</li>
+            <li>footer_email_receipt: {{ status.model.footerEmailReceipt }}</li>
+            <li>freight: {{ status.model.freight }}</li>
+            <li>header_email_receipt: {{ status.model.headerEmailReceipt }}</li>
+            <li>invoice_num: {{ status.model.invoiceNum }}</li>
+            <li>last_name: {{ status.model.lastName }}</li>
+            <li>line_item: {{ status.model.lineItem }}</li>
+            <li>login: {{ status.model.login }}</li>
+            <li>method: {{ status.model.method }}</li>
+            <li>phone: {{ status.model.phone }}</li>
+            <li>po_num: {{ status.model.poNum }}</li>
+            <li>recurring_billing: {{ status.model.recurringBilling }}</li>
+            <li>relay_response: {{ status.model.relayResponse }}</li>
+            <li>split_tender_id: {{ status.model.splitTenderId }}</li>
+            <li>state: {{ status.model.state }}</li>
+            <li>tax: {{ status.model.tax }}</li>
+            <li>tax_exempt: {{ status.model.taxExempt }}</li>
+            <li>test_request: {{ status.model.testRequest }}</li>
+            <li>tran_key: {{ status.model.tranKey }}</li>
+            <li>trans_id: {{ status.model.transId }}</li>
+            <li>type: {{ status.model.type }}</li>
+            <li>version: {{ status.model.version }}</li>
+            <li>zip: {{ status.model.zip }}</li>
+            <li>error_message: {{ status.model.errorMessage }}</li>
+            <li>response_code: {{ status.model.responseCode }}</li>
+            <li>response_subcode: {{ status.model.responseSubcode }}</li>
+            <li>response_reason_code: {{ status.model.responseReasonCode }}</li>
+            <li>response_reason_text: {{ status.model.responseReasonText }}</li>
+            <li>authorization_code: {{ status.model.authorizationCode }}</li>
+            <li>avs_response: {{ status.model.avsResponse }}</li>
+            <li>transaction_id: {{ status.model.transactionId }}</li>
+            <li>invoice_number: {{ status.model.invoiceNumber }}</li>
+            <li>transaction_type: {{ status.model.transactionType }}</li>
+            <li>customer_id: {{ status.model.customerId }}</li>
+            <li>zip_code: {{ status.model.zipCode }}</li>
+            <li>email_address: {{ status.model.emailAddress }}</li>
+            <li>purchase_order_number: {{ status.model.purchaseOrderNumber }}</li>
+            <li>card_code_response: {{ status.model.cardCodeResponse }}</li>
+            <li>cavv_response: {{ status.model.cavvResponse }}</li>
+            <li>account_number: {{ status.model.accountNumber }}</li>
+            <li>card_type: {{ status.model.cardType }}</li>
+            <li>requested_amount: {{ status.model.requestedAmount }}</li>
+            <li>balance_on_card: {{ status.model.balanceOnCard }}</li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% set code = code(_self) %}
