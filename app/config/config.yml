@@ -67,9 +67,6 @@ swiftmailer:
 payum:
     contexts:
         simple_purchase_paypal_express_checkout:
-        
-            capture_finished_controller: AcmePaymentBundle:SimplePurchasePaypalExpressCheckout:captureFinished
-            
             paypal_express_checkout_nvp_payment:
                 api:
                     options:
@@ -84,9 +81,6 @@ payum:
                 id_property: id
                 
         simple_purchase_authorize_net:
-            
-            capture_finished_controller: AcmePaymentBundle:SimplePurchaseAuthorizeNetAim:captureFinished
-        
             authorize_net_aim_payment:
                 api:
                     options:
