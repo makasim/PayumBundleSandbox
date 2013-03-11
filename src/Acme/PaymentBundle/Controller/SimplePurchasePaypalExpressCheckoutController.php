@@ -4,9 +4,9 @@ namespace Acme\PaymentBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use Payum\Bundle\PayumBundle\Context\ContextInterface;
 use Payum\Bundle\PayumBundle\Context\ContextRegistry;
-use Payum\Request\StatusRequestInterface;
+use Payum\Request\BinaryMaskStatusRequest;
+use Payum\Request\CaptureRequest;
 
 class SimplePurchasePaypalExpressCheckoutController extends Controller
 {
@@ -34,8 +34,7 @@ class SimplePurchasePaypalExpressCheckoutController extends Controller
                 $paymentContext->getStorage()->updateModel($instruction);
                 $instruction->setInvnum($instruction->getId());
         
-                $returnUrl = $this->generateUrl('payum_payment_capture', array(
-                    'contextName' => $paymentContext->getName(),
+                $returnUrl = $this->generateUrl('acme_payment_capture_simple_purchase_paypal_express_checkout', array(
                     'model' => $instruction->getId(),
                 ), $absolute = true);
                 $instruction->setReturnurl($returnUrl);
@@ -43,8 +42,7 @@ class SimplePurchasePaypalExpressCheckoutController extends Controller
         
                 $paymentContext->getStorage()->updateModel($instruction);
         
-                return $this->forward('PayumBundle:Capture:do', array(
-                    'contextName' => $paymentContext->getName(),
+                return $this->forward('AcmePaymentBundle:SimplePurchasePaypalExpressCheckout:capture', array(
                     'model' => $instruction
                 ));
             }
@@ -55,8 +53,16 @@ class SimplePurchasePaypalExpressCheckoutController extends Controller
         ));
     }
 
-    public function captureFinishedAction(StatusRequestInterface $statusRequest, ContextInterface $context)
+    public function captureAction($model)
     {
+        $context = $this->getPayum()->getContext('simple_purchase_paypal_express_checkout');
+
+        $captureRequest = new CaptureRequest($model);
+        $context->getPayment()->execute($captureRequest);
+
+        $statusRequest = new BinaryMaskStatusRequest($captureRequest->getModel());
+        $context->getPayment()->execute($statusRequest);
+
         return $this->render('AcmePaymentBundle:SimplePurchasePaypalExpressCheckout:captureFinished.html.twig', array(
             'status' => $statusRequest
         ));

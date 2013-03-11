@@ -4,9 +4,9 @@ namespace Acme\PaymentBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use Payum\Bundle\PayumBundle\Context\ContextInterface;
 use Payum\Bundle\PayumBundle\Context\ContextRegistry;
-use Payum\Request\StatusRequestInterface;
+use Payum\Request\BinaryMaskStatusRequest;
+use Payum\Request\CaptureRequest;
 
 class SimplePurchaseAuthorizeNetAimController extends Controller
 {
@@ -33,8 +33,7 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
                 $instruction->setCardNum($data['card_number']);
                 $instruction->setExpDate($data['card_expiration_date']);
         
-                return $this->forward('PayumBundle:Capture:do', array(
-                    'contextName' => $paymentContext->getName(),
+                return $this->forward('AcmePaymentBundle:SimplePurchaseAuthorizeNetAim:capture', array(
                     'model' => $instruction
                 ));
             }
@@ -45,8 +44,16 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
         ));
     }
 
-    public function captureFinishedAction(StatusRequestInterface $statusRequest, ContextInterface $context)
+    public function captureAction($model)
     {
+        $context = $this->getPayum()->getContext('simple_purchase_authorize_net');
+
+        $captureRequest = new CaptureRequest($model);
+        $context->getPayment()->execute($captureRequest);
+        
+        $statusRequest = new BinaryMaskStatusRequest($captureRequest->getModel());
+        $context->getPayment()->execute($statusRequest);
+        
         return $this->render('AcmePaymentBundle:SimplePurchaseAuthorizeNetAim:captureFinished.html.twig', array(
             'status' => $statusRequest
         ));
