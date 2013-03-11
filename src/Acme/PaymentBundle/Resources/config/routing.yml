@@ -6,10 +6,10 @@ acme_payment_prepare_simple_purchase_paypal_express_checkout:
     pattern:  /payment/simple_purchase/paypal_express_checkout/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchasePaypalExpressCheckout:prepare }
     
-acme_payment_capture_simple_purchase_paypal_express_checkout:
-    pattern:  /payment/simple_purchase/paypal_express_checkout/capture/{model}
-    defaults: { _controller: AcmePaymentBundle:SimplePurchasePaypalExpressCheckout:capture }
-    
 acme_payment_prepare_simple_purchase_authorize_net:
     pattern:  /payment/simple_purchase/authorize_net/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchaseAuthorizeNetAim:prepare }
+    
+acme_payment_capture_simple:
+    pattern:  /payment/simple_purchase/{contextName}/capture/{model}
+    defaults: { _controller: AcmePaymentBundle:Capture:simpleCapture }

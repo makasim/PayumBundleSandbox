@@ -34,37 +34,21 @@ class SimplePurchasePaypalExpressCheckoutController extends Controller
                 $paymentContext->getStorage()->updateModel($instruction);
                 $instruction->setInvnum($instruction->getId());
         
-                $returnUrl = $this->generateUrl('acme_payment_capture_simple_purchase_paypal_express_checkout', array(
+                $captureUrl = $this->generateUrl('acme_payment_capture_simple', array(
+                    'contextName' => 'simple_purchase_paypal_express_checkout',
                     'model' => $instruction->getId(),
                 ), $absolute = true);
-                $instruction->setReturnurl($returnUrl);
-                $instruction->setCancelurl($returnUrl);
+                $instruction->setReturnurl($captureUrl);
+                $instruction->setCancelurl($captureUrl);
         
                 $paymentContext->getStorage()->updateModel($instruction);
-        
-                return $this->forward('AcmePaymentBundle:SimplePurchasePaypalExpressCheckout:capture', array(
-                    'model' => $instruction
-                ));
+
+                return $this->redirect($captureUrl);
             }
         }
         
         return $this->render('AcmePaymentBundle:SimplePurchasePaypalExpressCheckout:prepare.html.twig', array(
             'form' => $form->createView()
-        ));
-    }
-
-    public function captureAction($model)
-    {
-        $context = $this->getPayum()->getContext('simple_purchase_paypal_express_checkout');
-
-        $captureRequest = new CaptureRequest($model);
-        $context->getPayment()->execute($captureRequest);
-
-        $statusRequest = new BinaryMaskStatusRequest($captureRequest->getModel());
-        $context->getPayment()->execute($statusRequest);
-
-        return $this->render('AcmePaymentBundle:SimplePurchasePaypalExpressCheckout:captureFinished.html.twig', array(
-            'status' => $statusRequest
         ));
     }
 

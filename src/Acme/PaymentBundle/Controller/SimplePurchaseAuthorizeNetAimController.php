@@ -32,30 +32,18 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
                 $instruction->setAmount($data['amount']);
                 $instruction->setCardNum($data['card_number']);
                 $instruction->setExpDate($data['card_expiration_date']);
+
+                $paymentContext->getStorage()->updateModel($instruction);
         
-                return $this->forward('AcmePaymentBundle:SimplePurchaseAuthorizeNetAim:capture', array(
-                    'model' => $instruction
-                ));
+                return $this->redirect($this->generateUrl('acme_payment_capture_simple', array(
+                    'contextName' => 'simple_purchase_authorize_net',
+                    'model' => $instruction->getId()
+                )));
             }
         }
         
         return $this->render('AcmePaymentBundle:SimplePurchaseAuthorizeNetAim:prepare.html.twig', array(
             'form' => $form->createView()
-        ));
-    }
-
-    public function captureAction($model)
-    {
-        $context = $this->getPayum()->getContext('simple_purchase_authorize_net');
-
-        $captureRequest = new CaptureRequest($model);
-        $context->getPayment()->execute($captureRequest);
-        
-        $statusRequest = new BinaryMaskStatusRequest($captureRequest->getModel());
-        $context->getPayment()->execute($statusRequest);
-        
-        return $this->render('AcmePaymentBundle:SimplePurchaseAuthorizeNetAim:captureFinished.html.twig', array(
-            'status' => $statusRequest
         ));
     }
 
