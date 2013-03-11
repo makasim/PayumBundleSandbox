@@ -20,7 +20,7 @@
 
     <div class="block">
         <ul>
-            {% for key, value in status.model.toNvp() %}
+            {% for key, value in status.model %}
                 <li>{{ key }}: {{ value }}</li>
             {% endfor %}
         </ul>
