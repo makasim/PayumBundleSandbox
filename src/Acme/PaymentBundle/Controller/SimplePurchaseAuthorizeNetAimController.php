@@ -5,8 +5,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use Payum\Bundle\PayumBundle\Context\ContextRegistry;
-use Payum\Request\BinaryMaskStatusRequest;
-use Payum\Request\CaptureRequest;
 
 class SimplePurchaseAuthorizeNetAimController extends Controller
 {

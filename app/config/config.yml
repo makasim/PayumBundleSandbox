@@ -92,3 +92,16 @@ payum:
                 model_class: Acme\PaymentBundle\Model\AuthorizeNetInstruction
                 storage_dir: %kernel.root_dir%/Resources/payments
                 id_property: id
+
+        simple_purchase_be2bill:
+            be2bill_payment:
+                api:
+                    options:
+                        identifier: %be2bill.identifier%
+                        password: %be2bill.password%
+                        sandbox: true
+
+            filesystem_storage:
+                model_class: Acme\PaymentBundle\Model\Be2BillInstruction
+                storage_dir: %kernel.root_dir%/Resources/payments
+                id_property: id
