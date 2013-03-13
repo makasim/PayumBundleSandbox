@@ -4,9 +4,12 @@
 
 {% block content %}
     <form action="{{ path("acme_payment_prepare_digital_goods_simple_purchase_paypal_express_checkout") }}" method="POST">
-        {{ form_widget(form) }}
-
-        <input type="submit" value="Pay" />
+        <p>
+            {{ book.author }}. {{ book.name }}, 
+            {{ book.quantity }} items for {{ book.price }}{{ book.currency_symbol }} each.
+        </p>
+        
+        <input type="submit" value="Buy" />
     </form>
 {% endblock %}
 
