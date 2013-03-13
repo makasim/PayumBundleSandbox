@@ -21,7 +21,8 @@
         "payum/payum-bundle": "0.3.x-dev",
         "payum/paypal-express-checkout-nvp": "0.3.x-dev",
         "payum/authorize-net-aim": "0.3.x-dev",
-        "payum/be2bill": "0.3.x-dev"
+        "payum/be2bill": "0.3.x-dev",
+        "payum/omnipay-bridge": "0.3.x-dev"
     },
     "scripts": {
         "post-install-cmd": [

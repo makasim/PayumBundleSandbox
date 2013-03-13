@@ -18,6 +18,10 @@ acme_payment_prepare_simple_purchase_be2bill:
     pattern:  /payment/simple_purchase/be2bill/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchaseBe2Bill:prepare }
     
+acme_payment_prepare_simple_purchase_paypal_express_via_omnipay:
+    pattern:  /payment/simple_purchase/paypal_express_via_omnipay/prepare
+    defaults: { _controller: AcmePaymentBundle:SimplePurchasePaypalExpressViaOmnipay:prepare }
+    
 acme_payment_capture_simple:
     pattern:  /payment/simple_purchase/{contextName}/capture/{model}
     defaults: { _controller: AcmePaymentBundle:Capture:simpleCapture }
