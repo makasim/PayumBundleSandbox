@@ -20,3 +20,6 @@ parameters:
     
     authorize_net.login_id: 'EDIT ME'
     authorize_net.transaction_key: 'EDIT ME'
+    
+    be2bill.identifier: 'EDIT ME'
+    be2bill.password: 'EDIT ME'
