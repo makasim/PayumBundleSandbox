@@ -1,0 +1,13 @@
+{% extends "AcmePaymentBundle::layout.html.twig" %}
+
+{% block title "Payment demo - Simple purchase with Paypal Express Checkout Doctrine - Prepare" %}
+
+{% block content %}
+    <form action="{{ path("acme_payment_prepare_simple_purchase_paypal_express_checkout_doctrine") }}" method="POST">
+        {{ form_widget(form) }}
+
+        <input type="submit" value="Pay" />
+    </form>
+{% endblock %}
+
+{% set code = code(_self) %}

@@ -52,6 +52,52 @@ class SimplePurchasePaypalExpressCheckoutController extends Controller
         ));
     }
 
+    public function prepareDoctrineAction(Request $request)
+    {
+        $form = $this->createFormBuilder()
+            ->add('amount', null, array('data' => 1))
+            ->add('currency', null, array('data' => 'USD'))
+
+            ->getForm()
+        ;
+
+        if ('POST' === $request->getMethod()) {
+
+            $form->bind($request);
+            if ($form->isValid()) {
+                $data = $form->getData();
+
+                $paymentContext = $this->getPayum()->getContext('simple_purchase_paypal_express_checkout_doctrine');
+
+                $instruction = $paymentContext->getStorage()->createModel();
+                $instruction->setPaymentrequestCurrencycode(0, $data['currency']);
+                $instruction->setPaymentrequestAmt(0,  $data['amount']);
+
+                $paymentContext->getStorage()->updateModel($instruction);
+                $instruction->setInvnum($instruction->getId());
+
+                $captureUrl = $this->generateUrl('acme_payment_capture_simple', array(
+                    'contextName' => 'simple_purchase_paypal_express_checkout_doctrine',
+                    'model' => $instruction->getId(),
+                ), $absolute = true);
+                $instruction->setReturnurl($captureUrl);
+                $instruction->setCancelurl($captureUrl);
+
+                $paymentContext->getStorage()->updateModel($instruction);
+
+                //we do forward since we do not store returnulr to database.
+                return $this->forward('AcmePaymentBundle:Capture:simpleCapture', array(
+                    'contextName' => 'simple_purchase_paypal_express_checkout_doctrine',
+                    'model' => $instruction
+                ));
+            }
+        }
+
+        return $this->render('AcmePaymentBundle:SimplePurchasePaypalExpressCheckout:prepareDoctrine.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
     public function prepareDigitalGoodsAction(Request $request)
     {
         $eBook = array(
