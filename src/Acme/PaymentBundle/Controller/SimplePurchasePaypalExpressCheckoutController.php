@@ -3,6 +3,7 @@ namespace Acme\PaymentBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\Range;
 
 use Payum\Bundle\PayumBundle\Context\ContextRegistry;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
@@ -13,7 +14,10 @@ class SimplePurchasePaypalExpressCheckoutController extends Controller
     public function prepareAction(Request $request)
     {
         $form = $this->createFormBuilder()
-            ->add('amount', null, array('data' => 1))
+            ->add('amount', null, array(
+                'data' => 1,
+                'constraints' => array(new Range(array('max' => 2)))
+            ))
             ->add('currency', null, array('data' => 'USD'))
             
             ->getForm()
@@ -55,7 +59,10 @@ class SimplePurchasePaypalExpressCheckoutController extends Controller
     public function prepareDoctrineAction(Request $request)
     {
         $form = $this->createFormBuilder()
-            ->add('amount', null, array('data' => 1))
+            ->add('amount', null, array(
+                'data' => 1,
+                'constraints' => array(new Range(array('max' => 2)))
+            ))
             ->add('currency', null, array('data' => 'USD'))
 
             ->getForm()

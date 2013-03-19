@@ -3,6 +3,7 @@ namespace Acme\PaymentBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\Range;
 
 use Payum\Bundle\PayumBundle\Context\ContextRegistry;
 
@@ -13,7 +14,10 @@ class SimplePurchaseBe2BillController extends Controller
     public function prepareAction(Request $request)
     {
         $form = $this->createFormBuilder()
-            ->add('amount', null, array('data' => 1.23))
+            ->add('amount', null, array(
+                'data' => 1.23,
+                'constraints' => array(new Range(array('max' => 2)))
+            ))
             ->add('card_number', null, array('data' => '5555556778250000'))
             ->add('card_expiration_date', null, array('data' => '11-15'))
             ->add('card_holder', null, array('data' => 'John Doe'))
