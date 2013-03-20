@@ -1,0 +1,7 @@
+parameters:
+#    acme_paypal_express_checkout.example.class: Acme\PaypalExpressCheckoutBundle\Example
+
+services:
+#    acme_paypal_express_checkout.example:
+#        class: %acme_paypal_express_checkout.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

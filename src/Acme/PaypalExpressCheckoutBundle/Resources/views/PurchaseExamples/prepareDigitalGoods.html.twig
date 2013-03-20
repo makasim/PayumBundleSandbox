@@ -3,7 +3,7 @@
 {% block title "Payment demo - Simple purchase with Paypal Express Checkout - Prepare" %}
 
 {% block content %}
-    <form action="{{ path("acme_payment_prepare_digital_goods_simple_purchase_paypal_express_checkout") }}" method="POST">
+    <form method="POST">
         <p>
             {{ book.author }}. {{ book.name }}, 
             {{ book.quantity }} items for {{ book.price }}{{ book.currency_symbol }} each.
