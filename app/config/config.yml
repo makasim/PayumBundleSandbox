@@ -100,6 +100,20 @@ payum:
                 driver: orm
                 model_class: Acme\PaypalExpressCheckoutBundle\Entity\PaymentDetails
                 
+        simple_recurring_payment_paypal_express_checkout:
+            paypal_express_checkout_nvp_payment:
+                api:
+                    options:
+                        username:  %paypal.express_checkout.username%
+                        password:  %paypal.express_checkout.password%
+                        signature: %paypal.express_checkout.signature%
+                        sandbox: true
+
+            filesystem_storage:
+                model_class: Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails
+                storage_dir: %kernel.root_dir%/Resources/payments
+                id_property: id
+                
         simple_purchase_authorize_net:
             authorize_net_aim_payment:
                 api:

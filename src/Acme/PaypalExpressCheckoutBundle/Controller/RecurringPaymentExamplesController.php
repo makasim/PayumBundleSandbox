@@ -80,14 +80,15 @@ class RecurringPaymentExamplesController extends Controller
         $captureRequest = new CaptureRequest($billingAgreementDetails);
         $context->getPayment()->execute($captureRequest);
 
-        $statusRequest = new BinaryMaskStatusRequest($captureRequest->getModel());
-        $context->getPayment()->execute($statusRequest);
+        $billingAgreementStatus = new BinaryMaskStatusRequest($captureRequest->getModel());
+        $context->getPayment()->execute($billingAgreementStatus);
 
-        $billingAgreementDetails = $statusRequest->getModel();
-        
-        if ($statusRequest->isSuccess()) {
+        $recurringPaymentStatus = null;
+        if ($billingAgreementStatus->isSuccess()) {
+            $billingAgreementDetails = $billingAgreementStatus->getModel();
+            
             $recurringPaymentDetails = new RecurringPaymentDetails();
-            $recurringPaymentDetails->setToken($statusRequest->getModel()->getToken());
+            $recurringPaymentDetails->setToken($billingAgreementDetails->getToken());
             $recurringPaymentDetails->setProfilestartdate(date(DATE_ATOM));
             $recurringPaymentDetails->setDesc($billingAgreementDetails->getLBillingagreementdescription(0));
             $recurringPaymentDetails->setAmt(1.45);
@@ -99,12 +100,14 @@ class RecurringPaymentExamplesController extends Controller
             $context->getPayment()->execute(new CreateRecurringPaymentProfileRequest($recurringPaymentDetails));
             $context->getPayment()->execute(new GetRecurringPaymentsProfileDetailsRequest($recurringPaymentDetails));
 
-            var_dump($recurringPaymentDetails);
+            $recurringPaymentStatus = new BinaryMaskStatusRequest($recurringPaymentDetails);
+            $context->getPayment()->execute($recurringPaymentStatus);
         }
-        var_dump($statusRequest);
-        var_dump(iterator_to_array($statusRequest->getModel()));
         
-        die;
+        return array(
+            'billingAgreementStatus' => $billingAgreementStatus,
+            'recurringPaymentStatus' => $recurringPaymentStatus,
+        );
     }
 
     /**
