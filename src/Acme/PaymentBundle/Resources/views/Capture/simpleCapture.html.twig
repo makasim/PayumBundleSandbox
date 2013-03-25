@@ -6,15 +6,19 @@
     <div class="block">
         Payment status:
         {% if status.success %}
-            Successfully finished!
+            Successful!
         {% elseif status.canceled %}
-            Canceled!
+            Canceled
         {% elseif status.failed %}
-            Failed!
+            Failed
         {% elseif status.pending %}
-            In progress!
-        {% elseif status.pending %}
-            Status unknown!
+            Pending
+        {% elseif billingAgreementStatus.expired %}
+            Expired
+        {% elseif billingAgreementStatus.suspended %}
+            Suspended
+        {% else %}
+            Status unknown
         {% endif %}
     </div>
 
