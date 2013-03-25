@@ -1,10 +1,10 @@
 {% extends "AcmePaymentBundle::layout.html.twig" %}
 
-{% block title "Payment demo - Simple purchase with Paypal Express Checkout - Prepare" %}
+{% block title "Paypal express checkout demo- Create billing agreement" %}
 
 {% block content %}
     <form method="POST">
-        {{ form_widget(form) }}
+        <p>{{ subscription.description }}</p>
 
         <input type="submit" value="Subscribe" />
     </form>
