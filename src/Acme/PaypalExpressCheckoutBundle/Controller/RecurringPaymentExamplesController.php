@@ -1,20 +1,20 @@
 <?php
 namespace Acme\PaypalExpressCheckoutBundle\Controller;
 
-use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
-use Payum\Paypal\ExpressCheckout\Nvp\Model\RecurringPaymentDetails;
-use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfileRequest;
-use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\GetRecurringPaymentsProfileDetailsRequest;
-use Payum\Request\BinaryMaskStatusRequest;
-use Payum\Request\CaptureRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 
-use Payum\Bundle\PayumBundle\Context\ContextRegistry;
+use Payum\Request\CaptureRequest;
+use Payum\Request\SyncRequest;
+use Payum\Request\BinaryMaskStatusRequest;
+use Payum\Paypal\ExpressCheckout\Nvp\Model\RecurringPaymentDetails;
+use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfileRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
+use Payum\Bundle\PayumBundle\Context\ContextRegistry;
+
+use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
 
 class RecurringPaymentExamplesController extends Controller
 {
@@ -107,7 +107,7 @@ class RecurringPaymentExamplesController extends Controller
             $recurringPaymentDetails->setBillingperiod(Api::BILLINGPERIOD_DAY);
             
             $context->getPayment()->execute(new CreateRecurringPaymentProfileRequest($recurringPaymentDetails));
-            $context->getPayment()->execute(new GetRecurringPaymentsProfileDetailsRequest($recurringPaymentDetails));
+            $context->getPayment()->execute(new SyncRequest($recurringPaymentDetails));
 
             $recurringPaymentStatus = new BinaryMaskStatusRequest($recurringPaymentDetails);
             $context->getPayment()->execute($recurringPaymentStatus);
