@@ -117,7 +117,12 @@ payum:
         simple_purchase_paypal_pro:
             paypal_pro_checkout_nvp_payment:
                 api:
-                    options: %paypal.pro_checkout%
+                    options:
+                        username: %paypal.pro_checkout.username%
+                        password: %paypal.pro_checkout.password%
+                        partner:  %paypal.pro_checkout.partner%
+                        vendor:   %paypal.pro_checkout.vendor%
+                        sandbox: true
                 
         simple_purchase_authorize_net:
             authorize_net_aim_payment:
