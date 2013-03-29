@@ -113,6 +113,16 @@ payum:
                 model_class: Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails
                 storage_dir: %kernel.root_dir%/Resources/payments
                 id_property: id
+
+        simple_purchase_paypal_pro:
+            paypal_pro_checkout_nvp_payment:
+                api:
+                    options:
+                        username: %paypal.pro_checkout.username%
+                        password: %paypal.pro_checkout.password%
+                        partner:  %paypal.pro_checkout.partner%
+                        vendor:   %paypal.pro_checkout.vendor%
+                        sandbox: true
                 
         simple_purchase_authorize_net:
             authorize_net_aim_payment:
