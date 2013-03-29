@@ -1,0 +1,4 @@
+acme_paypal_express_checkout:
+    resource:   "@AcmeAuthorizeNetBundle/Controller/"
+    type:       annotation
+    prefix:     /authorize-net

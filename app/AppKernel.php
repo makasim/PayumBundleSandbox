@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Payum\Bundle\PayumBundle\PayumBundle(),
             new Acme\PaymentBundle\AcmePaymentBundle(),
             new Acme\PaypalExpressCheckoutBundle\AcmePaypalExpressCheckoutBundle(),
+            new Acme\AuthorizeNetBundle\AcmeAuthorizeNetBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,11 +1,3 @@
-acme_payment_homepage:
-    pattern:  /payment
-    defaults: { _controller: AcmePaymentBundle:Default:index }
-
-acme_payment_prepare_simple_purchase_authorize_net:
-    pattern:  /payment/simple_purchase/authorize_net/prepare
-    defaults: { _controller: AcmePaymentBundle:SimplePurchaseAuthorizeNetAim:prepare }
-    
 acme_payment_prepare_simple_purchase_be2bill:
     pattern:  /payment/simple_purchase/be2bill/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchaseBe2Bill:prepare }
@@ -13,7 +5,11 @@ acme_payment_prepare_simple_purchase_be2bill:
 acme_payment_prepare_simple_purchase_paypal_express_via_omnipay:
     pattern:  /payment/simple_purchase/paypal_express_via_omnipay/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchasePaypalExpressViaOmnipay:prepare }
-    
-acme_payment_capture_simple:
-    pattern:  /payment/simple_purchase/{contextName}/capture/{model}
-    defaults: { _controller: AcmePaymentBundle:Capture:simpleCapture }
+
+acme_payment_capture:
+    pattern:  /payment/capture/{token}
+    defaults: { _controller: acme_payment.controller.capture }
+
+acme_payment:
+    resource:   "@AcmePaymentBundle/Controller/"
+    type:       annotation

@@ -1,6 +1,6 @@
 {% extends "AcmePaymentBundle::layout.html.twig" %}
 
-{% block title "Payment demo" %}
+{% block title "Payment demos" %}
 
 {% block content %}
     <ol>
@@ -21,7 +21,7 @@
 
         <h3>Authorize.Net</h3>
         <li>
-            <a href="{{ path("acme_payment_prepare_simple_purchase_authorize_net") }}">Purchase with <b>authorize.net</b></a>
+            <a href="{{ path("acme_authorize_net_prepare_simple_purchase") }}">Purchase with <b>authorize.net</b></a>
         </li>
 
         <h3>Be2Bill</h3>

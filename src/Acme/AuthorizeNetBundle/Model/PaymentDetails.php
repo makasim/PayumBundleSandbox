@@ -1,9 +1,9 @@
 <?php
-namespace Acme\PaymentBundle\Model;
+namespace Acme\AuthorizeNetBundle\Model;
 
 use Payum\AuthorizeNet\Aim\PaymentInstruction;
 
-class AuthorizeNetInstruction extends PaymentInstruction
+class PaymentDetails extends PaymentInstruction
 {
     protected $id;
     

@@ -11,6 +11,7 @@ use Payum\Bundle\PayumBundle\Context\ContextRegistry;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 
 use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
+use Acme\PaymentBundle\Controller\CaptureController;
 
 class PurchaseExamplesController extends Controller
 {
@@ -39,17 +40,29 @@ class PurchaseExamplesController extends Controller
                 
                 $paymentContext->getStorage()->updateModel($paymentDetails);
                 $paymentDetails->setInvnum($paymentDetails->getId());
-        
-                $captureUrl = $this->generateUrl('acme_payment_capture_simple', array(
-                    'contextName' => 'simple_purchase_paypal_express_checkout',
+
+                $captureFinishedRedirectUrl = $this->generateUrl('acme_payment_payment_details_view', array(
                     'model' => $paymentDetails->getId(),
+                    'contextName' => $paymentContext->getName()
+                ));
+
+                $token = $this->getCaptureController()->createMetaInfo(
+                    $paymentDetails,
+                    $paymentContext->getName(),
+                    $captureFinishedRedirectUrl
+                );
+                
+                $captureUrl = $this->generateUrl('acme_payment_capture', array(
+                    'token' => $token,
                 ), $absolute = true);
                 $paymentDetails->setReturnurl($captureUrl);
                 $paymentDetails->setCancelurl($captureUrl);
         
                 $paymentContext->getStorage()->updateModel($paymentDetails);
 
-                return $this->redirect($captureUrl);
+                return $this->forward('AcmePaymentBundle:Capture:do', array(
+                    'token' => $token,
+                ));
             }
         }
         
@@ -84,19 +97,27 @@ class PurchaseExamplesController extends Controller
                 $paymentContext->getStorage()->updateModel($paymentDetails);
                 $paymentDetails->setInvnum($paymentDetails->getId());
 
-                $captureUrl = $this->generateUrl('acme_payment_capture_simple', array(
-                    'contextName' => 'simple_purchase_paypal_express_checkout_doctrine',
+                $captureFinishedRedirectUrl = $this->generateUrl('acme_payment_payment_details_view', array(
                     'model' => $paymentDetails->getId(),
+                    'contextName' => $paymentContext->getName()
+                ));
+
+                $token = $this->getCaptureController()->createMetaInfo(
+                    $paymentDetails,
+                    $paymentContext->getName(),
+                    $captureFinishedRedirectUrl
+                );
+
+                $captureUrl = $this->generateUrl('acme_payment_capture', array(
+                    'token' => $token,
                 ), $absolute = true);
                 $paymentDetails->setReturnurl($captureUrl);
                 $paymentDetails->setCancelurl($captureUrl);
 
                 $paymentContext->getStorage()->updateModel($paymentDetails);
 
-                //we do forward since we do not store returnulr to database.
-                return $this->forward('AcmePaymentBundle:Capture:simpleCapture', array(
-                    'contextName' => 'simple_purchase_paypal_express_checkout_doctrine',
-                    'model' => $paymentDetails
+                return $this->forward('AcmePaymentBundle:Capture:do', array(
+                    'token' => $token,
                 ));
             }
         }
@@ -145,16 +166,28 @@ class PurchaseExamplesController extends Controller
             $paymentContext->getStorage()->updateModel($paymentDetails);
             $paymentDetails->setInvnum($paymentDetails->getId());
 
-            $captureUrl = $this->generateUrl('acme_payment_capture_simple', array(
-                'contextName' => 'simple_purchase_paypal_express_checkout',
+            $captureFinishedRedirectUrl = $this->generateUrl('acme_payment_payment_details_view', array(
                 'model' => $paymentDetails->getId(),
+                'contextName' => $paymentContext->getName()
+            ));
+
+            $token = $this->getCaptureController()->createMetaInfo(
+                $paymentDetails,
+                $paymentContext->getName(),
+                $captureFinishedRedirectUrl
+            );
+
+            $captureUrl = $this->generateUrl('acme_payment_capture', array(
+                'token' => $token,
             ), $absolute = true);
             $paymentDetails->setReturnurl($captureUrl);
             $paymentDetails->setCancelurl($captureUrl);
 
             $paymentContext->getStorage()->updateModel($paymentDetails);
 
-            return $this->redirect($captureUrl);
+            return $this->forward('AcmePaymentBundle:Capture:do', array(
+                'token' => $token,
+            ));
         }
 
         return array(
@@ -175,6 +208,14 @@ class PurchaseExamplesController extends Controller
             ->add('currency', null, array('data' => 'USD'))
             ->getForm()
         ;
+    }
+
+    /**
+     * @return CaptureController
+     */
+    protected function getCaptureController()
+    {
+        return $this->get('acme_payment.controller.capture');
     }
 
     /**

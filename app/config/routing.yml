@@ -1,3 +1,11 @@
+_welcome:
+    pattern:  /
+    defaults: { _controller: AcmePaymentBundle:Demo:list }
+
+acme_authorize_net:
+    resource: "@AcmeAuthorizeNetBundle/Resources/config/routing.yml"
+    prefix:   /
+
 acme_paypal_express_checkout:
     resource: "@AcmePaypalExpressCheckoutBundle/Resources/config/routing.yml"
     prefix:   /

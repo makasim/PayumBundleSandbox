@@ -15,6 +15,7 @@ use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Bundle\PayumBundle\Context\ContextRegistry;
 
 use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
+use Acme\PaymentBundle\Controller\CaptureController;
 
 class RecurringPaymentExamplesController extends Controller
 {
@@ -55,17 +56,29 @@ class RecurringPaymentExamplesController extends Controller
             
             $paymentContext->getStorage()->updateModel($billingAgreementDetails);
             $billingAgreementDetails->setInvnum($billingAgreementDetails->getId());
-    
-            $captureUrl = $this->generateUrl('acme_paypal_express_checkout_create_recurring_payment', array(
-                'contextName' => 'simple_recurring_payment_paypal_express_checkout',
+
+            $captureFinishedRedirectUrl = $this->generateUrl('acme_paypal_express_checkout_create_recurring_payment', array(
                 'billingAgreementDetails' => $billingAgreementDetails->getId(),
+                'contextName' => $paymentContext->getName()
+            ));
+
+            $token = $this->getCaptureController()->createMetaInfo(
+                $billingAgreementDetails,
+                $paymentContext->getName(),
+                $captureFinishedRedirectUrl
+            );
+
+            $captureUrl = $this->generateUrl('acme_payment_capture', array(
+                'token' => $token,
             ), $absolute = true);
             $billingAgreementDetails->setReturnurl($captureUrl);
             $billingAgreementDetails->setCancelurl($captureUrl);
-    
+
             $paymentContext->getStorage()->updateModel($billingAgreementDetails);
 
-            return $this->redirect($captureUrl);
+            return $this->forward('AcmePaymentBundle:Capture:do', array(
+                'token' => $token,
+            ));
         }
         
         return array(
@@ -85,10 +98,7 @@ class RecurringPaymentExamplesController extends Controller
     {
         $context = $this->getPayum()->getContext($contextName);
 
-        $captureRequest = new CaptureRequest($billingAgreementDetails);
-        $context->getPayment()->execute($captureRequest);
-
-        $billingAgreementStatus = new BinaryMaskStatusRequest($captureRequest->getModel());
+        $billingAgreementStatus = new BinaryMaskStatusRequest($billingAgreementDetails);
         $context->getPayment()->execute($billingAgreementStatus);
 
         $recurringPaymentStatus = null;
@@ -117,6 +127,14 @@ class RecurringPaymentExamplesController extends Controller
             'billingAgreementStatus' => $billingAgreementStatus,
             'recurringPaymentStatus' => $recurringPaymentStatus,
         );
+    }
+
+    /**
+     * @return CaptureController
+     */
+    protected function getCaptureController()
+    {
+        return $this->get('acme_payment.controller.capture');
     }
     
     /**
