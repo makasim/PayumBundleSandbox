@@ -1,0 +1,22 @@
+{% extends "AcmePaymentBundle::layout.html.twig" %}
+
+{% block title "Payment demo - Simple purchase with Paypal Pro - Prepare" %}
+
+{% block content %}
+    <form method="POST">
+        {{ form_widget(form) }}
+
+        <input type="submit" value="Pay" />
+    </form>
+
+    {% if response %}
+        <h2>Response:</h2>
+        <ul>
+            {% for key, val in response %}
+                <li>{{ key }}: {{ val }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% set code = code(_self) %}

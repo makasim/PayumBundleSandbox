@@ -21,6 +21,7 @@
         "jms/di-extra-bundle": "1.3.*",
         "payum/payum-bundle": "0.4.x-dev",
         "payum/paypal-express-checkout-nvp": "0.4.x-dev",
+        "payum/paypal-pro-checkout-nvp": "0.4.x-dev",
         "payum/authorize-net-aim": "0.4.x-dev",
         "payum/be2bill": "0.4.x-dev",
         "payum/omnipay-bridge": "0.4.x-dev"

@@ -17,7 +17,13 @@ parameters:
     paypal.express_checkout.username: 'EDIT ME'
     paypal.express_checkout.password: 'EDIT ME'
     paypal.express_checkout.signature: 'EDIT ME'
-    
+
+    paypal.pro_checkout.username: 'EDIT ME'
+    paypal.pro_checkout.password: 'EDIT ME'
+    paypal.pro_checkout.partner:  'EDIT ME'
+    paypal.pro_checkout.vendor:   'EDIT ME'
+    paypal.pro_checkout.sandbox:  true
+
     authorize_net.login_id: 'EDIT ME'
     authorize_net.transaction_key: 'EDIT ME'
     
