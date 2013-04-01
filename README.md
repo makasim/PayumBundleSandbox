@@ -67,4 +67,4 @@ Symfony Application online" link of the `config.php` page.
 
 To see a list of payment demos access the following page:
 
-    /app_dev.php/payment
+    /app_dev.php
