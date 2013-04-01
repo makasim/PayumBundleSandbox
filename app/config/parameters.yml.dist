@@ -1,0 +1,31 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt
+    
+    paypal.express_checkout.username: 'EDIT ME'
+    paypal.express_checkout.password: 'EDIT ME'
+    paypal.express_checkout.signature: 'EDIT ME'
+
+    paypal.pro_checkout.username: 'EDIT ME'
+    paypal.pro_checkout.password: 'EDIT ME'
+    paypal.pro_checkout.partner:  'EDIT ME'
+    paypal.pro_checkout.vendor:   'EDIT ME'
+    paypal.pro_checkout.sandbox:  true
+
+    authorize_net.login_id: 'EDIT ME'
+    authorize_net.transaction_key: 'EDIT ME'
+    
+    be2bill.identifier: 'EDIT ME'
+    be2bill.password: 'EDIT ME'

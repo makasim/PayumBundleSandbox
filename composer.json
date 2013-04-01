@@ -26,7 +26,14 @@
         "payum/be2bill": "0.4.x-dev",
         "payum/omnipay-bridge": "0.4.x-dev"
     },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "fp/testo": "@dev"
+    },
     "scripts": {
+        "pre-install-cmd": [
+            "Acme\\PaymentBundle\\Composer\\ScriptHandler::createParametersYaml"
+        ],
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
