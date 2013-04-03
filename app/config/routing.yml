@@ -1,6 +1,6 @@
 _welcome:
     pattern:  /
-    defaults: { _controller: AcmePaymentBundle:Demo:list }
+    defaults: { _controller: AcmePaymentBundle:Default:index }
 
 acme_paypal_express_checkout:
     resource: "@AcmePaypalExpressCheckoutBundle/Resources/config/routing.yml"
