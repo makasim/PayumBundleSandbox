@@ -1,9 +1,9 @@
 <?php
 namespace Acme\PaymentBundle\Model;
 
-use Payum\Be2Bill\PaymentInstruction;
+use Payum\Be2Bill\Model\PaymentDetails;
 
-class Be2BillInstruction extends PaymentInstruction 
+class Be2BillInstruction extends PaymentDetails 
 {
     protected $id;
     

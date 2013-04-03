@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
 
 use Payum\Bundle\PayumBundle\Context\ContextRegistry;
-use Payum\Paypal\ProCheckout\Nvp\PaymentInstruction;
+use Payum\Paypal\ProCheckout\Nvp\Model\PaymentDetails;
 use Payum\Request\BinaryMaskStatusRequest;
 use Payum\Request\CaptureRequest;
 
@@ -41,8 +41,8 @@ class SimplePurchasePaypalProController extends Controller
 
                 $payment = $paymentContext->getPayment();
 
-                /** @var $instruction \Payum\Paypal\ProCheckout\Nvp\PaymentInstruction */
-                $instruction = new PaymentInstruction();
+                /** @var $instruction \Payum\Paypal\ProCheckout\Nvp\Model\PaymentDetails */
+                $instruction = new PaymentDetails();
                 $instruction
                     ->setAcct($data['acct'])
                     ->setCvv2($data['cvv2'])
