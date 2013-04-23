@@ -5,7 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
 
-use Payum\Bundle\PayumBundle\Context\ContextRegistry;
+use Payum\Registry\AbstractRegistry;
 
 class SimplePurchaseAuthorizeNetAimController extends Controller
 {
@@ -28,14 +28,17 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
             if ($form->isValid()) {
                 $data = $form->getData();
                 
-                $paymentContext = $this->getPayum()->getContext('simple_purchase_authorize_net');
+                $storage = $this->getPayum()->getStorageForClass(
+                    'Acme\PaymentBundle\Model\AuthorizeNetInstruction',
+                    'simple_purchase_authorize_net'
+                );
 
-                $instruction = $paymentContext->getStorage()->createModel();
+                $instruction = $storage->createModel();
                 $instruction->setAmount($data['amount']);
                 $instruction->setCardNum($data['card_number']);
                 $instruction->setExpDate($data['card_expiration_date']);
 
-                $paymentContext->getStorage()->updateModel($instruction);
+                $storage->updateModel($instruction);
         
                 return $this->redirect($this->generateUrl('acme_payment_capture_simple', array(
                     'contextName' => 'simple_purchase_authorize_net',
@@ -50,7 +53,7 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
     }
 
     /**
-     * @return ContextRegistry
+     * @return AbstractRegistry
      */
     protected function getPayum()
     {

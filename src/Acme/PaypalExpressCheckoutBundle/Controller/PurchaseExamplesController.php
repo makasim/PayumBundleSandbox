@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints\Range;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 
-use Payum\Bundle\PayumBundle\Context\ContextRegistry;
+use Payum\Registry\AbstractRegistry;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 
 use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
@@ -30,14 +30,17 @@ class PurchaseExamplesController extends Controller
             if ($form->isValid()) {
                 $data = $form->getData();
                 
-                $paymentContext = $this->getPayum()->getContext('simple_purchase_paypal_express_checkout');
+                $storage = $this->getPayum()->getStorageForClass(
+                    'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+                    'simple_purchase_paypal_express_checkout'
+                );
 
                 /** @var $paymentDetails PaymentDetails */
-                $paymentDetails = $paymentContext->getStorage()->createModel();
+                $paymentDetails = $storage->createModel();
                 $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
                 $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
-                
-                $paymentContext->getStorage()->updateModel($paymentDetails);
+
+                $storage->updateModel($paymentDetails);
                 $paymentDetails->setInvnum($paymentDetails->getId());
         
                 $captureUrl = $this->generateUrl('acme_payment_capture_simple', array(
@@ -46,8 +49,8 @@ class PurchaseExamplesController extends Controller
                 ), $absolute = true);
                 $paymentDetails->setReturnurl($captureUrl);
                 $paymentDetails->setCancelurl($captureUrl);
-        
-                $paymentContext->getStorage()->updateModel($paymentDetails);
+
+                $storage->updateModel($paymentDetails);
 
                 return $this->redirect($captureUrl);
             }
@@ -74,14 +77,17 @@ class PurchaseExamplesController extends Controller
             if ($form->isValid()) {
                 $data = $form->getData();
 
-                $paymentContext = $this->getPayum()->getContext('simple_purchase_paypal_express_checkout_doctrine');
-
+                $storage = $this->getPayum()->getStorageForClass(
+                    'Acme\PaypalExpressCheckoutBundle\Entity\PaymentDetails',
+                    'simple_purchase_paypal_express_checkout_doctrine'
+                );
+                
                 /** @var $paymentDetails PaymentDetails */
-                $paymentDetails = $paymentContext->getStorage()->createModel();
+                $paymentDetails = $storage->createModel();
                 $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
                 $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
 
-                $paymentContext->getStorage()->updateModel($paymentDetails);
+                $storage->updateModel($paymentDetails);
                 $paymentDetails->setInvnum($paymentDetails->getId());
 
                 $captureUrl = $this->generateUrl('acme_payment_capture_simple', array(
@@ -91,7 +97,7 @@ class PurchaseExamplesController extends Controller
                 $paymentDetails->setReturnurl($captureUrl);
                 $paymentDetails->setCancelurl($captureUrl);
 
-                $paymentContext->getStorage()->updateModel($paymentDetails);
+                $storage->updateModel($paymentDetails);
 
                 //we do forward since we do not store returnulr to database.
                 return $this->forward('AcmePaymentBundle:Capture:simpleCapture', array(
@@ -127,10 +133,13 @@ class PurchaseExamplesController extends Controller
         );
 
         if ('POST' === $request->getMethod()) {
-            $paymentContext = $this->getPayum()->getContext('simple_purchase_paypal_express_checkout');
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+                'simple_purchase_paypal_express_checkout'
+            );
 
             /** @var $paymentDetails PaymentDetails */
-            $paymentDetails = $paymentContext->getStorage()->createModel();
+            $paymentDetails = $storage->createModel();
             $paymentDetails->setPaymentrequestCurrencycode(0, $eBook['currency']);
             $paymentDetails->setPaymentrequestAmt(0,  $eBook['price'] * $eBook['quantity']);
             
@@ -142,7 +151,7 @@ class PurchaseExamplesController extends Controller
             $paymentDetails->setLPaymentrequestName(0, 0, $eBook['author'].'. '.$eBook['name']);
             $paymentDetails->setLPaymentrequestDesc(0, 0, $eBook['description']);
 
-            $paymentContext->getStorage()->updateModel($paymentDetails);
+            $storage->updateModel($paymentDetails);
             $paymentDetails->setInvnum($paymentDetails->getId());
 
             $captureUrl = $this->generateUrl('acme_payment_capture_simple', array(
@@ -152,7 +161,7 @@ class PurchaseExamplesController extends Controller
             $paymentDetails->setReturnurl($captureUrl);
             $paymentDetails->setCancelurl($captureUrl);
 
-            $paymentContext->getStorage()->updateModel($paymentDetails);
+            $storage->updateModel($paymentDetails);
 
             return $this->redirect($captureUrl);
         }
@@ -178,7 +187,7 @@ class PurchaseExamplesController extends Controller
     }
 
     /**
-     * @return ContextRegistry
+     * @return AbstractRegistry
      */
     protected function getPayum()
     {

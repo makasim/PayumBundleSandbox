@@ -6,13 +6,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 
+use Payum\Registry\AbstractRegistry;
 use Payum\Request\CaptureRequest;
 use Payum\Request\SyncRequest;
 use Payum\Request\BinaryMaskStatusRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Model\RecurringPaymentDetails;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfileRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
-use Payum\Bundle\PayumBundle\Context\ContextRegistry;
 
 use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
 
@@ -43,17 +43,20 @@ class RecurringPaymentExamplesController extends Controller
     {
         $subscription = $this->getWeatherForecastSubscriptionDetails();
         
-        if ($request->isMethod('POST')) {                
-            $paymentContext = $this->getPayum()->getContext('simple_recurring_payment_paypal_express_checkout');
-
+        if ($request->isMethod('POST')) {
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+                'simple_recurring_payment_paypal_express_checkout'
+            );
+            
             /** @var $billingAgreementDetails PaymentDetails */
-            $billingAgreementDetails = $paymentContext->getStorage()->createModel();
+            $billingAgreementDetails = $storage->createModel();
             $billingAgreementDetails->setPaymentrequestAmt(0,  $amount = 0);
             $billingAgreementDetails->setLBillingtype(0, Api::BILLINGTYPE_RECURRING_PAYMENTS);
             $billingAgreementDetails->setLBillingagreementdescription(0, $subscription['description']);
             $billingAgreementDetails->setNoshipping(1);
-            
-            $paymentContext->getStorage()->updateModel($billingAgreementDetails);
+
+            $storage->updateModel($billingAgreementDetails);
             $billingAgreementDetails->setInvnum($billingAgreementDetails->getId());
     
             $captureUrl = $this->generateUrl('acme_paypal_express_checkout_create_recurring_payment', array(
@@ -62,8 +65,8 @@ class RecurringPaymentExamplesController extends Controller
             ), $absolute = true);
             $billingAgreementDetails->setReturnurl($captureUrl);
             $billingAgreementDetails->setCancelurl($captureUrl);
-    
-            $paymentContext->getStorage()->updateModel($billingAgreementDetails);
+
+            $storage->updateModel($billingAgreementDetails);
 
             return $this->redirect($captureUrl);
         }
@@ -83,13 +86,13 @@ class RecurringPaymentExamplesController extends Controller
      */
     public function createBillingAgreementAction($contextName, $billingAgreementDetails)
     {
-        $context = $this->getPayum()->getContext($contextName);
+        $payment = $this->getPayum()->getPayment($contextName);
 
         $captureRequest = new CaptureRequest($billingAgreementDetails);
-        $context->getPayment()->execute($captureRequest);
+        $payment->execute($captureRequest);
 
         $billingAgreementStatus = new BinaryMaskStatusRequest($captureRequest->getModel());
-        $context->getPayment()->execute($billingAgreementStatus);
+        $payment->execute($billingAgreementStatus);
 
         $recurringPaymentStatus = null;
         if ($billingAgreementStatus->isSuccess()) {
@@ -106,11 +109,11 @@ class RecurringPaymentExamplesController extends Controller
             $recurringPaymentDetails->setProfilestartdate(date(DATE_ATOM));
             $recurringPaymentDetails->setBillingperiod(Api::BILLINGPERIOD_DAY);
             
-            $context->getPayment()->execute(new CreateRecurringPaymentProfileRequest($recurringPaymentDetails));
-            $context->getPayment()->execute(new SyncRequest($recurringPaymentDetails));
+            $payment->execute(new CreateRecurringPaymentProfileRequest($recurringPaymentDetails));
+            $payment->execute(new SyncRequest($recurringPaymentDetails));
 
             $recurringPaymentStatus = new BinaryMaskStatusRequest($recurringPaymentDetails);
-            $context->getPayment()->execute($recurringPaymentStatus);
+            $payment->execute($recurringPaymentStatus);
         }
         
         return array(
@@ -120,7 +123,7 @@ class RecurringPaymentExamplesController extends Controller
     }
     
     /**
-     * @return ContextRegistry
+     * @return AbstractRegistry
      */
     protected function getPayum()
     {

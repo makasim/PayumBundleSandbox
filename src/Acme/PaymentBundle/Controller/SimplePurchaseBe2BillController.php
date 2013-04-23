@@ -1,6 +1,7 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
+use Payum\Registry\AbstractRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
@@ -61,7 +62,7 @@ class SimplePurchaseBe2BillController extends Controller
     }
 
     /**
-     * @return ContextRegistry
+     * @return AbstractRegistry
      */
     protected function getPayum()
     {
