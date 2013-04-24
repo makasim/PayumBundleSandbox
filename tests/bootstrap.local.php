@@ -22,3 +22,7 @@ $loader->add('Payum\Paypal\AuthorizeNet\Aim\Tests', realpath(__DIR__ .'/../vendo
 $loader->add('Payum\Paypal\Be2Bill\Tests', realpath(__DIR__ .'/../vendor/payum/be2bill/tests'));
 
 $loader->add('Payum\Bundle\PayumBundle\Tests', __DIR__);
+
+//TODO remove once composer package is available
+$loader->add('Payum\Paypal\Ipn', realpath(__DIR__ .'/../vendor/payum/paypal-ipn/src'));
+$loader->add('Payum\Paypal\Ipn\Tests', realpath(__DIR__ .'/../vendor/payum/paypal-ipn/tests'));
