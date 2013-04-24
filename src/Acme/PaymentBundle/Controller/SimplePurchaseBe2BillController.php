@@ -5,7 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
 
-use Payum\Bundle\PayumBundle\Context\ContextRegistry;
+use Payum\Registry\AbstractRegistry;
 
 use Acme\PaymentBundle\Model\Be2BillInstruction;
 
@@ -32,10 +32,13 @@ class SimplePurchaseBe2BillController extends Controller
             if ($form->isValid()) {
                 $data = $form->getData();
                 
-                $context = $this->getPayum()->getContext('simple_purchase_be2bill');
+                $storage = $this->getPayum()->getStorageForClass(
+                    'Acme\PaymentBundle\Model\Be2BillInstruction',
+                    'simple_purchase_be2bill'
+                );
 
                 /** @var Be2BillInstruction */
-                $instruction = $context->getStorage()->createModel();
+                $instruction = $storage->createModel();
                 $instruction->setAmount($data['amount'] * 100); //be2bill amount format is cents: for example:  100.05 (EUR). will be 10005.
                 $instruction->setClientemail('user@email.com');
                 $instruction->setClientuseragent($request->headers->get('User-Agent', 'Unknown'));
@@ -61,7 +64,7 @@ class SimplePurchaseBe2BillController extends Controller
     }
 
     /**
-     * @return ContextRegistry
+     * @return AbstractRegistry
      */
     protected function getPayum()
     {

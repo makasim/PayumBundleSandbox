@@ -1,9 +1,9 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
+use Payum\Registry\AbstractRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Payum\Bundle\PayumBundle\Context\ContextRegistry;
 use Payum\Request\BinaryMaskStatusRequest;
 use Payum\Request\CaptureRequest;
 
@@ -11,13 +11,13 @@ class CaptureController extends Controller
 {
     public function simpleCaptureAction($contextName, $model)
     {
-        $context = $this->getPayum()->getContext($contextName);
+        $payment = $this->getPayum()->getPayment($contextName);
 
         $captureRequest = new CaptureRequest($model);
-        $context->getPayment()->execute($captureRequest);
+        $payment->execute($captureRequest);
 
         $statusRequest = new BinaryMaskStatusRequest($captureRequest->getModel());
-        $context->getPayment()->execute($statusRequest);
+        $payment->execute($statusRequest);
 
         return $this->render('AcmePaymentBundle:Capture:simpleCapture.html.twig', array(
             'status' => $statusRequest
@@ -25,7 +25,7 @@ class CaptureController extends Controller
     }
 
     /**
-     * @return ContextRegistry
+     * @return AbstractRegistry
      */
     protected function getPayum()
     {
