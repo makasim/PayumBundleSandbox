@@ -2,13 +2,12 @@
 namespace Acme\PaymentBundle\Controller;
 
 
-use Payum\Paypal\ProCheckout\Nvp\Exception\Http\HttpResponseNotSuccessException;
-use Payum\Registry\AbstractRegistry;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Payum\Bundle\PayumBundle\Context\ContextRegistry;
+use Payum\PaymentInterface;
+use Payum\Registry\AbstractRegistry;
 use Payum\Paypal\ProCheckout\Nvp\Model\PaymentDetails;
 use Payum\Request\BinaryMaskStatusRequest;
 use Payum\Request\CaptureRequest;
@@ -37,11 +36,9 @@ class SimplePurchasePaypalProController extends Controller
             if ($form->isValid()) {
                 $data = $form->getData();
 
-                /** @var $paymentContext \Payum\Bundle\PayumBundle\Context\LazyContext */
-                $paymentContext = $this->getPayum()->getContext('simple_purchase_paypal_pro');
-
-                $payment = $paymentContext->getPayment();
-
+                /** @var PaymentInterface $payment */
+                $payment = $this->getPayum()->getPayment('simple_purchase_paypal_pro');
+                
                 /** @var $instruction \Payum\Paypal\ProCheckout\Nvp\Model\PaymentDetails */
                 $instruction = new PaymentDetails();
                 $instruction
@@ -55,11 +52,11 @@ class SimplePurchasePaypalProController extends Controller
 
                 $captureRequest = new CaptureRequest($instruction);
                 $payment->execute($captureRequest);
+                
                 $statusRequest = new BinaryMaskStatusRequest($captureRequest->getModel());
                 $payment->execute($statusRequest);
 
                 $response = $instruction->getResponse();
-
             }
         }
         

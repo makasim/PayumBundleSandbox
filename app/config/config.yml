@@ -157,6 +157,7 @@ payum:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
+                        payment_extension: true
                 
         simple_purchase_paypal_express_via_ominpay:
             omnipay:
@@ -172,3 +173,4 @@ payum:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
+                        payment_extension: true

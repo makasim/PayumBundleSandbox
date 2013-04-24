@@ -1,12 +1,11 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
-use Payum\Registry\AbstractRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
 
-use Payum\Bundle\PayumBundle\Context\ContextRegistry;
+use Payum\Registry\AbstractRegistry;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Paypal\ExpressCheckout\Nvp\PaymentInstruction;
 
@@ -29,14 +28,17 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
             $form->bind($request);
             if ($form->isValid()) {
                 $data = $form->getData();
-                
-                $paymentContext = $this->getPayum()->getContext('simple_purchase_paypal_express_via_ominpay');
 
-                $instruction = $paymentContext->getStorage()->createModel();
+                $storage = $this->getPayum()->getStorageForClass(
+                    'Acme\PaymentBundle\Model\OmnipayInstruction',
+                    'simple_purchase_paypal_express_via_ominpay'
+                );
+                
+                $instruction = $storage->createModel();
                 $instruction['amount'] = $data['amount'] * 100;
                 $instruction['currency'] = $data['currency'];
 
-                $paymentContext->getStorage()->updateModel($instruction);
+                $storage->updateModel($instruction);
                 
                 $captureUrl = $this->generateUrl('acme_payment_capture_simple', array(
                     'contextName' => 'simple_purchase_paypal_express_via_ominpay',
@@ -44,8 +46,8 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
                 ), $absolute = true);
                 $instruction['returnUrl'] = $captureUrl;
                 $instruction['cancelUrl'] = $captureUrl;
-        
-                $paymentContext->getStorage()->updateModel($instruction);
+
+                $storage->updateModel($instruction);
 
                 return $this->redirect($captureUrl);
             }
