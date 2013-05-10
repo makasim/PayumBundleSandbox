@@ -1,7 +1,9 @@
 <?php
 namespace Acme\PaymentBundle\Model;
 
-class OmnipayInstruction extends \ArrayObject
+use Payum\Be2Bill\Model\PaymentDetails;
+
+class Be2BillPaymentDetails extends PaymentDetails 
 {
     protected $id;
     

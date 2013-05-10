@@ -6,22 +6,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
 
 use Payum\Registry\AbstractRegistry;
+use Payum\Bundle\PayumBundle\Service\TokenizedTokenService;
 
 class SimplePurchaseAuthorizeNetAimController extends Controller
 {
     public function prepareAction(Request $request)
     {
-        $form = $this->createFormBuilder()
-            ->add('amount', null, array(
-                'data' => 1.23,
-                'constraints' => array(new Range(array('max' => 2)))
-            ))
-            ->add('card_number', null, array('data' => '4007000000027'))
-            ->add('card_expiration_date', null, array('data' => '10/16'))
-            
-            ->getForm()
-        ;
+        $paymentName = 'authorize_net';
 
+        $form = $this->createPurchaseForm();
         if ('POST' === $request->getMethod()) {
             
             $form->bind($request);
@@ -29,21 +22,28 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
                 $data = $form->getData();
                 
                 $storage = $this->getPayum()->getStorageForClass(
-                    'Acme\PaymentBundle\Model\AuthorizeNetInstruction',
-                    'simple_purchase_authorize_net'
+                    'Acme\PaymentBundle\Model\AuthorizeNetPaymentDetails',
+                    $paymentName
                 );
 
-                $instruction = $storage->createModel();
-                $instruction->setAmount($data['amount']);
-                $instruction->setCardNum($data['card_number']);
-                $instruction->setExpDate($data['card_expiration_date']);
+                $paymentDetails = $storage->createModel();
+                $paymentDetails->setAmount($data['amount']);
+                $paymentDetails->setCardNum($data['card_number']);
+                $paymentDetails->setExpDate($data['card_expiration_date']);
 
-                $storage->updateModel($instruction);
-        
-                return $this->redirect($this->generateUrl('acme_payment_capture_simple', array(
-                    'contextName' => 'simple_purchase_authorize_net',
-                    'model' => $instruction->getId()
-                )));
+                $storage->updateModel($paymentDetails);
+
+                $captureToken = $this->getTokenizedTokenService()->createTokenForCaptureRoute(
+                    $paymentName,
+                    $paymentDetails,
+                    'acme_payment_details_view'
+                );
+
+                //In reality we do not want to store sensative data to db, so we capture payment in one process.
+                return $this->forward('PayumBundle:Capture:do', array(
+                    'paymentName' => $paymentName,
+                    'token' => $captureToken,
+                ));
             }
         }
         
@@ -53,10 +53,35 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
     }
 
     /**
+     * @return \Symfony\Component\Form\Form
+     */
+    protected function createPurchaseForm()
+    {
+        return $this->createFormBuilder()
+            ->add('amount', null, array(
+                    'data' => 1.23,
+                    'constraints' => array(new Range(array('max' => 2)))
+                ))
+            ->add('card_number', null, array('data' => '4007000000027'))
+            ->add('card_expiration_date', null, array('data' => '10/16'))
+
+            ->getForm()
+        ;
+    }
+
+    /**
      * @return AbstractRegistry
      */
     protected function getPayum()
     {
         return $this->get('payum');
+    }
+
+    /**
+     * @return TokenizedTokenService
+     */
+    protected function getTokenizedTokenService()
+    {
+        return $this->get('payum.tokenized_details_service');
     }
 }
