@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Payum\Paypal\ExpressCheckout\Nvp\Bridge\Doctrine\Entity\PaymentDetails as BasePaymentDetails;
 
 /**
+ * @ORM\Table(name="payum_paypal_express_checkout_payment_details")
  * @ORM\Entity
  */
 class PaymentDetails extends BasePaymentDetails

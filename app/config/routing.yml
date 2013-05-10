@@ -1,6 +1,10 @@
 _welcome:
     pattern:  /
     defaults: { _controller: AcmePaymentBundle:Default:index }
+    
+payum_capture:
+    resource: "@PayumBundle/Resources/config/routing/capture.xml"
+    prefix:   /
 
 acme_paypal_express_checkout:
     resource: "@AcmePaypalExpressCheckoutBundle/Resources/config/routing.yml"
