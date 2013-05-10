@@ -115,12 +115,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "b5716ea776f349a0fedcf0e7d032386c1f696f76"
+                "reference": "4116eff37635219101a22c9732f409633eb07c5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/b5716ea776f349a0fedcf0e7d032386c1f696f76",
-                "reference": "b5716ea776f349a0fedcf0e7d032386c1f696f76",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/4116eff37635219101a22c9732f409633eb07c5d",
+                "reference": "4116eff37635219101a22c9732f409633eb07c5d",
                 "shasum": ""
             },
             "require": {
@@ -163,7 +163,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -173,7 +173,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2013-03-17 13:59:02"
+            "time": "2013-05-04 23:23:40"
         },
         {
             "name": "doctrine/collections",
@@ -248,12 +248,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "3506be7467dbd4f923691a00555cf80065d32e59"
+                "reference": "ce87784a45f93c73a4035748fd98ecbbda3098fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/3506be7467dbd4f923691a00555cf80065d32e59",
-                "reference": "3506be7467dbd4f923691a00555cf80065d32e59",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/ce87784a45f93c73a4035748fd98ecbbda3098fb",
+                "reference": "ce87784a45f93c73a4035748fd98ecbbda3098fb",
                 "shasum": ""
             },
             "require": {
@@ -314,7 +314,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2013-04-16 21:50:30"
+            "time": "2013-05-09 21:35:24"
         },
         {
             "name": "doctrine/dbal",
@@ -322,12 +322,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "e916af6395581308b9746fb7c22f284cf9079c69"
+                "reference": "fd8ec96aa888664f78729cb0380cac1215c4ab53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/e916af6395581308b9746fb7c22f284cf9079c69",
-                "reference": "e916af6395581308b9746fb7c22f284cf9079c69",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/fd8ec96aa888664f78729cb0380cac1215c4ab53",
+                "reference": "fd8ec96aa888664f78729cb0380cac1215c4ab53",
                 "shasum": ""
             },
             "require": {
@@ -384,7 +384,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-04-23 08:24:44"
+            "time": "2013-05-09 16:08:20"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -393,12 +393,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "v1.2.0"
+                "reference": "9218b4116e86b1d278564b8550fb2f53eb400093"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/v1.2.0",
-                "reference": "v1.2.0",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/9218b4116e86b1d278564b8550fb2f53eb400093",
+                "reference": "9218b4116e86b1d278564b8550fb2f53eb400093",
                 "shasum": ""
             },
             "require": {
@@ -454,7 +454,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2013-03-25 20:13:59"
+            "time": "2013-05-04 07:57:29"
         },
         {
             "name": "doctrine/inflector",
@@ -587,12 +587,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "9791b2eb00edab5f7b67153a185f4c03e356b418"
+                "reference": "bf9673203c2ed557585426d3afc9d6723fcf22ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/9791b2eb00edab5f7b67153a185f4c03e356b418",
-                "reference": "9791b2eb00edab5f7b67153a185f4c03e356b418",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/bf9673203c2ed557585426d3afc9d6723fcf22ba",
+                "reference": "bf9673203c2ed557585426d3afc9d6723fcf22ba",
                 "shasum": ""
             },
             "require": {
@@ -601,6 +601,9 @@
                 "ext-pdo": "*",
                 "php": ">=5.3.2",
                 "symfony/console": "2.*"
+            },
+            "require-dev": {
+                "symfony/yaml": "2.1"
             },
             "suggest": {
                 "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
@@ -650,21 +653,21 @@
                 "database",
                 "orm"
             ],
-            "time": "2013-04-23 17:50:01"
+            "time": "2013-05-10 06:53:26"
         },
         {
             "name": "guzzle/common",
-            "version": "v3.4.1",
+            "version": "dev-master",
             "target-dir": "Guzzle/Common",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/common.git",
-                "reference": "v3.4.1"
+                "reference": "v3.4.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/common/zipball/v3.4.1",
-                "reference": "v3.4.1",
+                "url": "https://api.github.com/repos/guzzle/common/zipball/v3.4.3",
+                "reference": "v3.4.3",
                 "shasum": ""
             },
             "require": {
@@ -674,7 +677,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.3-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -694,21 +697,21 @@
                 "event",
                 "exception"
             ],
-            "time": "2013-04-16 20:56:26"
+            "time": "2013-04-30 20:30:19"
         },
         {
             "name": "guzzle/http",
-            "version": "v3.4.1",
+            "version": "dev-master",
             "target-dir": "Guzzle/Http",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/http.git",
-                "reference": "v3.4.1"
+                "reference": "v3.4.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/http/zipball/v3.4.1",
-                "reference": "v3.4.1",
+                "url": "https://api.github.com/repos/guzzle/http/zipball/v3.4.3",
+                "reference": "v3.4.3",
                 "shasum": ""
             },
             "require": {
@@ -723,7 +726,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.3-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -751,21 +754,21 @@
                 "http",
                 "http client"
             ],
-            "time": "2013-04-16 20:27:11"
+            "time": "2013-04-30 20:30:19"
         },
         {
             "name": "guzzle/parser",
-            "version": "v3.4.1",
+            "version": "dev-master",
             "target-dir": "Guzzle/Parser",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/parser.git",
-                "reference": "v3.4.1"
+                "reference": "v3.4.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/parser/zipball/v3.4.1",
-                "reference": "v3.4.1",
+                "url": "https://api.github.com/repos/guzzle/parser/zipball/v3.4.3",
+                "reference": "v3.4.3",
                 "shasum": ""
             },
             "require": {
@@ -774,7 +777,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.3-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -795,21 +798,21 @@
                 "message",
                 "url"
             ],
-            "time": "2013-03-07 22:13:59"
+            "time": "2013-04-26 15:47:38"
         },
         {
             "name": "guzzle/stream",
-            "version": "v3.4.1",
+            "version": "dev-master",
             "target-dir": "Guzzle/Stream",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/stream.git",
-                "reference": "v3.4.1"
+                "reference": "v3.4.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/stream/zipball/v3.4.1",
-                "reference": "v3.4.1",
+                "url": "https://api.github.com/repos/guzzle/stream/zipball/v3.4.3",
+                "reference": "v3.4.3",
                 "shasum": ""
             },
             "require": {
@@ -822,7 +825,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.3-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -848,7 +851,7 @@
                 "component",
                 "stream"
             ],
-            "time": "2013-04-06 18:28:51"
+            "time": "2013-04-26 15:47:38"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -856,12 +859,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jdorn/sql-formatter.git",
-                "reference": "e38ea8a0cbd943ac78014d07f42441cd51d537db"
+                "reference": "v1.2.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/e38ea8a0cbd943ac78014d07f42441cd51d537db",
-                "reference": "e38ea8a0cbd943ac78014d07f42441cd51d537db",
+                "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/v1.2.9",
+                "reference": "v1.2.9",
                 "shasum": ""
             },
             "require": {
@@ -883,7 +886,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL"
+                "MIT"
             ],
             "authors": [
                 {
@@ -898,7 +901,7 @@
                 "highlight",
                 "sql"
             ],
-            "time": "2013-03-31 22:29:24"
+            "time": "2013-04-26 18:42:52"
         },
         {
             "name": "jms/aop-bundle",
@@ -1226,12 +1229,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "0a55a9ba70bd9250899ad77deceaf8cb9e145371"
+                "reference": "1b17f9a239276f24344f9f7d7be8293f6dca4e19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/0a55a9ba70bd9250899ad77deceaf8cb9e145371",
-                "reference": "0a55a9ba70bd9250899ad77deceaf8cb9e145371",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/1b17f9a239276f24344f9f7d7be8293f6dca4e19",
+                "reference": "1b17f9a239276f24344f9f7d7be8293f6dca4e19",
                 "shasum": ""
             },
             "require": {
@@ -1289,7 +1292,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2013-04-02 21:36:28"
+            "time": "2013-04-27 14:32:20"
         },
         {
             "name": "kriswallsmith/buzz",
@@ -1341,16 +1344,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.5.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "1.5.0"
+                "reference": "1eed379a3b7c31f698e49fa7a822a536e94c31f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1.5.0",
-                "reference": "1.5.0",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1eed379a3b7c31f698e49fa7a822a536e94c31f5",
+                "reference": "1eed379a3b7c31f698e49fa7a822a536e94c31f5",
                 "shasum": ""
             },
             "require": {
@@ -1372,7 +1375,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4.x-dev"
+                    "dev-master": "1.5.x-dev"
                 }
             },
             "autoload": {
@@ -1399,7 +1402,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-04-23 10:09:48"
+            "time": "2013-05-03 09:05:12"
         },
         {
             "name": "omnipay/omnipay",
@@ -1480,12 +1483,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/AuthorizeNetAim.git",
-                "reference": "db59fc072731de91196f13babd6f5fdacfd6648d"
+                "reference": "a614bd9229669dfabe0ee061fb890457e1e997c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/AuthorizeNetAim/zipball/db59fc072731de91196f13babd6f5fdacfd6648d",
-                "reference": "db59fc072731de91196f13babd6f5fdacfd6648d",
+                "url": "https://api.github.com/repos/Payum/AuthorizeNetAim/zipball/a614bd9229669dfabe0ee061fb890457e1e997c8",
+                "reference": "a614bd9229669dfabe0ee061fb890457e1e997c8",
                 "shasum": ""
             },
             "require": {
@@ -1523,7 +1526,7 @@
                 "authorizenet",
                 "payment"
             ],
-            "time": "2013-04-04 20:03:41"
+            "time": "2013-05-09 16:55:29"
         },
         {
             "name": "payum/be2bill",
@@ -1531,12 +1534,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Be2Bill.git",
-                "reference": "a0cad0e8939a535dd9f28c88ecdf8893b1b811b0"
+                "reference": "c124c46a4b989e13d151b50df32b89c52f63eb54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Be2Bill/zipball/a0cad0e8939a535dd9f28c88ecdf8893b1b811b0",
-                "reference": "a0cad0e8939a535dd9f28c88ecdf8893b1b811b0",
+                "url": "https://api.github.com/repos/Payum/Be2Bill/zipball/c124c46a4b989e13d151b50df32b89c52f63eb54",
+                "reference": "c124c46a4b989e13d151b50df32b89c52f63eb54",
                 "shasum": ""
             },
             "require": {
@@ -1569,7 +1572,7 @@
                 "be2bill",
                 "payment"
             ],
-            "time": "2013-04-04 20:04:58"
+            "time": "2013-05-09 16:56:36"
         },
         {
             "name": "payum/omnipay-bridge",
@@ -1628,12 +1631,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PaypalExpressCheckoutNvp.git",
-                "reference": "a57e24d7d1cc23297cb638aa0148530f00f3b5d1"
+                "reference": "e994bf0ec9b0c3c488530b0ecb22d397df81cf52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PaypalExpressCheckoutNvp/zipball/a57e24d7d1cc23297cb638aa0148530f00f3b5d1",
-                "reference": "a57e24d7d1cc23297cb638aa0148530f00f3b5d1",
+                "url": "https://api.github.com/repos/Payum/PaypalExpressCheckoutNvp/zipball/e994bf0ec9b0c3c488530b0ecb22d397df81cf52",
+                "reference": "e994bf0ec9b0c3c488530b0ecb22d397df81cf52",
                 "shasum": ""
             },
             "require": {
@@ -1677,7 +1680,7 @@
                 "paypal",
                 "recurring payment"
             ],
-            "time": "2013-04-04 20:06:27"
+            "time": "2013-05-09 18:24:28"
         },
         {
             "name": "payum/paypal-ipn",
@@ -1736,12 +1739,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PaypalProCheckoutNvp.git",
-                "reference": "0d49e1ffeaaff25b47b5eca1801b494b071b2e3b"
+                "reference": "d83145acadd9afa31a764807dbff37a5397d978c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PaypalProCheckoutNvp/zipball/0d49e1ffeaaff25b47b5eca1801b494b071b2e3b",
-                "reference": "0d49e1ffeaaff25b47b5eca1801b494b071b2e3b",
+                "url": "https://api.github.com/repos/Payum/PaypalProCheckoutNvp/zipball/d83145acadd9afa31a764807dbff37a5397d978c",
+                "reference": "d83145acadd9afa31a764807dbff37a5397d978c",
                 "shasum": ""
             },
             "require": {
@@ -1779,7 +1782,7 @@
                 "paypal",
                 "pro checkout"
             ],
-            "time": "2013-04-04 20:09:12"
+            "time": "2013-05-09 18:26:49"
         },
         {
             "name": "payum/payum",
@@ -1787,12 +1790,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "bba134f998aa1dae97805fdc736a43240e8aa0eb"
+                "reference": "c2de5ac44149dcc52b0e3102ab98b03dfa51c155"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/bba134f998aa1dae97805fdc736a43240e8aa0eb",
-                "reference": "bba134f998aa1dae97805fdc736a43240e8aa0eb",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/c2de5ac44149dcc52b0e3102ab98b03dfa51c155",
+                "reference": "c2de5ac44149dcc52b0e3102ab98b03dfa51c155",
                 "shasum": ""
             },
             "require": {
@@ -1807,7 +1810,13 @@
                 "phpunit/phpunit": "3.7.*"
             },
             "suggest": {
-                "doctrine/orm": "If you want to store to database."
+                "doctrine/orm": "If you want to store models to database using doctrin2 ORM",
+                "payum/authorize-net-aim": "If you want to use Authorize.Net AIM payment gateway",
+                "payum/be2bill": "If you want to use be2bill payment gateway",
+                "payum/omnipay-bridge": "If you want to use omnipay's gateways",
+                "payum/paypal-express-checkout-nvp": "If you want to use paypal express checkout, digital goods or recurring payments",
+                "payum/paypal-ipn": "If you want to use paypal instant payment notifications(Paypal IPN)",
+                "payum/paypal-pro-checkout-nvp": "If you want to use paypal pro checkout"
             },
             "type": "library",
             "extra": {
@@ -1826,15 +1835,22 @@
             ],
             "authors": [
                 {
-                    "name": "Maksim Kotlyar",
+                    "name": "Kotlyar Maksim",
                     "email": "kotlyar.maksim@gmail.com"
                 }
             ],
             "description": "Payment lib",
             "keywords": [
-                "payment"
+                "authorize.net",
+                "be2bill",
+                "omnipay gateways",
+                "payment",
+                "paypal",
+                "paypal digital goods",
+                "paypal ipn",
+                "paypal recurring payments"
             ],
-            "time": "2013-04-17 13:07:30"
+            "time": "2013-05-09 16:52:59"
         },
         {
             "name": "payum/payum-bundle",
@@ -1843,12 +1859,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "7feb7280530c132f7261edeb4fc1ff4567860e88"
+                "reference": "55d5a19517594a2910182cb99a7ce6e909d38ba6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/7feb7280530c132f7261edeb4fc1ff4567860e88",
-                "reference": "7feb7280530c132f7261edeb4fc1ff4567860e88",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/55d5a19517594a2910182cb99a7ce6e909d38ba6",
+                "reference": "55d5a19517594a2910182cb99a7ce6e909d38ba6",
                 "shasum": ""
             },
             "require": {
@@ -1910,7 +1926,7 @@
                 "paypal pro checkout",
                 "paypal recurring payment"
             ],
-            "time": "2013-04-24 14:07:28"
+            "time": "2013-05-10 12:32:47"
         },
         {
             "name": "phpoption/phpoption",
@@ -2001,17 +2017,17 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "dev-master",
+            "version": "2.2.x-dev",
             "target-dir": "Sensio/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensio/SensioDistributionBundle.git",
-                "reference": "4a2c803dc8db79952ad5e71783c16178427bbc02"
+                "reference": "v2.3.0-BETA1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensio/SensioDistributionBundle/zipball/4a2c803dc8db79952ad5e71783c16178427bbc02",
-                "reference": "4a2c803dc8db79952ad5e71783c16178427bbc02",
+                "url": "https://api.github.com/repos/sensio/SensioDistributionBundle/zipball/v2.3.0-BETA1",
+                "reference": "v2.3.0-BETA1",
                 "shasum": ""
             },
             "require": {
@@ -2099,12 +2115,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensio/SensioGeneratorBundle.git",
-                "reference": "90a7f11dde3d77bdac866933976bfedb0d83044e"
+                "reference": "6ba4f096bab6d4461f9e2ed4e7f2a155b2bec3e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensio/SensioGeneratorBundle/zipball/90a7f11dde3d77bdac866933976bfedb0d83044e",
-                "reference": "90a7f11dde3d77bdac866933976bfedb0d83044e",
+                "url": "https://api.github.com/repos/sensio/SensioGeneratorBundle/zipball/6ba4f096bab6d4461f9e2ed4e7f2a155b2bec3e6",
+                "reference": "6ba4f096bab6d4461f9e2ed4e7f2a155b2bec3e6",
                 "shasum": ""
             },
             "require": {
@@ -2138,20 +2154,20 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2013-04-21 11:11:08"
+            "time": "2013-05-07 13:45:19"
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "dev-master",
+            "version": "v5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "e77eb358a1aa7157afb922f33e2afc22f6a7bef2"
+                "reference": "v5.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/e77eb358a1aa7157afb922f33e2afc22f6a7bef2",
-                "reference": "e77eb358a1aa7157afb922f33e2afc22f6a7bef2",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/v5.0.0",
+                "reference": "v5.0.0",
                 "shasum": ""
             },
             "require": {
@@ -2160,7 +2176,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -2170,7 +2186,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL"
+                "MIT"
             ],
             "authors": [
                 {
@@ -2187,7 +2203,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2013-04-11 10:22:54"
+            "time": "2013-04-30 17:35:30"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -2317,17 +2333,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/SwiftmailerBundle.git",
-                "reference": "v2.2.1"
+                "reference": "ff109ff15bbd2b87fc03a3b2e5b934aeb79260ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/SwiftmailerBundle/zipball/v2.2.1",
-                "reference": "v2.2.1",
+                "url": "https://api.github.com/repos/symfony/SwiftmailerBundle/zipball/ff109ff15bbd2b87fc03a3b2e5b934aeb79260ce",
+                "reference": "ff109ff15bbd2b87fc03a3b2e5b934aeb79260ce",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "swiftmailer/swiftmailer": ">=4.2.0,<4.4-dev",
+                "swiftmailer/swiftmailer": ">=4.2.0,<5.1-dev",
                 "symfony/swiftmailer-bridge": ">=2.1,<3.0"
             },
             "require-dev": {
@@ -2363,7 +2379,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2013-03-25 20:02:12"
+            "time": "2013-05-01 07:16:50"
         },
         {
             "name": "symfony/symfony",
@@ -2371,12 +2387,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "609b5ff08cae6cbe15e835f2b58a2ef8d167205a"
+                "reference": "300130a773cbb5935f786a9f0782b2ece7d859f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/609b5ff08cae6cbe15e835f2b58a2ef8d167205a",
-                "reference": "609b5ff08cae6cbe15e835f2b58a2ef8d167205a",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/300130a773cbb5935f786a9f0782b2ece7d859f5",
+                "reference": "300130a773cbb5935f786a9f0782b2ece7d859f5",
                 "shasum": ""
             },
             "require": {
@@ -2462,7 +2478,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-04-24 09:42:33"
+            "time": "2013-05-10 05:53:54"
         },
         {
             "name": "twig/extensions",
@@ -2517,12 +2533,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "80fd11cbbe68fada461626e7b2d67bda0ef8ecfa"
+                "reference": "4d90a5008d2c2cc30f5e5c8622e979674178bf6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/80fd11cbbe68fada461626e7b2d67bda0ef8ecfa",
-                "reference": "80fd11cbbe68fada461626e7b2d67bda0ef8ecfa",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/4d90a5008d2c2cc30f5e5c8622e979674178bf6c",
+                "reference": "4d90a5008d2c2cc30f5e5c8622e979674178bf6c",
                 "shasum": ""
             },
             "require": {
@@ -2531,7 +2547,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -2558,7 +2574,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-04-17 12:07:50"
+            "time": "2013-05-07 18:59:51"
         }
     ],
     "packages-dev": [
@@ -2841,12 +2857,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "4b18bbf49a4f7c93dcd83065a8c99cdb34a08dcf"
+                "reference": "a01c8a76df3ca327d89855e72fd42a718bf1e420"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/4b18bbf49a4f7c93dcd83065a8c99cdb34a08dcf",
-                "reference": "4b18bbf49a4f7c93dcd83065a8c99cdb34a08dcf",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a01c8a76df3ca327d89855e72fd42a718bf1e420",
+                "reference": "a01c8a76df3ca327d89855e72fd42a718bf1e420",
                 "shasum": ""
             },
             "require": {
@@ -2863,7 +2879,7 @@
                 "sebastian/diff": ">=1.0.0",
                 "sebastian/exporter": ">=1.0.0",
                 "sebastian/version": ">=1.0.0",
-                "symfony/yaml": ">=2.0.0,<2.3.0"
+                "symfony/yaml": ">=2.0,<3.0"
             },
             "require-dev": {
                 "pear-pear/pear": "1.9.4"
@@ -2910,7 +2926,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2013-04-23 21:21:05"
+            "time": "2013-05-06 07:01:43"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2918,12 +2934,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "6ff30ce3ac66b9c6cdeee936412fb392a2ab96b7"
+                "reference": "a35e63460d2b4524e026b9f1bd288e592ec1620c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/6ff30ce3ac66b9c6cdeee936412fb392a2ab96b7",
-                "reference": "6ff30ce3ac66b9c6cdeee936412fb392a2ab96b7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/a35e63460d2b4524e026b9f1bd288e592ec1620c",
+                "reference": "a35e63460d2b4524e026b9f1bd288e592ec1620c",
                 "shasum": ""
             },
             "require": {
@@ -2967,7 +2983,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2013-04-02 08:10:31"
+            "time": "2013-05-07 12:03:33"
         },
         {
             "name": "sebastian/diff",

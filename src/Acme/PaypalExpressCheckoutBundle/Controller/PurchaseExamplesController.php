@@ -9,8 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 
 use Payum\Registry\AbstractRegistry;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
-
-use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
+use Payum\Paypal\ExpressCheckout\Nvp\Model\PaymentDetails;
+use Payum\Bundle\PayumBundle\Service\TokenizedTokenService;
 
 class PurchaseExamplesController extends Controller
 {
@@ -24,6 +24,8 @@ class PurchaseExamplesController extends Controller
      */
     public function prepareAction(Request $request)
     {
+        $paymentName = 'paypal_express_checkout';
+        
         $form = $this->createPurchaseForm();
         if ('POST' === $request->getMethod()) {
             $form->bind($request);
@@ -32,27 +34,27 @@ class PurchaseExamplesController extends Controller
                 
                 $storage = $this->getPayum()->getStorageForClass(
                     'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
-                    'simple_purchase_paypal_express_checkout'
+                    $paymentName
                 );
 
                 /** @var $paymentDetails PaymentDetails */
                 $paymentDetails = $storage->createModel();
                 $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
                 $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
-
                 $storage->updateModel($paymentDetails);
+                
+                $captureToken = $this->getTokenizedTokenService()->createTokenForCaptureRoute(
+                    $paymentName,
+                    $paymentDetails,
+                    'acme_payment_details_view'
+                );
+                
+                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
                 $paymentDetails->setInvnum($paymentDetails->getId());
-        
-                $captureUrl = $this->generateUrl('acme_payment_capture_simple', array(
-                    'contextName' => 'simple_purchase_paypal_express_checkout',
-                    'model' => $paymentDetails->getId(),
-                ), $absolute = true);
-                $paymentDetails->setReturnurl($captureUrl);
-                $paymentDetails->setCancelurl($captureUrl);
-
                 $storage->updateModel($paymentDetails);
 
-                return $this->redirect($captureUrl);
+                return $this->redirect($captureToken->getTargetUrl());
             }
         }
         
@@ -71,6 +73,8 @@ class PurchaseExamplesController extends Controller
      */
     public function prepareDoctrineAction(Request $request)
     {
+        $paymentName = 'paypal_express_checkout_plus_doctrine';
+        
         $form = $this->createPurchaseForm();
         if ('POST' === $request->getMethod()) {
             $form->bind($request);
@@ -79,7 +83,7 @@ class PurchaseExamplesController extends Controller
 
                 $storage = $this->getPayum()->getStorageForClass(
                     'Acme\PaypalExpressCheckoutBundle\Entity\PaymentDetails',
-                    'simple_purchase_paypal_express_checkout_doctrine'
+                    $paymentName
                 );
                 
                 /** @var $paymentDetails PaymentDetails */
@@ -88,22 +92,19 @@ class PurchaseExamplesController extends Controller
                 $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
 
                 $storage->updateModel($paymentDetails);
+
+                $captureToken = $this->getTokenizedTokenService()->createTokenForCaptureRoute(
+                    $paymentName,
+                    $paymentDetails,
+                    'acme_payment_details_view'
+                );
+
+                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
                 $paymentDetails->setInvnum($paymentDetails->getId());
-
-                $captureUrl = $this->generateUrl('acme_payment_capture_simple', array(
-                    'contextName' => 'simple_purchase_paypal_express_checkout_doctrine',
-                    'model' => $paymentDetails->getId(),
-                ), $absolute = true);
-                $paymentDetails->setReturnurl($captureUrl);
-                $paymentDetails->setCancelurl($captureUrl);
-
                 $storage->updateModel($paymentDetails);
 
-                //we do forward since we do not store returnulr to database.
-                return $this->forward('AcmePaymentBundle:Capture:simpleCapture', array(
-                    'contextName' => 'simple_purchase_paypal_express_checkout_doctrine',
-                    'model' => $paymentDetails
-                ));
+                return $this->redirect($captureToken->getTargetUrl());
             }
         }
 
@@ -122,6 +123,8 @@ class PurchaseExamplesController extends Controller
      */
     public function prepareDigitalGoodsAction(Request $request)
     {
+        $paymentName = 'paypal_express_checkout';
+        
         $eBook = array(
             'author' => 'Jules Verne', 
             'name' => 'The Mysterious Island',
@@ -135,7 +138,7 @@ class PurchaseExamplesController extends Controller
         if ('POST' === $request->getMethod()) {
             $storage = $this->getPayum()->getStorageForClass(
                 'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
-                'simple_purchase_paypal_express_checkout'
+                $paymentName
             );
 
             /** @var $paymentDetails PaymentDetails */
@@ -152,18 +155,19 @@ class PurchaseExamplesController extends Controller
             $paymentDetails->setLPaymentrequestDesc(0, 0, $eBook['description']);
 
             $storage->updateModel($paymentDetails);
+
+            $captureToken = $this->getTokenizedTokenService()->createTokenForCaptureRoute(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
+
+            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
             $paymentDetails->setInvnum($paymentDetails->getId());
-
-            $captureUrl = $this->generateUrl('acme_payment_capture_simple', array(
-                'contextName' => 'simple_purchase_paypal_express_checkout',
-                'model' => $paymentDetails->getId(),
-            ), $absolute = true);
-            $paymentDetails->setReturnurl($captureUrl);
-            $paymentDetails->setCancelurl($captureUrl);
-
             $storage->updateModel($paymentDetails);
 
-            return $this->redirect($captureUrl);
+            return $this->redirect($captureToken->getTargetUrl());
         }
 
         return array(
@@ -192,5 +196,13 @@ class PurchaseExamplesController extends Controller
     protected function getPayum()
     {
         return $this->get('payum');
+    }
+
+    /**
+     * @return TokenizedTokenService
+     */
+    protected function getTokenizedTokenService()
+    {
+        return $this->get('payum.tokenized_details_service');
     }
 }

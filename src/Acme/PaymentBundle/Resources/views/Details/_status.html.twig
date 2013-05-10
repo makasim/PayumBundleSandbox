@@ -1,0 +1,16 @@
+Status:
+{% if status.success %}
+    Successful!
+{% elseif status.canceled %}
+    Canceled
+{% elseif status.failed %}
+    Failed
+{% elseif status.pending %}
+    Pending
+{% elseif status.expired %}
+    Expired
+{% elseif status.suspended %}
+    Suspended
+{% else %}
+    Unknown
+{% endif %}

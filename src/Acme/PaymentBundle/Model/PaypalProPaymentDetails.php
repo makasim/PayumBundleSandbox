@@ -1,12 +1,12 @@
 <?php
 namespace Acme\PaymentBundle\Model;
 
-use Payum\AuthorizeNet\Aim\Model\PaymentDetails;
+use Payum\Paypal\ProCheckout\Nvp\Model\PaymentDetails;
 
-class AuthorizeNetInstruction extends PaymentDetails
+class PaypalProPaymentDetails extends PaymentDetails
 {
     protected $id;
-    
+
     public function getId()
     {
         return $this->id;
