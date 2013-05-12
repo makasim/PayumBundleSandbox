@@ -1,4 +1,4 @@
-_demo_secured:
+rrrr_demo_secured:
     resource: "@AcmeDemoBundle/Controller/SecuredController.php"
     type:     annotation
 
@@ -17,6 +17,10 @@ payum_capture:
 
 acme_paypal_express_checkout:
     resource: "@AcmePaypalExpressCheckoutBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_other_examples:
+    resource: "@AcmeOtherExamplesBundle/Resources/config/routing.yml"
     prefix:   /
 
 acme_payment:
