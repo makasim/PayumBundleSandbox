@@ -3,7 +3,7 @@
 {% block title "Payment demo - Simple purchase with Paypal Express via Omnipay - Prepare" %}
 
 {% block content %}
-    <form action="{{ path("acme_payment_prepare_simple_purchase_paypal_express_via_omnipay") }}" method="POST">
+    <form method="POST">
         {{ form_widget(form) }}
 
         <input type="submit" value="Pay" />

@@ -7,6 +7,7 @@ use Payum\Action\PaymentAwareAction;
 use Payum\Bundle\PayumBundle\Service\TokenizedTokenService;
 use Payum\Exception\RequestNotSupportedException;
 use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
+use Payum\Model\TokenizedDetails;
 use Payum\Registry\AbstractRegistry;
 use Payum\Request\CaptureRequest;
 
@@ -31,40 +32,37 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
         if (false == $this->supports($request)) {
             throw RequestNotSupportedException::createActionNotSupported($this, $request);
         }
-
-        $paymentName = 'paypal_express_checkout_cart';
         
+        /** @var TokenizedDetails $tokenizedDetails */
+        $tokenizedDetails = $request->getModel();
+
+        $cartStorage = $this->payum->getStorageForClass(
+            $tokenizedDetails->getDetails()->getClass(),
+            $tokenizedDetails->getPaymentName()
+        );
         /** @var Cart $cart */
-        $cart = $request->getModel();
-        $cartStorage = $this->payum->getStorageForClass($cart, $paymentName);
-        $detailsStorage = $this->payum->getStorageForClass(
-            'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
-            $paymentName
-        );
+        $cart = $cartStorage->findModelById($tokenizedDetails->getDetails()->getId());
 
-        /** @var $paymentDetails PaymentDetails */
-        $paymentDetails = $detailsStorage->createModel();
-        $paymentDetails->setPaymentrequestCurrencycode(0, $cart->getCurrency());
-        $paymentDetails->setPaymentrequestAmt(0,  $cart->getPrice());
-        $detailsStorage->updateModel($paymentDetails);
+        if (false == $cart->getDetails()) {
+            $detailsStorage = $this->payum->getStorageForClass(
+                'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+                $tokenizedDetails->getPaymentName()
+            );
 
-        $captureToken = $this->tokenService->createTokenForCaptureRoute(
-            $paymentName,
-            $paymentDetails,
-            'acme_payment_details_view'// TODO
-        );
+            /** @var $paymentDetails PaymentDetails */
+            $paymentDetails = $detailsStorage->createModel();
+            $paymentDetails->setPaymentrequestCurrencycode(0, $cart->getCurrency());
+            $paymentDetails->setPaymentrequestAmt(0,  $cart->getPrice());
+            $paymentDetails->setReturnurl($tokenizedDetails->getTargetUrl());
+            $paymentDetails->setCancelurl($tokenizedDetails->getTargetUrl());
+            
+            $detailsStorage->updateModel($paymentDetails);
 
-        $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-        $paymentDetails->setCancelurl($captureToken->getTargetUrl());
-        $paymentDetails->setInvnum($paymentDetails->getId());
+            $cart->setDetails($paymentDetails);
+            $cartStorage->updateModel($cart);
+        }
 
-        $cart->setDetails($paymentDetails);
-        
-        $detailsStorage->updateModel($paymentDetails);
-        $cartStorage->updateModel($cart);
-
-        $request->setModel($paymentDetails);
-        $this->payment->execute($request);
+        $this->payment->execute(new CaptureRequest($cart->getDetails()));
     }
 
     /**
@@ -72,10 +70,20 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
      */
     public function supports($request)
     {
-        return
-            $request instanceof CaptureRequest &&
-            $request->getModel() instanceof Cart &&
-            null === $request->getModel()->getDetails()
-        ;
+        if (false == $request instanceof CaptureRequest) {
+            return false;
+        }
+
+        /** @var TokenizedDetails $tokenizedDetails */
+        $tokenizedDetails = $request->getModel();
+        if (false == $tokenizedDetails instanceof TokenizedDetails) {
+            return false;
+        }
+        
+        if ('Acme\OtherExamplesBundle\Model\Cart' != $tokenizedDetails->getDetails()->getClass()) {
+            return false;
+        }
+        
+        return true;
     }
 }

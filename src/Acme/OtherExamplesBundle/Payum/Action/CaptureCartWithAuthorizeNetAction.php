@@ -11,6 +11,7 @@ use Payum\Exception\RequestNotSupportedException;
 use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
 use Payum\Registry\AbstractRegistry;
 use Payum\Request\CaptureRequest;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,16 +27,12 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
     
     protected $request;
 
-    public function __construct(
-        AbstractRegistry $payum, 
-        FormFactoryInterface $formFactory, 
-        EngineInterface $templating,
-        Request $request
-    ) {
-        $this->payum = $payum;
-        $this->formFactory = $formFactory;
-        $this->templating = $templating;
-        $this->request = $request;
+    public function __construct(ContainerInterface $container) 
+    {
+        $this->payum = $container->get('payum');
+        $this->formFactory = $container->get('form.factory');
+        $this->templating = $container->get('templating');
+        $this->request = $container->get('request');
     }
 
     /**
