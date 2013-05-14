@@ -2,6 +2,7 @@
     "name": "payum/payum-bundle-sandbox",
     "description": "Symfony2 application to play with PayumBundle.",
     "keywords": ["payment", "paypal", "be2bill", "authorize.net", "omnipay", "paypal express checkout", "paypal pro checkout", "paypal recurring payment"],
+    "license": "MIT",
     "autoload": {
         "psr-0": { "": "src/" }
     },
