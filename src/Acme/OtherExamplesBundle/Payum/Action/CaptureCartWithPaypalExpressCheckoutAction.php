@@ -62,7 +62,7 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
             $cartStorage->updateModel($cart);
         }
 
-        $this->payment->execute(new CaptureRequest($cart->getDetails()));
+        $this->payment->execute(new CaptureRequest($cart));
     }
 
     /**
