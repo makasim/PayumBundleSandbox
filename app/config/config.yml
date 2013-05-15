@@ -143,6 +143,29 @@ payum:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: token
                         payment_extension: true
+                        
+        paypal_express_checkout_recurring_payment_plus_doctrine:
+            paypal_express_checkout_nvp:
+                api:
+                    options:
+                        username:  %paypal.express_checkout.username%
+                        password:  %paypal.express_checkout.password%
+                        signature: %paypal.express_checkout.signature%
+                        sandbox: true
+
+            storages:
+                Acme\PaypalExpressCheckoutBundle\Entity\PaymentDetails:
+                    doctrine:
+                        driver: orm
+                        payment_extension: true
+                Acme\PaymentBundle\Entity\TokenizedDetails:
+                    doctrine:
+                        driver: orm
+                        payment_extension: true
+                Acme\PaypalExpressCheckoutBundle\Entity\RecurringPaymentDetails:
+                    doctrine:
+                        driver: orm
+                        payment_extension: true
 
         paypal_pro_checkout:
             paypal_pro_checkout_nvp:
