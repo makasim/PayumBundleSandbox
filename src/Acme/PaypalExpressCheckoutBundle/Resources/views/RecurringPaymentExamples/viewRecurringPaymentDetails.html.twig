@@ -32,7 +32,7 @@
         <div class="block">
             Recurring payment status:
             {% if recurringPaymentStatus.success %}
-                Active
+                Active (<a href="{{ path('acme_paypal_express_checkout_cancel_recurring_payment', { "paymentName": paymentName, "billingAgreementId": billingAgreementStatus.model.id, "recurringPaymentId": recurringPaymentStatus.model.id })}}">Cancel</a>)
             {% elseif recurringPaymentStatus.canceled %}
                 Canceled
             {% elseif recurringPaymentStatus.failed %}

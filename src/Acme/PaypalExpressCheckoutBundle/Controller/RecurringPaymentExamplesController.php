@@ -3,6 +3,7 @@ namespace Acme\PaypalExpressCheckoutBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 
@@ -11,11 +12,10 @@ use Payum\Request\SyncRequest;
 use Payum\Request\BinaryMaskStatusRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Model\RecurringPaymentDetails;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfileRequest;
+use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\ManageRecurringPaymentsProfileStatusRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Bundle\PayumBundle\Service\TokenizedTokenService;
-
 use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class RecurringPaymentExamplesController extends Controller
 {
@@ -48,7 +48,7 @@ class RecurringPaymentExamplesController extends Controller
         
         if ($request->isMethod('POST')) {
             $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaypalExpressCheckoutBundle\Entity\PaymentDetails',
+                'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
                 $paymentName
             );
             
@@ -164,9 +164,39 @@ class RecurringPaymentExamplesController extends Controller
         $payment->execute($recurringPaymentStatus);
 
         return array(
+            'paymentName' => $paymentName,
             'billingAgreementStatus' => $billingAgreementStatus,
             'recurringPaymentStatus' => $recurringPaymentStatus,
         );
+    }
+
+    /**
+     * @Extra\Route(
+     *   "/cancel_recurring_payment/{paymentName}/{billingAgreementId}/{recurringPaymentId}",
+     *   name="acme_paypal_express_checkout_cancel_recurring_payment"
+     * )
+     */
+    public function cancelRecurringPaymentAction($paymentName, $billingAgreementId, $recurringPaymentId)
+    {
+        $payment = $this->getPayum()->getPayment($paymentName);
+
+        $recurringPaymentStorage = $this->getPayum()->getStorageForClass(
+            'Acme\PaypalExpressCheckoutBundle\Model\RecurringPaymentDetails',
+            $paymentName
+        );
+
+        /** @var RecurringPaymentDetails $recurringPayment */
+        $recurringPayment = $recurringPaymentStorage->findModelById($recurringPaymentId);
+        $recurringPayment->setAction(Api::RECURRINGPAYMENTACTION_CANCEL);
+
+        $payment->execute(new ManageRecurringPaymentsProfileStatusRequest($recurringPayment));
+        $payment->execute(new SyncRequest($recurringPayment));
+
+        return $this->redirect($this->generateUrl('acme_paypal_express_checkout_view_recurring_payment', array(
+            'paymentName' => $paymentName,
+            'billingAgreementId' => $billingAgreementId,
+            'recurringPaymentId' => $recurringPaymentId,
+        )));
     }
 
     /**
