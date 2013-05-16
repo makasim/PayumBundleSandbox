@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
 
 use Payum\Registry\AbstractRegistry;
-use Payum\Bundle\PayumBundle\Service\TokenizedTokenService;
+use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 use Acme\PaymentBundle\Model\Be2BillPaymentDetails;
 
@@ -44,7 +44,7 @@ class SimplePurchaseBe2BillController extends Controller
 
                 $storage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenizedTokenService()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
                     $paymentName,
                     $paymentDetails,
                     'acme_payment_details_view'
@@ -92,10 +92,10 @@ class SimplePurchaseBe2BillController extends Controller
     }
 
     /**
-     * @return TokenizedTokenService
+     * @return TokenManager
      */
-    protected function getTokenizedTokenService()
+    protected function getTokenManager()
     {
-        return $this->get('payum.tokenized_details_service');
+        return $this->get('payum.token_manager');
     }
 }

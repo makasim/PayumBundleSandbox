@@ -5,13 +5,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Payum\Request\BinaryMaskStatusRequest;
 use Payum\Registry\AbstractRegistry;
-use Payum\Bundle\PayumBundle\Service\TokenizedTokenService;
+use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 class DetailsController extends Controller
 {
     public function viewAction($paymentName, $token)
     {
-        $tokenizedDetails = $this->getTokenizedTokenService()->findTokenizedDetailsByToken($paymentName, $token);
+        $tokenizedDetails = $this->getTokenManager()->findByToken($paymentName, $token);
         
         $status = new BinaryMaskStatusRequest($tokenizedDetails);
         $this->getPayum()->getPayment($paymentName)->execute($status);
@@ -31,10 +31,10 @@ class DetailsController extends Controller
     }
 
     /**
-     * @return TokenizedTokenService
+     * @return TokenManager
      */
-    protected function getTokenizedTokenService()
+    protected function getTokenManager()
     {
-        return $this->get('payum.tokenized_details_service');
+        return $this->get('payum.token_manager');
     }
 }

@@ -14,7 +14,7 @@ use Payum\Paypal\ExpressCheckout\Nvp\Model\RecurringPaymentDetails;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfileRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\ManageRecurringPaymentsProfileStatusRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
-use Payum\Bundle\PayumBundle\Service\TokenizedTokenService;
+use Payum\Bundle\PayumBundle\Service\TokenManager;
 use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
 
 class RecurringPaymentExamplesController extends Controller
@@ -61,7 +61,7 @@ class RecurringPaymentExamplesController extends Controller
 
             $storage->updateModel($billingAgreementDetails);
 
-            $captureToken = $this->getTokenizedTokenService()->createTokenForCaptureRoute(
+            $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
                 $paymentName,
                 $billingAgreementDetails,
                 'acme_paypal_express_checkout_create_recurring_payment'
@@ -90,7 +90,7 @@ class RecurringPaymentExamplesController extends Controller
     {
         $payment = $this->getPayum()->getPayment($paymentName);
 
-        $token = $this->getTokenizedTokenService()->findTokenizedDetailsByToken($paymentName, $token);
+        $token = $this->getTokenManager()->findByToken($paymentName, $token);
 
         $billingAgreementStatus = new BinaryMaskStatusRequest($token);
         $payment->execute($billingAgreementStatus);
@@ -165,7 +165,7 @@ class RecurringPaymentExamplesController extends Controller
 
         $cancelToken = null;
         if ($recurringPaymentStatus->isSuccess()) {
-            $cancelToken = $this->getTokenizedTokenService()->createTokenForRoute(
+            $cancelToken = $this->getTokenManager()->createTokenForRoute(
                 $paymentName, 
                 $recurringPaymentDetails, 
                 'acme_paypal_express_checkout_cancel_recurring_payment',
@@ -191,7 +191,7 @@ class RecurringPaymentExamplesController extends Controller
     public function cancelRecurringPaymentAction($paymentName, $token)
     {
         try {
-            if (false == $token = $this->getTokenizedTokenService()->findTokenizedDetailsByToken($paymentName, $token)) {
+            if (false == $token = $this->getTokenManager()->findByToken($paymentName, $token)) {
                 throw $this->createNotFoundException('The TokenizedDetails with requested token not found.');
             }
             if ($paymentName !== $token->getPaymentName()) {
@@ -255,7 +255,7 @@ class RecurringPaymentExamplesController extends Controller
 
             $storage->updateModel($billingAgreementDetails);
 
-            $captureToken = $this->getTokenizedTokenService()->createTokenForCaptureRoute(
+            $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
                 $paymentName,
                 $billingAgreementDetails,
                 'acme_paypal_express_checkout_create_doctrine_recurring_payment'
@@ -284,7 +284,7 @@ class RecurringPaymentExamplesController extends Controller
     {
         $payment = $this->getPayum()->getPayment($paymentName);
 
-        $token = $this->getTokenizedTokenService()->findTokenizedDetailsByToken($paymentName, $token);
+        $token = $this->getTokenManager()->findByToken($paymentName, $token);
 
         $billingAgreementStatus = new BinaryMaskStatusRequest($token);
         $payment->execute($billingAgreementStatus);
@@ -372,10 +372,10 @@ class RecurringPaymentExamplesController extends Controller
     }
 
     /**
-     * @return TokenizedTokenService
+     * @return TokenManager
      */
-    protected function getTokenizedTokenService()
+    protected function getTokenManager()
     {
-        return $this->get('payum.tokenized_details_service');
+        return $this->get('payum.token_manager');
     }
 }
