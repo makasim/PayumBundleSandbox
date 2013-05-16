@@ -139,7 +139,7 @@ class RecurringPaymentExamplesController extends Controller
      *
      * @Extra\Template
      */
-    public function viewRecurringPaymentDetailsAction($paymentName, $billingAgreementId, $recurringPaymentId)
+    public function viewRecurringPaymentDetailsAction($paymentName, $billingAgreementId, $recurringPaymentId, Request $request)
     {
         $payment = $this->getPayum()->getPayment($paymentName);
 
@@ -163,8 +163,20 @@ class RecurringPaymentExamplesController extends Controller
         $recurringPaymentStatus = new BinaryMaskStatusRequest($recurringPaymentDetails);
         $payment->execute($recurringPaymentStatus);
 
+        $cancelToken = null;
+        if ($recurringPaymentStatus->isSuccess()) {
+            $cancelToken = $this->getTokenizedTokenService()->createTokenForRoute(
+                $paymentName, 
+                $recurringPaymentDetails, 
+                'acme_paypal_express_checkout_cancel_recurring_payment',
+                array(),
+                $request->attributes->get('_route'),
+                $request->attributes->get('_route_params')
+            );
+        }
+
         return array(
-            'paymentName' => $paymentName,
+            'cancelToken' => $cancelToken, 
             'billingAgreementStatus' => $billingAgreementStatus,
             'recurringPaymentStatus' => $recurringPaymentStatus,
         );
@@ -172,31 +184,46 @@ class RecurringPaymentExamplesController extends Controller
 
     /**
      * @Extra\Route(
-     *   "/cancel_recurring_payment/{paymentName}/{billingAgreementId}/{recurringPaymentId}",
+     *   "/{paymentName}/cancel_recurring_payment/{token}",
      *   name="acme_paypal_express_checkout_cancel_recurring_payment"
      * )
      */
-    public function cancelRecurringPaymentAction($paymentName, $billingAgreementId, $recurringPaymentId)
+    public function cancelRecurringPaymentAction($paymentName, $token)
     {
-        $payment = $this->getPayum()->getPayment($paymentName);
+        try {
+            if (false == $token = $this->getTokenizedTokenService()->findTokenizedDetailsByToken($paymentName, $token)) {
+                throw $this->createNotFoundException('The TokenizedDetails with requested token not found.');
+            }
+            if ($paymentName !== $token->getPaymentName()) {
+                throw new \InvalidArgumentException(sprintf('The paymentName %s not match one %s set in the token.', $paymentName, $token->getPaymentName()));
+            }
+            
+            $payment = $this->getPayum()->getPayment($paymentName);
 
-        $recurringPaymentStorage = $this->getPayum()->getStorageForClass(
-            'Acme\PaypalExpressCheckoutBundle\Model\RecurringPaymentDetails',
-            $paymentName
-        );
+            $status = new BinaryMaskStatusRequest($token);
+            $payment->execute($status);
+            if (false == $status->isSuccess()) {
+                throw new HttpException(400, 'The model status must be success.');
+            }
+            if (false == $status->getModel() instanceof RecurringPaymentDetails) {
+                throw new HttpException(400, 'The model associated with token not a recurring payment one.');
+            }
+            
+            /** @var RecurringPaymentDetails $recurringPayment */
+            $recurringPaymentDetails = $status->getModel();
+            $recurringPaymentDetails->setAction(Api::RECURRINGPAYMENTACTION_CANCEL);
+            
+            $payment->execute(new ManageRecurringPaymentsProfileStatusRequest($recurringPaymentDetails));
+            $payment->execute(new SyncRequest($recurringPaymentDetails));
 
-        /** @var RecurringPaymentDetails $recurringPayment */
-        $recurringPayment = $recurringPaymentStorage->findModelById($recurringPaymentId);
-        $recurringPayment->setAction(Api::RECURRINGPAYMENTACTION_CANCEL);
+            $this->getPayum()->getStorageForClass($token, $paymentName)->deleteModel($token);
 
-        $payment->execute(new ManageRecurringPaymentsProfileStatusRequest($recurringPayment));
-        $payment->execute(new SyncRequest($recurringPayment));
-
-        return $this->redirect($this->generateUrl('acme_paypal_express_checkout_view_recurring_payment', array(
-            'paymentName' => $paymentName,
-            'billingAgreementId' => $billingAgreementId,
-            'recurringPaymentId' => $recurringPaymentId,
-        )));
+            return $this->redirect($token->getAfterUrl());
+        } catch (HttpException $e) {
+            throw $e;
+        } catch (\InvalidArgumentException $e) {
+            throw new HttpException(404, 'The input parameters not valid.', $e);
+        }
     }
 
     /**
