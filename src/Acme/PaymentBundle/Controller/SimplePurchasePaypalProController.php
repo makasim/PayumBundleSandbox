@@ -6,7 +6,7 @@ use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Payum\Registry\AbstractRegistry;
-use Payum\Bundle\PayumBundle\Service\TokenizedTokenService;
+use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 class SimplePurchasePaypalProController extends Controller
 {
@@ -37,7 +37,7 @@ class SimplePurchasePaypalProController extends Controller
 
                 $storage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenizedTokenService()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
                     $paymentName,
                     $paymentDetails,
                     'acme_payment_details_view'
@@ -84,10 +84,10 @@ class SimplePurchasePaypalProController extends Controller
     }
 
     /**
-     * @return TokenizedTokenService
+     * @return TokenManager
      */
-    protected function getTokenizedTokenService()
+    protected function getTokenManager()
     {
-        return $this->get('payum.tokenized_details_service');
+        return $this->get('payum.token_manager');
     }
 }
