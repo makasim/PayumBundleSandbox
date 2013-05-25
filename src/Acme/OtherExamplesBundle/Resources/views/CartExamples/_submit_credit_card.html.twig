@@ -1,0 +1,13 @@
+{% extends "AcmePaymentBundle::layout.html.twig" %}
+
+{% block title "Payment demo - Other examples - Submit credit card" %}
+
+{% block content %}
+    <form method="POST">
+        {{ form_widget(form) }}
+
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}
+
+{% set code = code(_self) %}

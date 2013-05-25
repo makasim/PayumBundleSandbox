@@ -1,17 +1,16 @@
 <?php
 namespace Acme\OtherExamplesBundle\Controller;
 
-use Acme\OtherExamplesBundle\Model\Cart;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Constraints\Range;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 
 use Payum\Registry\AbstractRegistry;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
-use Payum\Paypal\ExpressCheckout\Nvp\Model\PaymentDetails;
-use Payum\Bundle\PayumBundle\Service\TokenizedTokenService;
+use Payum\Bundle\PayumBundle\Service\TokenManager;
+
+use Acme\OtherExamplesBundle\Model\Cart;
 
 class CartExamplesController extends Controller
 {
@@ -43,16 +42,13 @@ class CartExamplesController extends Controller
                 $cart->setCurrency('USD');
                 $cartStorage->updateModel($cart);
                 
-                $captureToken = $this->getTokenizedTokenService()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
                     $paymentName,
                     $cart,
                     'acme_payment_details_view' // TODO 
                 );
 
-                return $this->forward('PayumBundle:Capture:do', array(
-                    'paymentName' => $paymentName,
-                    'token' => $captureToken,
-                ));
+                return $this->redirect($captureToken->getTargetUrl());
             }
         }
         
@@ -86,10 +82,10 @@ class CartExamplesController extends Controller
     }
 
     /**
-     * @return TokenizedTokenService
+     * @return TokenManager
      */
-    protected function getTokenizedTokenService()
+    protected function getTokenManager()
     {
-        return $this->get('payum.tokenized_details_service');
+        return $this->get('payum.token_manager');
     }
 }

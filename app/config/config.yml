@@ -258,6 +258,7 @@ payum:
                         sandbox: true
                 actions:
                     - other_examples.payum.action.capture_cart_with_paypal_express_checkout
+                    - other_examples.payum.action.status_details_aggregated_null_model
 
             storages:
                 Acme\OtherExamplesBundle\Model\Cart:
@@ -285,6 +286,7 @@ payum:
                         sandbox: true
                 actions:
                     - other_examples.payum.action.capture_cart_with_authorize_net
+                    - other_examples.payum.action.status_details_aggregated_null_model
 
             storages:
                 Acme\OtherExamplesBundle\Model\Cart:

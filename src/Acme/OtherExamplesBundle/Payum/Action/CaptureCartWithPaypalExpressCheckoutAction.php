@@ -1,26 +1,26 @@
 <?php
 namespace Acme\OtherExamplesBundle\Payum\Action;
 
-use Acme\OtherExamplesBundle\Model\Cart;
-use Payum\Action\ActionInterface;
 use Payum\Action\PaymentAwareAction;
-use Payum\Bundle\PayumBundle\Service\TokenizedTokenService;
+use Payum\Bundle\PayumBundle\Service\TokenManager;
 use Payum\Exception\RequestNotSupportedException;
-use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
 use Payum\Model\TokenizedDetails;
 use Payum\Registry\AbstractRegistry;
 use Payum\Request\CaptureRequest;
+
+use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
+use Acme\OtherExamplesBundle\Model\Cart;
 
 class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction 
 {
     protected $payum;
     
-    protected $tokenService;
+    protected $tokenManager;
     
-    public function __construct(AbstractRegistry $payum, TokenizedTokenService $tokenService)
+    public function __construct(AbstractRegistry $payum, TokenManager $tokenManager)
     {
         $this->payum = $payum;
-        $this->tokenService = $tokenService;
+        $this->tokenManager = $tokenManager;
     }
     
     /**

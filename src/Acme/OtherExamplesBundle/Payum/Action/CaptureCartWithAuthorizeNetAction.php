@@ -47,9 +47,9 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
 
         $form = $this->createPurchaseForm();
         if ($this->request->isMethod('POST')) {
-            $form->bindRequest($this->request);
+            $form->bind($this->request);
             if ($form->isValid()) {
-                $paymentName = 'authorize_net_cart';
+                $paymentName = 'authorize_net_plus_cart';
                 $data = $form->getData();
 
                 /** @var Cart $cart */
@@ -73,12 +73,14 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
                 
                 $request->setModel($paymentDetails);
                 $this->payment->execute($request);
+                
+                return;
             }
         }
 
         throw new ResponseInteractiveRequest(new Response(
-            $this->templating->render('AcmeOtherExamplesBundle:CaptureCartWithAuthorizeNet:submit_credit_card.html.twig', array(
-                'form' => $form
+            $this->templating->render('AcmeOtherExamplesBundle:CartExamples:_submit_credit_card.html.twig', array(
+                'form' => $form->createView()
             ))
         ));
     }
