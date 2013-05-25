@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Acme\DemoBundle\AcmeDemoBundle(),
             new Acme\PaymentBundle\AcmePaymentBundle(),
             new Acme\PaypalExpressCheckoutBundle\AcmePaypalExpressCheckoutBundle(),
+            new Acme\OtherExamplesBundle\AcmeOtherExamplesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

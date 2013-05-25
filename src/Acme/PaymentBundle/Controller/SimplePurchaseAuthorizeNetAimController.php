@@ -39,7 +39,6 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
                     'acme_payment_details_view'
                 );
 
-                //In reality we do not want to store sensative data to db, so we capture payment in one process.
                 return $this->forward('PayumBundle:Capture:do', array(
                     'paymentName' => $paymentName,
                     'token' => $captureToken,
