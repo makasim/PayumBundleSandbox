@@ -2,25 +2,26 @@
 namespace Acme\OtherExamplesBundle\Payum\Action;
 
 use Payum\Action\PaymentAwareAction;
-use Payum\Bundle\PayumBundle\Service\TokenManager;
 use Payum\Exception\RequestNotSupportedException;
-use Payum\Model\TokenizedDetails;
 use Payum\Registry\AbstractRegistry;
-use Payum\Request\CaptureRequest;
+use Payum\Bundle\PayumBundle\Request\CaptureTokenizedDetailsRequest;
 
 use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
 use Acme\OtherExamplesBundle\Model\Cart;
 
 class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction 
 {
+    /**
+     * @var \Payum\Registry\AbstractRegistry
+     */
     protected $payum;
-    
-    protected $tokenManager;
-    
-    public function __construct(AbstractRegistry $payum, TokenManager $tokenManager)
+
+    /**
+     * @param AbstractRegistry $payum
+     */
+    public function __construct(AbstractRegistry $payum)
     {
         $this->payum = $payum;
-        $this->tokenManager = $tokenManager;
     }
     
     /**
@@ -28,41 +29,37 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
      */
     public function execute($request)
     {
-        /** @var $request CaptureRequest */
+        /** @var $request \Payum\Bundle\PayumBundle\Request\CaptureTokenizedDetailsRequest */
         if (false == $this->supports($request)) {
             throw RequestNotSupportedException::createActionNotSupported($this, $request);
         }
-        
-        /** @var TokenizedDetails $tokenizedDetails */
-        $tokenizedDetails = $request->getModel();
+
+        /** @var Cart $cart */
+        $cart = $request->getModel();
 
         $cartStorage = $this->payum->getStorageForClass(
-            $tokenizedDetails->getDetails()->getClass(),
-            $tokenizedDetails->getPaymentName()
+            $cart,
+            $request->getTokenizedDetails()->getPaymentName()
         );
-        /** @var Cart $cart */
-        $cart = $cartStorage->findModelById($tokenizedDetails->getDetails()->getId());
 
-        if (false == $cart->getDetails()) {
-            $detailsStorage = $this->payum->getStorageForClass(
-                'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
-                $tokenizedDetails->getPaymentName()
-            );
+        $paymentDetailsStorage = $this->payum->getStorageForClass(
+            'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+            $request->getTokenizedDetails()->getPaymentName()
+        );
 
-            /** @var $paymentDetails PaymentDetails */
-            $paymentDetails = $detailsStorage->createModel();
-            $paymentDetails->setPaymentrequestCurrencycode(0, $cart->getCurrency());
-            $paymentDetails->setPaymentrequestAmt(0,  $cart->getPrice());
-            $paymentDetails->setReturnurl($tokenizedDetails->getTargetUrl());
-            $paymentDetails->setCancelurl($tokenizedDetails->getTargetUrl());
-            
-            $detailsStorage->updateModel($paymentDetails);
+        /** @var $paymentDetails PaymentDetails */
+        $paymentDetails = $paymentDetailsStorage->createModel();
+        $paymentDetails->setPaymentrequestCurrencycode(0, $cart->getCurrency());
+        $paymentDetails->setPaymentrequestAmt(0,  $cart->getPrice());
+        $paymentDetails->setReturnurl($request->getTokenizedDetails()->getTargetUrl());
+        $paymentDetails->setCancelurl($request->getTokenizedDetails()->getTargetUrl());
+        $paymentDetailsStorage->updateModel($paymentDetails);
 
-            $cart->setDetails($paymentDetails);
-            $cartStorage->updateModel($cart);
-        }
-
-        $this->payment->execute(new CaptureRequest($cart));
+        $cart->setDetails($paymentDetails);
+        $cartStorage->updateModel($cart);
+        
+        $request->setModel($paymentDetails);
+        $this->payment->execute($request);
     }
 
     /**
@@ -70,20 +67,10 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
      */
     public function supports($request)
     {
-        if (false == $request instanceof CaptureRequest) {
-            return false;
-        }
-
-        /** @var TokenizedDetails $tokenizedDetails */
-        $tokenizedDetails = $request->getModel();
-        if (false == $tokenizedDetails instanceof TokenizedDetails) {
-            return false;
-        }
-        
-        if ('Acme\OtherExamplesBundle\Model\Cart' != $tokenizedDetails->getDetails()->getClass()) {
-            return false;
-        }
-        
-        return true;
+        return
+            $request instanceof CaptureTokenizedDetailsRequest &&
+            $request->getModel() instanceof Cart &&
+            null === $request->getModel()->getDetails()
+        ;
     }
 }

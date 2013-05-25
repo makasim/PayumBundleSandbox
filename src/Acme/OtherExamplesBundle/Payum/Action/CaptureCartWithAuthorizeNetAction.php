@@ -1,32 +1,46 @@
 <?php
 namespace Acme\OtherExamplesBundle\Payum\Action;
 
-use Acme\OtherExamplesBundle\Model\Cart;
-use Acme\PaymentBundle\Model\AuthorizeNetPaymentDetails;
-use Payum\Action\ActionInterface;
-use Payum\Action\PaymentAwareAction;
-use Payum\Bundle\PayumBundle\Request\ResponseInteractiveRequest;
-use Payum\Bundle\PayumBundle\Service\TokenizedTokenService;
-use Payum\Exception\RequestNotSupportedException;
-use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
-use Payum\Registry\AbstractRegistry;
-use Payum\Request\CaptureRequest;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\EngineInterface;
 
+use Payum\Action\PaymentAwareAction;
+use Payum\Registry\AbstractRegistry;
+use Payum\Exception\RequestNotSupportedException;
+use Payum\Bundle\PayumBundle\Request\ResponseInteractiveRequest;
+use Payum\Bundle\PayumBundle\Request\CaptureTokenizedDetailsRequest;
+
+use Acme\OtherExamplesBundle\Model\Cart;
+use Acme\PaymentBundle\Model\AuthorizeNetPaymentDetails;
+
 class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction 
 {
+    /**
+     * @var AbstractRegistry
+     */
     protected $payum;
 
+    /**
+     * @var FormFactoryInterface
+     */
     protected $formFactory;
-    
+
+    /**
+     * @var EngineInterface
+     */
     protected $templating;
-    
+
+    /**
+     * @var Request
+     */
     protected $request;
 
+    /**
+     * @param ContainerInterface $container
+     */
     public function __construct(ContainerInterface $container) 
     {
         $this->payum = $container->get('payum');
@@ -40,7 +54,7 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
      */
     public function execute($request)
     {
-        /** @var $request CaptureRequest */
+        /** @var $request CaptureTokenizedDetailsRequest */
         if (false == $this->supports($request)) {
             throw RequestNotSupportedException::createActionNotSupported($this, $request);
         }
@@ -49,26 +63,29 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
         if ($this->request->isMethod('POST')) {
             $form->bind($this->request);
             if ($form->isValid()) {
-                $paymentName = 'authorize_net_plus_cart';
                 $data = $form->getData();
 
                 /** @var Cart $cart */
                 $cart = $request->getModel();
-                $cartStorage = $this->payum->getStorageForClass($cart, $paymentName);
-                $detailsStorage = $this->payum->getStorageForClass(
+                
+                $cartStorage = $this->payum->getStorageForClass(
+                    $cart, 
+                    $request->getTokenizedDetails()->getPaymentName()
+                );
+                
+                $paymentDetailsStorage = $this->payum->getStorageForClass(
                     'Acme\PaymentBundle\Model\AuthorizeNetPaymentDetails',
-                    $paymentName
+                    $request->getTokenizedDetails()->getPaymentName()
                 );
 
                 /** @var $paymentDetails AuthorizeNetPaymentDetails */
-                $paymentDetails = $detailsStorage->createModel();
+                $paymentDetails = $paymentDetailsStorage->createModel();
                 $paymentDetails->setAmount($cart->getPrice());
                 $paymentDetails->setCardNum($data['card_number']);
                 $paymentDetails->setExpDate($data['card_expiration_date']);
-
+                $paymentDetailsStorage->updateModel($paymentDetails);
+                
                 $cart->setDetails($paymentDetails);
-
-                $detailsStorage->updateModel($paymentDetails);
                 $cartStorage->updateModel($cart);
                 
                 $request->setModel($paymentDetails);
@@ -91,7 +108,7 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
     public function supports($request)
     {
         return
-            $request instanceof CaptureRequest &&
+            $request instanceof CaptureTokenizedDetailsRequest &&
             $request->getModel() instanceof Cart &&
             null === $request->getModel()->getDetails()
         ;
