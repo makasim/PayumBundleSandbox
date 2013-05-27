@@ -1912,12 +1912,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "fd67a82d8aeff1efc74294f0103d346b2310865b"
+                "reference": "c24ca779e6d83fc1883a2d54e5945e41e272c49a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/fd67a82d8aeff1efc74294f0103d346b2310865b",
-                "reference": "fd67a82d8aeff1efc74294f0103d346b2310865b",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/c24ca779e6d83fc1883a2d54e5945e41e272c49a",
+                "reference": "c24ca779e6d83fc1883a2d54e5945e41e272c49a",
                 "shasum": ""
             },
             "require": {
@@ -1979,7 +1979,7 @@
                 "paypal pro checkout",
                 "paypal recurring payment"
             ],
-            "time": "2013-05-26 11:41:10"
+            "time": "2013-05-27 14:05:56"
         },
         {
             "name": "phpoption/phpoption",
@@ -2586,12 +2586,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "b081e3f1ed64b8246bfcadef3e66233ab2c0ffd9"
+                "reference": "f6c00587f8b2d6e680d09fd6015fa521f9c72327"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/b081e3f1ed64b8246bfcadef3e66233ab2c0ffd9",
-                "reference": "b081e3f1ed64b8246bfcadef3e66233ab2c0ffd9",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/f6c00587f8b2d6e680d09fd6015fa521f9c72327",
+                "reference": "f6c00587f8b2d6e680d09fd6015fa521f9c72327",
                 "shasum": ""
             },
             "require": {
@@ -2627,7 +2627,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-05-25 15:56:42"
+            "time": "2013-05-27 06:08:37"
         }
     ],
     "packages-dev": [
