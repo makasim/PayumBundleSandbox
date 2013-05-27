@@ -188,42 +188,31 @@ class RecurringPaymentExamplesController extends Controller
      *   name="acme_paypal_express_checkout_cancel_recurring_payment"
      * )
      */
-    public function cancelRecurringPaymentAction($paymentName, $token)
+    public function cancelRecurringPaymentAction(Request $request)
     {
-        try {
-            if (false == $token = $this->getTokenManager()->findByToken($paymentName, $token)) {
-                throw $this->createNotFoundException('The TokenizedDetails with requested token not found.');
-            }
-            if ($paymentName !== $token->getPaymentName()) {
-                throw new \InvalidArgumentException(sprintf('The paymentName %s not match one %s set in the token.', $paymentName, $token->getPaymentName()));
-            }
-            
-            $payment = $this->getPayum()->getPayment($paymentName);
+        $token = $this->getTokenManager()->getTokenFromRequest($request);
+        
+        $payment = $this->getPayum()->getPayment($token->getPaymentName());
 
-            $status = new BinaryMaskStatusRequest($token);
-            $payment->execute($status);
-            if (false == $status->isSuccess()) {
-                throw new HttpException(400, 'The model status must be success.');
-            }
-            if (false == $status->getModel() instanceof RecurringPaymentDetails) {
-                throw new HttpException(400, 'The model associated with token not a recurring payment one.');
-            }
-            
-            /** @var RecurringPaymentDetails $recurringPayment */
-            $recurringPaymentDetails = $status->getModel();
-            $recurringPaymentDetails->setAction(Api::RECURRINGPAYMENTACTION_CANCEL);
-            
-            $payment->execute(new ManageRecurringPaymentsProfileStatusRequest($recurringPaymentDetails));
-            $payment->execute(new SyncRequest($recurringPaymentDetails));
-
-            $this->getPayum()->getStorageForClass($token, $paymentName)->deleteModel($token);
-
-            return $this->redirect($token->getAfterUrl());
-        } catch (HttpException $e) {
-            throw $e;
-        } catch (\InvalidArgumentException $e) {
-            throw new HttpException(404, 'The input parameters not valid.', $e);
+        $status = new BinaryMaskStatusRequest($token);
+        $payment->execute($status);
+        if (false == $status->isSuccess()) {
+            throw new HttpException(400, 'The model status must be success.');
         }
+        if (false == $status->getModel() instanceof RecurringPaymentDetails) {
+            throw new HttpException(400, 'The model associated with token not a recurring payment one.');
+        }
+            
+        /** @var RecurringPaymentDetails $recurringPayment */
+        $recurringPaymentDetails = $status->getModel();
+        $recurringPaymentDetails->setAction(Api::RECURRINGPAYMENTACTION_CANCEL);
+        
+        $payment->execute(new ManageRecurringPaymentsProfileStatusRequest($recurringPaymentDetails));
+        $payment->execute(new SyncRequest($recurringPaymentDetails));
+
+        $this->getTokenManager()->deleteToken($token);
+
+        return $this->redirect($token->getAfterUrl());
     }
 
     /**
