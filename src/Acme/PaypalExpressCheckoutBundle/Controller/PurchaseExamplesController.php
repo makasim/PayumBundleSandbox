@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints\Range;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 
-use Payum\Registry\AbstractRegistry;
+use Payum\Registry\RegistryInterface;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Paypal\ExpressCheckout\Nvp\Model\PaymentDetails;
 use Payum\Bundle\PayumBundle\Service\TokenManager;
@@ -191,7 +191,7 @@ class PurchaseExamplesController extends Controller
     }
 
     /**
-     * @return AbstractRegistry
+     * @return RegistryInterface
      */
     protected function getPayum()
     {

@@ -3,7 +3,7 @@ namespace Acme\OtherExamplesBundle\Payum\Action;
 
 use Payum\Action\PaymentAwareAction;
 use Payum\Exception\RequestNotSupportedException;
-use Payum\Registry\AbstractRegistry;
+use Payum\Registry\RegistryInterface;
 use Payum\Bundle\PayumBundle\Request\CaptureTokenizedDetailsRequest;
 
 use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
@@ -12,14 +12,14 @@ use Acme\OtherExamplesBundle\Model\Cart;
 class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction 
 {
     /**
-     * @var \Payum\Registry\AbstractRegistry
+     * @var \Payum\Registry\RegistryInterface
      */
     protected $payum;
 
     /**
-     * @param AbstractRegistry $payum
+     * @param RegistryInterface $payum
      */
-    public function __construct(AbstractRegistry $payum)
+    public function __construct(RegistryInterface $payum)
     {
         $this->payum = $payum;
     }

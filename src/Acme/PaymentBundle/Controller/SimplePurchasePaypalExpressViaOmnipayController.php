@@ -5,7 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
 
-use Payum\Registry\AbstractRegistry;
+use Payum\Registry\RegistryInterface;
 use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 class SimplePurchasePaypalExpressViaOmnipayController extends Controller
@@ -69,7 +69,7 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
     }
 
     /**
-     * @return AbstractRegistry
+     * @return RegistryInterface
      */
     protected function getPayum()
     {

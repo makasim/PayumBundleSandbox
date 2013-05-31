@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\EngineInterface;
 
 use Payum\Action\PaymentAwareAction;
-use Payum\Registry\AbstractRegistry;
+use Payum\Registry\RegistryInterface;
 use Payum\Exception\RequestNotSupportedException;
 use Payum\Bundle\PayumBundle\Request\ResponseInteractiveRequest;
 use Payum\Bundle\PayumBundle\Request\CaptureTokenizedDetailsRequest;
@@ -19,7 +19,7 @@ use Acme\PaymentBundle\Model\AuthorizeNetPaymentDetails;
 class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction 
 {
     /**
-     * @var AbstractRegistry
+     * @var RegistryInterface
      */
     protected $payum;
 

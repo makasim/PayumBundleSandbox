@@ -4,7 +4,7 @@ namespace Acme\PaymentBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Payum\Request\BinaryMaskStatusRequest;
-use Payum\Registry\AbstractRegistry;
+use Payum\Registry\RegistryInterface;
 use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 class DetailsController extends Controller
@@ -23,7 +23,7 @@ class DetailsController extends Controller
     }
 
     /**
-     * @return AbstractRegistry
+     * @return RegistryInterface
      */
     protected function getPayum()
     {

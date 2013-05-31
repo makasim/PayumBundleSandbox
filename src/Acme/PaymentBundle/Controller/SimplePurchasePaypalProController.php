@@ -5,7 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Payum\Registry\AbstractRegistry;
+use Payum\Registry\RegistryInterface;
 use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 class SimplePurchasePaypalProController extends Controller
@@ -75,7 +75,7 @@ class SimplePurchasePaypalProController extends Controller
     }
 
     /**
-     * @return AbstractRegistry
+     * @return RegistryInterface
      */
     protected function getPayum()
     {

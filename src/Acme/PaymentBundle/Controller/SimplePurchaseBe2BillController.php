@@ -5,7 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
 
-use Payum\Registry\AbstractRegistry;
+use Payum\Registry\RegistryInterface;
 use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 use Acme\PaymentBundle\Model\Be2BillPaymentDetails;
@@ -83,7 +83,7 @@ class SimplePurchaseBe2BillController extends Controller
     
 
     /**
-     * @return AbstractRegistry
+     * @return RegistryInterface
      */
     protected function getPayum()
     {
