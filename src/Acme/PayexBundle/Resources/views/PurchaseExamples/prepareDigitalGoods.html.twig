@@ -1,0 +1,16 @@
+{% extends "AcmePaymentBundle::layout.html.twig" %}
+
+{% block title "Payment demo - Simple purchase with Paypal Express Checkout - Prepare" %}
+
+{% block content %}
+    <form method="POST">
+        <p>
+            {{ book.author }}. {{ book.name }}, 
+            {{ book.quantity }} items for {{ book.price }}{{ book.currency_symbol }} each.
+        </p>
+        
+        <input type="submit" value="Buy" />
+    </form>
+{% endblock %}
+
+{% set code = code(_self) %}
