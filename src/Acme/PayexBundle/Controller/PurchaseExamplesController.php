@@ -37,24 +37,6 @@ class PurchaseExamplesController extends Controller
                     $paymentName
                 );
 
-//                'price' => 1000,
-//            'priceArgList' => '',
-//            'vat' => 0,
-//            'currency' => 'NOK',
-//            'orderID' => 123,
-//            'productNumber' => 123,
-//            'purchaseOperation' => OrderApi::PURCHASEOPERATION_AUTHORIZATION,
-//            'view' => OrderApi::VIEW_CREDITCARD,
-//            'description' => 'a description',
-//            'additionalValues' => '',
-//            'returnUrl' => 'http://example.com/a_return_url',
-//            'cancelUrl' => 'http://example.com/a_cancel_url',
-//            'externalID' => '',
-//            'clientIPAddress' => '127.0.0.1',
-//            'clientIdentifier' => 'USER-AGENT=cli-php',
-//            'agreementRef' => '',
-//            'clientLanguage' => 'en-US',
-
                 /** @var $paymentDetails PaymentDetails */
                 $paymentDetails = $storage->createModel();
                 $paymentDetails->setPrice($data['amount'] * 100);
