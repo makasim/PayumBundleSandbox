@@ -1,0 +1,204 @@
+<?php
+namespace Acme\PayexBundle\Controller;
+
+use Acme\PayexBundle\Model\AgreementDetails;
+use Payum\Payex\Action\Api\CreateAgreementAction;
+use Payum\Payex\Api\AgreementApi;
+use Payum\Payex\Request\Api\CheckAgreementRequest;
+use Payum\Payex\Request\Api\CreateAgreementRequest;
+use Payum\Request\BinaryMaskStatusRequest;
+use Payum\Storage\Identificator;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\Range;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
+
+use Payum\Registry\RegistryInterface;
+use Payum\Payex\Api\OrderApi;
+use Payum\Payex\Model\PaymentDetails;
+use Payum\Bundle\PayumBundle\Service\TokenManager;
+
+class OneClickExamplesController extends Controller
+{
+    /**
+     * @Extra\Route(
+     *   "/one_click/confirm_agreement",
+     *   name="acme_payex_one_click_confirm_agreement"
+     * )
+     * 
+     * @Extra\Template()
+     */
+    public function confirmAgreementAction(Request $request)
+    {
+        $paymentName = 'payex_agreement';
+        
+        $agreementStorage = $this->getPayum()->getStorageForClass(
+            'Acme\PayexBundle\Model\AgreementDetails',
+            $paymentName
+        );
+
+        if ($request->get('agreementRef')) {
+            $checkAgreement = new CheckAgreementRequest(new Identificator(
+                $request->get('agreementRef'),
+                'Acme\PayexBundle\Model\AgreementDetails'
+            ));
+            $this->getPayum()->getPayment($paymentName)->execute($checkAgreement);
+
+            /** @var AgreementDetails $agreement */
+            $agreement = $checkAgreement->getModel();
+            
+            $agreementStatus = new BinaryMaskStatusRequest($agreement);
+
+            $this->getPayum()->getPayment($paymentName)->execute($agreementStatus);
+
+            if ($agreementStatus->isSuccess()) {
+                return $this->redirect($this->generateUrl('acme_payex_one_click_purchase', array(
+                    'agreementRef' => $agreement->getAgreementRef()
+                )));
+            } else if ($agreementStatus->isNew()) {
+                $paymentStorage = $this->getPayum()->getStorageForClass(
+                    'Acme\PayexBundle\Model\PaymentDetails',
+                    $paymentName
+                );
+
+                /** @var $paymentDetails PaymentDetails */
+                $paymentDetails = $paymentStorage->createModel();
+                $paymentDetails->setPrice(1000);
+                $paymentDetails->setPriceArgList('');
+                $paymentDetails->setVat(0);
+                $paymentDetails->setCurrency('NOK');
+                $paymentDetails->setOrderId(123);
+                $paymentDetails->setProductNumber(123);
+                $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_AUTHORIZATION);
+                $paymentDetails->setView(OrderApi::VIEW_CREDITCARD);
+                $paymentDetails->setDescription('a desc');
+                $paymentDetails->setClientIPAddress($request->getClientIp());
+                $paymentDetails->setClientIdentifier('');
+                $paymentDetails->setAdditionalValues('');
+                $paymentDetails->setAgreementRef($agreement->getAgreementRef());
+                $paymentDetails->setClientLanguage('en-US');
+
+                $paymentStorage->updateModel($paymentDetails);
+
+                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                    $paymentName,
+                    $paymentDetails,
+                    'acme_payex_one_click_confirm_agreement',
+                    array('agreementRef' => $agreement->getAgreementRef())
+                );
+
+                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+                $paymentStorage->updateModel($paymentDetails);
+
+                return $this->redirect($captureToken->getTargetUrl());
+            }
+        } else {
+            /** @var AgreementDetails $agreement */
+            $agreement = $agreementStorage->createModel();
+            $agreement->setMaxAmount(10000);
+            $agreement->setPurchaseOperation(AgreementApi::PURCHASEOPERATION_AUTHORIZATION);
+            $agreement->setMerchantRef('aRef');
+            $agreement->setDescription('aDesc');
+            $agreement->setStartDate('');
+            $agreement->setStopDate('');
+
+            $this->getPayum()->getPayment($paymentName)->execute(new CreateAgreementRequest($agreement));
+            $this->getPayum()->getPayment($paymentName)->execute(new CheckAgreementRequest($agreement));
+
+            $agreementStatus = new BinaryMaskStatusRequest($agreement);
+            $this->getPayum()->getPayment($paymentName)->execute($agreementStatus);
+        }
+        
+        return array(
+            'agreementStatus' => $agreementStatus
+        );
+    }
+    
+    /**
+     * @Extra\Route(
+     *   "/one_click/purchase",
+     *   name="acme_payex_one_click_purchase"
+     * )
+     * 
+     * @Extra\Template()
+     */
+    public function purchaseAction(Request $request)
+    {
+        $paymentName = 'payex_agreement';
+        
+        $form = $this->createPurchaseForm();
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+            if ($form->isValid()) {
+
+                $paymentStorage = $this->getPayum()->getStorageForClass(
+                    'Acme\PayexBundle\Model\PaymentDetails',
+                    $paymentName
+                );
+
+                /** @var $paymentDetails PaymentDetails */
+                $paymentDetails = $paymentStorage->createModel();
+                $paymentDetails->setPrice(1000);
+                $paymentDetails->setCurrency('NOK');
+                $paymentDetails->setOrderId(123);
+                $paymentDetails->setProductNumber(123);
+                $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
+                $paymentDetails->setDescription('a desc');
+                $paymentDetails->setAgreementRef($request->get('agreementRef'));
+                $paymentDetails->setAutoPay(true);
+
+                $paymentStorage->updateModel($paymentDetails);
+
+                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                    $paymentName,
+                    $paymentDetails,
+                    'acme_payment_details_view'
+                );
+
+                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+                $paymentStorage->updateModel($paymentDetails);
+
+                return $this->redirect($captureToken->getTargetUrl());
+            }
+        }
+        
+        return array(
+            'form' => $form->createView(),
+        );
+    }
+
+    /**
+     * @return \Symfony\Component\Form\Form
+     */
+    protected function createPurchaseForm()
+    {
+        return $this->createFormBuilder()
+            ->add('amount', null, array(
+                'data' => 1,
+                'constraints' => array(new Range(array('max' => 2)))
+            ))
+            ->add('currency', null, array('data' => 'USD'))
+            ->getForm()
+        ;
+    }
+
+    /**
+     * @return RegistryInterface
+     */
+    protected function getPayum()
+    {
+        return $this->get('payum');
+    }
+
+    /**
+     * @return TokenManager
+     */
+    protected function getTokenManager()
+    {
+        return $this->get('payum.token_manager');
+    }
+}
