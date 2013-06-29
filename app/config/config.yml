@@ -286,7 +286,7 @@ payum:
                 Acme\PayexBundle\Model\AgreementDetails:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: agreementRef
+                        id_property: id
                         payment_extension: true
                 Acme\PaymentBundle\Model\TokenizedDetails:
                     filesystem:

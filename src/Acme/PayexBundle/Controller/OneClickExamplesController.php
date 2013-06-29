@@ -7,6 +7,7 @@ use Payum\Payex\Api\AgreementApi;
 use Payum\Payex\Request\Api\CheckAgreementRequest;
 use Payum\Payex\Request\Api\CreateAgreementRequest;
 use Payum\Request\BinaryMaskStatusRequest;
+use Payum\Request\SyncRequest;
 use Payum\Storage\Identificator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,14 +41,14 @@ class OneClickExamplesController extends Controller
         );
 
         if ($request->get('agreementRef')) {
-            $checkAgreement = new CheckAgreementRequest(new Identificator(
+            $syncAgreement = new SyncRequest(new Identificator(
                 $request->get('agreementRef'),
                 'Acme\PayexBundle\Model\AgreementDetails'
             ));
-            $this->getPayum()->getPayment($paymentName)->execute($checkAgreement);
+            $this->getPayum()->getPayment($paymentName)->execute($syncAgreement);
 
             /** @var AgreementDetails $agreement */
-            $agreement = $checkAgreement->getModel();
+            $agreement = $syncAgreement->getModel();
             
             $agreementStatus = new BinaryMaskStatusRequest($agreement);
 
@@ -106,7 +107,7 @@ class OneClickExamplesController extends Controller
             $agreement->setStopDate('');
 
             $this->getPayum()->getPayment($paymentName)->execute(new CreateAgreementRequest($agreement));
-            $this->getPayum()->getPayment($paymentName)->execute(new CheckAgreementRequest($agreement));
+            $this->getPayum()->getPayment($paymentName)->execute(new SyncRequest($agreement));
 
             $agreementStatus = new BinaryMaskStatusRequest($agreement);
             $this->getPayum()->getPayment($paymentName)->execute($agreementStatus);
