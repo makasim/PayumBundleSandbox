@@ -27,7 +27,7 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
                 );
                 
                 $paymentDetails = $storage->createModel();
-                $paymentDetails['amount'] = $data['amount'] * 100;
+                $paymentDetails['amount'] = (float) $data['amount'];
                 $paymentDetails['currency'] = $data['currency'];
 
                 $storage->updateModel($paymentDetails);

@@ -665,12 +665,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/common.git",
-                "reference": "v3.6.0"
+                "reference": "v3.7.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/common/zipball/v3.6.0",
-                "reference": "v3.6.0",
+                "url": "https://api.github.com/repos/guzzle/common/zipball/v3.7.0",
+                "reference": "v3.7.0",
                 "shasum": ""
             },
             "require": {
@@ -680,7 +680,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.6-dev"
+                    "dev-master": "3.7-dev"
                 }
             },
             "autoload": {
@@ -700,7 +700,7 @@
                 "event",
                 "exception"
             ],
-            "time": "2013-05-30 07:01:25"
+            "time": "2013-06-11 00:24:07"
         },
         {
             "name": "guzzle/http",
@@ -709,12 +709,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/http.git",
-                "reference": "v3.6.0"
+                "reference": "v3.7.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/http/zipball/v3.6.0",
-                "reference": "v3.6.0",
+                "url": "https://api.github.com/repos/guzzle/http/zipball/v3.7.0",
+                "reference": "v3.7.0",
                 "shasum": ""
             },
             "require": {
@@ -729,7 +729,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.6-dev"
+                    "dev-master": "3.7-dev"
                 }
             },
             "autoload": {
@@ -757,7 +757,7 @@
                 "http",
                 "http client"
             ],
-            "time": "2013-05-30 07:01:25"
+            "time": "2013-06-11 00:24:07"
         },
         {
             "name": "guzzle/parser",
@@ -766,12 +766,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/parser.git",
-                "reference": "v3.6.0"
+                "reference": "v3.7.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/parser/zipball/v3.6.0",
-                "reference": "v3.6.0",
+                "url": "https://api.github.com/repos/guzzle/parser/zipball/v3.7.0",
+                "reference": "v3.7.0",
                 "shasum": ""
             },
             "require": {
@@ -780,7 +780,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.6-dev"
+                    "dev-master": "3.7-dev"
                 }
             },
             "autoload": {
@@ -801,7 +801,7 @@
                 "message",
                 "url"
             ],
-            "time": "2013-05-30 07:01:25"
+            "time": "2013-06-11 00:24:07"
         },
         {
             "name": "guzzle/stream",
@@ -810,12 +810,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/stream.git",
-                "reference": "v3.6.0"
+                "reference": "v3.7.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/stream/zipball/v3.6.0",
-                "reference": "v3.6.0",
+                "url": "https://api.github.com/repos/guzzle/stream/zipball/v3.7.0",
+                "reference": "v3.7.0",
                 "shasum": ""
             },
             "require": {
@@ -828,7 +828,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.6-dev"
+                    "dev-master": "3.7-dev"
                 }
             },
             "autoload": {
@@ -854,7 +854,7 @@
                 "component",
                 "stream"
             ],
-            "time": "2013-05-30 07:01:25"
+            "time": "2013-06-11 00:24:07"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1353,12 +1353,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/Buzz.git",
-                "reference": "v0.10"
+                "reference": "d7545a943496c401f7f5248f285e44b33c86905e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/v0.10",
-                "reference": "v0.10",
+                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/d7545a943496c401f7f5248f285e44b33c86905e",
+                "reference": "d7545a943496c401f7f5248f285e44b33c86905e",
                 "shasum": ""
             },
             "require": {
@@ -1393,7 +1393,7 @@
                 "curl",
                 "http client"
             ],
-            "time": "2013-05-19 03:41:15"
+            "time": "2013-06-04 15:32:22"
         },
         {
             "name": "monolog/monolog",
@@ -1459,25 +1459,25 @@
         },
         {
             "name": "omnipay/omnipay",
-            "version": "v0.8.4",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/adrianmacneil/omnipay.git",
-                "reference": "v0.8.4"
+                "reference": "v1.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/adrianmacneil/omnipay/zipball/v0.8.4",
-                "reference": "v0.8.4",
+                "url": "https://api.github.com/repos/adrianmacneil/omnipay/zipball/v1.0.1",
+                "reference": "v1.0.1",
                 "shasum": ""
             },
             "require": {
-                "guzzle/http": ">=3.0,<4.0",
+                "guzzle/http": ">=3.1,<4.0",
                 "php": ">=5.3.2",
                 "symfony/http-foundation": ">=2.1,<3.0"
             },
             "require-dev": {
-                "guzzle/plugin-mock": ">=3.0,<4.0",
+                "guzzle/plugin-mock": ">=3.1,<4.0",
                 "mockery/mockery": ">=0.7,<1.0",
                 "phpunit/phpunit": ">=3.7.16.0,<3.8",
                 "silex/silex": "1.0.*@dev",
@@ -1500,7 +1500,7 @@
                     "email": "adrian@adrianmacneil.com"
                 }
             ],
-            "description": "Omnipay is a framework agnostic multi-gateway payment processing library",
+            "description": "A framework agnostic, multi-gateway payment processing library",
             "homepage": "https://github.com/adrianmacneil/omnipay",
             "keywords": [
                 "2checkout",
@@ -1508,27 +1508,39 @@
                 "auth.net",
                 "authorize",
                 "authorize.net",
+                "buckaroo",
                 "cardsave",
+                "commweb",
                 "dps",
+                "egate",
+                "eway",
+                "express",
                 "gateway",
                 "gocardless",
+                "ideal",
                 "merchant",
+                "migs",
+                "mollie",
                 "netaxept",
+                "netbanx",
+                "pay",
+                "payfast",
                 "payflow",
                 "payment",
                 "paymentexpress",
                 "paypal",
                 "pin",
                 "purchase",
-                "sage pay",
+                "rapid",
                 "sagepay",
+                "securepay",
                 "stripe",
                 "tala",
                 "tala-payments",
                 "twocheckout",
                 "worldpay"
             ],
-            "time": "2013-03-14 11:16:42"
+            "time": "2013-06-29 05:05:58"
         },
         {
             "name": "payum/authorize-net-aim",
@@ -1633,16 +1645,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/OmnipayBridge.git",
-                "reference": "a6ee3ec87d501f09495077cf3ce1104196ea643f"
+                "reference": "53f61ec78e4af4118a11fd87fcd28436343715ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/OmnipayBridge/zipball/a6ee3ec87d501f09495077cf3ce1104196ea643f",
-                "reference": "a6ee3ec87d501f09495077cf3ce1104196ea643f",
+                "url": "https://api.github.com/repos/Payum/OmnipayBridge/zipball/53f61ec78e4af4118a11fd87fcd28436343715ed",
+                "reference": "53f61ec78e4af4118a11fd87fcd28436343715ed",
                 "shasum": ""
             },
             "require": {
-                "omnipay/omnipay": "0.8.*",
+                "omnipay/omnipay": "1.0.*",
                 "payum/payum": "0.6.x-dev",
                 "php": ">=5.3.2"
             },
@@ -1676,7 +1688,7 @@
                 "omnipay",
                 "payment"
             ],
-            "time": "2013-06-03 07:58:46"
+            "time": "2013-07-03 16:10:41"
         },
         {
             "name": "payum/paypal-express-checkout-nvp",
@@ -1843,12 +1855,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "9bf600ffa046275e30b617733389c0b892f75ea7"
+                "reference": "45a317f0b6d11fbe91ce646d8b1669aff0e78f41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/9bf600ffa046275e30b617733389c0b892f75ea7",
-                "reference": "9bf600ffa046275e30b617733389c0b892f75ea7",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/45a317f0b6d11fbe91ce646d8b1669aff0e78f41",
+                "reference": "45a317f0b6d11fbe91ce646d8b1669aff0e78f41",
                 "shasum": ""
             },
             "require": {
@@ -1903,7 +1915,7 @@
                 "paypal ipn",
                 "paypal recurring payments"
             ],
-            "time": "2013-06-03 07:56:37"
+            "time": "2013-06-24 13:28:48"
         },
         {
             "name": "payum/payum-bundle",
@@ -2586,12 +2598,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "fca6a9562dc032a7ba3ab8278b731b72efa8bd9c"
+                "reference": "6f0753f0ff4047a870f57e7567446242b38b37ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/fca6a9562dc032a7ba3ab8278b731b72efa8bd9c",
-                "reference": "fca6a9562dc032a7ba3ab8278b731b72efa8bd9c",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/6f0753f0ff4047a870f57e7567446242b38b37ac",
+                "reference": "6f0753f0ff4047a870f57e7567446242b38b37ac",
                 "shasum": ""
             },
             "require": {
@@ -2610,7 +2622,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-3"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -2627,7 +2639,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-05-29 14:58:12"
+            "time": "2013-06-27 06:24:36"
         }
     ],
     "packages-dev": [
