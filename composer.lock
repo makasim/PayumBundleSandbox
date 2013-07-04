@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "8581a915d9820c797445e1d25b5b3dfa",
+    "hash": "e09a0a51be2449391a9cd4b5525189f3",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -1326,21 +1326,27 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payex.git",
-                "reference": "af8110708b3c8ff58754fa16221b0b87a3f89deb"
+                "reference": "c654dc12c3eacecf15dcb23c21482c93023b2913"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payex/zipball/af8110708b3c8ff58754fa16221b0b87a3f89deb",
-                "reference": "af8110708b3c8ff58754fa16221b0b87a3f89deb",
+                "url": "https://api.github.com/repos/Payum/Payex/zipball/c654dc12c3eacecf15dcb23c21482c93023b2913",
+                "reference": "c654dc12c3eacecf15dcb23c21482c93023b2913",
                 "shasum": ""
             },
             "require": {
                 "ext-soap": "*",
-                "payum/payum": ">=0.5.1,<0.6",
+                "payum/payum": "0.5.x-dev",
                 "php": ">=5.3.2"
             },
             "require-dev": {
+                "doctrine/orm": "2.*",
+                "ext-curl": "*",
+                "ext-pdo_sqlite": "*",
                 "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "doctrine/orm": "If you want store models to database using doctrin2 ORM"
             },
             "type": "library",
             "extra": {
@@ -1359,7 +1365,7 @@
             ],
             "authors": [
                 {
-                    "name": "Kotlyar Maksim",
+                    "name": "Maksim Kotlyar",
                     "email": "kotlyar.maksim@gmail.com"
                 }
             ],
@@ -1368,7 +1374,7 @@
                 "payex",
                 "payment"
             ],
-            "time": "2013-06-14 13:12:28"
+            "time": "2013-06-29 14:08:12"
         },
         {
             "name": "payum/paypal-express-checkout-nvp",
@@ -1623,6 +1629,7 @@
                 "payum/authorize-net-aim": "0.5.*",
                 "payum/be2bill": "0.5.*",
                 "payum/omnipay-bridge": "0.5.*",
+                "payum/payex": "0.5.x-dev",
                 "payum/paypal-express-checkout-nvp": "0.5.*",
                 "payum/paypal-pro-checkout-nvp": "0.5.*",
                 "phpunit/phpunit": "*"
@@ -1631,6 +1638,7 @@
                 "payum/authorize-net-aim": "If you want to use authorize.net gateway",
                 "payum/be2bill": "If you want to use be2bill gateway",
                 "payum/omnipay-bridge": "If you want to use omnipay provided gateways",
+                "payum/payex": "If you want to use payex gateway",
                 "payum/paypal-express-checkout-nvp": "If you want to use paypal express checkout nvp gateway",
                 "payum/paypal-pro-checkout-nvp": "If you want to use paypal pro checkout nvp gateway"
             },
@@ -1651,7 +1659,7 @@
             ],
             "authors": [
                 {
-                    "name": "Kotlyar Maksim",
+                    "name": "Maksim Kotlyar",
                     "email": "kotlyar.maksim@gmail.com"
                 },
                 {
@@ -1665,6 +1673,7 @@
                 "authorize.net",
                 "be2bill",
                 "omnipay",
+                "payex",
                 "payment",
                 "paypal",
                 "paypal express checkout",
@@ -2718,10 +2727,22 @@
         }
     ],
     "aliases": [
-
+        {
+            "alias": "0.5.x-dev",
+            "alias_normalized": "0.5.9999999.9999999-dev",
+            "version": "0.5.2.0",
+            "package": "payum/payum"
+        },
+        {
+            "alias": "0.5.1",
+            "alias_normalized": "0.5.1.0",
+            "version": "dev-payex-payment",
+            "package": "payum/payum-bundle"
+        }
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "payum/payum-bundle": 20,
         "payum/payex": 20,
         "fp/testo": 20
     },
