@@ -1326,12 +1326,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payex.git",
-                "reference": "c654dc12c3eacecf15dcb23c21482c93023b2913"
+                "reference": "2d0efc54628b5046f2b59f32b8145a539228c012"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payex/zipball/c654dc12c3eacecf15dcb23c21482c93023b2913",
-                "reference": "c654dc12c3eacecf15dcb23c21482c93023b2913",
+                "url": "https://api.github.com/repos/Payum/Payex/zipball/2d0efc54628b5046f2b59f32b8145a539228c012",
+                "reference": "2d0efc54628b5046f2b59f32b8145a539228c012",
                 "shasum": ""
             },
             "require": {

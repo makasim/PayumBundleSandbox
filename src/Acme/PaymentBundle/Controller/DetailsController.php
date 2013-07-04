@@ -5,7 +5,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Payum\Request\BinaryMaskStatusRequest;
+use Payum\Request\SyncRequest;
 use Payum\Registry\RegistryInterface;
+use Payum\Exception\RequestNotSupportedException;
 use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 class DetailsController extends Controller
@@ -14,7 +16,11 @@ class DetailsController extends Controller
     {
         $token = $this->getTokenManager()->getTokenFromRequest($request);
         
-        $payment = $this->getPayum()->getPayment($token->getPaymentName()); 
+        $payment = $this->getPayum()->getPayment($token->getPaymentName());
+
+        try {
+            $payment->execute(new SyncRequest($token));
+        } catch (RequestNotSupportedException $e) {}
         
         $status = new BinaryMaskStatusRequest($token);
         $payment->execute($status);
