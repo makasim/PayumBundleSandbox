@@ -86,6 +86,9 @@ payum:
                         password:  %paypal.express_checkout.password%
                         signature: %paypal.express_checkout.signature%
                         sandbox: true
+                        
+                actions:
+                    - acme.payment.payum.action.store_notification
 
             storages:
                 Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails:
