@@ -206,19 +206,19 @@ class PurchaseExamplesController extends Controller
 
                 $notifyToken = $this->getTokenManager()->createTokenForNotifyRoute($paymentName, $paymentDetails);
 
-                $notifyToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
                     $paymentName,
                     $paymentDetails,
                     'acme_payment_details_view'
                 );
 
-                $paymentDetails->setReturnurl($notifyToken->getTargetUrl());
-                $paymentDetails->setCancelurl($notifyToken->getTargetUrl());
-                $paymentDetails->setPaymentrequestNotifyurl(0, $notifyToken);
+                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+                $paymentDetails->setPaymentrequestNotifyurl(0, $notifyToken->getTargetUrl());
                 $paymentDetails->setInvnum($paymentDetails->getId());
                 $storage->updateModel($paymentDetails);
                 
-                return $this->redirect($notifyToken->getTargetUrl());
+                return $this->redirect($captureToken->getTargetUrl());
             }
         }
 
