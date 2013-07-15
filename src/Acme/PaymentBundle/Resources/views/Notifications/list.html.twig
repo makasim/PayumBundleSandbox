@@ -43,8 +43,8 @@
                 <tr>
                     <th>Id</th>
                     <th>Payment name</th>
-                    <th>Details</th>
                     <th>Created at</th>
+                    <th>Details</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,8 +52,8 @@
                     <tr>
                         <td>{{ notification.id }}</td>
                         <td>{{ notification.paymentName }}</td>
-                        <td>{{ notification.details|json_encode|raw }}</td>
                         <td>{{ notification.createdAt.format("Y-m-d H:i:s") }}</td>
+                        <td><pre>{{ notification.details|raw }}</pre></td>
                     </tr>
                 {% endfor %}
             </tbody>

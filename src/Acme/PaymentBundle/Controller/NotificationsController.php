@@ -1,6 +1,7 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
+use Acme\PaymentBundle\Entity\NotificationDetails;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -10,15 +11,25 @@ class NotificationsController extends Controller
 {
     public function listAction()
     {
-        $qb = $this->getNotificationDetailsRepository()->createQueryBuilder('n');
-
-        $qb
+        $query = $this->getNotificationDetailsRepository()->createQueryBuilder('n')
             ->setMaxResults(20)
             ->addOrderBy('n.createdAt', 'DESC')
+            
+            ->getQuery()
         ;
 
+        $notifications = array();
+        foreach ($query->getResult() as $notification) {
+            /** @var NotificationDetails $notification */
+            $notifications[] = array(
+                'paymentName' => $notification->getPaymentName(),
+                'details' => var_export($notification->getDetails(), true),
+                'createdAt' => $notification->getCreatedAt(),
+            );
+        }
+
         return $this->render('AcmePaymentBundle:Notifications:list.html.twig', array(
-            'notifications' => $qb->getQuery()->getResult(),
+            'notifications' => $notifications
         ));
     }
 
