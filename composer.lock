@@ -1485,12 +1485,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "53ed0a149aee34e2eeffe76a3d86cbbbd734a823"
+                "reference": "ed7f72c22fc5e00c6157a4438a83596fa8110daa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/53ed0a149aee34e2eeffe76a3d86cbbbd734a823",
-                "reference": "53ed0a149aee34e2eeffe76a3d86cbbbd734a823",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/ed7f72c22fc5e00c6157a4438a83596fa8110daa",
+                "reference": "ed7f72c22fc5e00c6157a4438a83596fa8110daa",
                 "shasum": ""
             },
             "require": {
@@ -1545,7 +1545,7 @@
                 "paypal ipn",
                 "paypal recurring payments"
             ],
-            "time": "2013-07-09 18:58:43"
+            "time": "2013-07-15 13:27:11"
         },
         {
             "name": "payum/payum-bundle",
@@ -1554,12 +1554,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "3a372388670ef5a7ecf2cf408dcda042f31d96c2"
+                "reference": "024cf65ca37c667ff60fda7f487e86c5b16ace99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/3a372388670ef5a7ecf2cf408dcda042f31d96c2",
-                "reference": "3a372388670ef5a7ecf2cf408dcda042f31d96c2",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/024cf65ca37c667ff60fda7f487e86c5b16ace99",
+                "reference": "024cf65ca37c667ff60fda7f487e86c5b16ace99",
                 "shasum": ""
             },
             "require": {
@@ -1621,7 +1621,7 @@
                 "paypal pro checkout",
                 "paypal recurring payment"
             ],
-            "time": "2013-07-09 19:16:04"
+            "time": "2013-07-15 13:45:09"
         },
         {
             "name": "phpoption/phpoption",
