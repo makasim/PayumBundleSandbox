@@ -18,6 +18,10 @@ payum_capture:
 payum_sync:
     resource: "@PayumBundle/Resources/config/routing/sync.xml"
     prefix:   /
+    
+payum_notify:
+    resource: "@PayumBundle/Resources/config/routing/notify.xml"
+    prefix:   /
 
 acme_paypal_express_checkout:
     resource: "@AcmePaypalExpressCheckoutBundle/Resources/config/routing.yml"

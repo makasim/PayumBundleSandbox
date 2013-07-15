@@ -176,6 +176,58 @@ class PurchaseExamplesController extends Controller
     }
 
     /**
+     * @Extra\Route(
+     *   "/prepare_purchase_with_ipn_enabled",
+     *   name="acme_paypal_express_checkout_prepare_purchase_with_ipn_enabled"
+     * )
+     *
+     * @Extra\Template
+     */
+    public function prepareWithIpnEnabledAction(Request $request)
+    {
+        $paymentName = 'paypal_express_checkout';
+
+        $form = $this->createPurchaseForm();
+        if ('POST' === $request->getMethod()) {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $data = $form->getData();
+
+                $storage = $this->getPayum()->getStorageForClass(
+                    'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+                    $paymentName
+                );
+
+                /** @var $paymentDetails PaymentDetails */
+                $paymentDetails = $storage->createModel();
+                $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
+                $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
+                $storage->updateModel($paymentDetails);
+
+                $notifyToken = $this->getTokenManager()->createTokenForNotifyRoute($paymentName, $paymentDetails);
+
+                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                    $paymentName,
+                    $paymentDetails,
+                    'acme_payment_details_view'
+                );
+
+                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+                $paymentDetails->setPaymentrequestNotifyurl(0, $notifyToken->getTargetUrl());
+                $paymentDetails->setInvnum($paymentDetails->getId());
+                $storage->updateModel($paymentDetails);
+                
+                return $this->redirect($captureToken->getTargetUrl());
+            }
+        }
+
+        return array(
+            'form' => $form->createView()
+        );
+    }
+
+    /**
      * @return \Symfony\Component\Form\Form
      */
     protected function createPurchaseForm()

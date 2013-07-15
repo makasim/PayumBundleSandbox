@@ -1,0 +1,64 @@
+{% extends "AcmePaymentBundle::layout.html.twig" %}
+
+{% block title %}
+    Notifications list
+{% endblock %}
+
+{% block content %}  
+    <style>
+        table {
+            border: 1px solid #DFDFDF;
+            background-color: #F9F9F9;
+            width: 100%;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            font-family: Arial,"Bitstream Vera Sans",Helvetica,Verdana,sans-serif;
+            color: #333;
+        }
+        table td, table th {
+            border-top-color: white;
+            border-bottom: 1px solid #DFDFDF;
+            color: #555;
+        }
+        table th {
+            text-shadow: rgba(255, 255, 255, 0.796875) 0px 1px 0px;
+            font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif;
+            font-weight: bold;
+            padding: 7px 7px 8px;
+            text-align: left;
+            line-height: 1.3em;
+            font-size: 14px;
+        }
+        table td {
+            font-size: 12px;
+            padding: 4px 7px 2px;
+            vertical-align: top;
+        }
+    }
+    </style>
+    <div class="block">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Payment name</th>
+                    <th>Created at</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for notification in notifications %}
+                    <tr>
+                        <td>{{ notification.id }}</td>
+                        <td>{{ notification.paymentName }}</td>
+                        <td>{{ notification.createdAt.format("Y-m-d H:i:s") }}</td>
+                        <td><pre>{{ notification.details|raw }}</pre></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% set code = code(_self) %}

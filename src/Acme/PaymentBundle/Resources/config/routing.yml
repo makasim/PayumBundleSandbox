@@ -25,3 +25,7 @@ acme_payment_capture_simple:
 acme_payment_details_view:
     pattern:  /payment/{paymentName}/details/{token}
     defaults: { _controller: AcmePaymentBundle:Details:view }
+    
+acme_payment_notifications_list:
+    pattern:  /payment/notifications/list
+    defaults: { _controller: AcmePaymentBundle:Notifications:list }
