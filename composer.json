@@ -21,13 +21,15 @@
         "jms/security-extra-bundle": "1.4.*",
         "jms/di-extra-bundle": "1.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
+        "payum/payum": "0.5.*",
         "payum/payum-bundle": "0.5.*",
         "payum/paypal-express-checkout-nvp": "0.5.*",
         "payum/paypal-pro-checkout-nvp": "0.5.*",
         "payum/authorize-net-aim": "0.5.*",
         "payum/be2bill": "0.5.*",
         "payum/omnipay-bridge": "0.5.*",
-        "payum/paypal-ipn": "0.5.*"
+        "payum/paypal-ipn": "0.5.*",
+        "payum/payex": "0.5.*"
     },
     "require-dev": {
         "phpunit/phpunit": "*",

@@ -1,0 +1,35 @@
+{% extends "AcmePaymentBundle::layout.html.twig" %}
+
+{% block title "Payex - One click purchase agreement" %}
+
+{% block content %}
+    <div class="block">
+        Agreement status:
+        {% if agreementStatus.success %}
+            Successful - now you can purchase in <a href="{{ path('acme_payex_one_click_purchase', { 'agreementRef': agreementStatus.model.agreementRef }) }}">one click</a>.
+        {% elseif agreementStatus.new %}
+            New - please <a href="{{ path('acme_payex_one_click_confirm_agreement', { 'agreementRef': agreementStatus.model.agreementRef } ) }}">confirm</a> billing agreement.
+        {% elseif agreementStatus.canceled %}
+            Canceled
+        {% elseif agreementStatus.failed %}
+            Failed
+        {% elseif agreementStatus.pending %}
+            Pending
+        {% elseif agreementStatus.expired %}
+            Expired
+        {% elseif agreementStatus.suspended %}
+            Suspended
+        {% else %}
+            Unknown
+        {% endif %}
+    </div>
+    <div class="block">
+        <ul>
+            {% for key, value in agreementStatus.model %}
+                <li>{{ key }}: {{ value|json_encode|raw }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% set code = code(_self) %}

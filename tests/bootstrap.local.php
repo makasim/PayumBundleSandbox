@@ -19,6 +19,8 @@ $loader->add('Payum\Paypal\ExpressCheckout\Nvp\Tests', realpath(__DIR__ .'/../ve
 
 $loader->add('Payum\Paypal\AuthorizeNet\Aim\Tests', realpath(__DIR__ .'/../vendor/payum/authorize-net-aim/tests'));
 
+$loader->add('Payum\Payex\Tests', realpath(__DIR__ .'/../vendor/payum/payex/tests'));
+
 $loader->add('Payum\Paypal\Be2Bill\Tests', realpath(__DIR__ .'/../vendor/payum/be2bill/tests'));
 
 $loader->add('Payum\Bundle\PayumBundle\Tests', __DIR__);

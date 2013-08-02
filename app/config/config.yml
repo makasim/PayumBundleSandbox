@@ -250,7 +250,50 @@ payum:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: token
                         payment_extension: true
+
+        payex:
+            payex:
+                api:
+                    options:
+                        account_number:  %payex.account_number%
+                        encryption_key:  %payex.encryption_key%
+                        sandbox: true
+            storages:
+                Acme\PayexBundle\Model\PaymentDetails:
+                    filesystem:
+                        storage_dir: %kernel.root_dir%/Resources/payments
+                        id_property: id
+                        payment_extension: true
+                Acme\PaymentBundle\Model\TokenizedDetails:
+                    filesystem:
+                        storage_dir: %kernel.root_dir%/Resources/payments
+                        id_property: token
+                        payment_extension: true
                         
+        payex_agreement:
+            payex:
+                api:
+                    options:
+                        account_number:  %payex.account_number%
+                        encryption_key:  %payex.encryption_key%
+                        sandbox: true
+            storages:
+                Acme\PayexBundle\Model\PaymentDetails:
+                    filesystem:
+                        storage_dir: %kernel.root_dir%/Resources/payments
+                        id_property: id
+                        payment_extension: true
+                Acme\PayexBundle\Model\AgreementDetails:
+                    filesystem:
+                        storage_dir: %kernel.root_dir%/Resources/payments
+                        id_property: agreementRef
+                        payment_extension: true
+                Acme\PaymentBundle\Model\TokenizedDetails:
+                    filesystem:
+                        storage_dir: %kernel.root_dir%/Resources/payments
+                        id_property: token
+                        payment_extension: true
+
         paypal_express_checkout_plus_cart:
             paypal_express_checkout_nvp:
                 api:

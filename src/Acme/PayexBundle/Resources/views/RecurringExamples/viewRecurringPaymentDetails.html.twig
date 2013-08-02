@@ -1,21 +1,21 @@
 {% extends "AcmePaymentBundle::layout.html.twig" %}
 
-{% block title "Paypal express checkout demo - Create doctrine recurring payment" %}
+{% block title "Payex - View recurring payment details" %}
 
 {% block content %}
     <div class="block">
-        Billing agreement status:
-        {% if billingAgreementStatus.success %}
+        Agreement status:
+        {% if agreementStatus.success %}
             Successful
-        {% elseif billingAgreementStatus.canceled %}
+        {% elseif agreementStatus.canceled %}
             Canceled
-        {% elseif billingAgreementStatus.failed %}
+        {% elseif agreementStatus.failed %}
             Failed
-        {% elseif billingAgreementStatus.pending %}
+        {% elseif agreementStatus.pending %}
             Pending
-        {% elseif billingAgreementStatus.expired %}
+        {% elseif agreementStatus.expired %}
             Expired
-        {% elseif billingAgreementStatus.suspended %}
+        {% elseif agreementStatus.suspended %}
             Suspended
         {% else %}
             Unknown
@@ -23,33 +23,37 @@
     </div>
     <div class="block">
         <ul>
-            {% for key, value in billingAgreementStatus.model %}
+            {% for key, value in agreementStatus.model %}
                 <li>{{ key }}: {{ value|json_encode|raw }}</li>
             {% endfor %}
         </ul>
     </div>
-    {% if recurringPaymentStatus %}
+    {% if paymentStatus %}
         <div class="block">
             Recurring payment status:
-            {% if recurringPaymentStatus.success %}
+            {% if paymentStatus.success %}
                 Active
-            {% elseif recurringPaymentStatus.canceled %}
+            {% elseif paymentStatus.canceled %}
                 Canceled
-            {% elseif recurringPaymentStatus.failed %}
+            {% elseif paymentStatus.failed %}
                 Failed
-            {% elseif recurringPaymentStatus.pending %}
+            {% elseif paymentStatus.pending %}
                 Pending
-            {% elseif recurringPaymentStatus.expired %}
+            {% elseif paymentStatus.expired %}
                 Expired
-            {% elseif recurringPaymentStatus.suspended %}
+            {% elseif paymentStatus.suspended %}
                 Suspended
             {% else %}
                 Unknown
             {% endif %}
+            
+            {% if cancelToken %}
+                &nbsp;(<a href="{{ cancelToken.targetUrl }}">Cancel</a>)
+            {% endif %}
         </div>
         <div class="block">
             <ul>
-                {% for key, value in recurringPaymentStatus.model %}
+                {% for key, value in paymentStatus.model %}
                     <li>{{ key }}: {{ value|json_encode|raw }}</li>
                 {% endfor %}
             </ul>
