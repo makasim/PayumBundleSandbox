@@ -28,3 +28,6 @@ parameters:
     
     be2bill.identifier: EDIT ME
     be2bill.password:   EDIT ME
+    
+    payex.encryption_key: EDIT ME
+    payex.account_number:   EDIT ME

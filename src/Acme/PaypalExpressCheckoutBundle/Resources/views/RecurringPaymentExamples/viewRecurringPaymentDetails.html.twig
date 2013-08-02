@@ -24,7 +24,7 @@
     <div class="block">
         <ul>
             {% for key, value in billingAgreementStatus.model %}
-                <li>{{ key }}: {{ value }}</li>
+                <li>{{ key }}: {{ value|json_encode|raw }}</li>
             {% endfor %}
         </ul>
     </div>
@@ -54,7 +54,7 @@
         <div class="block">
             <ul>
                 {% for key, value in recurringPaymentStatus.model %}
-                    <li>{{ key }}: {{ value }}</li>
+                    <li>{{ key }}: {{ value|json_encode|raw }}</li>
                 {% endfor %}
             </ul>
         </div>

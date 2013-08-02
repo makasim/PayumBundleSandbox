@@ -38,7 +38,18 @@
 
         <h3>Be2Bill</h3>
         <li>
-            <a href="{{ path("acme_payment_prepare_simple_purchase_be2bill") }}">Purchase with <b>be2bill</b></a>
+            <a href="{{ path("acme_payment_prepare_simple_purchase_be2bill") }}">Simple purchase</a>
+        </li>
+
+        <h3>Payex</h3>
+        <li>
+            <a href="{{ path("acme_payex_prepare_simple_purchase") }}">Simple purchase</a>
+        </li>
+        <li>
+            <a href="{{ path("acme_payex_one_click_confirm_agreement") }}">One click purchase</a>
+        </li>
+        <li>
+            <a href="{{ path("acme_payex_prepare_recurring_payment") }}">Recurring payment</a>
         </li>
 
         <h3>Omnipay</h3>
