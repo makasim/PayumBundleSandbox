@@ -27,7 +27,8 @@
         "payum/authorize-net-aim": "0.6.x-dev",
         "payum/be2bill": "0.6.x-dev",
         "payum/omnipay-bridge": "0.6.x-dev",
-        "payum/paypal-ipn": "0.6.x-dev"
+        "payum/paypal-ipn": "0.6.x-dev",
+        "payum/payex": "0.6.x-dev"
     },
     "require-dev": {
         "phpunit/phpunit": "*",

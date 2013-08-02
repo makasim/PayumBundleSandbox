@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Acme\DemoBundle\AcmeDemoBundle(),
             new Acme\PaymentBundle\AcmePaymentBundle(),
             new Acme\PaypalExpressCheckoutBundle\AcmePaypalExpressCheckoutBundle(),
+            new Acme\PayexBundle\AcmePayexBundle(),
             new Acme\OtherExamplesBundle\AcmeOtherExamplesBundle(),
         );
 

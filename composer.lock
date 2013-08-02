@@ -1691,6 +1691,62 @@
             "time": "2013-07-03 16:10:41"
         },
         {
+            "name": "payum/payex",
+            "version": "0.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Payum/Payex.git",
+                "reference": "0.5.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Payum/Payex/zipball/0.5.1",
+                "reference": "0.5.1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-soap": "*",
+                "payum/payum": "0.5.*",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "doctrine/orm": "2.*",
+                "ext-curl": "*",
+                "ext-pdo_sqlite": "*",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "doctrine/orm": "If you want store models to database using doctrin2 ORM"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Payum\\Payex": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kotlyar Maksim",
+                    "email": "kotlyar.maksim@gmail.com"
+                }
+            ],
+            "description": "Payex payment lib",
+            "keywords": [
+                "payex",
+                "payment"
+            ],
+            "time": "2013-08-02 17:26:25"
+        },
+        {
             "name": "payum/paypal-express-checkout-nvp",
             "version": "dev-master",
             "source": {
@@ -1951,6 +2007,7 @@
                 "payum/authorize-net-aim": "If you want to use authorize.net gateway",
                 "payum/be2bill": "If you want to use be2bill gateway",
                 "payum/omnipay-bridge": "If you want to use omnipay provided gateways",
+                "payum/payex": "If you want to use payex gateway",
                 "payum/paypal-express-checkout-nvp": "If you want to use paypal express checkout nvp gateway",
                 "payum/paypal-pro-checkout-nvp": "If you want to use paypal pro checkout nvp gateway"
             },
@@ -1985,6 +2042,7 @@
                 "authorize.net",
                 "be2bill",
                 "omnipay",
+                "payex",
                 "payment",
                 "paypal",
                 "paypal express checkout",

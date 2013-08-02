@@ -1,0 +1,4 @@
+acme_payex:
+    resource:   "@AcmePayexBundle/Controller/"
+    type:       annotation
+    prefix:     /payex

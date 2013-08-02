@@ -26,6 +26,10 @@ payum_notify:
 acme_paypal_express_checkout:
     resource: "@AcmePaypalExpressCheckoutBundle/Resources/config/routing.yml"
     prefix:   /
+    
+acme_payex:
+    resource: "@AcmePayexBundle/Resources/config/routing.yml"
+    prefix:   /
 
 acme_other_examples:
     resource: "@AcmeOtherExamplesBundle/Resources/config/routing.yml"
