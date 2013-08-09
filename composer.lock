@@ -1227,16 +1227,16 @@
         },
         {
             "name": "payum/payum",
-            "version": "0.5.3",
+            "version": "0.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "0.5.3"
+                "reference": "0.5.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/0.5.3",
-                "reference": "0.5.3",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/0.5.4",
+                "reference": "0.5.4",
                 "shasum": ""
             },
             "require": {
@@ -1291,7 +1291,7 @@
                 "paypal ipn",
                 "paypal recurring payments"
             ],
-            "time": "2013-06-24 13:28:26"
+            "time": "2013-07-15 14:00:18"
         },
         {
             "name": "payum/payum-bundle",
@@ -1349,7 +1349,7 @@
             ],
             "authors": [
                 {
-                    "name": "Kotlyar Maksim",
+                    "name": "Maksim Kotlyar",
                     "email": "kotlyar.maksim@gmail.com"
                 },
                 {
