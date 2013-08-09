@@ -76,6 +76,67 @@ class PurchaseExamplesController extends Controller
     }
 
     /**
+     * @Extra\Route(
+     *   "/prepare_purchase_with_transaction_callback",
+     *   name="acme_payex_prepare_purchase_with_transaction_callback"
+     * )
+     *
+     * @Extra\Template
+     */
+    public function prepareWithTransactionCallbackAction(Request $request)
+    {
+        $paymentName = 'payex';
+
+        $form = $this->createPurchaseForm();
+        if ('POST' === $request->getMethod()) {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $data = $form->getData();
+
+                $storage = $this->getPayum()->getStorageForClass(
+                    'Acme\PayexBundle\Model\PaymentDetails',
+                    $paymentName
+                );
+
+                /** @var $paymentDetails PaymentDetails */
+                $paymentDetails = $storage->createModel();
+                $paymentDetails->setPrice($data['amount'] * 100);
+                $paymentDetails->setPriceArgList('');
+                $paymentDetails->setVat(0);
+                $paymentDetails->setCurrency($data['currency']);
+                $paymentDetails->setOrderId(123);
+                $paymentDetails->setProductNumber(123);
+                $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_AUTHORIZATION);
+                $paymentDetails->setView(OrderApi::VIEW_CREDITCARD);
+                $paymentDetails->setDescription('a desc');
+                $paymentDetails->setClientIPAddress($request->getClientIp());
+                $paymentDetails->setClientIdentifier('');
+                $paymentDetails->setAdditionalValues('');
+                $paymentDetails->setAgreementRef('');
+                $paymentDetails->setClientLanguage('en-US');
+
+                $storage->updateModel($paymentDetails);
+
+                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                    $paymentName,
+                    $paymentDetails,
+                    'acme_payment_details_view'
+                );
+
+                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+                $storage->updateModel($paymentDetails);
+
+                return $this->redirect($captureToken->getTargetUrl());
+            }
+        }
+
+        return array(
+            'form' => $form->createView(),
+        );
+    }
+
+    /**
      * @return \Symfony\Component\Form\Form
      */
     protected function createPurchaseForm()
