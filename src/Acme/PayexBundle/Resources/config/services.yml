@@ -1,1 +1,4 @@
 services:
+    acme.payex.payum.action.store_notification:
+        class: Acme\PayexBundle\Payum\Action\StoreNotificationAction
+        parent: acme.payment.payum.action.store_notification
