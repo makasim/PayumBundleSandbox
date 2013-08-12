@@ -45,7 +45,7 @@ class PurchaseExamplesController extends Controller
                 $paymentDetails->setCurrency($data['currency']);
                 $paymentDetails->setOrderId(123);
                 $paymentDetails->setProductNumber(123);
-                $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_AUTHORIZATION);
+                $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
                 $paymentDetails->setView(OrderApi::VIEW_CREDITCARD);
                 $paymentDetails->setDescription('a desc');
                 $paymentDetails->setClientIPAddress($request->getClientIp());
@@ -106,7 +106,7 @@ class PurchaseExamplesController extends Controller
                 $paymentDetails->setCurrency($data['currency']);
                 $paymentDetails->setOrderId(123);
                 $paymentDetails->setProductNumber(123);
-                $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_AUTHORIZATION);
+                $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
                 $paymentDetails->setView(OrderApi::VIEW_CREDITCARD);
                 $paymentDetails->setDescription('a desc');
                 $paymentDetails->setClientIPAddress($request->getClientIp());
