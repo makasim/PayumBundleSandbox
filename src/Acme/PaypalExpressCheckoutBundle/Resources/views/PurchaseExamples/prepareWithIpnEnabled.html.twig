@@ -3,6 +3,12 @@
 {% block title "Payment demo - Simple purchase with Paypal Express Checkout - Prepare" %}
 
 {% block content %}
+    <p>
+        This examples shows how to use <a href="https://developer.paypal.com/webapps/developer/docs/classic/ipn/integration-guide/IPNIntro/">Paypal instant payment notification (IPN)</a>.<br />
+        You do an ordinary purchase but paypal send us updates. This way we can update pending payments very fast.<br />
+        To see last notifications go to <a href="{{ path('acme_payment_notifications_list') }}">last notifications page</a><br />
+    </p>
+
     <form method="POST">
         {{ form_widget(form) }}
 

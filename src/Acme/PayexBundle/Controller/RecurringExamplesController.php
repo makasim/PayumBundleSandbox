@@ -85,7 +85,7 @@ class RecurringExamplesController extends Controller
             $paymentDetails->setCurrency($subscription['currency']);
             $paymentDetails->setOrderId(123);
             $paymentDetails->setProductNumber(123);
-            $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_AUTHORIZATION);
+            $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
             $paymentDetails->setView(OrderApi::VIEW_CREDITCARD);
             $paymentDetails->setDescription('a desc');
             $paymentDetails->setClientIPAddress($request->getClientIp());

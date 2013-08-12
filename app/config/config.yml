@@ -258,6 +258,8 @@ payum:
                         account_number:  %payex.account_number%
                         encryption_key:  %payex.encryption_key%
                         sandbox: true
+                actions:
+                    - acme.payex.payum.action.store_notification
             storages:
                 Acme\PayexBundle\Model\PaymentDetails:
                     filesystem:
