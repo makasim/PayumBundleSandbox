@@ -1227,16 +1227,16 @@
         },
         {
             "name": "payum/payum",
-            "version": "0.5.3",
+            "version": "0.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "0.5.3"
+                "reference": "0.5.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/0.5.3",
-                "reference": "0.5.3",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/0.5.4",
+                "reference": "0.5.4",
                 "shasum": ""
             },
             "require": {
@@ -1291,21 +1291,21 @@
                 "paypal ipn",
                 "paypal recurring payments"
             ],
-            "time": "2013-06-24 13:28:26"
+            "time": "2013-07-15 14:00:18"
         },
         {
             "name": "payum/payum-bundle",
-            "version": "0.5.5",
+            "version": "0.5.6",
             "target-dir": "Payum/Bundle/PayumBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "0.5.5"
+                "reference": "0.5.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/0.5.5",
-                "reference": "0.5.5",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/0.5.6",
+                "reference": "0.5.6",
                 "shasum": ""
             },
             "require": {
@@ -1370,7 +1370,7 @@
                 "paypal pro checkout",
                 "paypal recurring payment"
             ],
-            "time": "2013-08-02 17:20:10"
+            "time": "2013-08-12 19:19:00"
         },
         {
             "name": "psr/log",
