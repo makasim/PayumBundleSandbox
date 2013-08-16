@@ -19,6 +19,7 @@
         "sensio/framework-extra-bundle": "2.2.*",
         "sensio/generator-bundle": "2.2.*",
         "incenteev/composer-parameter-handler": "~2.0",
+        "jms/payment-paypal-bundle": "~1",
         "payum/payum": "0.5.*",
         "payum/payum-bundle": "0.5.*",
         "payum/paypal-express-checkout-nvp": "0.5.*",
@@ -27,7 +28,8 @@
         "payum/be2bill": "0.5.*",
         "payum/omnipay-bridge": "0.5.*",
         "payum/paypal-ipn": "0.5.*",
-        "payum/payex": "0.5.*"
+        "payum/payex": "0.5.*",
+        "payum/jms-payment-bridge": "0.5.x-dev"
     },
     "require-dev": {
         "phpunit/phpunit": "*",
