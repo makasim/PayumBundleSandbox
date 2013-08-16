@@ -8,26 +8,27 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.2.*",
-        "doctrine/orm": "~2.2,>=2.2.3",
+        "symfony/symfony": "2.3.*",
+        "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.2.*",
         "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.1.*",
-        "symfony/swiftmailer-bundle": "2.2.*",
-        "symfony/monolog-bundle": "2.2.*",
-        "sensio/distribution-bundle": "2.2.*",
-        "sensio/framework-extra-bundle": "2.2.*",
-        "sensio/generator-bundle": "2.2.*",
+        "symfony/assetic-bundle": "2.3.*",
+        "symfony/swiftmailer-bundle": "2.3.*",
+        "symfony/monolog-bundle": "2.3.*",
+        "sensio/distribution-bundle": "2.3.*",
+        "sensio/framework-extra-bundle": "2.3.*",
+        "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
-        "payum/payum": "0.5.*",
-        "payum/payum-bundle": "0.5.*",
-        "payum/paypal-express-checkout-nvp": "0.5.*",
-        "payum/paypal-pro-checkout-nvp": "0.5.*",
-        "payum/authorize-net-aim": "0.5.*",
-        "payum/be2bill": "0.5.*",
-        "payum/omnipay-bridge": "0.5.*",
-        "payum/paypal-ipn": "0.5.*",
-        "payum/payex": "0.5.*"
+        "jms/payment-paypal-bundle": "~1",
+        "payum/payum-bundle": "0.6.x-dev",
+        "payum/paypal-express-checkout-nvp": "0.6.x-dev",
+        "payum/paypal-pro-checkout-nvp": "0.6.x-dev",
+        "payum/authorize-net-aim": "0.6.x-dev",
+        "payum/be2bill": "0.6.x-dev",
+        "payum/omnipay-bridge": "0.6.x-dev",
+        "payum/jms-payment-bridge": "0.6.x-dev",
+        "payum/paypal-ipn": "0.6.x-dev",
+        "payum/payex": "0.6.x-dev"
     },
     "require-dev": {
         "phpunit/phpunit": "*",
@@ -52,6 +53,7 @@
     "config": {
         "bin-dir": "bin"
     },
+    "minimum-stability": "dev",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
@@ -59,7 +61,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "0.5-dev"
+            "dev-master": "0.6-dev"
         }
     }
 }
