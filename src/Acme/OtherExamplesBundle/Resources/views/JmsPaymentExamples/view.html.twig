@@ -1,0 +1,25 @@
+{% extends "AcmePaymentBundle::layout.html.twig" %}
+
+{% block title %}
+    Paypal express checkout via JMS Payment - Details View"
+{% endblock %}
+
+{% block content %}
+    <div class="block">
+        {% include "AcmePaymentBundle:Details:_status.html.twig" with { 'status': status } only %}
+    </div>
+
+    <div class="block">
+        <ul>
+            <li>amount: {{ status.model.paymentInstruction.amount }}</li>
+            <li>currency: {{ status.model.paymentInstruction.currency }}</li>
+            <li>state: {{ status.model.paymentInstruction.state }}</li>
+            <li>paymentSystemName: {{ status.model.paymentInstruction.paymentSystemName }}</li>
+            {% for key, value in status.model.paymentInstruction.extendedData.all() %}
+                <li>{{ key }}: {{ value|json_encode|raw }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% set code = code(_self) %}
