@@ -75,6 +75,15 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+jms_payment_core:
+    secret:                                               %kernel.secret%
+
+jms_payment_paypal:
+    username:                                             %paypal.express_checkout.username%
+    password:                                             %paypal.express_checkout.password%
+    signature:                                            %paypal.express_checkout.signature%
+    debug:                                                true
     
 payum:
     contexts:
@@ -251,6 +260,25 @@ payum:
                         id_property: token
                         payment_extension: true
 
+        stripe_via_ominpay:
+            omnipay:
+                type: Stripe
+                options:
+                    apiKey:  %stripe.secret_key%
+                    testMode: true
+
+            storages:
+                Acme\PaymentBundle\Model\OmnipayPaymentDetails:
+                    filesystem:
+                        storage_dir: %kernel.root_dir%/Resources/payments
+                        id_property: id
+                        payment_extension: true
+                Acme\PaymentBundle\Model\TokenizedDetails:
+                    filesystem:
+                        storage_dir: %kernel.root_dir%/Resources/payments
+                        id_property: token
+                        payment_extension: true
+
         payex:
             payex:
                 api:
@@ -346,6 +374,19 @@ payum:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
+                        payment_extension: true
+                Acme\PaymentBundle\Model\TokenizedDetails:
+                    filesystem:
+                        storage_dir: %kernel.root_dir%/Resources/payments
+                        id_property: token
+                        payment_extension: true
+
+        paypal_express_checkout_via_jms_plugin:
+            jms_payment_plugin: ~
+            storages:
+                JMS\Payment\CoreBundle\Entity\Payment:
+                    doctrine:
+                        driver: orm
                         payment_extension: true
                 Acme\PaymentBundle\Model\TokenizedDetails:
                     filesystem:
