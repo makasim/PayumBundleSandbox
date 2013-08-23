@@ -14,6 +14,10 @@ acme_payment_prepare_simple_purchase_paypal_express_via_omnipay:
     pattern:  /payment/simple_purchase/paypal_express_via_omnipay/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchasePaypalExpressViaOmnipay:prepare }
 
+acme_payment_prepare_simple_purchase_stripe_via_omnipay:
+    pattern:  /payment/simple_purchase/stripe_via_omnipay/prepare
+    defaults: { _controller: AcmePaymentBundle:SimplePurchaseStripeViaOmnipay:prepare }
+
 acme_payment_prepare_simple_purchase_paypal_pro:
     pattern:  /payment/simple_purchase/paypal_express_pro/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchasePaypalPro:prepare }
