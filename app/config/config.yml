@@ -260,6 +260,25 @@ payum:
                         id_property: token
                         payment_extension: true
 
+        stripe_via_ominpay:
+            omnipay:
+                type: Stripe
+                options:
+                    apiKey:  %stripe.secret_key%
+                    testMode: true
+
+            storages:
+                Acme\PaymentBundle\Model\OmnipayPaymentDetails:
+                    filesystem:
+                        storage_dir: %kernel.root_dir%/Resources/payments
+                        id_property: id
+                        payment_extension: true
+                Acme\PaymentBundle\Model\TokenizedDetails:
+                    filesystem:
+                        storage_dir: %kernel.root_dir%/Resources/payments
+                        id_property: token
+                        payment_extension: true
+
         payex:
             payex:
                 api:
