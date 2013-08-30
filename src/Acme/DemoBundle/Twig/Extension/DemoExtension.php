@@ -3,6 +3,7 @@
 namespace Acme\DemoBundle\Twig\Extension;
 
 use CG\Core\ClassUtils;
+use Symfony\Component\Yaml\Yaml;
 
 class DemoExtension extends \Twig_Extension
 {
@@ -26,11 +27,31 @@ class DemoExtension extends \Twig_Extension
     {
         return array(
             'code' => new \Twig_Function_Method($this, 'getCode', array('is_safe' => array('html'))),
+            'payum_context' => new \Twig_Function_Method($this, 'getPayumContext'),
         );
     }
 
-    public function getCode($template)
+    public function getCode($template, $paymentContext = null)
     {
+        $payumConfigHtml = '';
+        if ($paymentContext) {
+            ob_start();
+            include __DIR__.'/../../../../../app/config/config.yml';
+            $config = Yaml::parse(ob_get_clean());
+            $payumConfig = Yaml::dump(
+                array(
+                    'payum' => array(
+                        'contexts' => array(
+                            $paymentContext => $config['payum']['contexts'][$paymentContext]
+                        )
+                    )
+                ),
+                $inline = 10
+            );
+
+            $payumConfigHtml = "<p><strong>Payum config:</strong></p><pre># app/config/config.yml\n\n$payumConfig</pre>";
+        }
+
         // highlight_string highlights php code only if '<?php' tag is present.
         $controller = highlight_string("<?php" . $this->getControllerCode(), true);
         $controller = str_replace('<span style="color: #0000BB">&lt;?php&nbsp;&nbsp;&nbsp;&nbsp;</span>', '&nbsp;&nbsp;&nbsp;&nbsp;', $controller);
@@ -41,6 +62,10 @@ class DemoExtension extends \Twig_Extension
         $template = str_replace('{% set code = code(_self) %}', '', $template);
 
         return <<<EOF
+<p><strong><a name="whats-inside?">What's inside?</a></strong></p>
+
+$payumConfigHtml
+
 <p><strong>Controller Code</strong></p>
 <pre>$controller</pre>
 

@@ -76,7 +76,8 @@ class RecurringPaymentExamplesController extends Controller
         }
         
         return array(
-            'subscription' => $subscription
+            'subscription' => $subscription,
+            'paymentName' => $paymentName
         );
     }
 
@@ -179,6 +180,7 @@ class RecurringPaymentExamplesController extends Controller
             'cancelToken' => $cancelToken, 
             'billingAgreementStatus' => $billingAgreementStatus,
             'recurringPaymentStatus' => $recurringPaymentStatus,
+            'paymentName' => $paymentName
         );
     }
 
@@ -259,7 +261,8 @@ class RecurringPaymentExamplesController extends Controller
         }
 
         return array(
-            'subscription' => $subscription
+            'subscription' => $subscription,
+            'paymentName' => $paymentName
         );
     }
 
@@ -349,6 +352,7 @@ class RecurringPaymentExamplesController extends Controller
         return array(
             'billingAgreementStatus' => $billingAgreementStatus,
             'recurringPaymentStatus' => $recurringPaymentStatus,
+            'paymentName' => $paymentName
         );
     }
     
