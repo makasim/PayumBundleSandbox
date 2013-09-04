@@ -3,16 +3,15 @@ namespace Acme\OtherExamplesBundle\Controller;
 
 use JMS\Payment\CoreBundle\Entity\Payment;
 use JMS\Payment\CoreBundle\Entity\PaymentInstruction;
-use Payum\Registry\RegistryInterface;
+use Payum\Bundle\PayumBundle\Controller\PayumController;
+use Payum\Bundle\PayumBundle\Service\TokenFactory;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
-use Payum\Bundle\PayumBundle\Service\TokenManager;
 use Payum\Request\BinaryMaskStatusRequest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
 
-class JmsPaymentExamplesController extends Controller
+class JmsPaymentExamplesController extends PayumController
 {
     /**
      * @Extra\Route(
@@ -45,7 +44,7 @@ class JmsPaymentExamplesController extends Controller
                 $this->getDoctrine()->getManager()->persist($payment);
                 $this->getDoctrine()->getManager()->flush();
 
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenFactory()->createTokenForCaptureRoute(
                     $paymentName,
                     $payment,
                     'acme_other_purchase_done_paypal_via_jms_plugin'
@@ -92,7 +91,7 @@ class JmsPaymentExamplesController extends Controller
      */
     public function viewAction(Request $request)
     {
-        $token = $this->getTokenManager()->getTokenFromRequest($request);
+        $token = $this->getHttpRequestVerifier()->verify($request);
 
         $status = new BinaryMaskStatusRequest($token);
 
@@ -134,19 +133,12 @@ class JmsPaymentExamplesController extends Controller
         ;
     }
 
-    /**
-     * @return RegistryInterface
-     */
-    protected function getPayum()
-    {
-        return $this->get('payum');
-    }
 
     /**
-     * @return TokenManager
+     * @return TokenFactory
      */
-    protected function getTokenManager()
+    protected function getTokenFactory()
     {
-        return $this->get('payum.token_manager');
+        return $this->get('payum.security.token_factory');
     }
 }

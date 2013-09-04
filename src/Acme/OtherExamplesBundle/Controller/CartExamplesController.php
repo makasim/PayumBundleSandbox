@@ -1,16 +1,13 @@
 <?php
 namespace Acme\OtherExamplesBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
-
+use Acme\OtherExamplesBundle\Model\Cart;
+use Payum\Bundle\PayumBundle\Service\TokenFactory;
 use Payum\Registry\RegistryInterface;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
-use Payum\Bundle\PayumBundle\Service\TokenManager;
-
-use Acme\OtherExamplesBundle\Model\Cart;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class CartExamplesController extends Controller
 {
@@ -42,7 +39,7 @@ class CartExamplesController extends Controller
                 $cart->setCurrency('USD');
                 $cartStorage->updateModel($cart);
                 
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenFactory()->createTokenForCaptureRoute(
                     $paymentName,
                     $cart,
                     'acme_payment_details_view' // TODO 
@@ -82,10 +79,10 @@ class CartExamplesController extends Controller
     }
 
     /**
-     * @return TokenManager
+     * @return TokenFactory
      */
-    protected function getTokenManager()
+    protected function getTokenFactory()
     {
-        return $this->get('payum.token_manager');
+        return $this->get('payum.security.token_factory');
     }
 }

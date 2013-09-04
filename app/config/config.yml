@@ -86,6 +86,12 @@ jms_payment_paypal:
     debug:                                                true
     
 payum:
+    security:
+        token_storage:
+            Payum\Security\Token:
+                filesystem:
+                    storage_dir: %kernel.root_dir%/Resources/payments
+                    id_property: hash
     contexts:
         paypal_express_checkout:
             paypal_express_checkout_nvp:

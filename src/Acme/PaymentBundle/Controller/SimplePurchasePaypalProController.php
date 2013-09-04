@@ -1,12 +1,11 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
+use Payum\Bundle\PayumBundle\Service\TokenFactory;
+use Payum\Registry\RegistryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-use Payum\Registry\RegistryInterface;
-use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 class SimplePurchasePaypalProController extends Controller
 {
@@ -37,7 +36,7 @@ class SimplePurchasePaypalProController extends Controller
 
                 $storage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenFactory()->createTokenForCaptureRoute(
                     $paymentName,
                     $paymentDetails,
                     'acme_payment_details_view'
@@ -83,10 +82,10 @@ class SimplePurchasePaypalProController extends Controller
     }
 
     /**
-     * @return TokenManager
+     * @return TokenFactory
      */
-    protected function getTokenManager()
+    protected function getTokenFactory()
     {
-        return $this->get('payum.token_manager');
+        return $this->get('payum.security.token_factory');
     }
 }
