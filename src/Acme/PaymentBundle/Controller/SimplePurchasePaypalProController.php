@@ -36,7 +36,7 @@ class SimplePurchasePaypalProController extends Controller
 
                 $storage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenFactory()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenFactory()->createCaptureToken(
                     $paymentName,
                     $paymentDetails,
                     'acme_payment_details_view'

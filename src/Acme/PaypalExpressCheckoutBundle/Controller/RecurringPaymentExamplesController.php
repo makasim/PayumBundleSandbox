@@ -58,7 +58,7 @@ class RecurringPaymentExamplesController extends PayumController
 
             $storage->updateModel($billingAgreementDetails);
 
-            $captureToken = $this->getTokenFactory()->createTokenForCaptureRoute(
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
                 $billingAgreementDetails,
                 'acme_paypal_express_checkout_create_recurring_payment'
@@ -241,7 +241,7 @@ class RecurringPaymentExamplesController extends PayumController
 
             $storage->updateModel($billingAgreementDetails);
 
-            $captureToken = $this->getTokenFactory()->createTokenForCaptureRoute(
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
                 $billingAgreementDetails,
                 'acme_paypal_express_checkout_create_doctrine_recurring_payment'

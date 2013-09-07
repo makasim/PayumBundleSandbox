@@ -88,10 +88,10 @@ jms_payment_paypal:
 payum:
     security:
         token_storage:
-            Payum\Security\Token:
-                filesystem:
-                    storage_dir: %kernel.root_dir%/Resources/payments
-                    id_property: hash
+            Acme\PaymentBundle\Entity\PayumSecurityToken:
+                doctrine:
+                    driver: orm
+
     contexts:
         paypal_express_checkout:
             paypal_express_checkout_nvp:
@@ -111,11 +111,6 @@ payum:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
                         payment_extension: true
-                Acme\PaymentBundle\Model\TokenizedDetails:
-                    filesystem:
-                        storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: token
-                        payment_extension: true
                         
         paypal_express_checkout_plus_doctrine:
             paypal_express_checkout_nvp:
@@ -128,10 +123,6 @@ payum:
 
             storages:
                 Acme\PaypalExpressCheckoutBundle\Entity\PaymentDetails:
-                    doctrine:
-                        driver: orm
-                        payment_extension: true
-                Acme\PaymentBundle\Entity\TokenizedDetails:
                     doctrine:
                         driver: orm
                         payment_extension: true
@@ -156,11 +147,6 @@ payum:
                           storage_dir: %kernel.root_dir%/Resources/payments
                           id_property: id
                           payment_extension: true
-                Acme\PaymentBundle\Model\TokenizedDetails:
-                    filesystem:
-                        storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: token
-                        payment_extension: true
                         
         paypal_express_checkout_recurring_payment_plus_doctrine:
             paypal_express_checkout_nvp:
@@ -176,10 +162,7 @@ payum:
                     doctrine:
                         driver: orm
                         payment_extension: true
-                Acme\PaymentBundle\Entity\TokenizedDetails:
-                    doctrine:
-                        driver: orm
-                        payment_extension: true
+
                 Acme\PaypalExpressCheckoutBundle\Entity\RecurringPaymentDetails:
                     doctrine:
                         driver: orm
@@ -200,11 +183,6 @@ payum:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
                         payment_extension: true
-                Acme\PaymentBundle\Model\TokenizedDetails:
-                    filesystem:
-                        storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: token
-                        payment_extension: true
                 
         authorize_net:
             authorize_net_aim:
@@ -218,11 +196,6 @@ payum:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
-                        payment_extension: true
-                Acme\PaymentBundle\Model\TokenizedDetails:
-                    filesystem:
-                        storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: token
                         payment_extension: true
 
         be2bill:
@@ -238,11 +211,6 @@ payum:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
-                        payment_extension: true
-                Acme\PaymentBundle\Model\TokenizedDetails:
-                    filesystem:
-                        storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: token
                         payment_extension: true
                 
         paypal_express_checkout_via_ominpay:
@@ -260,11 +228,6 @@ payum:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
                         payment_extension: true
-                Acme\PaymentBundle\Model\TokenizedDetails:
-                    filesystem:
-                        storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: token
-                        payment_extension: true
 
         stripe_via_ominpay:
             omnipay:
@@ -278,11 +241,6 @@ payum:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
-                        payment_extension: true
-                Acme\PaymentBundle\Model\TokenizedDetails:
-                    filesystem:
-                        storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: token
                         payment_extension: true
 
         payex:
@@ -299,11 +257,6 @@ payum:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
-                        payment_extension: true
-                Acme\PaymentBundle\Model\TokenizedDetails:
-                    filesystem:
-                        storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: token
                         payment_extension: true
                         
         payex_agreement:
@@ -323,11 +276,6 @@ payum:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: agreementRef
-                        payment_extension: true
-                Acme\PaymentBundle\Model\TokenizedDetails:
-                    filesystem:
-                        storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: token
                         payment_extension: true
 
         paypal_express_checkout_plus_cart:
@@ -353,11 +301,6 @@ payum:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
                         payment_extension: true
-                Acme\PaymentBundle\Model\TokenizedDetails:
-                    filesystem:
-                        storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: token
-                        payment_extension: true
                         
         authorize_net_plus_cart:
             authorize_net_aim:
@@ -381,11 +324,6 @@ payum:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
                         payment_extension: true
-                Acme\PaymentBundle\Model\TokenizedDetails:
-                    filesystem:
-                        storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: token
-                        payment_extension: true
 
         paypal_express_checkout_via_jms_plugin:
             jms_payment_plugin: ~
@@ -393,9 +331,4 @@ payum:
                 JMS\Payment\CoreBundle\Entity\Payment:
                     doctrine:
                         driver: orm
-                        payment_extension: true
-                Acme\PaymentBundle\Model\TokenizedDetails:
-                    filesystem:
-                        storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: token
                         payment_extension: true

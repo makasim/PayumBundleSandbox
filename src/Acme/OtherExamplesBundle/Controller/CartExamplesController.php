@@ -39,7 +39,7 @@ class CartExamplesController extends Controller
                 $cart->setCurrency('USD');
                 $cartStorage->updateModel($cart);
                 
-                $captureToken = $this->getTokenFactory()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenFactory()->createCaptureToken(
                     $paymentName,
                     $cart,
                     'acme_payment_details_view' // TODO 

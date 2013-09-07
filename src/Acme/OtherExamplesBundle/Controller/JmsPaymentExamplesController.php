@@ -44,7 +44,7 @@ class JmsPaymentExamplesController extends PayumController
                 $this->getDoctrine()->getManager()->persist($payment);
                 $this->getDoctrine()->getManager()->flush();
 
-                $captureToken = $this->getTokenFactory()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenFactory()->createCaptureToken(
                     $paymentName,
                     $payment,
                     'acme_other_purchase_done_paypal_via_jms_plugin'

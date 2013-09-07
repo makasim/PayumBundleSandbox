@@ -101,7 +101,7 @@ class RecurringExamplesController extends PayumController
 
             $paymentDetailsStorage->updateModel($paymentDetails);
             
-            $captureToken = $this->getTokenFactory()->createTokenForCaptureRoute(
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
                 $paymentDetails,
                 'acme_payex_recurring_payment_details',
