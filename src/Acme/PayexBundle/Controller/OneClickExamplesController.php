@@ -2,24 +2,20 @@
 namespace Acme\PayexBundle\Controller;
 
 use Acme\PayexBundle\Model\AgreementDetails;
-use Payum\Payex\Action\Api\CreateAgreementAction;
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Payex\Api\AgreementApi;
-use Payum\Payex\Request\Api\CheckAgreementRequest;
+use Payum\Payex\Api\OrderApi;
+use Payum\Payex\Model\PaymentDetails;
 use Payum\Payex\Request\Api\CreateAgreementRequest;
 use Payum\Request\BinaryMaskStatusRequest;
 use Payum\Request\SyncRequest;
+use Payum\Registry\RegistryInterface;
 use Payum\Storage\Identificator;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\Range;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
-
-use Payum\Registry\RegistryInterface;
-use Payum\Payex\Api\OrderApi;
-use Payum\Payex\Model\PaymentDetails;
-use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 class OneClickExamplesController extends Controller
 {
@@ -83,7 +79,7 @@ class OneClickExamplesController extends Controller
 
                 $paymentStorage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenFactory()->createCaptureToken(
                     $paymentName,
                     $paymentDetails,
                     'acme_payex_one_click_confirm_agreement',
@@ -153,7 +149,7 @@ class OneClickExamplesController extends Controller
 
                 $paymentStorage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenFactory()->createCaptureToken(
                     $paymentName,
                     $paymentDetails,
                     'acme_payment_details_view'
@@ -196,10 +192,10 @@ class OneClickExamplesController extends Controller
     }
 
     /**
-     * @return TokenManager
+     * @return TokenFactory
      */
-    protected function getTokenManager()
+    protected function getTokenFactory()
     {
-        return $this->get('payum.token_manager');
+        return $this->get('payum.security.token_factory');
     }
 }

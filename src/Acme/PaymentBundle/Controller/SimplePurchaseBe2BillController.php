@@ -1,14 +1,12 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
+use Acme\PaymentBundle\Model\Be2BillPaymentDetails;
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
+use Payum\Registry\RegistryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
-
-use Payum\Registry\RegistryInterface;
-use Payum\Bundle\PayumBundle\Service\TokenManager;
-
-use Acme\PaymentBundle\Model\Be2BillPaymentDetails;
 
 class SimplePurchaseBe2BillController extends Controller
 {
@@ -44,15 +42,14 @@ class SimplePurchaseBe2BillController extends Controller
 
                 $storage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenFactory()->createCaptureToken(
                     $paymentName,
                     $paymentDetails,
                     'acme_payment_details_view'
                 );
 
                 return $this->forward('PayumBundle:Capture:do', array(
-                    'paymentName' => $paymentName,
-                    'token' => $captureToken,
+                    'payum_token' => $captureToken,
                 ));
             }
         }
@@ -91,10 +88,10 @@ class SimplePurchaseBe2BillController extends Controller
     }
 
     /**
-     * @return TokenManager
+     * @return TokenFactory
      */
-    protected function getTokenManager()
+    protected function getTokenFactory()
     {
-        return $this->get('payum.token_manager');
+        return $this->get('payum.security.token_factory');
     }
 }

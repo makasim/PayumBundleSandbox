@@ -3,24 +3,21 @@ namespace Acme\PayexBundle\Controller;
 
 use Acme\PayexBundle\Model\AgreementDetails;
 use Acme\PayexBundle\Model\PaymentDetails;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
-
-use Payum\Request\BinaryMaskStatusRequest;
-use Payum\Request\SyncRequest;
-use Payum\Storage\Identificator;
-use Payum\Registry\RegistryInterface;
+use Payum\Bundle\PayumBundle\Controller\PayumController;
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Payex\Api\AgreementApi;
 use Payum\Payex\Api\RecurringApi;
 use Payum\Payex\Request\Api\CreateAgreementRequest;
 use Payum\Payex\Request\Api\StopRecurringPaymentRequest;
 use Payum\Payex\Api\OrderApi;
-use Payum\Bundle\PayumBundle\Service\TokenManager;
+use Payum\Request\BinaryMaskStatusRequest;
+use Payum\Request\SyncRequest;
+use Payum\Storage\Identificator;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class RecurringExamplesController extends Controller
+class RecurringExamplesController extends PayumController
 {
     /**
      * @return array
@@ -104,7 +101,7 @@ class RecurringExamplesController extends Controller
 
             $paymentDetailsStorage->updateModel($paymentDetails);
             
-            $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
                 $paymentDetails,
                 'acme_payex_recurring_payment_details',
@@ -153,7 +150,7 @@ class RecurringExamplesController extends Controller
 
         $cancelToken = null;
         if ($paymentStatus->isSuccess()) {
-            $cancelToken = $this->getTokenManager()->createTokenForRoute(
+            $cancelToken = $this->getTokenFactory()->createTokenForRoute(
                 $paymentName,
                 $paymentStatus->getModel(),
                 'acme_payex_cancel_recurring_payment',
@@ -178,7 +175,7 @@ class RecurringExamplesController extends Controller
      */
     public function cancelAction(Request $request)
     {
-        $token = $this->getTokenManager()->getTokenFromRequest($request);
+        $token = $this->getHttpRequestVerifier()->verify($request);
 
         $payment = $this->getPayum()->getPayment($token->getPaymentName());
 
@@ -194,24 +191,16 @@ class RecurringExamplesController extends Controller
         $payment->execute(new StopRecurringPaymentRequest($paymentDetails));
         $payment->execute(new SyncRequest($paymentDetails));
 
-        $this->getTokenManager()->deleteToken($token);
+        $this->getHttpRequestVerifier()->invalidate($token);
 
         return $this->redirect($token->getAfterUrl());
     }
 
     /**
-     * @return RegistryInterface
+     * @return TokenFactory
      */
-    protected function getPayum()
+    protected function getTokenFactory()
     {
-        return $this->get('payum');
-    }
-
-    /**
-     * @return TokenManager
-     */
-    protected function getTokenManager()
-    {
-        return $this->get('payum.token_manager');
+        return $this->get('payum.security.token_factory');
     }
 }
