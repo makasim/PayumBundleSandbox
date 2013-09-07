@@ -2,7 +2,7 @@
 namespace Acme\PaymentBundle\Controller;
 
 use Acme\PaymentBundle\Model\Be2BillPaymentDetails;
-use Payum\Bundle\PayumBundle\Service\TokenFactory;
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Registry\RegistryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,8 +49,7 @@ class SimplePurchaseBe2BillController extends Controller
                 );
 
                 return $this->forward('PayumBundle:Capture:do', array(
-                    'paymentName' => $paymentName,
-                    'token' => $captureToken,
+                    'payum_token' => $captureToken,
                 ));
             }
         }

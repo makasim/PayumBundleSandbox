@@ -1,7 +1,7 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
-use Payum\Bundle\PayumBundle\Service\TokenFactory;
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Registry\RegistryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
@@ -43,8 +43,7 @@ class SimplePurchasePaypalProController extends Controller
                 );
 
                 return $this->forward('PayumBundle:Capture:do', array(
-                    'paymentName' => $paymentName,
-                    'token' => $captureToken,
+                    'payum_token' => $captureToken,
                 ));
             }
         }

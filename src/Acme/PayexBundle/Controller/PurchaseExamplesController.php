@@ -1,7 +1,7 @@
 <?php
 namespace Acme\PayexBundle\Controller;
 
-use Payum\Bundle\PayumBundle\Service\TokenFactory;
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Payex\Api\OrderApi;
 use Payum\Payex\Model\PaymentDetails;
 use Payum\Registry\RegistryInterface;

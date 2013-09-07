@@ -3,7 +3,7 @@ namespace Acme\PaypalExpressCheckoutBundle\Controller;
 
 use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
-use Payum\Bundle\PayumBundle\Service\TokenFactory;
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Paypal\ExpressCheckout\Nvp\Model\RecurringPaymentDetails;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfileRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\ManageRecurringPaymentsProfileStatusRequest;
@@ -79,15 +79,15 @@ class RecurringPaymentExamplesController extends PayumController
 
     /**
      * @Extra\Route(
-     *   "/create_recurring_payment/{paymentName}/{token}",
+     *   "/create_recurring_payment/{payum_token}",
      *   name="acme_paypal_express_checkout_create_recurring_payment"
      * )
      */
-    public function createBillingAgreementAction($paymentName, $token)
+    public function createBillingAgreementAction(Request $request)
     {
-        $payment = $this->getPayum()->getPayment($paymentName);
+        $token = $this->getHttpRequestVerifier()->verify($request);
 
-        $token = $this->getTokenFactory()->findByToken($paymentName, $token);
+        $payment = $this->getPayum()->getPayment($token->getPaymentName());
 
         $billingAgreementStatus = new BinaryMaskStatusRequest($token);
         $payment->execute($billingAgreementStatus);
@@ -102,7 +102,7 @@ class RecurringPaymentExamplesController extends PayumController
 
         $recurringPaymentStorage = $this->getPayum()->getStorageForClass(
             'Acme\PaypalExpressCheckoutBundle\Model\RecurringPaymentDetails',
-            $paymentName
+            $token->getPaymentName()
         );
 
         $recurringPaymentDetails = $recurringPaymentStorage->createModel();
@@ -122,7 +122,7 @@ class RecurringPaymentExamplesController extends PayumController
         $payment->execute($recurringPaymentStatus);
 
         return $this->redirect($this->generateUrl('acme_paypal_express_checkout_view_recurring_payment', array(
-            'paymentName' => $paymentName,
+            'paymentName' => $token->getPaymentName(),
             'billingAgreementId' => $billingAgreementDetails->getId(),
             'recurringPaymentId' => $recurringPaymentDetails->getId(),
         )));
@@ -181,7 +181,7 @@ class RecurringPaymentExamplesController extends PayumController
 
     /**
      * @Extra\Route(
-     *   "/{paymentName}/cancel_recurring_payment/{token}",
+     *   "/cancel_recurring_payment/{payum_token}",
      *   name="acme_paypal_express_checkout_cancel_recurring_payment"
      * )
      */
@@ -262,15 +262,15 @@ class RecurringPaymentExamplesController extends PayumController
 
     /**
      * @Extra\Route(
-     *   "/create_doctrine_recurring_payment/{paymentName}/{token}",
+     *   "/create_doctrine_recurring_payment/{payum_token}",
      *   name="acme_paypal_express_checkout_create_doctrine_recurring_payment"
      * )
      */
-    public function createDoctrineBillingAgreementAction($paymentName, $token)
+    public function createDoctrineBillingAgreementAction(Request $request)
     {
-        $payment = $this->getPayum()->getPayment($paymentName);
+        $token = $this->getHttpRequestVerifier()->verify($request);
 
-        $token = $this->getTokenFactory()->findByToken($paymentName, $token);
+        $payment = $this->getPayum()->getPayment($token->getPaymentName());
 
         $billingAgreementStatus = new BinaryMaskStatusRequest($token);
         $payment->execute($billingAgreementStatus);
@@ -285,7 +285,7 @@ class RecurringPaymentExamplesController extends PayumController
 
         $recurringPaymentStorage = $this->getPayum()->getStorageForClass(
             'Acme\PaypalExpressCheckoutBundle\Entity\RecurringPaymentDetails',
-            $paymentName
+            $token->getPaymentName()
         );
 
         $recurringPaymentDetails = $recurringPaymentStorage->createModel();
@@ -305,7 +305,7 @@ class RecurringPaymentExamplesController extends PayumController
         $payment->execute($recurringPaymentStatus);
 
         return $this->redirect($this->generateUrl('acme_paypal_express_checkout_view_doctrine_recurring_payment', array(
-            'paymentName' => $paymentName,
+            'paymentName' => $token->getPaymentName(),
             'billingAgreementId' => $billingAgreementDetails->getId(),
             'recurringPaymentId' => $recurringPaymentDetails->getId(),
         )));

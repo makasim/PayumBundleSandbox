@@ -2,7 +2,7 @@
 namespace Acme\PayexBundle\Controller;
 
 use Acme\PayexBundle\Model\AgreementDetails;
-use Payum\Bundle\PayumBundle\Service\TokenFactory;
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Payex\Api\AgreementApi;
 use Payum\Payex\Api\OrderApi;
 use Payum\Payex\Model\PaymentDetails;

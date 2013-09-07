@@ -4,7 +4,7 @@ namespace Acme\PayexBundle\Controller;
 use Acme\PayexBundle\Model\AgreementDetails;
 use Acme\PayexBundle\Model\PaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
-use Payum\Bundle\PayumBundle\Service\TokenFactory;
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Payex\Api\AgreementApi;
 use Payum\Payex\Api\RecurringApi;
 use Payum\Payex\Request\Api\CreateAgreementRequest;
