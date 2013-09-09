@@ -1,9 +1,9 @@
 <?php
 namespace Acme\PaymentBundle\Model;
 
-use Payum\Model\TokenizedDetails as BaseTokenizedDetails;
+use Payum\Model\Token;
 
-class TokenizedDetails extends BaseTokenizedDetails
+class PayumSecurityToken extends Token
 {
     /**
      * @var string

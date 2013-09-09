@@ -1,16 +1,14 @@
 <?php
 namespace Acme\PaypalExpressCheckoutBundle\Controller;
 
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
+use Payum\Paypal\ExpressCheckout\Nvp\Api;
+use Payum\Paypal\ExpressCheckout\Nvp\Model\PaymentDetails;
+use Payum\Registry\RegistryInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
-
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
-
-use Payum\Registry\RegistryInterface;
-use Payum\Paypal\ExpressCheckout\Nvp\Api;
-use Payum\Paypal\ExpressCheckout\Nvp\Model\PaymentDetails;
-use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 class PurchaseExamplesController extends Controller
 {
@@ -43,7 +41,7 @@ class PurchaseExamplesController extends Controller
                 $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
                 $storage->updateModel($paymentDetails);
                 
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenFactory()->createCaptureToken(
                     $paymentName,
                     $paymentDetails,
                     'acme_payment_details_view'
@@ -93,7 +91,7 @@ class PurchaseExamplesController extends Controller
 
                 $storage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenFactory()->createCaptureToken(
                     $paymentName,
                     $paymentDetails,
                     'acme_payment_details_view'
@@ -156,7 +154,7 @@ class PurchaseExamplesController extends Controller
 
             $storage->updateModel($paymentDetails);
 
-            $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
                 $paymentDetails,
                 'acme_payment_details_view'
@@ -204,9 +202,9 @@ class PurchaseExamplesController extends Controller
                 $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
                 $storage->updateModel($paymentDetails);
 
-                $notifyToken = $this->getTokenManager()->createTokenForNotifyRoute($paymentName, $paymentDetails);
+                $notifyToken = $this->getTokenFactory()->createNotifyToken($paymentName, $paymentDetails);
 
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenFactory()->createCaptureToken(
                     $paymentName,
                     $paymentDetails,
                     'acme_payment_details_view'
@@ -251,10 +249,10 @@ class PurchaseExamplesController extends Controller
     }
 
     /**
-     * @return TokenManager
+     * @return TokenFactory
      */
-    protected function getTokenManager()
+    protected function getTokenFactory()
     {
-        return $this->get('payum.token_manager');
+        return $this->get('payum.security.token_factory');
     }
 }

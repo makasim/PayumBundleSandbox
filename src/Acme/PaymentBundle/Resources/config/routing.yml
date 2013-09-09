@@ -21,13 +21,9 @@ acme_payment_prepare_simple_purchase_stripe_via_omnipay:
 acme_payment_prepare_simple_purchase_paypal_pro:
     pattern:  /payment/simple_purchase/paypal_express_pro/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchasePaypalPro:prepare }
-    
-acme_payment_capture_simple:
-    pattern:  /payment/simple_purchase/{contextName}/capture/{model}
-    defaults: { _controller: AcmePaymentBundle:Capture:simpleCapture }
 
 acme_payment_details_view:
-    pattern:  /payment/{paymentName}/details/{token}
+    pattern:  /payment/details
     defaults: { _controller: AcmePaymentBundle:Details:view }
     
 acme_payment_notifications_list:

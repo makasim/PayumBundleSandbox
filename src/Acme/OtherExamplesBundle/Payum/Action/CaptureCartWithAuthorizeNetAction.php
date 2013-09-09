@@ -1,20 +1,18 @@
 <?php
 namespace Acme\OtherExamplesBundle\Payum\Action;
 
+use Acme\OtherExamplesBundle\Model\Cart;
+use Acme\PaymentBundle\Model\AuthorizeNetPaymentDetails;
+use Payum\Action\PaymentAwareAction;
+use Payum\Bundle\PayumBundle\Request\ResponseInteractiveRequest;
+use Payum\Exception\RequestNotSupportedException;
+use Payum\Registry\RegistryInterface;
+use Payum\Request\SecuredCaptureRequest;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\EngineInterface;
-
-use Payum\Action\PaymentAwareAction;
-use Payum\Registry\RegistryInterface;
-use Payum\Exception\RequestNotSupportedException;
-use Payum\Bundle\PayumBundle\Request\ResponseInteractiveRequest;
-use Payum\Bundle\PayumBundle\Request\CaptureTokenizedDetailsRequest;
-
-use Acme\OtherExamplesBundle\Model\Cart;
-use Acme\PaymentBundle\Model\AuthorizeNetPaymentDetails;
 
 class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction 
 {
@@ -54,7 +52,7 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
      */
     public function execute($request)
     {
-        /** @var $request CaptureTokenizedDetailsRequest */
+        /** @var $request SecuredCaptureRequest */
         if (false == $this->supports($request)) {
             throw RequestNotSupportedException::createActionNotSupported($this, $request);
         }
@@ -70,12 +68,12 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
                 
                 $cartStorage = $this->payum->getStorageForClass(
                     $cart, 
-                    $request->getTokenizedDetails()->getPaymentName()
+                    $request->getToken()->getPaymentName()
                 );
                 
                 $paymentDetailsStorage = $this->payum->getStorageForClass(
                     'Acme\PaymentBundle\Model\AuthorizeNetPaymentDetails',
-                    $request->getTokenizedDetails()->getPaymentName()
+                    $request->getToken()->getPaymentName()
                 );
 
                 /** @var $paymentDetails AuthorizeNetPaymentDetails */
@@ -108,7 +106,7 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
     public function supports($request)
     {
         return
-            $request instanceof CaptureTokenizedDetailsRequest &&
+            $request instanceof SecuredCaptureRequest &&
             $request->getModel() instanceof Cart &&
             null === $request->getModel()->getDetails()
         ;

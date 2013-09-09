@@ -1,20 +1,17 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Payum\Bundle\PayumBundle\Controller\PayumController;
+use Payum\Exception\RequestNotSupportedException;
 use Payum\Request\BinaryMaskStatusRequest;
 use Payum\Request\SyncRequest;
-use Payum\Registry\RegistryInterface;
-use Payum\Exception\RequestNotSupportedException;
-use Payum\Bundle\PayumBundle\Service\TokenManager;
+use Symfony\Component\HttpFoundation\Request;
 
-class DetailsController extends Controller
+class DetailsController extends PayumController
 {
     public function viewAction(Request $request)
     {
-        $token = $this->getTokenManager()->getTokenFromRequest($request);
+        $token = $this->getHttpRequestVerifier()->verify($request);
         
         $payment = $this->getPayum()->getPayment($token->getPaymentName());
 
@@ -29,21 +26,5 @@ class DetailsController extends Controller
             'status' => $status,
             'paymentTitle' => ucwords(str_replace(array('_', '-'), ' ', $token->getPaymentName()))
         ));
-    }
-
-    /**
-     * @return RegistryInterface
-     */
-    protected function getPayum()
-    {
-        return $this->get('payum');
-    }
-
-    /**
-     * @return TokenManager
-     */
-    protected function getTokenManager()
-    {
-        return $this->get('payum.token_manager');
     }
 }

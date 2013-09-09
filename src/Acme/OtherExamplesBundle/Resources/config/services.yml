@@ -3,7 +3,7 @@ services:
         class: Acme\OtherExamplesBundle\Payum\Action\CaptureCartWithPaypalExpressCheckoutAction
         arguments:
             - @payum
-            - @payum.token_manager
+            - @payum.security.token_factory
             
     other_examples.payum.action.capture_cart_with_authorize_net:
         class: Acme\OtherExamplesBundle\Payum\Action\CaptureCartWithAuthorizeNetAction

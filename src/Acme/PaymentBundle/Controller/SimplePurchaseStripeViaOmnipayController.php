@@ -1,12 +1,11 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
+use Payum\Registry\RegistryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
-
-use Payum\Registry\RegistryInterface;
-use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 class SimplePurchaseStripeViaOmnipayController extends Controller
 {
@@ -33,7 +32,7 @@ class SimplePurchaseStripeViaOmnipayController extends Controller
 
                 $storage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenFactory()->createCaptureToken(
                     $paymentName,
                     $paymentDetails,
                     'acme_payment_details_view'
@@ -81,10 +80,10 @@ class SimplePurchaseStripeViaOmnipayController extends Controller
     }
 
     /**
-     * @return TokenManager
+     * @return TokenFactory
      */
-    protected function getTokenManager()
+    protected function getTokenFactory()
     {
-        return $this->get('payum.token_manager');
+        return $this->get('payum.security.token_factory');
     }
 }
