@@ -73,7 +73,8 @@ class RecurringPaymentExamplesController extends PayumController
         }
         
         return array(
-            'subscription' => $subscription
+            'subscription' => $subscription,
+            'paymentName' => $paymentName
         );
     }
 
@@ -176,6 +177,7 @@ class RecurringPaymentExamplesController extends PayumController
             'cancelToken' => $cancelToken, 
             'billingAgreementStatus' => $billingAgreementStatus,
             'recurringPaymentStatus' => $recurringPaymentStatus,
+            'paymentName' => $paymentName
         );
     }
 
@@ -256,7 +258,8 @@ class RecurringPaymentExamplesController extends PayumController
         }
 
         return array(
-            'subscription' => $subscription
+            'subscription' => $subscription,
+            'paymentName' => $paymentName
         );
     }
 
@@ -346,6 +349,7 @@ class RecurringPaymentExamplesController extends PayumController
         return array(
             'billingAgreementStatus' => $billingAgreementStatus,
             'recurringPaymentStatus' => $recurringPaymentStatus,
+            'paymentName' => $paymentName
         );
     }
 

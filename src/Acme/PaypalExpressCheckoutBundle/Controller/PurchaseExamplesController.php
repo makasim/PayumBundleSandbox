@@ -57,7 +57,8 @@ class PurchaseExamplesController extends Controller
         }
         
         return array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'paymentName' => $paymentName
         );
     }
 
@@ -107,7 +108,8 @@ class PurchaseExamplesController extends Controller
         }
 
         return array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'paymentName' => $paymentName
         );
     }
 
@@ -169,7 +171,8 @@ class PurchaseExamplesController extends Controller
         }
 
         return array(
-            'book' => $eBook
+            'book' => $eBook,
+            'paymentName' => $paymentName
         );
     }
 
@@ -221,7 +224,8 @@ class PurchaseExamplesController extends Controller
         }
 
         return array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'paymentName' => $paymentName
         );
     }
 

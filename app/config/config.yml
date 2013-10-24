@@ -24,6 +24,9 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        paypal_usd_testuser_login: %paypal.express_checkout.usd_testuser_login%
+        paypal_usd_testuser_password: %paypal.express_checkout.usd_testuser_password%
 
 # Assetic Configuration
 assetic:
