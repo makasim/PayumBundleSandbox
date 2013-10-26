@@ -64,7 +64,7 @@ doctrine:
                 is_bundle: false
                 type: xml
                 dir: %kernel.root_dir%/../vendor/payum/payum/src/Payum/Bridge/Doctrine/Resources/mapping
-                prefix: Payum\Bridge\Doctrine\Entity                
+                prefix: Payum\Model
             payum_paypal_express_checkout_nvp:
                 is_bundle: false
                 type: xml 

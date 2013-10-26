@@ -3,7 +3,7 @@ namespace Acme\PaymentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use Payum\Bridge\Doctrine\Entity\Token;
+use Payum\Model\Token;
 
 /**
  * @ORM\Table(name="payum_security_token")
