@@ -12,7 +12,7 @@ use Payum\Payex\Request\Api\StopRecurringPaymentRequest;
 use Payum\Payex\Api\OrderApi;
 use Payum\Request\BinaryMaskStatusRequest;
 use Payum\Request\SyncRequest;
-use Payum\Storage\Identificator;
+use Payum\Model\Identificator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;

@@ -10,7 +10,7 @@ use Payum\Payex\Request\Api\CreateAgreementRequest;
 use Payum\Request\BinaryMaskStatusRequest;
 use Payum\Request\SyncRequest;
 use Payum\Registry\RegistryInterface;
-use Payum\Storage\Identificator;
+use Payum\Model\Identificator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
