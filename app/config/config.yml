@@ -335,3 +335,12 @@ payum:
                     doctrine:
                         driver: orm
                         payment_extension: true
+
+        offline:
+            offline: ~
+
+            storages:
+                Acme\PaymentBundle\Model\OfflinePaymentDetails:
+                    filesystem:
+                        storage_dir: %kernel.root_dir%/Resources/payments
+                        id_property: id
