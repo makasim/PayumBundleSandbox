@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "7e2fbd7b4a196baee0168e7da31d7938",
+    "hash": "f671a7765a86f206f3645336985167e6",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -1507,7 +1507,7 @@
         },
         {
             "name": "payum/offline",
-            "version": "dev-master",
+            "version": "0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Offline.git",
@@ -1964,17 +1964,17 @@
         },
         {
             "name": "payum/payum-bundle",
-            "version": "0.6.0",
+            "version": "0.6.1",
             "target-dir": "Payum/Bundle/PayumBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "41426132caa41a653216bb2de0ed80273f763311"
+                "reference": "bfce13170d49dcfb489a1bfc74fb4e06fa6c2140"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/41426132caa41a653216bb2de0ed80273f763311",
-                "reference": "41426132caa41a653216bb2de0ed80273f763311",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/bfce13170d49dcfb489a1bfc74fb4e06fa6c2140",
+                "reference": "bfce13170d49dcfb489a1bfc74fb4e06fa6c2140",
                 "shasum": ""
             },
             "require": {
@@ -1987,6 +1987,7 @@
                 "fp/testo": "@dev",
                 "payum/authorize-net-aim": "0.6.*",
                 "payum/be2bill": "0.6.*",
+                "payum/offline": "0.6.*",
                 "payum/omnipay-bridge": "0.6.*",
                 "payum/payex": "0.6.*",
                 "payum/paypal-express-checkout-nvp": "0.6.*",
@@ -1996,6 +1997,7 @@
             "suggest": {
                 "payum/authorize-net-aim": "If you want to use authorize.net gateway",
                 "payum/be2bill": "If you want to use be2bill gateway",
+                "payum/offline": "If you want to manage offline payments",
                 "payum/omnipay-bridge": "If you want to use omnipay provided gateways",
                 "payum/payex": "If you want to use payex gateway",
                 "payum/paypal-express-checkout-nvp": "If you want to use paypal express checkout nvp gateway",
@@ -2035,15 +2037,16 @@
             "keywords": [
                 "authorize.net",
                 "be2bill",
+                "offline",
                 "omnipay",
                 "payex",
                 "payment",
                 "paypal",
                 "paypal express checkout",
                 "paypal pro checkout",
-                "paypal recurring payment"
+                "recurring payment"
             ],
-            "time": "2013-10-25 13:57:33"
+            "time": "2013-10-31 09:47:43"
         },
         {
             "name": "psr/log",
@@ -3112,7 +3115,6 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "payum/offline": 20,
         "fp/testo": 20
     },
     "platform": {

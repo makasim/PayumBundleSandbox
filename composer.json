@@ -29,7 +29,7 @@
         "payum/paypal-ipn": "0.6.*",
         "payum/payex": "0.6.*",
         "payum/jms-payment-bridge": "0.6.*",
-        "payum/offline": "0.6.*@dev"
+        "payum/offline": "0.6.*"
     },
     "require-dev": {
         "phpunit/phpunit": "*",
