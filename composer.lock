@@ -1728,6 +1728,64 @@
             "time": "2013-10-25 13:51:50"
         },
         {
+            "name": "payum/offline",
+            "version": "0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Payum/Offline.git",
+                "reference": "5fde27cb45d17c979e891c33807fe62c6e9930c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Payum/Offline/zipball/5fde27cb45d17c979e891c33807fe62c6e9930c0",
+                "reference": "5fde27cb45d17c979e891c33807fe62c6e9930c0",
+                "shasum": ""
+            },
+            "require": {
+                "payum/payum": "0.6.*",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Payum": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kotlyar Maksim",
+                    "email": "kotlyar.maksim@gmail.com"
+                },
+                {
+                    "name": "Payum project",
+                    "homepage": "http://payum.forma-dev.com/"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/Payum/Offline/contributors"
+                }
+            ],
+            "description": "Offline Payments",
+            "homepage": "http://payum.forma-dev.com",
+            "keywords": [
+                "offlile",
+                "payment"
+            ],
+            "time": "2013-10-30 20:43:47"
+        },
+        {
             "name": "payum/omnipay-bridge",
             "version": "dev-master",
             "source": {
@@ -2160,6 +2218,7 @@
             "suggest": {
                 "payum/authorize-net-aim": "If you want to use authorize.net gateway",
                 "payum/be2bill": "If you want to use be2bill gateway",
+                "payum/offline": "If you want to manage offline payments",
                 "payum/omnipay-bridge": "If you want to use omnipay provided gateways",
                 "payum/payex": "If you want to use payex gateway",
                 "payum/paypal-express-checkout-nvp": "If you want to use paypal express checkout nvp gateway",
@@ -2199,13 +2258,14 @@
             "keywords": [
                 "authorize.net",
                 "be2bill",
+                "offline",
                 "omnipay",
                 "payex",
                 "payment",
                 "paypal",
                 "paypal express checkout",
                 "paypal pro checkout",
-                "paypal recurring payment"
+                "recurring payment"
             ],
             "time": "2013-10-25 19:32:23"
         },

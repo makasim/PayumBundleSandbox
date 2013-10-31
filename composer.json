@@ -31,7 +31,8 @@
         "payum/omnipay-bridge": "0.7.*@dev",
         "payum/paypal-ipn": "0.7.*@dev",
         "payum/payex": "0.7.*@dev",
-        "payum/jms-payment-bridge": "0.7.*@dev"
+        "payum/jms-payment-bridge": "0.7.*@dev",
+        "payum/offline": "0.7.*@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "*",

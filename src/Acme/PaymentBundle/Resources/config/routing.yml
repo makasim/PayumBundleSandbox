@@ -9,6 +9,10 @@ acme_payment_prepare_simple_purchase_authorize_net:
 acme_payment_prepare_simple_purchase_be2bill:
     pattern:  /payment/simple_purchase/be2bill/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchaseBe2Bill:prepare }
+
+acme_payment_prepare_simple_purchase_offline:
+    pattern:  /payment/simple_purchase/offline/prepare
+    defaults: { _controller: AcmePaymentBundle:SimplePurchaseOffline:prepare }
     
 acme_payment_prepare_simple_purchase_paypal_express_via_omnipay:
     pattern:  /payment/simple_purchase/paypal_express_via_omnipay/prepare
