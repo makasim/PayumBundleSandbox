@@ -69,7 +69,7 @@ doctrine:
                 is_bundle: false
                 type: xml 
                 dir: %kernel.root_dir%/../vendor/payum/paypal-express-checkout-nvp/src/Payum/Paypal/ExpressCheckout/Nvp/Bridge/Doctrine/Resources/mapping
-                prefix: Payum\Paypal\ExpressCheckout\Nvp\Bridge\Doctrine\Entity
+                prefix: Payum\Paypal\ExpressCheckout\Nvp\Model
 
 doctrine_mongodb:
     connections:
