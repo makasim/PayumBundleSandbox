@@ -127,40 +127,38 @@ class OneClickExamplesController extends Controller
         $paymentName = 'payex_agreement';
         
         $form = $this->createPurchaseForm();
-        if ($request->isMethod('POST')) {
-            $form->bind($request);
-            if ($form->isValid()) {
+        $form->handleRequest($request);
+        if ($form->isValid()) {
 
-                $paymentStorage = $this->getPayum()->getStorageForClass(
-                    'Acme\PayexBundle\Model\PaymentDetails',
-                    $paymentName
-                );
+            $paymentStorage = $this->getPayum()->getStorageForClass(
+                'Acme\PayexBundle\Model\PaymentDetails',
+                $paymentName
+            );
 
-                /** @var $paymentDetails PaymentDetails */
-                $paymentDetails = $paymentStorage->createModel();
-                $paymentDetails->setPrice(1000);
-                $paymentDetails->setCurrency('NOK');
-                $paymentDetails->setOrderId(123);
-                $paymentDetails->setProductNumber(123);
-                $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
-                $paymentDetails->setDescription('a desc');
-                $paymentDetails->setAgreementRef($request->get('agreementRef'));
-                $paymentDetails->setAutoPay(true);
+            /** @var $paymentDetails PaymentDetails */
+            $paymentDetails = $paymentStorage->createModel();
+            $paymentDetails->setPrice(1000);
+            $paymentDetails->setCurrency('NOK');
+            $paymentDetails->setOrderId(123);
+            $paymentDetails->setProductNumber(123);
+            $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
+            $paymentDetails->setDescription('a desc');
+            $paymentDetails->setAgreementRef($request->get('agreementRef'));
+            $paymentDetails->setAutoPay(true);
 
-                $paymentStorage->updateModel($paymentDetails);
+            $paymentStorage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenFactory()->createCaptureToken(
-                    $paymentName,
-                    $paymentDetails,
-                    'acme_payment_details_view'
-                );
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
 
-                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
-                $paymentStorage->updateModel($paymentDetails);
+            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+            $paymentStorage->updateModel($paymentDetails);
 
-                return $this->redirect($captureToken->getTargetUrl());
-            }
+            return $this->redirect($captureToken->getTargetUrl());
         }
         
         return array(

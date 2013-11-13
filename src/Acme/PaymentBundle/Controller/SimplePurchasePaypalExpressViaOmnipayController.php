@@ -14,36 +14,33 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
         $paymentName = 'paypal_express_checkout_via_ominpay';
         
         $form = $this->createPurchaseForm();
-        if ('POST' === $request->getMethod()) {
-            
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
 
-                $storage = $this->getPayum()->getStorageForClass(
-                    'Acme\PaymentBundle\Model\PaymentDetails',
-                    $paymentName
-                );
-                
-                $paymentDetails = $storage->createModel();
-                $paymentDetails['amount'] = (float) $data['amount'];
-                $paymentDetails['currency'] = $data['currency'];
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaymentBundle\Model\PaymentDetails',
+                $paymentName
+            );
 
-                $storage->updateModel($paymentDetails);
+            $paymentDetails = $storage->createModel();
+            $paymentDetails['amount'] = (float) $data['amount'];
+            $paymentDetails['currency'] = $data['currency'];
 
-                $captureToken = $this->getTokenFactory()->createCaptureToken(
-                    $paymentName,
-                    $paymentDetails,
-                    'acme_payment_details_view'
-                );
+            $storage->updateModel($paymentDetails);
 
-                $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
-                $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
-                
-                $storage->updateModel($paymentDetails);
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
 
-                return $this->redirect($captureToken->getTargetUrl());
-            }
+            $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
+            $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
+
+            $storage->updateModel($paymentDetails);
+
+            return $this->redirect($captureToken->getTargetUrl());
         }
 
         return $this->render('AcmePaymentBundle:SimplePurchasePaypalExpressViaOmnipay:prepare.html.twig', array(

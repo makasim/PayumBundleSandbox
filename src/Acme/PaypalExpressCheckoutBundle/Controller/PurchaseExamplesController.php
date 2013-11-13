@@ -25,35 +25,33 @@ class PurchaseExamplesController extends Controller
         $paymentName = 'paypal_express_checkout';
         
         $form = $this->createPurchaseForm();
-        if ('POST' === $request->getMethod()) {
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
-                
-                $storage = $this->getPayum()->getStorageForClass(
-                    'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
-                    $paymentName
-                );
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
 
-                /** @var $paymentDetails PaymentDetails */
-                $paymentDetails = $storage->createModel();
-                $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
-                $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
-                $storage->updateModel($paymentDetails);
-                
-                $captureToken = $this->getTokenFactory()->createCaptureToken(
-                    $paymentName,
-                    $paymentDetails,
-                    'acme_payment_details_view'
-                );
-                
-                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
-                $paymentDetails->setInvnum($paymentDetails->getId());
-                $storage->updateModel($paymentDetails);
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+                $paymentName
+            );
 
-                return $this->redirect($captureToken->getTargetUrl());
-            }
+            /** @var $paymentDetails PaymentDetails */
+            $paymentDetails = $storage->createModel();
+            $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
+            $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
+            $storage->updateModel($paymentDetails);
+
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
+
+            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+            $paymentDetails->setInvnum($paymentDetails->getId());
+            $storage->updateModel($paymentDetails);
+
+            return $this->redirect($captureToken->getTargetUrl());
         }
         
         return array(
@@ -171,36 +169,34 @@ class PurchaseExamplesController extends Controller
         $paymentName = 'paypal_express_checkout_plus_doctrine';
 
         $form = $this->createPurchaseForm();
-        if ('POST' === $request->getMethod()) {
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
 
-                $storage = $this->getPayum()->getStorageForClass(
-                    'Acme\PaypalExpressCheckoutBundle\Entity\PaymentDetails',
-                    $paymentName
-                );
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaypalExpressCheckoutBundle\Entity\PaymentDetails',
+                $paymentName
+            );
 
-                /** @var $paymentDetails PaymentDetails */
-                $paymentDetails = $storage->createModel();
-                $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
-                $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
+            /** @var $paymentDetails PaymentDetails */
+            $paymentDetails = $storage->createModel();
+            $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
+            $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
 
-                $storage->updateModel($paymentDetails);
+            $storage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenFactory()->createCaptureToken(
-                    $paymentName,
-                    $paymentDetails,
-                    'acme_payment_details_view'
-                );
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
 
-                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
-                $paymentDetails->setInvnum($paymentDetails->getId());
-                $storage->updateModel($paymentDetails);
+            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+            $paymentDetails->setInvnum($paymentDetails->getId());
+            $storage->updateModel($paymentDetails);
 
-                return $this->redirect($captureToken->getTargetUrl());
-            }
+            return $this->redirect($captureToken->getTargetUrl());
         }
 
         return array(
@@ -285,38 +281,36 @@ class PurchaseExamplesController extends Controller
         $paymentName = 'paypal_express_checkout';
 
         $form = $this->createPurchaseForm();
-        if ('POST' === $request->getMethod()) {
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
 
-                $storage = $this->getPayum()->getStorageForClass(
-                    'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
-                    $paymentName
-                );
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+                $paymentName
+            );
 
-                /** @var $paymentDetails PaymentDetails */
-                $paymentDetails = $storage->createModel();
-                $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
-                $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
-                $storage->updateModel($paymentDetails);
+            /** @var $paymentDetails PaymentDetails */
+            $paymentDetails = $storage->createModel();
+            $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
+            $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
+            $storage->updateModel($paymentDetails);
 
-                $notifyToken = $this->getTokenFactory()->createNotifyToken($paymentName, $paymentDetails);
+            $notifyToken = $this->getTokenFactory()->createNotifyToken($paymentName, $paymentDetails);
 
-                $captureToken = $this->getTokenFactory()->createCaptureToken(
-                    $paymentName,
-                    $paymentDetails,
-                    'acme_payment_details_view'
-                );
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
 
-                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
-                $paymentDetails->setPaymentrequestNotifyurl(0, $notifyToken->getTargetUrl());
-                $paymentDetails->setInvnum($paymentDetails->getId());
-                $storage->updateModel($paymentDetails);
-                
-                return $this->redirect($captureToken->getTargetUrl());
-            }
+            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+            $paymentDetails->setPaymentrequestNotifyurl(0, $notifyToken->getTargetUrl());
+            $paymentDetails->setInvnum($paymentDetails->getId());
+            $storage->updateModel($paymentDetails);
+
+            return $this->redirect($captureToken->getTargetUrl());
         }
 
         return array(

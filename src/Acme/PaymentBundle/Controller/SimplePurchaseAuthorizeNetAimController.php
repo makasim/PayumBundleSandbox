@@ -25,7 +25,6 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
             );
 
             $paymentDetails = $storage->createModel();
-
             $paymentDetails['amount'] = $data['amount'];
             $paymentDetails['card_num'] = new SensitiveValue($data['card_number']);
             $paymentDetails['exp_date'] = new SensitiveValue($data['card_expiration_date']);

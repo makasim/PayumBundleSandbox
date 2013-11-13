@@ -22,31 +22,29 @@ class CartExamplesController extends Controller
     public function selectPaymentAction(Request $request)
     {
         $form = $this->createChoosePaymentForm();
-        if ('POST' === $request->getMethod()) {
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
-                $paymentName = $data['payment_name'];
-                
-                $cartStorage = $this->getPayum()->getStorageForClass(
-                    'Acme\OtherExamplesBundle\Model\Cart',
-                    $paymentName
-                );
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+            $paymentName = $data['payment_name'];
 
-                /** @var $cart Cart */
-                $cart = $cartStorage->createModel();
-                $cart->setPrice(1.23);
-                $cart->setCurrency('USD');
-                $cartStorage->updateModel($cart);
-                
-                $captureToken = $this->getTokenFactory()->createCaptureToken(
-                    $paymentName,
-                    $cart,
-                    'acme_payment_details_view' // TODO 
-                );
+            $cartStorage = $this->getPayum()->getStorageForClass(
+                'Acme\OtherExamplesBundle\Model\Cart',
+                $paymentName
+            );
 
-                return $this->redirect($captureToken->getTargetUrl());
-            }
+            /** @var $cart Cart */
+            $cart = $cartStorage->createModel();
+            $cart->setPrice(1.23);
+            $cart->setCurrency('USD');
+            $cartStorage->updateModel($cart);
+
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $cart,
+                'acme_payment_details_view' // TODO
+            );
+
+            return $this->redirect($captureToken->getTargetUrl());
         }
         
         return array(
