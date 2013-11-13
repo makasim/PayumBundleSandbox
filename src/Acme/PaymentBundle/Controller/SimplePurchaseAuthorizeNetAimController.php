@@ -20,7 +20,7 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
             $data = $form->getData();
 
             $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Model\AuthorizeNetPaymentDetails',
+                'Acme\PaymentBundle\Model\PaymentDetails',
                 $paymentName
             );
 

@@ -2,7 +2,7 @@
 namespace Acme\OtherExamplesBundle\Payum\Action;
 
 use Acme\OtherExamplesBundle\Model\Cart;
-use Acme\PaymentBundle\Model\AuthorizeNetPaymentDetails;
+use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Action\PaymentAwareAction;
 use Payum\Bundle\PayumBundle\Request\ResponseInteractiveRequest;
 use Payum\Exception\RequestNotSupportedException;
@@ -72,11 +72,11 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
                 );
                 
                 $paymentDetailsStorage = $this->payum->getStorageForClass(
-                    'Acme\PaymentBundle\Model\AuthorizeNetPaymentDetails',
+                    'Acme\PaymentBundle\Model\PaymentDetails',
                     $request->getToken()->getPaymentName()
                 );
 
-                /** @var $paymentDetails AuthorizeNetPaymentDetails */
+                /** @var $paymentDetails PaymentDetails */
                 $paymentDetails = $paymentDetailsStorage->createModel();
                 $paymentDetails->setAmount($cart->getPrice());
                 $paymentDetails->setCardNum($data['card_number']);

@@ -21,7 +21,7 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
                 $data = $form->getData();
 
                 $storage = $this->getPayum()->getStorageForClass(
-                    'Acme\PaymentBundle\Model\OmnipayPaymentDetails',
+                    'Acme\PaymentBundle\Model\PaymentDetails',
                     $paymentName
                 );
                 

@@ -21,7 +21,7 @@ class SimplePurchasePaypalProController extends Controller
                 $data = $form->getData();
 
                 $storage = $this->getPayum()->getStorageForClass(
-                    'Acme\PaymentBundle\Model\PaypalProPaymentDetails',
+                    'Acme\PaymentBundle\Model\PaymentDetails',
                     $paymentName
                 );
                 

@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Payum\Model\Token;
 
 /**
- * @ORM\Table(name="payum_security_token")
+ * @ORM\Table(name="payment_security_token")
  * @ORM\Entity
  */
-class PayumSecurityToken extends Token
+class PaymentSecurityToken extends Token
 {
 }

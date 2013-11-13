@@ -1,7 +1,7 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
-use Acme\PaymentBundle\Model\Be2BillPaymentDetails;
+use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Registry\RegistryInterface;
 use Payum\Security\SensitiveValue;
@@ -21,11 +21,11 @@ class SimplePurchaseBe2BillController extends Controller
             $data = $form->getData();
 
             $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Model\Be2BillPaymentDetails',
+                'Acme\PaymentBundle\Model\PaymentDetails',
                 $paymentName
             );
 
-            /** @var Be2BillPaymentDetails */
+            /** @var PaymentDetails */
             $paymentDetails = $storage->createModel();
             //be2bill amount format is cents: for example:  100.05 (EUR). will be 10005.
             $paymentDetails['AMOUNT'] = $data['amount'] * 100;
