@@ -3,6 +3,7 @@ namespace Acme\PaymentBundle\Controller;
 
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Registry\RegistryInterface;
+use Payum\Security\SensitiveValue;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
@@ -14,32 +15,30 @@ class SimplePurchaseStripeViaOmnipayController extends Controller
         $paymentName = 'stripe_via_ominpay';
         
         $form = $this->createPurchaseForm();
-        if ('POST' === $request->getMethod()) {
-            
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
 
-                $storage = $this->getPayum()->getStorageForClass(
-                    'Acme\PaymentBundle\Model\PaymentDetails',
-                    $paymentName
-                );
-                
-                $paymentDetails = $storage->createModel();
-                $paymentDetails['amount'] = $data['amount'] * 100;
-                $paymentDetails['currency'] = $data['currency'];
-                $paymentDetails['card'] = $data['card'];
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaymentBundle\Model\PaymentDetails',
+                $paymentName
+            );
 
-                $storage->updateModel($paymentDetails);
+            $paymentDetails = $storage->createModel();
+            $paymentDetails['amount'] = $data['amount'] * 100;
+            $paymentDetails['currency'] = $data['currency'];
+            $paymentDetails['card'] = new SensitiveValue($data['card']);
+            $storage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenFactory()->createCaptureToken(
-                    $paymentName,
-                    $paymentDetails,
-                    'acme_payment_details_view'
-                );
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
 
-                return $this->redirect($captureToken->getTargetUrl());
-            }
+            return $this->forward('PayumBundle:Capture:do', array(
+                'payum_token' => $captureToken,
+            ));
         }
 
         return $this->render('AcmePaymentBundle:SimplePurchaseStripeViaOmnipay:prepare.html.twig', array(
