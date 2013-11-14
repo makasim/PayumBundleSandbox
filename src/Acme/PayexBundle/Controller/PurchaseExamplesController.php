@@ -25,47 +25,45 @@ class PurchaseExamplesController extends Controller
         $paymentName = 'payex';
         
         $form = $this->createPurchaseForm();
-        if ('POST' === $request->getMethod()) {
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
-                
-                $storage = $this->getPayum()->getStorageForClass(
-                    'Acme\PayexBundle\Model\PaymentDetails',
-                    $paymentName
-                );
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
 
-                /** @var $paymentDetails PaymentDetails */
-                $paymentDetails = $storage->createModel();
-                $paymentDetails->setPrice($data['amount'] * 100);
-                $paymentDetails->setPriceArgList('');
-                $paymentDetails->setVat(0);
-                $paymentDetails->setCurrency($data['currency']);
-                $paymentDetails->setOrderId(123);
-                $paymentDetails->setProductNumber(123);
-                $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
-                $paymentDetails->setView(OrderApi::VIEW_CREDITCARD);
-                $paymentDetails->setDescription('a desc');
-                $paymentDetails->setClientIPAddress($request->getClientIp());
-                $paymentDetails->setClientIdentifier('');
-                $paymentDetails->setAdditionalValues('');
-                $paymentDetails->setAgreementRef('');
-                $paymentDetails->setClientLanguage('en-US');
-                
-                $storage->updateModel($paymentDetails);
-                
-                $captureToken = $this->getTokenFactory()->createCaptureToken(
-                    $paymentName,
-                    $paymentDetails,
-                    'acme_payment_details_view'
-                );
-                
-                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
-                $storage->updateModel($paymentDetails);
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PayexBundle\Model\PaymentDetails',
+                $paymentName
+            );
 
-                return $this->redirect($captureToken->getTargetUrl());
-            }
+            /** @var $paymentDetails PaymentDetails */
+            $paymentDetails = $storage->createModel();
+            $paymentDetails->setPrice($data['amount'] * 100);
+            $paymentDetails->setPriceArgList('');
+            $paymentDetails->setVat(0);
+            $paymentDetails->setCurrency($data['currency']);
+            $paymentDetails->setOrderId(123);
+            $paymentDetails->setProductNumber(123);
+            $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
+            $paymentDetails->setView(OrderApi::VIEW_CREDITCARD);
+            $paymentDetails->setDescription('a desc');
+            $paymentDetails->setClientIPAddress($request->getClientIp());
+            $paymentDetails->setClientIdentifier('');
+            $paymentDetails->setAdditionalValues('');
+            $paymentDetails->setAgreementRef('');
+            $paymentDetails->setClientLanguage('en-US');
+
+            $storage->updateModel($paymentDetails);
+
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
+
+            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+            $storage->updateModel($paymentDetails);
+
+            return $this->redirect($captureToken->getTargetUrl());
         }
         
         return array(
@@ -86,47 +84,45 @@ class PurchaseExamplesController extends Controller
         $paymentName = 'payex';
 
         $form = $this->createPurchaseForm();
-        if ('POST' === $request->getMethod()) {
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
 
-                $storage = $this->getPayum()->getStorageForClass(
-                    'Acme\PayexBundle\Model\PaymentDetails',
-                    $paymentName
-                );
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PayexBundle\Model\PaymentDetails',
+                $paymentName
+            );
 
-                /** @var $paymentDetails PaymentDetails */
-                $paymentDetails = $storage->createModel();
-                $paymentDetails->setPrice($data['amount'] * 100);
-                $paymentDetails->setPriceArgList('');
-                $paymentDetails->setVat(0);
-                $paymentDetails->setCurrency($data['currency']);
-                $paymentDetails->setOrderId(123);
-                $paymentDetails->setProductNumber(123);
-                $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
-                $paymentDetails->setView(OrderApi::VIEW_CREDITCARD);
-                $paymentDetails->setDescription('a desc');
-                $paymentDetails->setClientIPAddress($request->getClientIp());
-                $paymentDetails->setClientIdentifier('');
-                $paymentDetails->setAdditionalValues('');
-                $paymentDetails->setAgreementRef('');
-                $paymentDetails->setClientLanguage('en-US');
+            /** @var $paymentDetails PaymentDetails */
+            $paymentDetails = $storage->createModel();
+            $paymentDetails->setPrice($data['amount'] * 100);
+            $paymentDetails->setPriceArgList('');
+            $paymentDetails->setVat(0);
+            $paymentDetails->setCurrency($data['currency']);
+            $paymentDetails->setOrderId(123);
+            $paymentDetails->setProductNumber(123);
+            $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
+            $paymentDetails->setView(OrderApi::VIEW_CREDITCARD);
+            $paymentDetails->setDescription('a desc');
+            $paymentDetails->setClientIPAddress($request->getClientIp());
+            $paymentDetails->setClientIdentifier('');
+            $paymentDetails->setAdditionalValues('');
+            $paymentDetails->setAgreementRef('');
+            $paymentDetails->setClientLanguage('en-US');
 
-                $storage->updateModel($paymentDetails);
+            $storage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenFactory()->createCaptureToken(
-                    $paymentName,
-                    $paymentDetails,
-                    'acme_payment_details_view'
-                );
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
 
-                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
-                $storage->updateModel($paymentDetails);
+            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+            $storage->updateModel($paymentDetails);
 
-                return $this->redirect($captureToken->getTargetUrl());
-            }
+            return $this->redirect($captureToken->getTargetUrl());
         }
 
         return array(

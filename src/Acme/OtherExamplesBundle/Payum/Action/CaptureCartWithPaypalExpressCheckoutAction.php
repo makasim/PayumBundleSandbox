@@ -48,10 +48,10 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
 
         /** @var $paymentDetails PaymentDetails */
         $paymentDetails = $paymentDetailsStorage->createModel();
-        $paymentDetails->setPaymentrequestCurrencycode(0, $cart->getCurrency());
-        $paymentDetails->setPaymentrequestAmt(0,  $cart->getPrice());
-        $paymentDetails->setReturnurl($request->getToken()->getTargetUrl());
-        $paymentDetails->setCancelurl($request->getToken()->getTargetUrl());
+        $paymentDetails['PAYMENTREQUEST_0_CURRENCYCODE'] = $cart->getCurrency();
+        $paymentDetails['PAYMENTREQUEST_0_AMT'] = $cart->getPrice();
+        $paymentDetails['RETURNURL'] = $request->getToken()->getTargetUrl();
+        $paymentDetails['CANCELURL'] = $request->getToken()->getTargetUrl();
         $paymentDetailsStorage->updateModel($paymentDetails);
 
         $cart->setDetails($paymentDetails);

@@ -2,12 +2,13 @@
 namespace Acme\OtherExamplesBundle\Payum\Action;
 
 use Acme\OtherExamplesBundle\Model\Cart;
-use Acme\PaymentBundle\Model\AuthorizeNetPaymentDetails;
+use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Action\PaymentAwareAction;
 use Payum\Bundle\PayumBundle\Request\ResponseInteractiveRequest;
 use Payum\Exception\RequestNotSupportedException;
 use Payum\Registry\RegistryInterface;
 use Payum\Request\SecuredCaptureRequest;
+use Payum\Security\SensitiveValue;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,39 +59,37 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
         }
 
         $form = $this->createPurchaseForm();
-        if ($this->request->isMethod('POST')) {
-            $form->bind($this->request);
-            if ($form->isValid()) {
-                $data = $form->getData();
+        $form->handleRequest($this->request);
+        if ($form->isValid()) {
+            $data = $form->getData();
 
-                /** @var Cart $cart */
-                $cart = $request->getModel();
-                
-                $cartStorage = $this->payum->getStorageForClass(
-                    $cart, 
-                    $request->getToken()->getPaymentName()
-                );
-                
-                $paymentDetailsStorage = $this->payum->getStorageForClass(
-                    'Acme\PaymentBundle\Model\AuthorizeNetPaymentDetails',
-                    $request->getToken()->getPaymentName()
-                );
+            /** @var Cart $cart */
+            $cart = $request->getModel();
 
-                /** @var $paymentDetails AuthorizeNetPaymentDetails */
-                $paymentDetails = $paymentDetailsStorage->createModel();
-                $paymentDetails->setAmount($cart->getPrice());
-                $paymentDetails->setCardNum($data['card_number']);
-                $paymentDetails->setExpDate($data['card_expiration_date']);
-                $paymentDetailsStorage->updateModel($paymentDetails);
-                
-                $cart->setDetails($paymentDetails);
-                $cartStorage->updateModel($cart);
-                
-                $request->setModel($paymentDetails);
-                $this->payment->execute($request);
-                
-                return;
-            }
+            $cartStorage = $this->payum->getStorageForClass(
+                $cart,
+                $request->getToken()->getPaymentName()
+            );
+
+            $paymentDetailsStorage = $this->payum->getStorageForClass(
+                'Acme\PaymentBundle\Model\PaymentDetails',
+                $request->getToken()->getPaymentName()
+            );
+
+            /** @var $paymentDetails PaymentDetails */
+            $paymentDetails = $paymentDetailsStorage->createModel();
+            $paymentDetails['amount'] = $cart->getPrice();
+            $paymentDetails['card_num'] = new SensitiveValue($data['card_number']);
+            $paymentDetails['exp_date'] = new SensitiveValue($data['card_expiration_date']);
+            $paymentDetailsStorage->updateModel($paymentDetails);
+
+            $cart->setDetails($paymentDetails);
+            $cartStorage->updateModel($cart);
+
+            $request->setModel($paymentDetails);
+            $this->payment->execute($request);
+
+            return;
         }
 
         throw new ResponseInteractiveRequest(new Response(

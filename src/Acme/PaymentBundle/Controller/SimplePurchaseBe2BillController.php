@@ -1,9 +1,10 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
-use Acme\PaymentBundle\Model\Be2BillPaymentDetails;
+use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Registry\RegistryInterface;
+use Payum\Security\SensitiveValue;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
@@ -15,43 +16,40 @@ class SimplePurchaseBe2BillController extends Controller
         $paymentName = 'be2bill';
 
         $form = $this->createPurchaseForm();
-        if ('POST' === $request->getMethod()) {
-            
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
-                
-                $storage = $this->getPayum()->getStorageForClass(
-                    'Acme\PaymentBundle\Model\Be2BillPaymentDetails',
-                    $paymentName
-                );
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
 
-                /** @var Be2BillPaymentDetails */
-                $paymentDetails = $storage->createModel();
-                $paymentDetails->setAmount($data['amount'] * 100); //be2bill amount format is cents: for example:  100.05 (EUR). will be 10005.
-                $paymentDetails->setClientemail('user@email.com');
-                $paymentDetails->setClientuseragent($request->headers->get('User-Agent', 'Unknown'));
-                $paymentDetails->setClientip($request->getClientIp());
-                $paymentDetails->setClientident('payerId');
-                $paymentDetails->setDescription('Payment for digital stuff');
-                $paymentDetails->setOrderid('orderId');
-                $paymentDetails->setCardcode($data['card_number']);
-                $paymentDetails->setCardcvv($data['card_cvv']);
-                $paymentDetails->setCardfullname($data['card_holder']);
-                $paymentDetails->setCardvaliditydate($data['card_expiration_date']);
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaymentBundle\Model\PaymentDetails',
+                $paymentName
+            );
 
-                $storage->updateModel($paymentDetails);
+            /** @var PaymentDetails */
+            $paymentDetails = $storage->createModel();
+            //be2bill amount format is cents: for example:  100.05 (EUR). will be 10005.
+            $paymentDetails['AMOUNT'] = $data['amount'] * 100;
+            $paymentDetails['CLIENTEMAIL'] = 'user@email.com';
+            $paymentDetails['CLIENTUSERAGENT'] = $request->headers->get('User-Agent', 'Unknown');
+            $paymentDetails['CLIENTIP'] = $request->getClientIp();
+            $paymentDetails['CLIENTIDENT'] = 'payerId';
+            $paymentDetails['DESCRIPTION'] = 'Payment for digital stuff';
+            $paymentDetails['ORDERID'] = 'orderId';
+            $paymentDetails['CARDCODE'] = new SensitiveValue($data['card_number']);
+            $paymentDetails['CARDCVV'] = new SensitiveValue($data['card_cvv']);
+            $paymentDetails['CARDFULLNAME'] = new SensitiveValue($data['card_holder']);
+            $paymentDetails['CARDVALIDITYDATE'] = new SensitiveValue($data['card_expiration_date']);
+            $storage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenFactory()->createCaptureToken(
-                    $paymentName,
-                    $paymentDetails,
-                    'acme_payment_details_view'
-                );
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
 
-                return $this->forward('PayumBundle:Capture:do', array(
-                    'payum_token' => $captureToken,
-                ));
-            }
+            return $this->forward('PayumBundle:Capture:do', array(
+                'payum_token' => $captureToken,
+            ));
         }
 
         return $this->render('AcmePaymentBundle:SimplePurchaseBe2Bill:prepare.html.twig', array(

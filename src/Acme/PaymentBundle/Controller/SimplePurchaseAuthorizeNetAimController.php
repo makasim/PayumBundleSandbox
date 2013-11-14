@@ -3,6 +3,7 @@ namespace Acme\PaymentBundle\Controller;
 
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Registry\RegistryInterface;
+use Payum\Security\SensitiveValue;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
@@ -14,34 +15,30 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
         $paymentName = 'authorize_net';
 
         $form = $this->createPurchaseForm();
-        if ('POST' === $request->getMethod()) {
-            
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
-                
-                $storage = $this->getPayum()->getStorageForClass(
-                    'Acme\PaymentBundle\Model\AuthorizeNetPaymentDetails',
-                    $paymentName
-                );
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
 
-                $paymentDetails = $storage->createModel();
-                $paymentDetails->setAmount($data['amount']);
-                $paymentDetails->setCardNum($data['card_number']);
-                $paymentDetails->setExpDate($data['card_expiration_date']);
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaymentBundle\Model\PaymentDetails',
+                $paymentName
+            );
 
-                $storage->updateModel($paymentDetails);
+            $paymentDetails = $storage->createModel();
+            $paymentDetails['amount'] = $data['amount'];
+            $paymentDetails['card_num'] = new SensitiveValue($data['card_number']);
+            $paymentDetails['exp_date'] = new SensitiveValue($data['card_expiration_date']);
+            $storage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenFactory()->createCaptureToken(
-                    $paymentName,
-                    $paymentDetails,
-                    'acme_payment_details_view'
-                );
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
 
-                return $this->forward('PayumBundle:Capture:do', array(
-                    'payum_token' => $captureToken,
-                ));
-            }
+            return $this->forward('PayumBundle:Capture:do', array(
+                'payum_token' => $captureToken,
+            ));
         }
         
         return $this->render('AcmePaymentBundle:SimplePurchaseAuthorizeNetAim:prepare.html.twig', array(
