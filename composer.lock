@@ -1401,12 +1401,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "e8f7aeefea5cbd58c5b472363b1bd71f6c3148d6"
+                "reference": "6225b22de9dcf36546be3a0b2fa8e3d986153f57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e8f7aeefea5cbd58c5b472363b1bd71f6c3148d6",
-                "reference": "e8f7aeefea5cbd58c5b472363b1bd71f6c3148d6",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/6225b22de9dcf36546be3a0b2fa8e3d986153f57",
+                "reference": "6225b22de9dcf36546be3a0b2fa8e3d986153f57",
                 "shasum": ""
             },
             "require": {
@@ -1460,7 +1460,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-11-14 11:00:58"
+            "time": "2013-11-14 19:48:31"
         },
         {
             "name": "omnipay/omnipay",
@@ -2108,12 +2108,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "e2b50de4cb9f45fd2c062bc889c8d9e966be64bc"
+                "reference": "b441a4c32714f0cc69864eab2856c1560b3de8be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/e2b50de4cb9f45fd2c062bc889c8d9e966be64bc",
-                "reference": "e2b50de4cb9f45fd2c062bc889c8d9e966be64bc",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/b441a4c32714f0cc69864eab2856c1560b3de8be",
+                "reference": "b441a4c32714f0cc69864eab2856c1560b3de8be",
                 "shasum": ""
             },
             "require": {
@@ -2188,7 +2188,7 @@
                 "paypal rest",
                 "recurring payment"
             ],
-            "time": "2013-11-14 16:21:11"
+            "time": "2013-11-16 07:07:38"
         },
         {
             "name": "payum/payum-bundle",
@@ -2322,12 +2322,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "45664e203fd1364705091a58971cc6bd94fb5189"
+                "reference": "52b964d793e989768a44a8900b2373bdc9ce666a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/45664e203fd1364705091a58971cc6bd94fb5189",
-                "reference": "45664e203fd1364705091a58971cc6bd94fb5189",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/52b964d793e989768a44a8900b2373bdc9ce666a",
+                "reference": "52b964d793e989768a44a8900b2373bdc9ce666a",
                 "shasum": ""
             },
             "require": {
@@ -2359,7 +2359,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2013-09-18 07:48:10"
+            "time": "2013-11-14 21:00:23"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -2735,12 +2735,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "2ef5e618885fd27648c9c2c56b52e7f0bee59bde"
+                "reference": "6316de572a85b7e887e15df2df5093237acb9bf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/2ef5e618885fd27648c9c2c56b52e7f0bee59bde",
-                "reference": "2ef5e618885fd27648c9c2c56b52e7f0bee59bde",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/6316de572a85b7e887e15df2df5093237acb9bf2",
+                "reference": "6316de572a85b7e887e15df2df5093237acb9bf2",
                 "shasum": ""
             },
             "require": {
@@ -2835,7 +2835,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-11-14 13:43:31"
+            "time": "2013-11-14 20:58:12"
         },
         {
             "name": "twig/extensions",
