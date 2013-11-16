@@ -49,7 +49,7 @@ class RecurringExamplesController extends PayumController
         if ($request->isMethod('POST')) {
             $startDate = new \DateTime('now');
             $stopDate = new \DateTime(sprintf('now + %d days', $subscription['frequency']));
-            
+
             $agreementDetailsStorage = $this->getPayum()->getStorageForClass(
                 'Acme\PayexBundle\Model\AgreementDetails',
                 $paymentName
@@ -57,12 +57,12 @@ class RecurringExamplesController extends PayumController
             
             /** @var AgreementDetails $agreementDetails */
             $agreementDetails = $agreementDetailsStorage->createModel();
-            $agreementDetails->setMaxAmount(10000);
-            $agreementDetails->setPurchaseOperation(AgreementApi::PURCHASEOPERATION_AUTHORIZATION);
-            $agreementDetails->setMerchantRef('aRef');
-            $agreementDetails->setDescription('aDesc');
-            $agreementDetails->setStartDate($startDate->format('Y-m-d H:i:s'));
-            $agreementDetails->setStopDate($stopDate->format('Y-m-d H:i:s'));
+            $agreementDetails['maxAmount'] = 10000;
+            $agreementDetails['purchaseOperation'] = AgreementApi::PURCHASEOPERATION_AUTHORIZATION;
+            $agreementDetails['merchantRef'] = 'aRef';
+            $agreementDetails['description'] = 'aDesc';
+            $agreementDetails['startDate'] = $startDate->format('Y-m-d H:i:s');
+            $agreementDetails['stopDate'] = $stopDate->format('Y-m-d H:i:s');
 
             $this->getPayum()->getPayment($paymentName)->execute(new CreateAgreementRequest($agreementDetails));
             $this->getPayum()->getPayment($paymentName)->execute(new SyncRequest($agreementDetails));
@@ -76,28 +76,28 @@ class RecurringExamplesController extends PayumController
 
             /** @var PaymentDetails $paymentDetails */
             $paymentDetails = $paymentDetailsStorage->createModel();
-            $paymentDetails->setPrice($subscription['price'] * 100);
-            $paymentDetails->setPriceArgList('');
-            $paymentDetails->setVat(0);
-            $paymentDetails->setCurrency($subscription['currency']);
-            $paymentDetails->setOrderId(123);
-            $paymentDetails->setProductNumber(123);
-            $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
-            $paymentDetails->setView(OrderApi::VIEW_CREDITCARD);
-            $paymentDetails->setDescription('a desc');
-            $paymentDetails->setClientIPAddress($request->getClientIp());
-            $paymentDetails->setClientIdentifier('');
-            $paymentDetails->setAdditionalValues('');
-            $paymentDetails->setAgreementRef($agreementDetails['agreementRef']);
-            $paymentDetails->setClientLanguage('en-US');
-            
+            $paymentDetails['price'] = $subscription['price'] * 100;
+            $paymentDetails['priceArgList'] = '';
+            $paymentDetails['vat'] = 0;
+            $paymentDetails['currency'] = $subscription['currency'];
+            $paymentDetails['orderId'] = 123;
+            $paymentDetails['productNumber'] = 123;
+            $paymentDetails['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
+            $paymentDetails['view'] = OrderApi::VIEW_CREDITCARD;
+            $paymentDetails['description'] = 'a desc';
+            $paymentDetails['clientIPAddress'] = $request->getClientIp();
+            $paymentDetails['clientIdentifier'] = '';
+            $paymentDetails['additionalValues'] = '';
+            $paymentDetails['agreementRef'] = $agreementDetails['agreementRef'];
+            $paymentDetails['clientLanguage'] = 'en-US';
+
             //recurring payment fields
-            $paymentDetails->setRecurring(true);
-            $paymentDetails->setStartDate($startDate->format('Y-m-d H:i:s'));
-            $paymentDetails->setStopDate($stopDate->format('Y-m-d H:i:s'));
-            $paymentDetails->setPeriodType(RecurringApi::PERIODTYPE_DAILY);
-            $paymentDetails->setPeriod(0);
-            $paymentDetails->setAlertPeriod(0);
+            $paymentDetails['recurring'] = true;
+            $paymentDetails['startDate'] = $startDate->format('Y-m-d H:i:s');
+            $paymentDetails['stopDate'] = $stopDate->format('Y-m-d H:i:s');
+            $paymentDetails['periodType'] = RecurringApi::PERIODTYPE_DAILY;
+            $paymentDetails['period'] = 0;
+            $paymentDetails['alertPeriod'] = 0;
 
             $paymentDetailsStorage->updateModel($paymentDetails);
             
@@ -112,8 +112,8 @@ class RecurringExamplesController extends PayumController
                 )
             );
 
-            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+            $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
+            $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
             $paymentDetailsStorage->updateModel($paymentDetails);
 
             return $this->redirect($captureToken->getTargetUrl());

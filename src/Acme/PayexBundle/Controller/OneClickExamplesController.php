@@ -62,20 +62,20 @@ class OneClickExamplesController extends Controller
 
                 /** @var $paymentDetails PaymentDetails */
                 $paymentDetails = $paymentStorage->createModel();
-                $paymentDetails->setPrice(1000);
-                $paymentDetails->setPriceArgList('');
-                $paymentDetails->setVat(0);
-                $paymentDetails->setCurrency('NOK');
-                $paymentDetails->setOrderId(123);
-                $paymentDetails->setProductNumber(123);
-                $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
-                $paymentDetails->setView(OrderApi::VIEW_CREDITCARD);
-                $paymentDetails->setDescription('a desc');
-                $paymentDetails->setClientIPAddress($request->getClientIp());
-                $paymentDetails->setClientIdentifier('');
-                $paymentDetails->setAdditionalValues('');
-                $paymentDetails->setAgreementRef($agreement->getAgreementRef());
-                $paymentDetails->setClientLanguage('en-US');
+                $paymentDetails['price'] = 1000;
+                $paymentDetails['priceArgList'] = '';
+                $paymentDetails['vat'] = 0;
+                $paymentDetails['currency'] = 'NOK';
+                $paymentDetails['orderId'] = 123;
+                $paymentDetails['productNumber'] = 123;
+                $paymentDetails['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
+                $paymentDetails['view'] = OrderApi::VIEW_CREDITCARD;
+                $paymentDetails['description'] = 'a desc';
+                $paymentDetails['clientIPAddress'] = $request->getClientIp();
+                $paymentDetails['clientIdentifier'] = '';
+                $paymentDetails['additionalValues'] = '';
+                $paymentDetails['agreementRef'] = $agreement->getAgreementRef();
+                $paymentDetails['clientLanguage'] = 'en-US';
 
                 $paymentStorage->updateModel($paymentDetails);
 
@@ -86,8 +86,8 @@ class OneClickExamplesController extends Controller
                     array('agreementRef' => $agreement->getAgreementRef())
                 );
 
-                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+                $paymentDetails['Returnurl'] = $captureToken->getTargetUrl();
+                $paymentDetails['Cancelurl'] = $captureToken->getTargetUrl();
                 $paymentStorage->updateModel($paymentDetails);
 
                 return $this->redirect($captureToken->getTargetUrl());
@@ -95,12 +95,12 @@ class OneClickExamplesController extends Controller
         } else {
             /** @var AgreementDetails $agreement */
             $agreement = $agreementStorage->createModel();
-            $agreement->setMaxAmount(10000);
-            $agreement->setPurchaseOperation(AgreementApi::PURCHASEOPERATION_AUTHORIZATION);
-            $agreement->setMerchantRef('aRef');
-            $agreement->setDescription('aDesc');
-            $agreement->setStartDate('');
-            $agreement->setStopDate('');
+            $agreement['maxAmount'] = 10000;
+            $agreement['purchaseOperation'] = AgreementApi::PURCHASEOPERATION_AUTHORIZATION;
+            $agreement['merchantRef'] = 'aRef';
+            $agreement['description'] = 'aDesc';
+            $agreement['startDate'] = '';
+            $agreement['stopDate'] = '';
 
             $this->getPayum()->getPayment($paymentName)->execute(new CreateAgreementRequest($agreement));
             $this->getPayum()->getPayment($paymentName)->execute(new SyncRequest($agreement));
@@ -137,14 +137,14 @@ class OneClickExamplesController extends Controller
 
             /** @var $paymentDetails PaymentDetails */
             $paymentDetails = $paymentStorage->createModel();
-            $paymentDetails->setPrice(1000);
-            $paymentDetails->setCurrency('NOK');
-            $paymentDetails->setOrderId(123);
-            $paymentDetails->setProductNumber(123);
-            $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
-            $paymentDetails->setDescription('a desc');
-            $paymentDetails->setAgreementRef($request->get('agreementRef'));
-            $paymentDetails->setAutoPay(true);
+            $paymentDetails['price'] = 1000;
+            $paymentDetails['currency'] = 'NOK';
+            $paymentDetails['orderId'] = 123;
+            $paymentDetails['productNumber'] = 123;
+            $paymentDetails['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
+            $paymentDetails['description'] = 'a desc';
+            $paymentDetails['agreementRef'] = $request->get('agreementRef');
+            $paymentDetails['autoPay'] = true;
 
             $paymentStorage->updateModel($paymentDetails);
 
@@ -154,8 +154,8 @@ class OneClickExamplesController extends Controller
                 'acme_payment_details_view'
             );
 
-            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+            $paymentDetails['Returnurl'] = $captureToken->getTargetUrl();
+            $paymentDetails['Cancelurl'] = $captureToken->getTargetUrl();
             $paymentStorage->updateModel($paymentDetails);
 
             return $this->redirect($captureToken->getTargetUrl());

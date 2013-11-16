@@ -36,20 +36,20 @@ class PurchaseExamplesController extends Controller
 
             /** @var $paymentDetails PaymentDetails */
             $paymentDetails = $storage->createModel();
-            $paymentDetails->setPrice($data['amount'] * 100);
-            $paymentDetails->setPriceArgList('');
-            $paymentDetails->setVat(0);
-            $paymentDetails->setCurrency($data['currency']);
-            $paymentDetails->setOrderId(123);
-            $paymentDetails->setProductNumber(123);
-            $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
-            $paymentDetails->setView(OrderApi::VIEW_CREDITCARD);
-            $paymentDetails->setDescription('a desc');
-            $paymentDetails->setClientIPAddress($request->getClientIp());
-            $paymentDetails->setClientIdentifier('');
-            $paymentDetails->setAdditionalValues('');
-            $paymentDetails->setAgreementRef('');
-            $paymentDetails->setClientLanguage('en-US');
+            $paymentDetails['price'] = $data['amount'] * 100;
+            $paymentDetails['priceArgList'] = '';
+            $paymentDetails['vat'] = 0;
+            $paymentDetails['currency'] = $data['currency'];
+            $paymentDetails['orderId'] = 123;
+            $paymentDetails['productNumber'] = 123;
+            $paymentDetails['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
+            $paymentDetails['view'] = OrderApi::VIEW_CREDITCARD;
+            $paymentDetails['description'] = 'a desc';
+            $paymentDetails['clientIPAddress'] = $request->getClientIp();
+            $paymentDetails['clientIdentifier'] = '';
+            $paymentDetails['additionalValues'] = '';
+            $paymentDetails['agreementRef'] = '';
+            $paymentDetails['clientLanguage'] = 'en-US';
 
             $storage->updateModel($paymentDetails);
 
@@ -59,8 +59,8 @@ class PurchaseExamplesController extends Controller
                 'acme_payment_details_view'
             );
 
-            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+            $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
+            $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
             $storage->updateModel($paymentDetails);
 
             return $this->redirect($captureToken->getTargetUrl());
@@ -95,20 +95,20 @@ class PurchaseExamplesController extends Controller
 
             /** @var $paymentDetails PaymentDetails */
             $paymentDetails = $storage->createModel();
-            $paymentDetails->setPrice($data['amount'] * 100);
-            $paymentDetails->setPriceArgList('');
-            $paymentDetails->setVat(0);
-            $paymentDetails->setCurrency($data['currency']);
-            $paymentDetails->setOrderId(123);
-            $paymentDetails->setProductNumber(123);
-            $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
-            $paymentDetails->setView(OrderApi::VIEW_CREDITCARD);
-            $paymentDetails->setDescription('a desc');
-            $paymentDetails->setClientIPAddress($request->getClientIp());
-            $paymentDetails->setClientIdentifier('');
-            $paymentDetails->setAdditionalValues('');
-            $paymentDetails->setAgreementRef('');
-            $paymentDetails->setClientLanguage('en-US');
+            $paymentDetails['price'] = $data['amount'] * 100;
+            $paymentDetails['priceArgList'] = '';
+            $paymentDetails['vat'] = 0;
+            $paymentDetails['currency'] = $data['currency'];
+            $paymentDetails['orderId'] = 123;
+            $paymentDetails['productNumber'] = 123;
+            $paymentDetails['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
+            $paymentDetails['view'] = OrderApi::VIEW_CREDITCARD;
+            $paymentDetails['description'] = 'a desc';
+            $paymentDetails['clientIPAddress'] = $request->getClientIp();
+            $paymentDetails['clientIdentifier'] = '';
+            $paymentDetails['additionalValues'] = '';
+            $paymentDetails['agreementRef'] = '';
+            $paymentDetails['clientLanguage'] = 'en-US';
 
             $storage->updateModel($paymentDetails);
 
@@ -118,8 +118,8 @@ class PurchaseExamplesController extends Controller
                 'acme_payment_details_view'
             );
 
-            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+            $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
+            $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
             $storage->updateModel($paymentDetails);
 
             return $this->redirect($captureToken->getTargetUrl());
