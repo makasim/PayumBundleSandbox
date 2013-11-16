@@ -577,17 +577,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb.git",
-                "reference": "a263d678744d80edfbae34f862a4c93b0e28b55b"
+                "reference": "401796e7a5ec3cea099d993fd0034235b917f1a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/a263d678744d80edfbae34f862a4c93b0e28b55b",
-                "reference": "a263d678744d80edfbae34f862a4c93b0e28b55b",
+                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/401796e7a5ec3cea099d993fd0034235b917f1a8",
+                "reference": "401796e7a5ec3cea099d993fd0034235b917f1a8",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": ">=2.1.0,<2.5-dev",
-                "ext-mongo": ">=1.2.12,<1.5-dev",
+                "ext-mongo": ">=1.2.12,<1.6-dev",
                 "php": ">=5.3.2"
             },
             "type": "library",
@@ -607,9 +607,10 @@
                     "homepage": "http://avalanche123.com"
                 },
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Kris Wallsmith",
@@ -629,7 +630,7 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2013-09-09 15:53:46"
+            "time": "2013-11-01 17:12:21"
         },
         {
             "name": "doctrine/mongodb-odm",
@@ -1383,16 +1384,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "f72392d0e6eb855118f5a84e89ac2d257c704abd"
+                "reference": "6225b22de9dcf36546be3a0b2fa8e3d986153f57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/f72392d0e6eb855118f5a84e89ac2d257c704abd",
-                "reference": "f72392d0e6eb855118f5a84e89ac2d257c704abd",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/6225b22de9dcf36546be3a0b2fa8e3d986153f57",
+                "reference": "6225b22de9dcf36546be3a0b2fa8e3d986153f57",
                 "shasum": ""
             },
             "require": {
@@ -1400,21 +1401,26 @@
                 "psr/log": "~1.0"
             },
             "require-dev": {
+                "aws/aws-sdk-php": "~2.4.8",
                 "doctrine/couchdb": "dev-master",
                 "mlehner/gelf-php": "1.0.*",
-                "raven/raven": "0.5.*"
+                "phpunit/phpunit": "~3.7.0",
+                "raven/raven": "0.5.*",
+                "ruflin/elastica": "0.90.*"
             },
             "suggest": {
+                "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
                 "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
-                "raven/raven": "Allow sending log messages to a Sentry server"
+                "raven/raven": "Allow sending log messages to a Sentry server",
+                "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6.x-dev"
+                    "dev-master": "1.7.x-dev"
                 }
             },
             "autoload": {
@@ -1441,7 +1447,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-07-28 22:38:30"
+            "time": "2013-11-14 19:48:31"
         },
         {
             "name": "omnipay/omnipay",
@@ -1600,16 +1606,16 @@
         },
         {
             "name": "payum/be2bill",
-            "version": "0.6.0",
+            "version": "0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Be2Bill.git",
-                "reference": "09e26d18ff7c207b336655e4f279ac9bdf87f02d"
+                "reference": "aa7048c6b9530dbb4b63c30e3f93bd79717676cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Be2Bill/zipball/09e26d18ff7c207b336655e4f279ac9bdf87f02d",
-                "reference": "09e26d18ff7c207b336655e4f279ac9bdf87f02d",
+                "url": "https://api.github.com/repos/Payum/Be2Bill/zipball/aa7048c6b9530dbb4b63c30e3f93bd79717676cc",
+                "reference": "aa7048c6b9530dbb4b63c30e3f93bd79717676cc",
                 "shasum": ""
             },
             "require": {
@@ -1650,7 +1656,7 @@
                 "be2bill",
                 "payment"
             ],
-            "time": "2013-10-25 13:22:41"
+            "time": "2013-11-02 15:56:05"
         },
         {
             "name": "payum/jms-payment-bridge",
@@ -1895,16 +1901,16 @@
         },
         {
             "name": "payum/paypal-express-checkout-nvp",
-            "version": "0.6.0",
+            "version": "0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PaypalExpressCheckoutNvp.git",
-                "reference": "08ad3f8d38da3e254aa59ef04450a18c5f0c40e4"
+                "reference": "bc523174f4e552ba40ebbb94aff5f62573148d06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PaypalExpressCheckoutNvp/zipball/08ad3f8d38da3e254aa59ef04450a18c5f0c40e4",
-                "reference": "08ad3f8d38da3e254aa59ef04450a18c5f0c40e4",
+                "url": "https://api.github.com/repos/Payum/PaypalExpressCheckoutNvp/zipball/bc523174f4e552ba40ebbb94aff5f62573148d06",
+                "reference": "bc523174f4e552ba40ebbb94aff5f62573148d06",
                 "shasum": ""
             },
             "require": {
@@ -1957,7 +1963,7 @@
                 "paypal",
                 "recurring payment"
             ],
-            "time": "2013-10-25 13:32:44"
+            "time": "2013-11-01 14:12:49"
         },
         {
             "name": "payum/paypal-ipn",
@@ -2083,16 +2089,16 @@
         },
         {
             "name": "payum/payum",
-            "version": "0.6.2",
+            "version": "0.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "a77a6f96316b1e5e168a7fe804284b85c1f58c11"
+                "reference": "3561eb16dcc1620668a52eed99eeae9cc379d8d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/a77a6f96316b1e5e168a7fe804284b85c1f58c11",
-                "reference": "a77a6f96316b1e5e168a7fe804284b85c1f58c11",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/3561eb16dcc1620668a52eed99eeae9cc379d8d5",
+                "reference": "3561eb16dcc1620668a52eed99eeae9cc379d8d5",
                 "shasum": ""
             },
             "require": {
@@ -2167,21 +2173,21 @@
                 "paypal rest",
                 "recurring payment"
             ],
-            "time": "2013-10-27 15:45:58"
+            "time": "2013-10-31 14:54:25"
         },
         {
             "name": "payum/payum-bundle",
-            "version": "0.6.1",
+            "version": "0.6.2",
             "target-dir": "Payum/Bundle/PayumBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "bfce13170d49dcfb489a1bfc74fb4e06fa6c2140"
+                "reference": "33b82cffa59e855c205eb9ed860bea3fdc6dfe14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/bfce13170d49dcfb489a1bfc74fb4e06fa6c2140",
-                "reference": "bfce13170d49dcfb489a1bfc74fb4e06fa6c2140",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/33b82cffa59e855c205eb9ed860bea3fdc6dfe14",
+                "reference": "33b82cffa59e855c205eb9ed860bea3fdc6dfe14",
                 "shasum": ""
             },
             "require": {
@@ -2253,7 +2259,7 @@
                 "paypal pro checkout",
                 "recurring payment"
             ],
-            "time": "2013-10-31 09:47:43"
+            "time": "2013-10-31 15:04:50"
         },
         {
             "name": "psr/log",
@@ -2709,16 +2715,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.3.6",
+            "version": "v2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "d0597156c4c03ceca039f6b7770a47397ba295f0"
+                "reference": "2829b471871c2564228fe9f0832a0f928a8ffaa1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/d0597156c4c03ceca039f6b7770a47397ba295f0",
-                "reference": "d0597156c4c03ceca039f6b7770a47397ba295f0",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/2829b471871c2564228fe9f0832a0f928a8ffaa1",
+                "reference": "2829b471871c2564228fe9f0832a0f928a8ffaa1",
                 "shasum": ""
             },
             "require": {
@@ -2813,24 +2819,24 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-10-10 13:24:22"
+            "time": "2013-11-14 07:58:51"
         },
         {
             "name": "twig/extensions",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig-extensions.git",
-                "reference": "921799aaf05f88af749d72912d6b154dfeb9a03e"
+                "reference": "f91a82ec225e5bb108e01a0f93c9be04f84dcfa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig-extensions/zipball/921799aaf05f88af749d72912d6b154dfeb9a03e",
-                "reference": "921799aaf05f88af749d72912d6b154dfeb9a03e",
+                "url": "https://api.github.com/repos/fabpot/Twig-extensions/zipball/f91a82ec225e5bb108e01a0f93c9be04f84dcfa0",
+                "reference": "f91a82ec225e5bb108e01a0f93c9be04f84dcfa0",
                 "shasum": ""
             },
             "require": {
-                "twig/twig": "1.*"
+                "twig/twig": "~1.0"
             },
             "type": "library",
             "extra": {
@@ -2860,20 +2866,20 @@
                 "i18n",
                 "text"
             ],
-            "time": "2013-02-28 14:21:30"
+            "time": "2013-10-18 19:37:15"
         },
         {
             "name": "twig/twig",
-            "version": "v1.14.1",
+            "version": "v1.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "8873d7593ad7c120004f177c0fd01459b383c9cb"
+                "reference": "ca445842fcea4f844d68203ffa2d00f5e3cdea64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/8873d7593ad7c120004f177c0fd01459b383c9cb",
-                "reference": "8873d7593ad7c120004f177c0fd01459b383c9cb",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/ca445842fcea4f844d68203ffa2d00f5e3cdea64",
+                "reference": "ca445842fcea4f844d68203ffa2d00f5e3cdea64",
                 "shasum": ""
             },
             "require": {
@@ -2909,7 +2915,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-10-15 19:17:38"
+            "time": "2013-10-30 08:20:53"
         }
     ],
     "packages-dev": [
