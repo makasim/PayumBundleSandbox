@@ -3,3 +3,13 @@ services:
         class: Acme\PaymentBundle\Payum\Action\StoreNotificationAction
         arguments:
             - @doctrine
+
+    acme.payment.payum.api.factory:
+        class: Acme\PaymentBundle\Payum\Api\Factory
+        arguments:
+            - @service_container
+
+    acme.payment.payum.paypal_express_checkout_api:
+        class: Payum\Paypal\ExpressCheckout\Nvp\Api
+        factory_service: acme.payment.payum.api.factory
+        factory_method: createPaypalExpressCheckoutApi
