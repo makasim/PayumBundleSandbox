@@ -270,6 +270,54 @@ class PurchaseExamplesController extends Controller
 
     /**
      * @Extra\Route(
+     *   "/prepare_simple_purchase_with_custom_api",
+     *   name="acme_paypal_express_checkout_prepare_simple_purchase_with_custom_api"
+     * )
+     *
+     * @Extra\Template
+     */
+    public function prepareWithCustomApiAction(Request $request)
+    {
+        $paymentName = 'paypal_express_checkout_and_custom_api';
+
+        $form = $this->createPurchaseForm();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+                $paymentName
+            );
+
+            /** @var $paymentDetails PaymentDetails */
+            $paymentDetails = $storage->createModel();
+            $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
+            $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
+            $storage->updateModel($paymentDetails);
+
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
+
+            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
+            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+            $paymentDetails->setInvnum($paymentDetails->getId());
+            $storage->updateModel($paymentDetails);
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        return array(
+            'form' => $form->createView(),
+            'paymentName' => $paymentName
+        );
+    }
+
+    /**
+     * @Extra\Route(
      *   "/prepare_purchase_with_ipn_enabled",
      *   name="acme_paypal_express_checkout_prepare_purchase_with_ipn_enabled"
      * )

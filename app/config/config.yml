@@ -217,6 +217,24 @@ payum:
                         driver: orm
                         payment_extension: true
 
+        paypal_express_checkout_and_custom_api:
+            paypal_express_checkout_nvp:
+                api:
+                    options:
+                        username:  NOT NEEDED
+                        password:  NOT NEEDED
+                        signature: NOT NEEDED
+                        sandbox: true
+                apis:
+                    - acme.payment.payum.paypal_express_checkout_api
+
+            storages:
+                Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails:
+                    filesystem:
+                        storage_dir: %kernel.root_dir%/Resources/payments
+                        id_property: id
+                        payment_extension: true
+
         paypal_pro_checkout:
             paypal_pro_checkout_nvp:
                 api:
