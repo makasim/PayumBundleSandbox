@@ -2,13 +2,13 @@
 namespace Acme\PaymentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Acme\PaymentBundle\Model\PaymentDetails as BasePaymentDetails;
+use Acme\PaymentBundle\Model\RecurringPaymentDetails as BaseRecurringPaymentDetails;
 
 /**
- * @ORM\Table(name="payum_payment_details")
+ * @ORM\Table(name="payum_recurring_payment_details")
  * @ORM\Entity
  */
-class PaymentDetails extends BasePaymentDetails
+class RecurringPaymentDetails extends BaseRecurringPaymentDetails
 {
     /**
      * @ORM\Column(name="id", type="integer")

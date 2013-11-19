@@ -3,7 +3,7 @@ namespace Acme\PaymentBundle\Model;
 
 use Payum\Model\ArrayObject;
 
-class PaymentDetails extends ArrayObject
+class RecurringPaymentDetails extends ArrayObject
 {
     protected $id;
 
