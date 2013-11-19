@@ -41,6 +41,7 @@ class DemoExtension extends \Twig_Extension
             $payumConfig = Yaml::dump(
                 array(
                     'payum' => array(
+                        'security' => $config['payum']['security'],
                         'contexts' => array(
                             $paymentContext => $config['payum']['contexts'][$paymentContext]
                         )
