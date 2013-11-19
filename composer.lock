@@ -531,12 +531,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/lexer.git",
-                "reference": "bc0e1f0cc285127a38c6c8ea88bc5dba2fd53e94"
+                "reference": "57d5a024b48709c56ce5bb93072948359220f36c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/lexer/zipball/bc0e1f0cc285127a38c6c8ea88bc5dba2fd53e94",
-                "reference": "bc0e1f0cc285127a38c6c8ea88bc5dba2fd53e94",
+                "url": "https://api.github.com/repos/doctrine/lexer/zipball/57d5a024b48709c56ce5bb93072948359220f36c",
+                "reference": "57d5a024b48709c56ce5bb93072948359220f36c",
                 "shasum": ""
             },
             "require": {
@@ -580,215 +580,7 @@
                 "lexer",
                 "parser"
             ],
-            "time": "2013-03-07 12:15:25"
-        },
-        {
-            "name": "doctrine/mongodb",
-            "version": "1.0.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/mongodb.git",
-                "reference": "401796e7a5ec3cea099d993fd0034235b917f1a8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/401796e7a5ec3cea099d993fd0034235b917f1a8",
-                "reference": "401796e7a5ec3cea099d993fd0034235b917f1a8",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/common": ">=2.1.0,<2.5-dev",
-                "ext-mongo": ">=1.2.12,<1.6-dev",
-                "php": ">=5.3.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Doctrine\\MongoDB": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bulat Shakirzyanov",
-                    "email": "mallluhuct@gmail.com",
-                    "homepage": "http://avalanche123.com"
-                },
-                {
-                    "name": "Jonathan H. Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
-                },
-                {
-                    "name": "Kris Wallsmith",
-                    "email": "kris.wallsmith@gmail.com",
-                    "homepage": "http://kriswallsmith.net/"
-                },
-                {
-                    "name": "Jeremy Mikola",
-                    "email": "jmikola@gmail.com",
-                    "homepage": "http://jmikola.net"
-                }
-            ],
-            "description": "Doctrine MongoDB Abstraction Layer",
-            "homepage": "http://www.doctrine-project.org",
-            "keywords": [
-                "database",
-                "mongodb",
-                "persistence"
-            ],
-            "time": "2013-11-01 17:12:21"
-        },
-        {
-            "name": "doctrine/mongodb-odm",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/mongodb-odm.git",
-                "reference": "4a2d7755c225f5b27f69e3ef0187ae0caec24aea"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/4a2d7755c225f5b27f69e3ef0187ae0caec24aea",
-                "reference": "4a2d7755c225f5b27f69e3ef0187ae0caec24aea",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/annotations": "~1.0",
-                "doctrine/cache": "~1.0",
-                "doctrine/collections": "~1.0",
-                "doctrine/common": "2.4.*",
-                "doctrine/inflector": "~1.0",
-                "doctrine/mongodb": "1.0.*",
-                "php": ">=5.3.2",
-                "symfony/console": "~2.0"
-            },
-            "require-dev": {
-                "symfony/yaml": "~2.0"
-            },
-            "suggest": {
-                "symfony/yaml": "Enables the YAML metadata mapping driver"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Doctrine\\ODM\\MongoDB": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bulat Shakirzyanov",
-                    "email": "mallluhuct@gmail.com",
-                    "homepage": "http://avalanche123.com"
-                },
-                {
-                    "name": "Jonathan H. Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
-                },
-                {
-                    "name": "Kris Wallsmith",
-                    "email": "kris.wallsmith@gmail.com",
-                    "homepage": "http://kriswallsmith.net/"
-                },
-                {
-                    "name": "Jeremy Mikola",
-                    "email": "jmikola@gmail.com",
-                    "homepage": "http://jmikola.net"
-                }
-            ],
-            "description": "Doctrine MongoDB Object Document Mapper",
-            "homepage": "http://www.doctrine-project.org",
-            "keywords": [
-                "database",
-                "mongodb",
-                "odm",
-                "persistence"
-            ],
-            "time": "2013-10-28 17:53:12"
-        },
-        {
-            "name": "doctrine/mongodb-odm-bundle",
-            "version": "dev-master",
-            "target-dir": "Doctrine/Bundle/MongoDBBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/DoctrineMongoDBBundle.git",
-                "reference": "b7d25d7fab0149942d3a19c73c0544ef54b1bab7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineMongoDBBundle/zipball/b7d25d7fab0149942d3a19c73c0544ef54b1bab7",
-                "reference": "b7d25d7fab0149942d3a19c73c0544ef54b1bab7",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/mongodb-odm": "~1.0.0-beta5@dev",
-                "php": ">=5.3.2",
-                "symfony/doctrine-bridge": "~2.1",
-                "symfony/framework-bundle": "~2.1",
-                "symfony/options-resolver": "~2.1"
-            },
-            "require-dev": {
-                "doctrine/data-fixtures": "@dev",
-                "symfony/form": "~2.1",
-                "symfony/yaml": "~2.1"
-            },
-            "suggest": {
-                "doctrine/data-fixtures": "Load data fixtures"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Doctrine\\Bundle\\MongoDBBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bulat Shakirzyanov",
-                    "email": "mallluhuct@gmail.com",
-                    "homepage": "http://avalanche123.com"
-                },
-                {
-                    "name": "Jonathan H. Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
-                },
-                {
-                    "name": "Kris Wallsmith",
-                    "email": "kris@symfony.com"
-                }
-            ],
-            "description": "Symfony2 Doctrine MongoDB Bundle",
-            "homepage": "http://www.doctrine-project.org",
-            "keywords": [
-                "mongodb",
-                "persistence",
-                "symfony"
-            ],
-            "time": "2013-10-28 20:35:52"
+            "time": "2013-11-19 06:15:26"
         },
         {
             "name": "doctrine/mongodb",
@@ -1672,16 +1464,16 @@
         },
         {
             "name": "omnipay/omnipay",
-            "version": "dev-master",
+            "version": "1.1.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/adrianmacneil/omnipay.git",
-                "reference": "f79a14f6350f3210cc5d235bdd8a1378b963a2b1"
+                "url": "https://github.com/omnipay/omnipay.git",
+                "reference": "3c957cb44e383378a9ba9fa604c4da502deb747e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/adrianmacneil/omnipay/zipball/f79a14f6350f3210cc5d235bdd8a1378b963a2b1",
-                "reference": "f79a14f6350f3210cc5d235bdd8a1378b963a2b1",
+                "url": "https://api.github.com/repos/omnipay/omnipay/zipball/3c957cb44e383378a9ba9fa604c4da502deb747e",
+                "reference": "3c957cb44e383378a9ba9fa604c4da502deb747e",
                 "shasum": ""
             },
             "require": {
@@ -1700,7 +1492,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.0.x-dev"
                 }
             },
             "autoload": {
@@ -1719,7 +1511,7 @@
                 },
                 {
                     "name": "Omnipay Community",
-                    "homepage": "https://github.com/adrianmacneil/omnipay/graphs/contributors"
+                    "homepage": "https://github.com/omnipay/omnipay/graphs/contributors"
                 }
             ],
             "description": "A framework agnostic, multi-gateway payment processing library",
@@ -1737,8 +1529,6 @@
                 "egate",
                 "eway",
                 "express",
-                "first data",
-                "firstdata",
                 "gateway",
                 "gocardless",
                 "ideal",
@@ -1766,7 +1556,7 @@
                 "twocheckout",
                 "worldpay"
             ],
-            "time": "2013-11-10 11:31:21"
+            "time": "2013-10-19 17:21:33"
         },
         {
             "name": "payum/authorize-net-aim",
@@ -2128,12 +1918,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PaypalExpressCheckoutNvp.git",
-                "reference": "3864b92b967f846f47062e8d98a11a4a36f64993"
+                "reference": "70be83ee69298c862b1d9ebb70302aba043b420c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PaypalExpressCheckoutNvp/zipball/3864b92b967f846f47062e8d98a11a4a36f64993",
-                "reference": "3864b92b967f846f47062e8d98a11a4a36f64993",
+                "url": "https://api.github.com/repos/Payum/PaypalExpressCheckoutNvp/zipball/70be83ee69298c862b1d9ebb70302aba043b420c",
+                "reference": "70be83ee69298c862b1d9ebb70302aba043b420c",
                 "shasum": ""
             },
             "require": {
@@ -2186,7 +1976,7 @@
                 "paypal",
                 "recurring payment"
             ],
-            "time": "2013-11-02 15:52:19"
+            "time": "2013-11-19 18:56:19"
         },
         {
             "name": "payum/paypal-ipn",
@@ -2316,12 +2106,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "b441a4c32714f0cc69864eab2856c1560b3de8be"
+                "reference": "bc132be1fb304ba3b3ca841bb1a920d4f2eeacfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/b441a4c32714f0cc69864eab2856c1560b3de8be",
-                "reference": "b441a4c32714f0cc69864eab2856c1560b3de8be",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/bc132be1fb304ba3b3ca841bb1a920d4f2eeacfb",
+                "reference": "bc132be1fb304ba3b3ca841bb1a920d4f2eeacfb",
                 "shasum": ""
             },
             "require": {
@@ -2396,7 +2186,7 @@
                 "paypal rest",
                 "recurring payment"
             ],
-            "time": "2013-11-16 07:07:38"
+            "time": "2013-11-19 07:29:43"
         },
         {
             "name": "payum/payum-bundle",
@@ -2405,12 +2195,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "ebe7cffa87c8140f79240fa26854ebaa145dea58"
+                "reference": "4828c93406d9a5b5121908adb93e021e4418ed31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/ebe7cffa87c8140f79240fa26854ebaa145dea58",
-                "reference": "ebe7cffa87c8140f79240fa26854ebaa145dea58",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/4828c93406d9a5b5121908adb93e021e4418ed31",
+                "reference": "4828c93406d9a5b5121908adb93e021e4418ed31",
                 "shasum": ""
             },
             "require": {
@@ -2483,23 +2273,28 @@
                 "paypal pro checkout",
                 "recurring payment"
             ],
-            "time": "2013-11-14 07:22:50"
+            "time": "2013-11-18 11:52:21"
         },
         {
             "name": "psr/log",
-            "version": "1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+                "reference": "134145e8d08ddcb9bb8f49a2feb9aa1f2393650c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/134145e8d08ddcb9bb8f49a2feb9aa1f2393650c",
+                "reference": "134145e8d08ddcb9bb8f49a2feb9aa1f2393650c",
                 "shasum": ""
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "Psr\\Log\\": ""
@@ -2521,7 +2316,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2012-12-21 11:40:51"
+            "time": "2013-11-19 10:21:35"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -2943,12 +2738,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "6316de572a85b7e887e15df2df5093237acb9bf2"
+                "reference": "8a13ba606e7cc69004f6cad21b4a52232f939288"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/6316de572a85b7e887e15df2df5093237acb9bf2",
-                "reference": "6316de572a85b7e887e15df2df5093237acb9bf2",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/8a13ba606e7cc69004f6cad21b4a52232f939288",
+                "reference": "8a13ba606e7cc69004f6cad21b4a52232f939288",
                 "shasum": ""
             },
             "require": {
@@ -3043,7 +2838,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-11-14 20:58:12"
+            "time": "2013-11-19 18:28:41"
         },
         {
             "name": "twig/extensions",
