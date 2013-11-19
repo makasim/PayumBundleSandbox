@@ -14,63 +14,15 @@ class PurchaseExamplesController extends Controller
 {
     /**
      * @Extra\Route(
-     *   "/prepare_simple_purchase", 
-     *   name="acme_paypal_express_checkout_prepare_simple_purchase"
+     *   "/prepare_simple_purchase_doctrine_orm",
+     *   name="acme_paypal_express_checkout_prepare_simple_purchase_doctrine_orm"
      * )
      * 
-     * @Extra\Template
+     * @Extra\Template("AcmePaypalExpressCheckoutBundle:PurchaseExamples:prepare.html.twig")
      */
-    public function prepareAction(Request $request)
+    public function prepareSimplePurchaseAndDoctrineOrmAction(Request $request)
     {
-        $paymentName = 'paypal_express_checkout';
-        
-        $form = $this->createPurchaseForm();
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            $data = $form->getData();
-
-            $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Entity\PaymentDetails',
-                $paymentName
-            );
-
-            /** @var $paymentDetails PaymentDetails */
-            $paymentDetails = $storage->createModel();
-            $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
-            $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
-            $storage->updateModel($paymentDetails);
-
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
-                'acme_payment_details_view'
-            );
-
-            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
-            $paymentDetails->setInvnum($paymentDetails->getId());
-            $storage->updateModel($paymentDetails);
-
-            return $this->redirect($captureToken->getTargetUrl());
-        }
-        
-        return array(
-            'form' => $form->createView(),
-            'paymentName' => $paymentName
-        );
-    }
-
-    /**
-     * @Extra\Route(
-     *   "/prepare_simple_purchase_doctrine_orm_and_simple_model",
-     *   name="acme_paypal_express_checkout_prepare_simple_purchase_doctrine_orm_and_simple_model"
-     * )
-     * 
-     * @Extra\Template
-     */
-    public function prepareDoctrineAndSimpleModelAction(Request $request)
-    {
-        $paymentName = 'paypal_express_checkout_plus_doctrine_orm_and_simple_model';
+        $paymentName = 'paypal_express_checkout_and_doctrine_orm';
         
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -108,17 +60,17 @@ class PurchaseExamplesController extends Controller
         );
     }
 
-        /**
+    /**
      * @Extra\Route(
-     *   "/prepare_simple_purchase_doctrine_mongo_odm_and_simple_model",
-     *   name="acme_paypal_express_checkout_prepare_simple_purchase_doctrine_mongo_odm_and_simple_model"
+     *   "/prepare_simple_purchase_doctrine_mongo_odm",
+     *   name="acme_paypal_express_checkout_prepare_simple_purchase_doctrine_mongo_odm"
      * )
      *
-     * @Extra\Template
+     * @Extra\Template("AcmePaypalExpressCheckoutBundle:PurchaseExamples:prepare.html.twig")
      */
-    public function prepareDoctrineMongoAndSimpleModelAction(Request $request)
+    public function prepareSimplePurchaseAndDoctrineMongoOdmAction(Request $request)
     {
-        $paymentName = 'paypal_express_checkout_plus_doctrine_mongo_odm_and_simple_model';
+        $paymentName = 'paypal_express_checkout_and_doctrine_mongo_odm';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -158,55 +110,6 @@ class PurchaseExamplesController extends Controller
 
     /**
      * @Extra\Route(
-     *   "/prepare_simple_purchase_and_doctrine",
-     *   name="acme_paypal_express_checkout_prepare_simple_purchase_and_doctrine"
-     * )
-     *
-     * @Extra\Template
-     */
-    public function prepareDoctrineAction(Request $request)
-    {
-        $paymentName = 'paypal_express_checkout_plus_doctrine';
-
-        $form = $this->createPurchaseForm();
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            $data = $form->getData();
-
-            $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Entity\PaymentDetails',
-                $paymentName
-            );
-
-            /** @var $paymentDetails PaymentDetails */
-            $paymentDetails = $storage->createModel();
-            $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
-            $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
-
-            $storage->updateModel($paymentDetails);
-
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
-                'acme_payment_details_view'
-            );
-
-            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
-            $paymentDetails->setInvnum($paymentDetails->getId());
-            $storage->updateModel($paymentDetails);
-
-            return $this->redirect($captureToken->getTargetUrl());
-        }
-
-        return array(
-            'form' => $form->createView(),
-            'paymentName' => $paymentName
-        );
-    }
-
-    /**
-     * @Extra\Route(
      *   "/digital_goods_purchase",
      *   name="acme_paypal_express_checkout_prepare_digital_goods_purchase"
      * )
@@ -215,7 +118,7 @@ class PurchaseExamplesController extends Controller
      */
     public function prepareDigitalGoodsAction(Request $request)
     {
-        $paymentName = 'paypal_express_checkout';
+        $paymentName = 'paypal_express_checkout_and_doctrine_orm';
         
         $eBook = array(
             'author' => 'Jules Verne', 
@@ -235,17 +138,15 @@ class PurchaseExamplesController extends Controller
 
             /** @var $paymentDetails PaymentDetails */
             $paymentDetails = $storage->createModel();
-            $paymentDetails->setPaymentrequestCurrencycode(0, $eBook['currency']);
-            $paymentDetails->setPaymentrequestAmt(0,  $eBook['price'] * $eBook['quantity']);
-            
-            $paymentDetails->setNoshipping(Api::NOSHIPPING_NOT_DISPLAY_ADDRESS);
-            $paymentDetails->setReqconfirmshipping(Api::REQCONFIRMSHIPPING_NOT_REQUIRED);
-            $paymentDetails->setLPaymentrequestItemcategory(0, 0, Api::PAYMENTREQUEST_ITERMCATEGORY_DIGITAL);
-            $paymentDetails->setLPaymentrequestAmt(0, 0, $eBook['price']);
-            $paymentDetails->setLPaymentrequestQty(0, 0, $eBook['quantity']);
-            $paymentDetails->setLPaymentrequestName(0, 0, $eBook['author'].'. '.$eBook['name']);
-            $paymentDetails->setLPaymentrequestDesc(0, 0, $eBook['description']);
-
+            $paymentDetails['PAYMENTREQUEST_0_CURRENCYCODE'] = $eBook['currency'];
+            $paymentDetails['PAYMENTREQUEST_0_AMT'] = $eBook['price'] * $eBook['quantity'];
+            $paymentDetails['NOSHIPPING'] = Api::NOSHIPPING_NOT_DISPLAY_ADDRESS;
+            $paymentDetails['REQCONFIRMSHIPPING'] = Api::REQCONFIRMSHIPPING_NOT_REQUIRED;
+            $paymentDetails['L_PAYMENTREQUEST_0_ITEMCATEGORY0'] = Api::PAYMENTREQUEST_ITERMCATEGORY_DIGITAL;
+            $paymentDetails['L_PAYMENTREQUEST_0_AMT0'] = $eBook['price'];
+            $paymentDetails['L_PAYMENTREQUEST_0_QTY0'] = $eBook['quantity'];
+            $paymentDetails['L_PAYMENTREQUEST_0_NAME0'] = $eBook['author'].'. '.$eBook['name'];
+            $paymentDetails['L_PAYMENTREQUEST_0_DESC'] = $eBook['description'];
             $storage->updateModel($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
@@ -254,9 +155,9 @@ class PurchaseExamplesController extends Controller
                 'acme_payment_details_view'
             );
 
-            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
-            $paymentDetails->setInvnum($paymentDetails->getId());
+            $paymentDetails['RETURNURL'] = $captureToken->getTargetUrl();
+            $paymentDetails['CANCELURL'] = $captureToken->getTargetUrl();
+            $paymentDetails['INVNUM'] = $paymentDetails->getId();
             $storage->updateModel($paymentDetails);
 
             return $this->redirect($captureToken->getTargetUrl());
@@ -274,11 +175,11 @@ class PurchaseExamplesController extends Controller
      *   name="acme_paypal_express_checkout_prepare_purchase_with_ipn_enabled"
      * )
      *
-     * @Extra\Template
+     * @Extra\Template("AcmePaypalExpressCheckoutBundle:PurchaseExamples:prepare.html.twig")
      */
     public function prepareWithIpnEnabledAction(Request $request)
     {
-        $paymentName = 'paypal_express_checkout';
+        $paymentName = 'paypal_express_checkout_with_ipn_enabled';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -292,8 +193,8 @@ class PurchaseExamplesController extends Controller
 
             /** @var $paymentDetails PaymentDetails */
             $paymentDetails = $storage->createModel();
-            $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
-            $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
+            $paymentDetails['PAYMENTREQUEST_0_CURRENCYCODE'] = $data['currency'];
+            $paymentDetails['PAYMENTREQUEST_0_AMT'] = $data['amount'];
             $storage->updateModel($paymentDetails);
 
             $notifyToken = $this->getTokenFactory()->createNotifyToken($paymentName, $paymentDetails);
@@ -304,10 +205,10 @@ class PurchaseExamplesController extends Controller
                 'acme_payment_details_view'
             );
 
-            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
-            $paymentDetails->setPaymentrequestNotifyurl(0, $notifyToken->getTargetUrl());
-            $paymentDetails->setInvnum($paymentDetails->getId());
+            $paymentDetails['RETURNURL'] = $captureToken->getTargetUrl();
+            $paymentDetails['CANCELURL'] = $captureToken->getTargetUrl();
+            $paymentDetails['PAYMENTREQUEST_0_NOTIFYURL'] = $notifyToken->getTargetUrl();
+            $paymentDetails['INVNUM'] = $paymentDetails->getId();
             $storage->updateModel($paymentDetails);
 
             return $this->redirect($captureToken->getTargetUrl());

@@ -1,10 +1,18 @@
 <?php
 
+use Doctrine\ODM\MongoDB\Types\Type;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
+    public function boot()
+    {
+        Type::addType('object', 'Payum\Bridge\Doctrine\Types\ObjectType');
+
+        parent::boot();
+    }
+
     public function registerBundles()
     {
         $bundles = array(

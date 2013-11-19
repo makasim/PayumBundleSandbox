@@ -108,39 +108,7 @@ payum:
                     driver: orm
 
     contexts:
-        paypal_express_checkout:
-            paypal_express_checkout_nvp:
-                api:
-                    options:
-                        username:  %paypal.express_checkout.username%
-                        password:  %paypal.express_checkout.password%
-                        signature: %paypal.express_checkout.signature%
-                        sandbox: true
-                        
-                actions:
-                    - acme.payment.payum.action.store_notification
-
-            storages:
-                Acme\PaymentBundle\Model\PaymentDetails:
-                    filesystem:
-                        storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: id
-
-        paypal_express_checkout_plus_doctrine_orm_and_simple_model:
-            paypal_express_checkout_nvp:
-                api:
-                    options:
-                        username:  %paypal.express_checkout.username%
-                        password:  %paypal.express_checkout.password%
-                        signature: %paypal.express_checkout.signature%
-                        sandbox: true
-
-            storages:
-                Acme\PaymentBundle\Entity\PaymentDetails:
-                    doctrine:
-                        driver: orm
-                        
-        paypal_express_checkout_plus_doctrine:
+        paypal_express_checkout_and_doctrine_orm:
             paypal_express_checkout_nvp:
                 api:
                     options:
@@ -154,7 +122,7 @@ payum:
                     doctrine:
                         driver: orm
 
-        paypal_express_checkout_plus_doctrine_mongo_odm_and_simple_model:
+        paypal_express_checkout_and_doctrine_mongo_odm:
             paypal_express_checkout_nvp:
                 api:
                     options:
@@ -168,27 +136,7 @@ payum:
                     doctrine:
                         driver: mongodb
                         
-        paypal_express_checkout_recurring_payment:
-            paypal_express_checkout_nvp:
-                api:
-                    options:
-                        username:  %paypal.express_checkout.username%
-                        password:  %paypal.express_checkout.password%
-                        signature: %paypal.express_checkout.signature%
-                        sandbox: true
-
-            storages:
-                Acme\PaymentBundle\Model\AgreementDetails:
-                    filesystem:
-                        storage_dir: %kernel.root_dir%/Resources/payments
-                        id_property: id
-
-                Acme\PaymentBundle\Model\RecurringPaymentDetails:
-                      filesystem:
-                          storage_dir: %kernel.root_dir%/Resources/payments
-                          id_property: id3
-                        
-        paypal_express_checkout_recurring_payment_plus_doctrine:
+        paypal_express_checkout_recurring_payment_and_doctrine_orm:
             paypal_express_checkout_nvp:
                 api:
                     options:
@@ -203,6 +151,22 @@ payum:
                         driver: orm
 
                 Acme\PaymentBundle\Entity\RecurringPaymentDetails:
+                    doctrine:
+                        driver: orm
+
+        paypal_express_checkout_with_ipn_enabled:
+            paypal_express_checkout_nvp:
+                api:
+                    options:
+                        username:  %paypal.express_checkout.username%
+                        password:  %paypal.express_checkout.password%
+                        signature: %paypal.express_checkout.signature%
+                        sandbox: true
+                actions:
+                    - acme.payment.payum.action.store_notification
+
+            storages:
+                Acme\PaymentBundle\Entity\PaymentDetails:
                     doctrine:
                         driver: orm
 

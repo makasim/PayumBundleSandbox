@@ -6,28 +6,19 @@
     <ol>
         <h3>Paypal Express Checkout</h3>
         <li>
-            <a href="{{ path("acme_paypal_express_checkout_prepare_simple_purchase") }}">Simple purchase (Filesystem storage, Custom model)</a>
+            <a href="{{ path("acme_paypal_express_checkout_prepare_simple_purchase_doctrine_orm") }}">Simple purchase. Doctrine ORM storage</a>
         </li>
         <li>
-            <a href="{{ path("acme_paypal_express_checkout_prepare_simple_purchase_doctrine_mongo_odm_and_simple_model") }}">Simple purchase (Doctrine Mongo ODM storage, Simple array model)</a>
+            <a href="{{ path("acme_paypal_express_checkout_prepare_simple_purchase_doctrine_mongo_odm") }}">Simple purchase. Doctrine Mongo ODM storage</a>
         </li>
         <li>
-            <a href="{{ path("acme_paypal_express_checkout_prepare_simple_purchase_doctrine_orm_and_simple_model") }}">Simple purchase (Doctrine ORM storage, Simple array model)</a>
+            <a href="{{ path("acme_paypal_express_checkout_prepare_digital_goods_purchase") }}">Purchase of digital goods</a>
         </li>
         <li>
-            <a href="{{ path("acme_paypal_express_checkout_prepare_simple_purchase_and_doctrine") }}">Simple purchase (Doctrine ORM storage, Custom model)</a>
+            <a href="{{ path("acme_paypal_express_checkout_prepare_purchase_with_ipn_enabled") }}">Purchase with IPN enabled</a>
         </li>
         <li>
-            <a href="{{ path("acme_paypal_express_checkout_prepare_digital_goods_purchase") }}">Purchase of <b>digital goods</b> (Filesystem storage, Custom model)</a>
-        </li>
-        <li>
-            <a href="{{ path("acme_paypal_express_checkout_prepare_recurring_payment") }}">Create recurring payment (Filesystem storage, Custom model)</a>
-        </li>
-        <li>
-            <a href="{{ path("acme_paypal_express_checkout_prepare_recurring_payment_plus_doctrine") }}">Create recurring payment (Doctrine ORM storage, Custom model)</a>
-        </li>
-        <li>
-            <a href="{{ path("acme_paypal_express_checkout_prepare_purchase_with_ipn_enabled") }}">Purchase with IPN enabled (Filesystem storage, Custom model)</a>
+            <a href="{{ path("acme_paypal_express_checkout_prepare_recurring_payment_agreement") }}">Create recurring payment</a>
         </li>
         
         <h3>Paypal Pro Checkout</h3>
