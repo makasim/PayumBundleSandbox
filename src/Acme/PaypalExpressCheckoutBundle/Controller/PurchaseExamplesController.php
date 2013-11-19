@@ -1,9 +1,9 @@
 <?php
 namespace Acme\PaypalExpressCheckoutBundle\Controller;
 
+use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
-use Payum\Paypal\ExpressCheckout\Nvp\Model\PaymentDetails;
 use Payum\Registry\RegistryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,7 +30,7 @@ class PurchaseExamplesController extends Controller
             $data = $form->getData();
 
             $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+                'Acme\PaymentBundle\Entity\PaymentDetails',
                 $paymentName
             );
 
@@ -229,7 +229,7 @@ class PurchaseExamplesController extends Controller
 
         if ('POST' === $request->getMethod()) {
             $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+                'Acme\PaymentBundle\Entity\PaymentDetails',
                 $paymentName
             );
 
@@ -286,7 +286,7 @@ class PurchaseExamplesController extends Controller
             $data = $form->getData();
 
             $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+                'Acme\PaymentBundle\Entity\PaymentDetails',
                 $paymentName
             );
 

@@ -1,8 +1,8 @@
 <?php
 namespace Acme\OtherExamplesBundle\Payum\Action;
 
-use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
 use Acme\OtherExamplesBundle\Model\Cart;
+use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Action\PaymentAwareAction;
 use Payum\Exception\RequestNotSupportedException;
 use Payum\Registry\RegistryInterface;
@@ -42,7 +42,7 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
         );
 
         $paymentDetailsStorage = $this->payum->getStorageForClass(
-            'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+            'Acme\PaymentBundle\Entity\PaymentDetails',
             $request->getToken()->getPaymentName()
         );
 

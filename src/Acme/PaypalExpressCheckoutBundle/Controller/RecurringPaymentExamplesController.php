@@ -1,10 +1,10 @@
 <?php
 namespace Acme\PaypalExpressCheckoutBundle\Controller;
 
-use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
+use Acme\PaymentBundle\Model\PaymentDetails;
+use Acme\PaymentBundle\Model\RecurringPaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
-use Payum\Paypal\ExpressCheckout\Nvp\Model\RecurringPaymentDetails;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfileRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\ManageRecurringPaymentsProfileStatusRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
@@ -45,7 +45,7 @@ class RecurringPaymentExamplesController extends PayumController
         
         if ($request->isMethod('POST')) {
             $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+                'Acme\PaymentBundle\Entity\PaymentDetails',
                 $paymentName
             );
             
@@ -102,7 +102,7 @@ class RecurringPaymentExamplesController extends PayumController
         $billingAgreementDetails = $billingAgreementStatus->getModel();
 
         $recurringPaymentStorage = $this->getPayum()->getStorageForClass(
-            'Acme\PaypalExpressCheckoutBundle\Model\RecurringPaymentDetails',
+            'Acme\PaymentBundle\Model\RecurringPaymentDetails',
             $token->getPaymentName()
         );
 
@@ -142,7 +142,7 @@ class RecurringPaymentExamplesController extends PayumController
         $payment = $this->getPayum()->getPayment($paymentName);
 
         $billingAgreementStorage = $this->getPayum()->getStorageForClass(
-            'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+            'Acme\PaymentBundle\Entity\PaymentDetails',
             $paymentName
         );
 
@@ -152,7 +152,7 @@ class RecurringPaymentExamplesController extends PayumController
         $payment->execute($billingAgreementStatus);
 
         $recurringPaymentStorage = $this->getPayum()->getStorageForClass(
-            'Acme\PaypalExpressCheckoutBundle\Model\RecurringPaymentDetails',
+            'Acme\PaymentBundle\Model\RecurringPaymentDetails',
             $paymentName
         );
 
