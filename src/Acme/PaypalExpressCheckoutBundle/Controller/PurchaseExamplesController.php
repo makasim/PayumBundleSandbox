@@ -193,8 +193,8 @@ class PurchaseExamplesController extends Controller
 
             /** @var $paymentDetails PaymentDetails */
             $paymentDetails = $storage->createModel();
-            $paymentDetails->setPaymentrequestCurrencycode(0, $data['currency']);
-            $paymentDetails->setPaymentrequestAmt(0,  $data['amount']);
+            $paymentDetails['PAYMENTREQUEST_0_CURRENCYCODE'] = $data['currency'];
+            $paymentDetails['PAYMENTREQUEST_0_AMT'] = $data['amount'];
             $storage->updateModel($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
@@ -203,9 +203,9 @@ class PurchaseExamplesController extends Controller
                 'acme_payment_details_view'
             );
 
-            $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-            $paymentDetails->setCancelurl($captureToken->getTargetUrl());
-            $paymentDetails->setInvnum($paymentDetails->getId());
+            $paymentDetails['RETURNURL'] = $captureToken->getTargetUrl();
+            $paymentDetails['CANCELURL'] = $captureToken->getTargetUrl();
+            $paymentDetails['INVNUM'] = $paymentDetails->getId();
             $storage->updateModel($paymentDetails);
 
             return $this->redirect($captureToken->getTargetUrl());
