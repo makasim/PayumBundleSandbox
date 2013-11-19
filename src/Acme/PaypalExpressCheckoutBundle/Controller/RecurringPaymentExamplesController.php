@@ -1,7 +1,7 @@
 <?php
 namespace Acme\PaypalExpressCheckoutBundle\Controller;
 
-use Acme\PaymentBundle\Model\PaymentDetails;
+use Acme\PaymentBundle\Model\AgreementDetails;
 use Acme\PaymentBundle\Model\RecurringPaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
@@ -45,11 +45,11 @@ class RecurringPaymentExamplesController extends PayumController
         
         if ($request->isMethod('POST')) {
             $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Entity\PaymentDetails',
+                'Acme\PaymentBundle\Entity\AgreementDetails',
                 $paymentName
             );
             
-            /** @var $billingAgreementDetails PaymentDetails */
+            /** @var $billingAgreementDetails AgreementDetails */
             $billingAgreementDetails = $storage->createModel();
             $billingAgreementDetails->setPaymentrequestAmt(0,  $amount = 0);
             $billingAgreementDetails->setLBillingtype(0, Api::BILLINGTYPE_RECURRING_PAYMENTS);
@@ -142,7 +142,7 @@ class RecurringPaymentExamplesController extends PayumController
         $payment = $this->getPayum()->getPayment($paymentName);
 
         $billingAgreementStorage = $this->getPayum()->getStorageForClass(
-            'Acme\PaymentBundle\Entity\PaymentDetails',
+            'Acme\PaymentBundle\Entity\AgreementDetails',
             $paymentName
         );
 
@@ -230,11 +230,11 @@ class RecurringPaymentExamplesController extends PayumController
 
         if ($request->isMethod('POST')) {
             $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaypalExpressCheckoutBundle\Entity\PaymentDetails',
+                'Acme\PaymentBundle\Entity\AgreementDetails',
                 $paymentName
             );
 
-            /** @var $billingAgreementDetails PaymentDetails */
+            /** @var $billingAgreementDetails AgreementDetails */
             $billingAgreementDetails = $storage->createModel();
             $billingAgreementDetails->setPaymentrequestAmt(0,  $amount = 0);
             $billingAgreementDetails->setLBillingtype(0, Api::BILLINGTYPE_RECURRING_PAYMENTS);
@@ -287,7 +287,7 @@ class RecurringPaymentExamplesController extends PayumController
         $billingAgreementDetails = $billingAgreementStatus->getModel();
 
         $recurringPaymentStorage = $this->getPayum()->getStorageForClass(
-            'Acme\PaypalExpressCheckoutBundle\Entity\RecurringPaymentDetails',
+            'Acme\PaymentBundle\Entity\RecurringPaymentDetails',
             $token->getPaymentName()
         );
 
@@ -327,7 +327,7 @@ class RecurringPaymentExamplesController extends PayumController
         $payment = $this->getPayum()->getPayment($paymentName);
 
         $billingAgreementStorage = $this->getPayum()->getStorageForClass(
-            'Acme\PaypalExpressCheckoutBundle\Entity\PaymentDetails',
+            'Acme\PaymentBundle\Entity\AgreementDetails',
             $paymentName
         );
 
@@ -337,7 +337,7 @@ class RecurringPaymentExamplesController extends PayumController
         $payment->execute($billingAgreementStatus);
 
         $recurringPaymentStorage = $this->getPayum()->getStorageForClass(
-            'Acme\PaypalExpressCheckoutBundle\Entity\RecurringPaymentDetails',
+            'Acme\PaymentBundle\Entity\RecurringPaymentDetails',
             $paymentName
         );
 

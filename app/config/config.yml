@@ -125,7 +125,6 @@ payum:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
-                        payment_extension: true
 
         paypal_express_checkout_plus_doctrine_orm_and_simple_model:
             paypal_express_checkout_nvp:
@@ -140,7 +139,6 @@ payum:
                 Acme\PaymentBundle\Entity\PaymentDetails:
                     doctrine:
                         driver: orm
-                        payment_extension: true
                         
         paypal_express_checkout_plus_doctrine:
             paypal_express_checkout_nvp:
@@ -152,10 +150,9 @@ payum:
                         sandbox: true
 
             storages:
-                Acme\PaypalExpressCheckoutBundle\Entity\PaymentDetails:
+                Acme\PaymentBundle\Entity\PaymentDetails:
                     doctrine:
                         driver: orm
-                        payment_extension: true
 
         paypal_express_checkout_plus_doctrine_mongo_odm_and_simple_model:
             paypal_express_checkout_nvp:
@@ -181,16 +178,15 @@ payum:
                         sandbox: true
 
             storages:
-                Acme\PaymentBundle\Model\PaymentDetails:
+                Acme\PaymentBundle\Model\AgreementDetails:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
-                        payment_extension: true
+
                 Acme\PaymentBundle\Model\RecurringPaymentDetails:
                       filesystem:
                           storage_dir: %kernel.root_dir%/Resources/payments
-                          id_property: id
-                          payment_extension: true
+                          id_property: id3
                         
         paypal_express_checkout_recurring_payment_plus_doctrine:
             paypal_express_checkout_nvp:
@@ -202,15 +198,13 @@ payum:
                         sandbox: true
 
             storages:
-                Acme\PaypalExpressCheckoutBundle\Entity\PaymentDetails:
+                Acme\PaymentBundle\Entity\AgreementDetails:
                     doctrine:
                         driver: orm
-                        payment_extension: true
 
-                Acme\PaypalExpressCheckoutBundle\Entity\RecurringPaymentDetails:
+                Acme\PaymentBundle\Entity\RecurringPaymentDetails:
                     doctrine:
                         driver: orm
-                        payment_extension: true
 
         paypal_pro_checkout:
             paypal_pro_checkout_nvp:
@@ -296,7 +290,6 @@ payum:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
-                        payment_extension: true
                         
         payex_agreement:
             payex:
@@ -310,12 +303,11 @@ payum:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
-                        payment_extension: true
+
                 Acme\PayexBundle\Model\AgreementDetails:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: agreementRef
-                        payment_extension: true
 
         paypal_express_checkout_plus_cart:
             paypal_express_checkout_nvp:
@@ -334,12 +326,11 @@ payum:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
-                        payment_extension: true
+
                 Acme\PaymentBundle\Model\PaymentDetails:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
-                        payment_extension: true
                         
         authorize_net_plus_cart:
             authorize_net_aim:
@@ -368,7 +359,6 @@ payum:
                 JMS\Payment\CoreBundle\Entity\Payment:
                     doctrine:
                         driver: orm
-                        payment_extension: true
 
         offline:
             offline: ~
