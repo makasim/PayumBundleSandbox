@@ -182,7 +182,7 @@ payum:
                     - acme.payment.payum.paypal_express_checkout_api
 
             storages:
-                Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails:
+                Acme\PaymentBundle\Entity\PaymentDetails:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id

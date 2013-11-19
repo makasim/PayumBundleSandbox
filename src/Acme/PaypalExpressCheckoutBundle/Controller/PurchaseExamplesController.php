@@ -187,7 +187,7 @@ class PurchaseExamplesController extends Controller
             $data = $form->getData();
 
             $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
+                'Acme\PaymentBundle\Entity\PaymentDetails',
                 $paymentName
             );
 
