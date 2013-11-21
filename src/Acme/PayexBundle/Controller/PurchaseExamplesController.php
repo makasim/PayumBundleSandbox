@@ -1,9 +1,9 @@
 <?php
 namespace Acme\PayexBundle\Controller;
 
+use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Payex\Api\OrderApi;
-use Payum\Payex\Model\PaymentDetails;
 use Payum\Registry\RegistryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,7 +30,7 @@ class PurchaseExamplesController extends Controller
             $data = $form->getData();
 
             $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PayexBundle\Model\PaymentDetails',
+                'Acme\PaymentBundle\Model\PaymentDetails',
                 $paymentName
             );
 
@@ -89,7 +89,7 @@ class PurchaseExamplesController extends Controller
             $data = $form->getData();
 
             $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PayexBundle\Model\PaymentDetails',
+                'Acme\PaymentBundle\Model\PaymentDetails',
                 $paymentName
             );
 

@@ -1,11 +1,11 @@
 <?php
 namespace Acme\PayexBundle\Controller;
 
-use Acme\PayexBundle\Model\AgreementDetails;
+use Acme\PaymentBundle\Model\AgreementDetails;
+use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Payex\Api\AgreementApi;
 use Payum\Payex\Api\OrderApi;
-use Payum\Payex\Model\PaymentDetails;
 use Payum\Payex\Request\Api\CreateAgreementRequest;
 use Payum\Request\BinaryMaskStatusRequest;
 use Payum\Request\SyncRequest;
@@ -32,14 +32,14 @@ class OneClickExamplesController extends Controller
         $paymentName = 'payex_agreement';
         
         $agreementStorage = $this->getPayum()->getStorageForClass(
-            'Acme\PayexBundle\Model\AgreementDetails',
+            'Acme\PaymentBundle\Model\AgreementDetails',
             $paymentName
         );
 
         if ($request->get('agreementRef')) {
             $syncAgreement = new SyncRequest(new Identificator(
                 $request->get('agreementRef'),
-                'Acme\PayexBundle\Model\AgreementDetails'
+                'Acme\PaymentBundle\Model\AgreementDetails'
             ));
             $this->getPayum()->getPayment($paymentName)->execute($syncAgreement);
 
@@ -56,7 +56,7 @@ class OneClickExamplesController extends Controller
                 )));
             } else if ($agreementStatus->isNew()) {
                 $paymentStorage = $this->getPayum()->getStorageForClass(
-                    'Acme\PayexBundle\Model\PaymentDetails',
+                    'Acme\PaymentBundle\Model\PaymentDetails',
                     $paymentName
                 );
 
@@ -131,7 +131,7 @@ class OneClickExamplesController extends Controller
         if ($form->isValid()) {
 
             $paymentStorage = $this->getPayum()->getStorageForClass(
-                'Acme\PayexBundle\Model\PaymentDetails',
+                'Acme\PaymentBundle\Model\PaymentDetails',
                 $paymentName
             );
 

@@ -268,7 +268,7 @@ payum:
                 actions:
                     - acme.payex.payum.action.store_notification
             storages:
-                Acme\PayexBundle\Model\PaymentDetails:
+                Acme\PaymentBundle\Model\PaymentDetails:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
@@ -281,12 +281,12 @@ payum:
                         encryption_key:  %payex.encryption_key%
                         sandbox: true
             storages:
-                Acme\PayexBundle\Model\PaymentDetails:
+                Acme\PaymentBundle\Model\PaymentDetails:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
 
-                Acme\PayexBundle\Model\AgreementDetails:
+                Acme\PaymentBundle\Model\AgreementDetails:
                     filesystem:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: agreementRef

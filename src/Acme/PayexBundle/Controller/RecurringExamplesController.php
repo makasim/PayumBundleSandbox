@@ -1,8 +1,8 @@
 <?php
 namespace Acme\PayexBundle\Controller;
 
-use Acme\PayexBundle\Model\AgreementDetails;
-use Acme\PayexBundle\Model\PaymentDetails;
+use Acme\PaymentBundle\Model\AgreementDetails;
+use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Payex\Api\AgreementApi;
@@ -51,7 +51,7 @@ class RecurringExamplesController extends PayumController
             $stopDate = new \DateTime(sprintf('now + %d days', $subscription['frequency']));
 
             $agreementDetailsStorage = $this->getPayum()->getStorageForClass(
-                'Acme\PayexBundle\Model\AgreementDetails',
+                'Acme\PaymentBundle\Model\AgreementDetails',
                 $paymentName
             );
             
@@ -70,7 +70,7 @@ class RecurringExamplesController extends PayumController
             $agreementDetailsStorage->updateModel($agreementDetails);
             
             $paymentDetailsStorage = $this->getPayum()->getStorageForClass(
-                'Acme\PayexBundle\Model\PaymentDetails',
+                'Acme\PaymentBundle\Model\PaymentDetails',
                 $paymentName
             );
 
@@ -138,13 +138,13 @@ class RecurringExamplesController extends PayumController
         
         $payment->execute($syncAgreement = new SyncRequest(new Identificator(
             $agreementRef,
-            'Acme\PayexBundle\Model\AgreementDetails'
+            'Acme\PaymentBundle\Model\AgreementDetails'
         )));
         $payment->execute($agreementStatus = new BinaryMaskStatusRequest($syncAgreement->getModel()));
 
         $paymentStatus = new BinaryMaskStatusRequest(new Identificator(
             $paymentId,
-            'Acme\PayexBundle\Model\PaymentDetails'
+            'Acme\PaymentBundle\Model\PaymentDetails'
         ));
         $payment->execute($paymentStatus);
 
