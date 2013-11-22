@@ -218,7 +218,8 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -290,7 +291,8 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -491,9 +493,10 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -836,7 +839,8 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -1401,12 +1405,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "6225b22de9dcf36546be3a0b2fa8e3d986153f57"
+                "reference": "11cb918bbc471da036c6148b995d42f79806428d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/6225b22de9dcf36546be3a0b2fa8e3d986153f57",
-                "reference": "6225b22de9dcf36546be3a0b2fa8e3d986153f57",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/11cb918bbc471da036c6148b995d42f79806428d",
+                "reference": "11cb918bbc471da036c6148b995d42f79806428d",
                 "shasum": ""
             },
             "require": {
@@ -1460,7 +1464,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-11-14 19:48:31"
+            "time": "2013-11-20 12:44:25"
         },
         {
             "name": "omnipay/omnipay",
@@ -1623,12 +1627,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Be2Bill.git",
-                "reference": "6d507b96a3d00a5646a44b97f11dcc44a9e8a0ec"
+                "reference": "bfa06041abe293c9e0557317e308a918f190c98a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Be2Bill/zipball/6d507b96a3d00a5646a44b97f11dcc44a9e8a0ec",
-                "reference": "6d507b96a3d00a5646a44b97f11dcc44a9e8a0ec",
+                "url": "https://api.github.com/repos/Payum/Be2Bill/zipball/bfa06041abe293c9e0557317e308a918f190c98a",
+                "reference": "bfa06041abe293c9e0557317e308a918f190c98a",
                 "shasum": ""
             },
             "require": {
@@ -1669,7 +1673,7 @@
                 "be2bill",
                 "payment"
             ],
-            "time": "2013-11-14 16:22:10"
+            "time": "2013-11-22 12:29:21"
         },
         {
             "name": "payum/jms-payment-bridge",
@@ -1737,12 +1741,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Offline.git",
-                "reference": "dec40a605b7b3e40deff707236b45a1724cc1609"
+                "reference": "8fc9f2e2c1675288e035eb385ec95a835abbe47a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Offline/zipball/dec40a605b7b3e40deff707236b45a1724cc1609",
-                "reference": "dec40a605b7b3e40deff707236b45a1724cc1609",
+                "url": "https://api.github.com/repos/Payum/Offline/zipball/8fc9f2e2c1675288e035eb385ec95a835abbe47a",
+                "reference": "8fc9f2e2c1675288e035eb385ec95a835abbe47a",
                 "shasum": ""
             },
             "require": {
@@ -1787,7 +1791,7 @@
                 "offlile",
                 "payment"
             ],
-            "time": "2013-11-11 21:11:11"
+            "time": "2013-11-22 12:31:34"
         },
         {
             "name": "payum/omnipay-bridge",
@@ -1795,12 +1799,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/OmnipayBridge.git",
-                "reference": "4f3ad84ef1ceecbf91b90e233eaa0359a5a3b276"
+                "reference": "6ef9719cc81b34f46bdcce8c2cbb3470fa9b140b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/OmnipayBridge/zipball/4f3ad84ef1ceecbf91b90e233eaa0359a5a3b276",
-                "reference": "4f3ad84ef1ceecbf91b90e233eaa0359a5a3b276",
+                "url": "https://api.github.com/repos/Payum/OmnipayBridge/zipball/6ef9719cc81b34f46bdcce8c2cbb3470fa9b140b",
+                "reference": "6ef9719cc81b34f46bdcce8c2cbb3470fa9b140b",
                 "shasum": ""
             },
             "require": {
@@ -1846,7 +1850,7 @@
                 "omnipay",
                 "payment"
             ],
-            "time": "2013-11-14 16:21:58"
+            "time": "2013-11-22 12:31:56"
         },
         {
             "name": "payum/payex",
@@ -1854,12 +1858,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payex.git",
-                "reference": "e3cd8bc3e81d5c3bf3880cc401e2d3ac7d480560"
+                "reference": "98c2c99231929386ca4b8c5a280490b492aaec4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payex/zipball/e3cd8bc3e81d5c3bf3880cc401e2d3ac7d480560",
-                "reference": "e3cd8bc3e81d5c3bf3880cc401e2d3ac7d480560",
+                "url": "https://api.github.com/repos/Payum/Payex/zipball/98c2c99231929386ca4b8c5a280490b492aaec4a",
+                "reference": "98c2c99231929386ca4b8c5a280490b492aaec4a",
                 "shasum": ""
             },
             "require": {
@@ -1910,7 +1914,7 @@
                 "payex",
                 "payment"
             ],
-            "time": "2013-11-11 21:19:58"
+            "time": "2013-11-22 12:32:29"
         },
         {
             "name": "payum/paypal-express-checkout-nvp",
@@ -1918,12 +1922,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PaypalExpressCheckoutNvp.git",
-                "reference": "70be83ee69298c862b1d9ebb70302aba043b420c"
+                "reference": "1539e5c321068ab1eebd6d52cc0b378f34b7c0e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PaypalExpressCheckoutNvp/zipball/70be83ee69298c862b1d9ebb70302aba043b420c",
-                "reference": "70be83ee69298c862b1d9ebb70302aba043b420c",
+                "url": "https://api.github.com/repos/Payum/PaypalExpressCheckoutNvp/zipball/1539e5c321068ab1eebd6d52cc0b378f34b7c0e1",
+                "reference": "1539e5c321068ab1eebd6d52cc0b378f34b7c0e1",
                 "shasum": ""
             },
             "require": {
@@ -1976,7 +1980,7 @@
                 "paypal",
                 "recurring payment"
             ],
-            "time": "2013-11-19 18:56:19"
+            "time": "2013-11-22 12:32:55"
         },
         {
             "name": "payum/paypal-ipn",
@@ -2043,12 +2047,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PaypalProCheckoutNvp.git",
-                "reference": "8326563a5d5912d63b571a88b5c41025d86bcd87"
+                "reference": "c8b4971768a0ca377310c81de593db94e5e44e60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PaypalProCheckoutNvp/zipball/8326563a5d5912d63b571a88b5c41025d86bcd87",
-                "reference": "8326563a5d5912d63b571a88b5c41025d86bcd87",
+                "url": "https://api.github.com/repos/Payum/PaypalProCheckoutNvp/zipball/c8b4971768a0ca377310c81de593db94e5e44e60",
+                "reference": "c8b4971768a0ca377310c81de593db94e5e44e60",
                 "shasum": ""
             },
             "require": {
@@ -2098,7 +2102,7 @@
                 "paypal",
                 "pro checkout"
             ],
-            "time": "2013-11-14 16:22:04"
+            "time": "2013-11-22 12:33:21"
         },
         {
             "name": "payum/payum",
@@ -2106,12 +2110,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "bc132be1fb304ba3b3ca841bb1a920d4f2eeacfb"
+                "reference": "7807d4dd32054d82a39838d85e0c767d6dc943da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/bc132be1fb304ba3b3ca841bb1a920d4f2eeacfb",
-                "reference": "bc132be1fb304ba3b3ca841bb1a920d4f2eeacfb",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/7807d4dd32054d82a39838d85e0c767d6dc943da",
+                "reference": "7807d4dd32054d82a39838d85e0c767d6dc943da",
                 "shasum": ""
             },
             "require": {
@@ -2186,7 +2190,7 @@
                 "paypal rest",
                 "recurring payment"
             ],
-            "time": "2013-11-19 07:29:43"
+            "time": "2013-11-22 12:19:11"
         },
         {
             "name": "payum/payum-bundle",
@@ -2195,12 +2199,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "4828c93406d9a5b5121908adb93e021e4418ed31"
+                "reference": "32895ff77d076d2d36eb35275900c8be98f006bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/4828c93406d9a5b5121908adb93e021e4418ed31",
-                "reference": "4828c93406d9a5b5121908adb93e021e4418ed31",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/32895ff77d076d2d36eb35275900c8be98f006bf",
+                "reference": "32895ff77d076d2d36eb35275900c8be98f006bf",
                 "shasum": ""
             },
             "require": {
@@ -2273,7 +2277,7 @@
                 "paypal pro checkout",
                 "recurring payment"
             ],
-            "time": "2013-11-18 11:52:21"
+            "time": "2013-11-22 12:34:34"
         },
         {
             "name": "psr/log",
@@ -2371,12 +2375,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "10c64bf896e6f3abf0fd20ae976db841bff76196"
+                "reference": "d9b04ebff77407597b4a419e2714cea0682f297b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/10c64bf896e6f3abf0fd20ae976db841bff76196",
-                "reference": "10c64bf896e6f3abf0fd20ae976db841bff76196",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/d9b04ebff77407597b4a419e2714cea0682f297b",
+                "reference": "d9b04ebff77407597b4a419e2714cea0682f297b",
                 "shasum": ""
             },
             "require": {
@@ -2409,7 +2413,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2013-11-12 11:04:09"
+            "time": "2013-11-21 06:40:22"
         },
         {
             "name": "sensio/generator-bundle",
@@ -2738,12 +2742,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "8a13ba606e7cc69004f6cad21b4a52232f939288"
+                "reference": "21fa63532e3a96de8e3cddf00175ca4cdabf4263"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/8a13ba606e7cc69004f6cad21b4a52232f939288",
-                "reference": "8a13ba606e7cc69004f6cad21b4a52232f939288",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/21fa63532e3a96de8e3cddf00175ca4cdabf4263",
+                "reference": "21fa63532e3a96de8e3cddf00175ca4cdabf4263",
                 "shasum": ""
             },
             "require": {
@@ -2838,7 +2842,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-11-19 18:28:41"
+            "time": "2013-11-21 06:11:51"
         },
         {
             "name": "twig/extensions",
@@ -3226,12 +3230,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "24148d91bc58a1a666918e4b6948d343aa6c15fa"
+                "reference": "e13b380bf46bd7aeec952ac2ba47730c37e084d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/24148d91bc58a1a666918e4b6948d343aa6c15fa",
-                "reference": "24148d91bc58a1a666918e4b6948d343aa6c15fa",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e13b380bf46bd7aeec952ac2ba47730c37e084d4",
+                "reference": "e13b380bf46bd7aeec952ac2ba47730c37e084d4",
                 "shasum": ""
             },
             "require": {
@@ -3295,7 +3299,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2013-11-13 08:56:01"
+            "time": "2013-11-22 07:55:04"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
