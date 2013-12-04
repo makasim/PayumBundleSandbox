@@ -2,7 +2,7 @@
 namespace Acme\PaymentBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as Mongo;
-use Payum\Model\ArrayObject as BaseArrayObject;
+use Payum\Core\Model\ArrayObject as BaseArrayObject;
 
 /**
  * @Mongo\Document

@@ -4,7 +4,7 @@ namespace Acme\PaypalExpressCheckoutBundle\Controller;
 use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
-use Payum\Registry\RegistryInterface;
+use Payum\Core\Registry\RegistryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

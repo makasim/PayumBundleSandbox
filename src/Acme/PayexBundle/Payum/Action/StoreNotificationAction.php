@@ -3,7 +3,7 @@ namespace Acme\PayexBundle\Payum\Action;
 
 use Acme\PaymentBundle\Payum\Action\StoreNotificationAction as BaseStoreNotificationAction;
 use Payum\Bundle\PayumBundle\Request\ResponseInteractiveRequest;
-use Payum\Request\NotifyRequest;
+use Payum\Core\Request\NotifyRequest;
 use Symfony\Component\HttpFoundation\Response;
 
 class StoreNotificationAction extends BaseStoreNotificationAction

@@ -3,7 +3,7 @@ namespace Acme\OtherExamplesBundle\Controller;
 
 use Acme\OtherExamplesBundle\Model\Cart;
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
-use Payum\Registry\RegistryInterface;
+use Payum\Core\Registry\RegistryInterface;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

@@ -3,8 +3,8 @@ namespace Acme\PaymentBundle\Controller;
 
 use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
-use Payum\Registry\RegistryInterface;
-use Payum\Security\SensitiveValue;
+use Payum\Core\Registry\RegistryInterface;
+use Payum\Core\Security\SensitiveValue;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;

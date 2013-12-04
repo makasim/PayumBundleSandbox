@@ -3,7 +3,7 @@ namespace Acme\PaymentBundle\Controller;
 
 use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
-use Payum\Registry\RegistryInterface;
+use Payum\Core\Registry\RegistryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 

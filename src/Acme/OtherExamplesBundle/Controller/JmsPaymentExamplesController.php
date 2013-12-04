@@ -6,7 +6,7 @@ use JMS\Payment\CoreBundle\Entity\PaymentInstruction;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
-use Payum\Request\BinaryMaskStatusRequest;
+use Payum\Core\Request\BinaryMaskStatusRequest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;

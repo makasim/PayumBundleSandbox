@@ -24,19 +24,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "jms/payment-paypal-bundle": "~1",
         "payum/payum-bundle": "0.7.*@dev",
-        "payum/paypal-express-checkout-nvp": "0.7.*@dev",
-        "payum/paypal-pro-checkout-nvp": "0.7.*@dev",
-        "payum/authorize-net-aim": "0.7.*@dev",
-        "payum/be2bill": "0.7.*@dev",
-        "payum/omnipay-bridge": "0.7.*@dev",
-        "payum/paypal-ipn": "0.7.*@dev",
-        "payum/payex": "0.7.*@dev",
-        "payum/jms-payment-bridge": "0.7.*@dev",
-        "payum/offline": "0.7.*@dev"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "*",
-        "fp/testo": "@dev"
+        "payum/payum": "0.7.*@dev",
+        "payum/jms-payment-bridge": "0.7.*@dev"
     },
     "scripts": {
         "post-install-cmd": [

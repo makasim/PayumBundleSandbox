@@ -36,7 +36,7 @@ class DemoExtension extends \Twig_Extension
         $payumConfigHtml = '';
         if ($paymentContext) {
             ob_start();
-            include __DIR__.'/../../../../../app/config/config.yml';
+            include __DIR__.'/../../../../../app/config/payum.yml';
             $config = Yaml::parse(ob_get_clean());
             $payumConfig = Yaml::dump(
                 array(
@@ -50,7 +50,7 @@ class DemoExtension extends \Twig_Extension
                 $inline = 10
             );
 
-            $payumConfigHtml = "<p><strong>Payum config:</strong></p><pre># app/config/config.yml\n\n$payumConfig</pre>";
+            $payumConfigHtml = "<p><strong>Payum config:</strong></p><pre># app/config/payum.yml\n\n$payumConfig</pre>";
         }
 
         // highlight_string highlights php code only if '<?php' tag is present.

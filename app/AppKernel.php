@@ -8,7 +8,7 @@ class AppKernel extends Kernel
 {
     public function boot()
     {
-        Type::addType('object', 'Payum\Bridge\Doctrine\Types\ObjectType');
+        Type::addType('object', 'Payum\Core\Bridge\Doctrine\Types\ObjectType');
 
         parent::boot();
     }

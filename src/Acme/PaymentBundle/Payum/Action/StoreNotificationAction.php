@@ -2,8 +2,8 @@
 namespace Acme\PaymentBundle\Payum\Action;
 
 use Acme\PaymentBundle\Entity\NotificationDetails;
-use Payum\Action\ActionInterface;
-use Payum\Request\SecuredNotifyRequest;
+use Payum\Core\Action\ActionInterface;
+use Payum\Core\Request\SecuredNotifyRequest;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class StoreNotificationAction implements ActionInterface

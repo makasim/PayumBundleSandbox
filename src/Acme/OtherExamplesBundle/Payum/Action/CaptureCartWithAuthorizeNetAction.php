@@ -3,12 +3,12 @@ namespace Acme\OtherExamplesBundle\Payum\Action;
 
 use Acme\OtherExamplesBundle\Model\Cart;
 use Acme\PaymentBundle\Model\PaymentDetails;
-use Payum\Action\PaymentAwareAction;
+use Payum\Core\Action\PaymentAwareAction;
 use Payum\Bundle\PayumBundle\Request\ResponseInteractiveRequest;
-use Payum\Exception\RequestNotSupportedException;
-use Payum\Registry\RegistryInterface;
-use Payum\Request\SecuredCaptureRequest;
-use Payum\Security\SensitiveValue;
+use Payum\Core\Exception\RequestNotSupportedException;
+use Payum\Core\Registry\RegistryInterface;
+use Payum\Core\Request\SecuredCaptureRequest;
+use Payum\Core\Security\SensitiveValue;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;

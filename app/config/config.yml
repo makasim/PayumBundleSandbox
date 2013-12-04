@@ -63,8 +63,8 @@ doctrine:
             payum:
                 is_bundle: false
                 type: xml
-                dir: %kernel.root_dir%/../vendor/payum/payum/src/Payum/Bridge/Doctrine/Resources/mapping
-                prefix: Payum\Model
+                dir: %kernel.root_dir%/../vendor/payum/payum/src/Payum/Core/Bridge/Doctrine/Resources/mapping
+                prefix: Payum\Core\Model
 
 doctrine_mongodb:
     connections:
@@ -80,8 +80,8 @@ doctrine_mongodb:
                 payum:
                     is_bundle: false
                     type: xml
-                    dir: %kernel.root_dir%/../vendor/payum/payum/src/Payum/Bridge/Doctrine/Resources/mapping
-                    prefix: Payum\Model
+                    dir: %kernel.root_dir%/../vendor/payum/payum/src/Payum/Core/Bridge/Doctrine/Resources/mapping
+                    prefix: Payum\Core\Model
 
 # Swiftmailer Configuration
 swiftmailer:

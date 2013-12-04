@@ -2,9 +2,9 @@
 namespace Acme\PaymentBundle\Controller;
 
 use Payum\Bundle\PayumBundle\Controller\PayumController;
-use Payum\Exception\RequestNotSupportedException;
-use Payum\Request\BinaryMaskStatusRequest;
-use Payum\Request\SyncRequest;
+use Payum\Core\Exception\RequestNotSupportedException;
+use Payum\Core\Request\BinaryMaskStatusRequest;
+use Payum\Core\Request\SyncRequest;
 use Symfony\Component\HttpFoundation\Request;
 
 class DetailsController extends PayumController

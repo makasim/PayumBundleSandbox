@@ -2,7 +2,7 @@
 namespace Acme\PaymentBundle\Controller;
 
 use Payum\Bundle\PayumBundle\Security\TokenFactory;
-use Payum\Registry\RegistryInterface;
+use Payum\Core\Registry\RegistryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;

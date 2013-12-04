@@ -1,8 +1,8 @@
 <?php
 namespace Acme\OtherExamplesBundle\Model;
 
-use Payum\Model\DetailsAggregateInterface;
-use Payum\Model\DetailsAwareInterface;
+use Payum\Core\Model\DetailsAggregateInterface;
+use Payum\Core\Model\DetailsAwareInterface;
 
 class Cart implements DetailsAwareInterface, DetailsAggregateInterface
 {
