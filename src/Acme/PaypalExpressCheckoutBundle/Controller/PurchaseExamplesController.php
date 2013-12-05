@@ -146,7 +146,7 @@ class PurchaseExamplesController extends Controller
             $paymentDetails['L_PAYMENTREQUEST_0_AMT0'] = $eBook['price'];
             $paymentDetails['L_PAYMENTREQUEST_0_QTY0'] = $eBook['quantity'];
             $paymentDetails['L_PAYMENTREQUEST_0_NAME0'] = $eBook['author'].'. '.$eBook['name'];
-            $paymentDetails['L_PAYMENTREQUEST_0_DESC'] = $eBook['description'];
+            $paymentDetails['L_PAYMENTREQUEST_0_DESC0'] = $eBook['description'];
             $storage->updateModel($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
