@@ -50,6 +50,7 @@ class PurchaseExamplesController extends Controller
             $paymentDetails['additionalValues'] = '';
             $paymentDetails['agreementRef'] = '';
             $paymentDetails['clientLanguage'] = 'en-US';
+            $paymentDetails['autoPay'] = false;
 
             $storage->updateModel($paymentDetails);
 
