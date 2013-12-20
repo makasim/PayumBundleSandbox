@@ -1719,12 +1719,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "dbd84bacffce597649f9dfac1ced7da782b66a7e"
+                "reference": "ad9dc613ff0c94eab0175aa8f992f3f926af84f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/dbd84bacffce597649f9dfac1ced7da782b66a7e",
-                "reference": "dbd84bacffce597649f9dfac1ced7da782b66a7e",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/ad9dc613ff0c94eab0175aa8f992f3f926af84f4",
+                "reference": "ad9dc613ff0c94eab0175aa8f992f3f926af84f4",
                 "shasum": ""
             },
             "require": {
@@ -1808,7 +1808,7 @@
                 "paypal rest",
                 "recurring payment"
             ],
-            "time": "2013-12-19 17:59:20"
+            "time": "2013-12-20 13:20:36"
         },
         {
             "name": "payum/payum-bundle",
@@ -1817,12 +1817,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "f5149a1bb6ae54faa50b5e09208cc7091451329d"
+                "reference": "1108af256dd85f432aea410fff17744649ede2d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/f5149a1bb6ae54faa50b5e09208cc7091451329d",
-                "reference": "f5149a1bb6ae54faa50b5e09208cc7091451329d",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/1108af256dd85f432aea410fff17744649ede2d8",
+                "reference": "1108af256dd85f432aea410fff17744649ede2d8",
                 "shasum": ""
             },
             "require": {
@@ -1888,7 +1888,7 @@
                 "paypal pro checkout",
                 "recurring payment"
             ],
-            "time": "2013-12-17 09:01:16"
+            "time": "2013-12-20 13:18:53"
         },
         {
             "name": "psr/log",
