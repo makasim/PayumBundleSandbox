@@ -1,8 +1,8 @@
 <?php
 namespace Acme\OtherExamplesBundle\Payum\FooBarGateway\Action;
 
-use Payum\Action\ActionInterface;
-use Payum\Request\CaptureRequest;
+use Payum\Core\Action\ActionInterface;
+use Payum\Core\Request\CaptureRequest;
 
 class CaptureAction implements ActionInterface
 {
