@@ -10,6 +10,10 @@ acme_payment_prepare_simple_purchase_be2bill:
     pattern:  /payment/simple_purchase/be2bill/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchaseBe2Bill:prepare }
 
+acme_payment_prepare_simple_purchase_be2bill_onsite:
+    pattern:  /payment/simple_purchase/be2bill/prepare_onsite
+    defaults: { _controller: AcmePaymentBundle:SimplePurchaseBe2Bill:prepareOnsite }
+
 acme_payment_prepare_simple_purchase_offline:
     pattern:  /payment/simple_purchase/offline/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchaseOffline:prepare }

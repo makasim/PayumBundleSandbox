@@ -128,6 +128,23 @@ payum:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
 
+        be2bill_onsite:
+            be2bill:
+                api:
+                    options:
+                        identifier: %be2bill.identifier%
+                        password: %be2bill.password%
+                        sandbox: true
+
+                actions:
+                    - acme.payment.payum.action.be2bill_onsite
+
+            storages:
+                Acme\PaymentBundle\Model\PaymentDetails:
+                    filesystem:
+                        storage_dir: %kernel.root_dir%/Resources/payments
+                        id_property: id
+
         paypal_express_checkout_via_ominpay:
             omnipay:
                 type: PayPal_Express
