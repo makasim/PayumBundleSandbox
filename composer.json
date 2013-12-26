@@ -8,7 +8,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.3.*",
+        "symfony/symfony": "~2.3",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/mongodb": "1.0.*@dev",
         "doctrine/mongodb-odm": "1.0.*@dev",
@@ -23,9 +23,9 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "jms/payment-paypal-bundle": "~1",
-        "payum/payum-bundle": "0.7.*",
-        "payum/payum": "0.7.*",
-        "payum/jms-payment-bridge": "0.7.*"
+        "payum/payum-bundle": "0.8.*@dev",
+        "payum/payum": "0.8.*@dev",
+        "payum/jms-payment-bridge": "0.8.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
@@ -53,7 +53,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "0.7-dev"
+            "dev-master": "0.8-dev"
         }
     }
 }
