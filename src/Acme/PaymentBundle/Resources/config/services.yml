@@ -13,3 +13,6 @@ services:
         class: Payum\Paypal\ExpressCheckout\Nvp\Api
         factory_service: acme.payment.payum.api.factory
         factory_method: createPaypalExpressCheckoutApi
+
+    acme.payment.payum.action.be2bill_onsite:
+        class: Payum\Be2Bill\Action\CaptureOnsiteAction

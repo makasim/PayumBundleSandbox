@@ -57,6 +57,54 @@ class SimplePurchaseBe2BillController extends Controller
         ));
     }
 
+    public function prepareOnsiteAction(Request $request)
+    {
+        $paymentName = 'be2bill_onsite';
+
+        $form = $this->createPurchaseForm();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaymentBundle\Model\PaymentDetails',
+                $paymentName
+            );
+
+            /** @var PaymentDetails */
+            $paymentDetails = $storage->createModel();
+            //be2bill amount format is cents: for example:  100.05 (EUR). will be 10005.
+            $paymentDetails['AMOUNT'] = $data['amount'] * 100;
+            $paymentDetails['CLIENTIDENT'] = 'payerId';
+            $paymentDetails['DESCRIPTION'] = 'Payment for digital stuff';
+            $paymentDetails['ORDERID'] = uniqid();
+            $storage->updateModel($paymentDetails);
+
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
+
+            /**
+             * This is the trick.
+             * You have also configure these urls in the account configuration section on be2bill site:
+             *
+             * return url: http://your-domain-here.dev/payment/capture/session-token
+             * cancel url: http://your-domain-here.dev/payment/capture/session-token
+             */
+            $request->getSession()->set('payum_token', $captureToken->getHash());
+
+            return $this->forward('PayumBundle:Capture:do', array(
+                'payum_token' => $captureToken,
+            ));
+        }
+
+        return $this->render('AcmePaymentBundle:SimplePurchaseBe2Bill:prepare.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
     /**
      * @return \Symfony\Component\Form\Form
      */
@@ -64,13 +112,9 @@ class SimplePurchaseBe2BillController extends Controller
     {
         return $this->createFormBuilder()
             ->add('amount', null, array(
-                    'data' => 1.23,
-                    'constraints' => array(new Range(array('max' => 2)))
-                ))
-            ->add('card_number', null, array('data' => '5555556778250000'))
-            ->add('card_expiration_date', null, array('data' => '11-15'))
-            ->add('card_holder', null, array('data' => 'John Doe'))
-            ->add('card_cvv', null, array('data' => '123'))
+                'data' => 1.23,
+                'constraints' => array(new Range(array('max' => 2)))
+            ))
 
             ->getForm()
         ;
