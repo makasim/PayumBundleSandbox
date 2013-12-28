@@ -136,9 +136,6 @@ payum:
                         password: %be2bill.password%
                         sandbox: true
 
-                actions:
-                    - acme.payment.payum.action.be2bill_onsite
-
             storages:
                 Acme\PaymentBundle\Model\PaymentDetails:
                     filesystem:
