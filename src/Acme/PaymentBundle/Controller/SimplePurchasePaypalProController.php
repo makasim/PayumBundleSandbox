@@ -1,12 +1,12 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
+use Payum\Core\Registry\RegistryInterface;
+use Payum\Core\Security\SensitiveValue;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-use Payum\Registry\RegistryInterface;
-use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 class SimplePurchasePaypalProController extends Controller
 {
@@ -15,39 +15,32 @@ class SimplePurchasePaypalProController extends Controller
         $paymentName = 'paypal_pro_checkout';
 
         $form = $this->createPurchaseForm();
-        if ($request->isMethod('POST')) {
-            
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
 
-                $storage = $this->getPayum()->getStorageForClass(
-                    'Acme\PaymentBundle\Model\PaypalProPaymentDetails',
-                    $paymentName
-                );
-                
-                $paymentDetails = $storage->createModel();
-                $paymentDetails
-                    ->setAcct($data['acct'])
-                    ->setCvv2($data['cvv2'])
-                    ->setExpDate($data['exp_date'])
-                    ->setAmt(number_format($data['amt'], 2))
-                    ->setCurrency($data['currency'])
-                ;
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaymentBundle\Model\PaymentDetails',
+                $paymentName
+            );
 
-                $storage->updateModel($paymentDetails);
+            $paymentDetails = $storage->createModel();
+            $paymentDetails['acct'] = new SensitiveValue($data['acct']);
+            $paymentDetails['cvv2'] = new SensitiveValue($data['cvv2']);
+            $paymentDetails['expdate'] = new SensitiveValue($data['exp_date']);
+            $paymentDetails['amt'] = number_format($data['amt'], 2);
+            $paymentDetails['currency'] = $data['currency'];
+            $storage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
-                    $paymentName,
-                    $paymentDetails,
-                    'acme_payment_details_view'
-                );
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
 
-                return $this->forward('PayumBundle:Capture:do', array(
-                    'paymentName' => $paymentName,
-                    'token' => $captureToken,
-                ));
-            }
+            return $this->forward('PayumBundle:Capture:do', array(
+                'payum_token' => $captureToken,
+            ));
         }
         
         return $this->render('AcmePaymentBundle:SimplePurchasePaypalPro:prepare.html.twig', array(
@@ -83,10 +76,10 @@ class SimplePurchasePaypalProController extends Controller
     }
 
     /**
-     * @return TokenManager
+     * @return TokenFactory
      */
-    protected function getTokenManager()
+    protected function getTokenFactory()
     {
-        return $this->get('payum.token_manager');
+        return $this->get('payum.security.token_factory');
     }
 }

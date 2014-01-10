@@ -1,0 +1,19 @@
+{% extends "AcmePaymentBundle::layout.html.twig" %}
+
+{% block title "Payex - Purchase with transaction callback enabled" %}
+
+{% block content %}
+    <p>
+        This examples shows how to use <a href="http://www.payexpim.com/quick-guide/9-transaction-callback/">payex transaction callbacks</a>.<br />
+        You do an ordinary purchase but payex configured to send us updates. This way we can update pending payments very fast.<br />
+        To see last notifications go to <a href="{{ path('acme_payment_notifications_list') }}">last notifications page</a><br />
+    </p>
+
+    <form method="POST">
+        {{ form_widget(form) }}
+
+        <input type="submit" value="Pay" />
+    </form>
+{% endblock %}
+
+{% set code = code(_self) %}

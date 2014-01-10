@@ -1,4 +1,4 @@
-{% extends "TwigBundle::layout.html.twig" %}
+{% extends "AcmeDemoBundle::base_layout.html.twig" %}
 
 {% block head %}
     <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
@@ -17,7 +17,6 @@
     {% block content_header %}
         <ul id="menu">
             {% block content_header_more %}
-                <li><a href="{{ path('_demo') }}">Demo Home</a></li>
             {% endblock %}
         </ul>
 

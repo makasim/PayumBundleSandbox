@@ -1,10 +1,10 @@
 <?php
 namespace Acme\OtherExamplesBundle\Payum\Action;
 
-use Payum\Action\ActionInterface;
-use Payum\Exception\RequestNotSupportedException;
-use Payum\Model\DetailsAggregateInterface;
-use Payum\Request\StatusRequestInterface;
+use Payum\Core\Action\ActionInterface;
+use Payum\Core\Exception\RequestNotSupportedException;
+use Payum\Core\Model\DetailsAggregateInterface;
+use Payum\Core\Request\StatusRequestInterface;
 
 class StatusDetailsAggregatedNullModelAction implements ActionInterface
 {

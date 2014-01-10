@@ -1,16 +1,13 @@
 <?php
 namespace Acme\OtherExamplesBundle\Controller;
 
+use Acme\OtherExamplesBundle\Model\Cart;
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
+use Payum\Core\Registry\RegistryInterface;
+use Payum\Paypal\ExpressCheckout\Nvp\Api;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
-
-use Payum\Registry\RegistryInterface;
-use Payum\Paypal\ExpressCheckout\Nvp\Api;
-use Payum\Bundle\PayumBundle\Service\TokenManager;
-
-use Acme\OtherExamplesBundle\Model\Cart;
 
 class CartExamplesController extends Controller
 {
@@ -25,31 +22,29 @@ class CartExamplesController extends Controller
     public function selectPaymentAction(Request $request)
     {
         $form = $this->createChoosePaymentForm();
-        if ('POST' === $request->getMethod()) {
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
-                $paymentName = $data['payment_name'];
-                
-                $cartStorage = $this->getPayum()->getStorageForClass(
-                    'Acme\OtherExamplesBundle\Model\Cart',
-                    $paymentName
-                );
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+            $paymentName = $data['payment_name'];
 
-                /** @var $cart Cart */
-                $cart = $cartStorage->createModel();
-                $cart->setPrice(1.23);
-                $cart->setCurrency('USD');
-                $cartStorage->updateModel($cart);
-                
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
-                    $paymentName,
-                    $cart,
-                    'acme_payment_details_view' // TODO 
-                );
+            $cartStorage = $this->getPayum()->getStorageForClass(
+                'Acme\OtherExamplesBundle\Model\Cart',
+                $paymentName
+            );
 
-                return $this->redirect($captureToken->getTargetUrl());
-            }
+            /** @var $cart Cart */
+            $cart = $cartStorage->createModel();
+            $cart->setPrice(1.23);
+            $cart->setCurrency('USD');
+            $cartStorage->updateModel($cart);
+
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $cart,
+                'acme_payment_details_view' // TODO
+            );
+
+            return $this->redirect($captureToken->getTargetUrl());
         }
         
         return array(
@@ -82,10 +77,10 @@ class CartExamplesController extends Controller
     }
 
     /**
-     * @return TokenManager
+     * @return TokenFactory
      */
-    protected function getTokenManager()
+    protected function getTokenFactory()
     {
-        return $this->get('payum.token_manager');
+        return $this->get('payum.security.token_factory');
     }
 }

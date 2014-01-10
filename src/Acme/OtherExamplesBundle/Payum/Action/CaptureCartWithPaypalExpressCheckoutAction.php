@@ -1,18 +1,17 @@
 <?php
 namespace Acme\OtherExamplesBundle\Payum\Action;
 
-use Payum\Action\PaymentAwareAction;
-use Payum\Exception\RequestNotSupportedException;
-use Payum\Registry\RegistryInterface;
-use Payum\Bundle\PayumBundle\Request\CaptureTokenizedDetailsRequest;
-
-use Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails;
 use Acme\OtherExamplesBundle\Model\Cart;
+use Acme\PaymentBundle\Model\PaymentDetails;
+use Payum\Core\Action\PaymentAwareAction;
+use Payum\Core\Exception\RequestNotSupportedException;
+use Payum\Core\Registry\RegistryInterface;
+use Payum\Core\Request\SecuredCaptureRequest;
 
 class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction 
 {
     /**
-     * @var \Payum\Registry\RegistryInterface
+     * @var \Payum\Core\Registry\RegistryInterface
      */
     protected $payum;
 
@@ -29,7 +28,7 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
      */
     public function execute($request)
     {
-        /** @var $request \Payum\Bundle\PayumBundle\Request\CaptureTokenizedDetailsRequest */
+        /** @var $request SecuredCaptureRequest */
         if (false == $this->supports($request)) {
             throw RequestNotSupportedException::createActionNotSupported($this, $request);
         }
@@ -39,20 +38,20 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
 
         $cartStorage = $this->payum->getStorageForClass(
             $cart,
-            $request->getTokenizedDetails()->getPaymentName()
+            $request->getToken()->getPaymentName()
         );
 
         $paymentDetailsStorage = $this->payum->getStorageForClass(
-            'Acme\PaypalExpressCheckoutBundle\Model\PaymentDetails',
-            $request->getTokenizedDetails()->getPaymentName()
+            'Acme\PaymentBundle\Model\PaymentDetails',
+            $request->getToken()->getPaymentName()
         );
 
         /** @var $paymentDetails PaymentDetails */
         $paymentDetails = $paymentDetailsStorage->createModel();
-        $paymentDetails->setPaymentrequestCurrencycode(0, $cart->getCurrency());
-        $paymentDetails->setPaymentrequestAmt(0,  $cart->getPrice());
-        $paymentDetails->setReturnurl($request->getTokenizedDetails()->getTargetUrl());
-        $paymentDetails->setCancelurl($request->getTokenizedDetails()->getTargetUrl());
+        $paymentDetails['PAYMENTREQUEST_0_CURRENCYCODE'] = $cart->getCurrency();
+        $paymentDetails['PAYMENTREQUEST_0_AMT'] = $cart->getPrice();
+        $paymentDetails['RETURNURL'] = $request->getToken()->getTargetUrl();
+        $paymentDetails['CANCELURL'] = $request->getToken()->getTargetUrl();
         $paymentDetailsStorage->updateModel($paymentDetails);
 
         $cart->setDetails($paymentDetails);
@@ -68,7 +67,7 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
     public function supports($request)
     {
         return
-            $request instanceof CaptureTokenizedDetailsRequest &&
+            $request instanceof SecuredCaptureRequest &&
             $request->getModel() instanceof Cart &&
             null === $request->getModel()->getDetails()
         ;

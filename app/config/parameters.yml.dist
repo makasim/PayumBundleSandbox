@@ -17,6 +17,8 @@ parameters:
     paypal.express_checkout.username:  EDIT ME
     paypal.express_checkout.password:  EDIT ME
     paypal.express_checkout.signature: EDIT ME
+    paypal.express_checkout.usd_testuser_login: EDIT ME
+    paypal.express_checkout.usd_testuser_password: EDIT ME
 
     paypal.pro_checkout.username: EDIT ME
     paypal.pro_checkout.password: EDIT ME
@@ -31,3 +33,6 @@ parameters:
     
     payex.encryption_key: EDIT ME
     payex.account_number:   EDIT ME
+
+    stripe.secret_key:  EDIT ME
+    stripe.publishable_key: EDIT ME

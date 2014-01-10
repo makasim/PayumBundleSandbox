@@ -1,12 +1,11 @@
 <?php
-namespace Acme\PaypalExpressCheckoutBundle\Entity;
+namespace Acme\PaymentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
-use Payum\Paypal\ExpressCheckout\Nvp\Bridge\Doctrine\Entity\RecurringPaymentDetails as BaseRecurringPaymentDetails;
+use Acme\PaymentBundle\Model\RecurringPaymentDetails as BaseRecurringPaymentDetails;
 
 /**
- * @ORM\Table(name="payum_paypal_express_checkout_recurring_payment_details")
+ * @ORM\Table(name="payum_recurring_payment_details")
  * @ORM\Entity
  */
 class RecurringPaymentDetails extends BaseRecurringPaymentDetails

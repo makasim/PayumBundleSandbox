@@ -21,7 +21,8 @@ $loader->add('Payum\Paypal\AuthorizeNet\Aim\Tests', realpath(__DIR__ .'/../vendo
 
 $loader->add('Payum\Payex\Tests', realpath(__DIR__ .'/../vendor/payum/payex/tests'));
 
-$loader->add('Payum\Paypal\Be2Bill\Tests', realpath(__DIR__ .'/../vendor/payum/be2bill/tests'));
+$loader->add('Payum\Be2Bill\Examples', realpath(__DIR__ .'/../vendor/payum/be2bill/examples'));
+$loader->add('Payum\Be2Bill\Tests', realpath(__DIR__ .'/../vendor/payum/be2bill/tests'));
 
 $loader->add('Payum\Bundle\PayumBundle\Tests', __DIR__);
 

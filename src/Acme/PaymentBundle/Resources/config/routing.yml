@@ -9,21 +9,29 @@ acme_payment_prepare_simple_purchase_authorize_net:
 acme_payment_prepare_simple_purchase_be2bill:
     pattern:  /payment/simple_purchase/be2bill/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchaseBe2Bill:prepare }
+
+acme_payment_prepare_simple_purchase_be2bill_onsite:
+    pattern:  /payment/simple_purchase/be2bill/prepare_onsite
+    defaults: { _controller: AcmePaymentBundle:SimplePurchaseBe2Bill:prepareOnsite }
+
+acme_payment_prepare_simple_purchase_offline:
+    pattern:  /payment/simple_purchase/offline/prepare
+    defaults: { _controller: AcmePaymentBundle:SimplePurchaseOffline:prepare }
     
 acme_payment_prepare_simple_purchase_paypal_express_via_omnipay:
     pattern:  /payment/simple_purchase/paypal_express_via_omnipay/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchasePaypalExpressViaOmnipay:prepare }
 
+acme_payment_prepare_simple_purchase_stripe_via_omnipay:
+    pattern:  /payment/simple_purchase/stripe_via_omnipay/prepare
+    defaults: { _controller: AcmePaymentBundle:SimplePurchaseStripeViaOmnipay:prepare }
+
 acme_payment_prepare_simple_purchase_paypal_pro:
     pattern:  /payment/simple_purchase/paypal_express_pro/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchasePaypalPro:prepare }
-    
-acme_payment_capture_simple:
-    pattern:  /payment/simple_purchase/{contextName}/capture/{model}
-    defaults: { _controller: AcmePaymentBundle:Capture:simpleCapture }
 
 acme_payment_details_view:
-    pattern:  /payment/{paymentName}/details/{token}
+    pattern:  /payment/details
     defaults: { _controller: AcmePaymentBundle:Details:view }
     
 acme_payment_notifications_list:

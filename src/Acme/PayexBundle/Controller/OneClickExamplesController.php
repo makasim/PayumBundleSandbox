@@ -1,25 +1,21 @@
 <?php
 namespace Acme\PayexBundle\Controller;
 
-use Acme\PayexBundle\Model\AgreementDetails;
-use Payum\Payex\Action\Api\CreateAgreementAction;
+use Acme\PaymentBundle\Model\AgreementDetails;
+use Acme\PaymentBundle\Model\PaymentDetails;
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
+use Payum\Core\Request\BinaryMaskStatusRequest;
+use Payum\Core\Request\SyncRequest;
+use Payum\Core\Registry\RegistryInterface;
+use Payum\Core\Model\Identificator;
 use Payum\Payex\Api\AgreementApi;
-use Payum\Payex\Request\Api\CheckAgreementRequest;
+use Payum\Payex\Api\OrderApi;
 use Payum\Payex\Request\Api\CreateAgreementRequest;
-use Payum\Request\BinaryMaskStatusRequest;
-use Payum\Request\SyncRequest;
-use Payum\Storage\Identificator;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\Range;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
-
-use Payum\Registry\RegistryInterface;
-use Payum\Payex\Api\OrderApi;
-use Payum\Payex\Model\PaymentDetails;
-use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 class OneClickExamplesController extends Controller
 {
@@ -36,14 +32,14 @@ class OneClickExamplesController extends Controller
         $paymentName = 'payex_agreement';
         
         $agreementStorage = $this->getPayum()->getStorageForClass(
-            'Acme\PayexBundle\Model\AgreementDetails',
+            'Acme\PaymentBundle\Model\AgreementDetails',
             $paymentName
         );
 
         if ($request->get('agreementRef')) {
             $syncAgreement = new SyncRequest(new Identificator(
                 $request->get('agreementRef'),
-                'Acme\PayexBundle\Model\AgreementDetails'
+                'Acme\PaymentBundle\Model\AgreementDetails'
             ));
             $this->getPayum()->getPayment($paymentName)->execute($syncAgreement);
 
@@ -60,38 +56,38 @@ class OneClickExamplesController extends Controller
                 )));
             } else if ($agreementStatus->isNew()) {
                 $paymentStorage = $this->getPayum()->getStorageForClass(
-                    'Acme\PayexBundle\Model\PaymentDetails',
+                    'Acme\PaymentBundle\Model\PaymentDetails',
                     $paymentName
                 );
 
                 /** @var $paymentDetails PaymentDetails */
                 $paymentDetails = $paymentStorage->createModel();
-                $paymentDetails->setPrice(1000);
-                $paymentDetails->setPriceArgList('');
-                $paymentDetails->setVat(0);
-                $paymentDetails->setCurrency('NOK');
-                $paymentDetails->setOrderId(123);
-                $paymentDetails->setProductNumber(123);
-                $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_AUTHORIZATION);
-                $paymentDetails->setView(OrderApi::VIEW_CREDITCARD);
-                $paymentDetails->setDescription('a desc');
-                $paymentDetails->setClientIPAddress($request->getClientIp());
-                $paymentDetails->setClientIdentifier('');
-                $paymentDetails->setAdditionalValues('');
-                $paymentDetails->setAgreementRef($agreement->getAgreementRef());
-                $paymentDetails->setClientLanguage('en-US');
+                $paymentDetails['price'] = 1000;
+                $paymentDetails['priceArgList'] = '';
+                $paymentDetails['vat'] = 0;
+                $paymentDetails['currency'] = 'NOK';
+                $paymentDetails['orderId'] = 123;
+                $paymentDetails['productNumber'] = 123;
+                $paymentDetails['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
+                $paymentDetails['view'] = OrderApi::VIEW_CREDITCARD;
+                $paymentDetails['description'] = 'a desc';
+                $paymentDetails['clientIPAddress'] = $request->getClientIp();
+                $paymentDetails['clientIdentifier'] = '';
+                $paymentDetails['additionalValues'] = '';
+                $paymentDetails['agreementRef'] = $agreement->getAgreementRef();
+                $paymentDetails['clientLanguage'] = 'en-US';
 
                 $paymentStorage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
+                $captureToken = $this->getTokenFactory()->createCaptureToken(
                     $paymentName,
                     $paymentDetails,
                     'acme_payex_one_click_confirm_agreement',
                     array('agreementRef' => $agreement->getAgreementRef())
                 );
 
-                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
+                $paymentDetails['Returnurl'] = $captureToken->getTargetUrl();
+                $paymentDetails['Cancelurl'] = $captureToken->getTargetUrl();
                 $paymentStorage->updateModel($paymentDetails);
 
                 return $this->redirect($captureToken->getTargetUrl());
@@ -99,12 +95,12 @@ class OneClickExamplesController extends Controller
         } else {
             /** @var AgreementDetails $agreement */
             $agreement = $agreementStorage->createModel();
-            $agreement->setMaxAmount(10000);
-            $agreement->setPurchaseOperation(AgreementApi::PURCHASEOPERATION_AUTHORIZATION);
-            $agreement->setMerchantRef('aRef');
-            $agreement->setDescription('aDesc');
-            $agreement->setStartDate('');
-            $agreement->setStopDate('');
+            $agreement['maxAmount'] = 10000;
+            $agreement['purchaseOperation'] = AgreementApi::PURCHASEOPERATION_AUTHORIZATION;
+            $agreement['merchantRef'] = 'aRef';
+            $agreement['description'] = 'aDesc';
+            $agreement['startDate'] = '';
+            $agreement['stopDate'] = '';
 
             $this->getPayum()->getPayment($paymentName)->execute(new CreateAgreementRequest($agreement));
             $this->getPayum()->getPayment($paymentName)->execute(new SyncRequest($agreement));
@@ -131,40 +127,38 @@ class OneClickExamplesController extends Controller
         $paymentName = 'payex_agreement';
         
         $form = $this->createPurchaseForm();
-        if ($request->isMethod('POST')) {
-            $form->bind($request);
-            if ($form->isValid()) {
+        $form->handleRequest($request);
+        if ($form->isValid()) {
 
-                $paymentStorage = $this->getPayum()->getStorageForClass(
-                    'Acme\PayexBundle\Model\PaymentDetails',
-                    $paymentName
-                );
+            $paymentStorage = $this->getPayum()->getStorageForClass(
+                'Acme\PaymentBundle\Model\PaymentDetails',
+                $paymentName
+            );
 
-                /** @var $paymentDetails PaymentDetails */
-                $paymentDetails = $paymentStorage->createModel();
-                $paymentDetails->setPrice(1000);
-                $paymentDetails->setCurrency('NOK');
-                $paymentDetails->setOrderId(123);
-                $paymentDetails->setProductNumber(123);
-                $paymentDetails->setPurchaseOperation(OrderApi::PURCHASEOPERATION_SALE);
-                $paymentDetails->setDescription('a desc');
-                $paymentDetails->setAgreementRef($request->get('agreementRef'));
-                $paymentDetails->setAutoPay(true);
+            /** @var $paymentDetails PaymentDetails */
+            $paymentDetails = $paymentStorage->createModel();
+            $paymentDetails['price'] = 1000;
+            $paymentDetails['currency'] = 'NOK';
+            $paymentDetails['orderId'] = 123;
+            $paymentDetails['productNumber'] = 123;
+            $paymentDetails['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
+            $paymentDetails['description'] = 'a desc';
+            $paymentDetails['agreementRef'] = $request->get('agreementRef');
+            $paymentDetails['autoPay'] = true;
 
-                $paymentStorage->updateModel($paymentDetails);
+            $paymentStorage->updateModel($paymentDetails);
 
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
-                    $paymentName,
-                    $paymentDetails,
-                    'acme_payment_details_view'
-                );
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
 
-                $paymentDetails->setReturnurl($captureToken->getTargetUrl());
-                $paymentDetails->setCancelurl($captureToken->getTargetUrl());
-                $paymentStorage->updateModel($paymentDetails);
+            $paymentDetails['Returnurl'] = $captureToken->getTargetUrl();
+            $paymentDetails['Cancelurl'] = $captureToken->getTargetUrl();
+            $paymentStorage->updateModel($paymentDetails);
 
-                return $this->redirect($captureToken->getTargetUrl());
-            }
+            return $this->redirect($captureToken->getTargetUrl());
         }
         
         return array(
@@ -196,10 +190,10 @@ class OneClickExamplesController extends Controller
     }
 
     /**
-     * @return TokenManager
+     * @return TokenFactory
      */
-    protected function getTokenManager()
+    protected function getTokenFactory()
     {
-        return $this->get('payum.token_manager');
+        return $this->get('payum.security.token_factory');
     }
 }

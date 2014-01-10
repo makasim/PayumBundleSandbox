@@ -1,12 +1,11 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
+use Payum\Bundle\PayumBundle\Security\TokenFactory;
+use Payum\Core\Registry\RegistryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
-
-use Payum\Registry\RegistryInterface;
-use Payum\Bundle\PayumBundle\Service\TokenManager;
 
 class SimplePurchasePaypalExpressViaOmnipayController extends Controller
 {
@@ -15,36 +14,33 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
         $paymentName = 'paypal_express_checkout_via_ominpay';
         
         $form = $this->createPurchaseForm();
-        if ('POST' === $request->getMethod()) {
-            
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
 
-                $storage = $this->getPayum()->getStorageForClass(
-                    'Acme\PaymentBundle\Model\OmnipayPaymentDetails',
-                    $paymentName
-                );
-                
-                $paymentDetails = $storage->createModel();
-                $paymentDetails['amount'] = (float) $data['amount'];
-                $paymentDetails['currency'] = $data['currency'];
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaymentBundle\Model\PaymentDetails',
+                $paymentName
+            );
 
-                $storage->updateModel($paymentDetails);
+            $paymentDetails = $storage->createModel();
+            $paymentDetails['amount'] = (float) $data['amount'];
+            $paymentDetails['currency'] = $data['currency'];
 
-                $captureToken = $this->getTokenManager()->createTokenForCaptureRoute(
-                    $paymentName,
-                    $paymentDetails,
-                    'acme_payment_details_view'
-                );
+            $storage->updateModel($paymentDetails);
 
-                $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
-                $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
-                
-                $storage->updateModel($paymentDetails);
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
 
-                return $this->redirect($captureToken->getTargetUrl());
-            }
+            $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
+            $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
+
+            $storage->updateModel($paymentDetails);
+
+            return $this->redirect($captureToken->getTargetUrl());
         }
 
         return $this->render('AcmePaymentBundle:SimplePurchasePaypalExpressViaOmnipay:prepare.html.twig', array(
@@ -77,10 +73,10 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
     }
 
     /**
-     * @return TokenManager
+     * @return TokenFactory
      */
-    protected function getTokenManager()
+    protected function getTokenFactory()
     {
-        return $this->get('payum.token_manager');
+        return $this->get('payum.security.token_factory');
     }
 }

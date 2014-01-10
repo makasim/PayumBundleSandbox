@@ -1,12 +1,15 @@
 <?php
 namespace Acme\PaymentBundle\Model;
 
-use Payum\AuthorizeNet\Aim\Model\PaymentDetails;
+use Payum\Core\Model\ArrayObject;
 
-class AuthorizeNetPaymentDetails extends PaymentDetails
+class PaymentDetails extends ArrayObject
 {
     protected $id;
-    
+
+    /**
+     * @return int
+     */
     public function getId()
     {
         return $this->id;

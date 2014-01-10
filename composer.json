@@ -8,8 +8,11 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.3.*",
+        "symfony/symfony": "~2.3",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "doctrine/mongodb": "1.0.*@dev",
+        "doctrine/mongodb-odm": "1.0.*@dev",
+        "doctrine/mongodb-odm-bundle": "3.0.*@dev",
         "doctrine/doctrine-bundle": "1.2.*",
         "twig/extensions": "1.0.*",
         "symfony/assetic-bundle": "2.3.*",
@@ -19,18 +22,10 @@
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
-        "payum/payum-bundle": "0.6.x-dev",
-        "payum/paypal-express-checkout-nvp": "0.6.x-dev",
-        "payum/paypal-pro-checkout-nvp": "0.6.x-dev",
-        "payum/authorize-net-aim": "0.6.x-dev",
-        "payum/be2bill": "0.6.x-dev",
-        "payum/omnipay-bridge": "0.6.x-dev",
-        "payum/paypal-ipn": "0.6.x-dev",
-        "payum/payex": "0.6.x-dev"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "*",
-        "fp/testo": "@dev"
+        "jms/payment-paypal-bundle": "~1",
+        "payum/payum-bundle": "0.8.*@dev",
+        "payum/payum": "0.8.*@dev",
+        "payum/jms-payment-bridge": "0.8.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
@@ -51,7 +46,6 @@
     "config": {
         "bin-dir": "bin"
     },
-    "minimum-stability": "dev",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
@@ -59,7 +53,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "0.6-dev"
+            "dev-master": "0.8-dev"
         }
     }
 }

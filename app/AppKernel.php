@@ -1,10 +1,18 @@
 <?php
 
+use Doctrine\ODM\MongoDB\Types\Type;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
+    public function boot()
+    {
+        Type::addType('object', 'Payum\Core\Bridge\Doctrine\Types\ObjectType');
+
+        parent::boot();
+    }
+
     public function registerBundles()
     {
         $bundles = array(
@@ -15,7 +23,10 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new JMS\Payment\CoreBundle\JMSPaymentCoreBundle(),
+            new JMS\Payment\PaypalBundle\JMSPaymentPaypalBundle(),
 
             new Payum\Bundle\PayumBundle\PayumBundle(),
             

@@ -1,12 +1,11 @@
 <?php
-namespace Acme\PaypalExpressCheckoutBundle\Entity;
+namespace Acme\PaymentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
-use Payum\Paypal\ExpressCheckout\Nvp\Bridge\Doctrine\Entity\PaymentDetails as BasePaymentDetails;
+use Acme\PaymentBundle\Model\PaymentDetails as BasePaymentDetails;
 
 /**
- * @ORM\Table(name="payum_paypal_express_checkout_payment_details")
+ * @ORM\Table(name="payum_payment_details")
  * @ORM\Entity
  */
 class PaymentDetails extends BasePaymentDetails

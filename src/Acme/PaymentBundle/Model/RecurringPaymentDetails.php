@@ -1,12 +1,15 @@
 <?php
 namespace Acme\PaymentBundle\Model;
 
-use Payum\Be2Bill\Model\PaymentDetails;
+use Payum\Core\Model\ArrayObject;
 
-class Be2BillPaymentDetails extends PaymentDetails 
+class RecurringPaymentDetails extends ArrayObject
 {
     protected $id;
-    
+
+    /**
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
