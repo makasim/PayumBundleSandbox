@@ -87,11 +87,16 @@ class SimplePurchaseBe2BillController extends Controller
             );
 
             /**
-             * This is the trick.
+             * PAY ATTENTION
+             *
              * You have also configure these urls in the account configuration section on be2bill site:
              *
              * return url: http://your-domain-here.dev/payment/capture/session-token
              * cancel url: http://your-domain-here.dev/payment/capture/session-token
+             *
+             * To get notifications add this url to be2bill as notify url (change be2bill_onsite to your payment name):
+             *
+             * http://your-domain-here.dev/payment/notify/unsafe/be2bill_onsite
              */
             $request->getSession()->set('payum_token', $captureToken->getHash());
 
