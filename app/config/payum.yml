@@ -135,9 +135,8 @@ payum:
                         identifier: %be2bill.identifier%
                         password: %be2bill.password%
                         sandbox: true
-
                 actions:
-                    - acme.payment.payum.action.be2bill_onsite
+                    - acme.payex.payum.action.store_notification
 
             storages:
                 Acme\PaymentBundle\Model\PaymentDetails:

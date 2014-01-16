@@ -3,6 +3,7 @@ namespace Acme\PaymentBundle\Payum\Action;
 
 use Acme\PaymentBundle\Entity\NotificationDetails;
 use Payum\Core\Action\ActionInterface;
+use Payum\Core\Request\NotifyRequest;
 use Payum\Core\Request\SecuredNotifyRequest;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -26,10 +27,14 @@ class StoreNotificationAction implements ActionInterface
      */
     public function execute($request)
     {
-        /** @var SecuredNotifyRequest $request */
+        /** @var NotifyRequest $request */
         
         $notification = new NotificationDetails;
-        $notification->setPaymentName($request->getToken()->getPaymentName());
+        if ($request instanceof SecuredNotifyRequest) {
+            $notification->setPaymentName($request->getToken()->getPaymentName());
+        } else {
+            $notification->setPaymentName('unknown');
+        }
         $notification->setDetails($request->getNotification());
         $notification->setCreatedAt(new \DateTime);
         $this->doctrine->getManager()->persist($notification);
@@ -42,6 +47,6 @@ class StoreNotificationAction implements ActionInterface
      */
     public function supports($request)
     {
-        return $request instanceof SecuredNotifyRequest;
+        return $request instanceof NotifyRequest;
     }
 }
