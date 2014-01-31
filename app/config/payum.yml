@@ -144,7 +144,20 @@ payum:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
 
-        paypal_express_checkout_via_omnipay:
+        klarna_checkout:
+            klarna_checkout:
+                api:
+                    options:
+                        secret: %klarna.checkout.secret%
+                        sandbox: true
+
+            storages:
+                Acme\PaymentBundle\Model\PaymentDetails:
+                    filesystem:
+                        storage_dir: %kernel.root_dir%/Resources/payments
+                        id_property: id
+
+        paypal_express_checkout_via_ominpay:
             omnipay:
                 type: PayPal_Express
                 options:
