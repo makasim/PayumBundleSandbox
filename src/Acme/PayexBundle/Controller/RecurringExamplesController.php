@@ -169,7 +169,7 @@ class RecurringExamplesController extends PayumController
 
     /**
      * @Extra\Route(
-     *   "/cancle_recurring_payment",
+     *   "/cancel_recurring_payment",
      *   name="acme_payex_cancel_recurring_payment"
      * )
      */
