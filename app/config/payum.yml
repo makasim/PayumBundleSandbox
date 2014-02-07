@@ -144,7 +144,7 @@ payum:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
 
-        paypal_express_checkout_via_ominpay:
+        paypal_express_checkout_via_omnipay:
             omnipay:
                 type: PayPal_Express
                 options:
@@ -159,7 +159,7 @@ payum:
                         storage_dir: %kernel.root_dir%/Resources/payments
                         id_property: id
 
-        stripe_via_ominpay:
+        stripe_via_omnipay:
             omnipay:
                 type: Stripe
                 options:

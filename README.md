@@ -7,7 +7,7 @@ This document contains information on how to download, install, and start using 
 
 For a more detailed explanation, see:
  
- * [Readme][2] of the Symfony Standart Edition.
+ * [Readme][2] of the Symfony Standard Edition.
  * [Installation][1] chapter of the Symfony Documentation.
  * [Index document][3] of the PayumBundle.
 
@@ -52,7 +52,7 @@ If you get any warnings or recommendations, fix them before moving on.
 
 **Warning:**
 
-> Dont forget to configure a payment gateway options in `app/config/parameters.yml`.
+> Don't forget to configure a payment gateway options in `app/config/parameters.yml`.
  
 3) Browsing the Demo Application
 --------------------------------

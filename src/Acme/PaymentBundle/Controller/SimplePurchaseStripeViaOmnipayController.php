@@ -12,7 +12,7 @@ class SimplePurchaseStripeViaOmnipayController extends Controller
 {
     public function prepareAction(Request $request)
     {
-        $paymentName = 'stripe_via_ominpay';
+        $paymentName = 'stripe_via_omnipay';
         
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);

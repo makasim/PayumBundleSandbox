@@ -11,7 +11,7 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
 {
     public function prepareAction(Request $request)
     {
-        $paymentName = 'paypal_express_checkout_via_ominpay';
+        $paymentName = 'paypal_express_checkout_via_omnipay';
         
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
