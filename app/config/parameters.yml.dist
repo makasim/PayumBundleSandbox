@@ -32,6 +32,7 @@ parameters:
     be2bill.password:   EDIT ME
 
     klarna.checkout.secret: EDIT ME
+    klarna.checkout.eid:    EDIT ME
     
     payex.encryption_key: EDIT ME
     payex.account_number:   EDIT ME

@@ -25,7 +25,8 @@
         "jms/payment-paypal-bundle": "~1",
         "payum/payum-bundle": "0.8.*@dev",
         "payum/payum": "0.8.*@dev",
-        "payum/jms-payment-bridge": "0.8.*@dev"
+        "payum/jms-payment-bridge": "0.8.*@dev",
+        "klarna/checkout": "~1"
     },
     "scripts": {
         "post-install-cmd": [

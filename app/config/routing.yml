@@ -27,6 +27,10 @@ acme_payex:
     resource: "@AcmePayexBundle/Resources/config/routing.yml"
     prefix:   /
 
+acme_klarna:
+    resource: "@AcmeKlarnaBundle/Resources/config/routing.yml"
+    prefix:   /
+
 acme_other_examples:
     resource: "@AcmeOtherExamplesBundle/Resources/config/routing.yml"
     prefix:   /
