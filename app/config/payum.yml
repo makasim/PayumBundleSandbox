@@ -149,7 +149,11 @@ payum:
                 api:
                     options:
                         secret: %klarna.checkout.secret%
+                        merchant_id: %klarna.checkout.eid%
                         sandbox: true
+
+                extensions:
+                    - acme.payment.payum.extension.store_notification
 
             storages:
                 Acme\PaymentBundle\Model\PaymentDetails:

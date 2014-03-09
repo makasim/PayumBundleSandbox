@@ -61,7 +61,6 @@ class PurchaseExamplesController extends Controller
             );
 
             $details['merchant'] = array(
-                'id' => (string) $this->container->getParameter('klarna.checkout.eid'),
                 'terms_uri' => 'http://example.com/terms',
                 'checkout_uri' => 'http://example.com/fuck',
                 'confirmation_uri' => $captureToken->getTargetUrl(),
