@@ -1,8 +1,8 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
-use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Core\Registry\RegistryInterface;
+use Payum\Core\Security\GenericTokenFactoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
@@ -73,7 +73,7 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
     }
 
     /**
-     * @return TokenFactory
+     * @return GenericTokenFactoryInterface
      */
     protected function getTokenFactory()
     {

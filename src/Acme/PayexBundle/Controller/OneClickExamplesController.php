@@ -3,11 +3,11 @@ namespace Acme\PayexBundle\Controller;
 
 use Acme\PaymentBundle\Model\AgreementDetails;
 use Acme\PaymentBundle\Model\PaymentDetails;
-use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Core\Request\BinaryMaskStatusRequest;
 use Payum\Core\Request\SyncRequest;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Model\Identificator;
+use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Payex\Api\AgreementApi;
 use Payum\Payex\Api\OrderApi;
 use Payum\Payex\Request\Api\CreateAgreementRequest;
@@ -190,7 +190,7 @@ class OneClickExamplesController extends Controller
     }
 
     /**
-     * @return TokenFactory
+     * @return GenericTokenFactoryInterface
      */
     protected function getTokenFactory()
     {

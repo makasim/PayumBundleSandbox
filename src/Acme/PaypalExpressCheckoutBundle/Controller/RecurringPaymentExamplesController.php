@@ -4,7 +4,7 @@ namespace Acme\PaypalExpressCheckoutBundle\Controller;
 use Acme\PaymentBundle\Model\AgreementDetails;
 use Acme\PaymentBundle\Model\RecurringPaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
-use Payum\Bundle\PayumBundle\Security\TokenFactory;
+use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfileRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\ManageRecurringPaymentsProfileStatusRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
@@ -162,7 +162,7 @@ class RecurringPaymentExamplesController extends PayumController
 
         $cancelToken = null;
         if ($recurringPaymentStatus->isSuccess()) {
-            $cancelToken = $this->getTokenFactory()->createTokenForRoute(
+            $cancelToken = $this->getTokenFactory()->createToken(
                 $paymentName, 
                 $recurringPaymentDetails, 
                 'acme_paypal_express_checkout_cancel_recurring_payment',
@@ -213,7 +213,7 @@ class RecurringPaymentExamplesController extends PayumController
     }
 
     /**
-     * @return TokenFactory
+     * @return GenericTokenFactoryInterface
      */
     protected function getTokenFactory()
     {

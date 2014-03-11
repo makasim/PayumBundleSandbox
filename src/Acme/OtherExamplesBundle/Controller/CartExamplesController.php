@@ -2,8 +2,8 @@
 namespace Acme\OtherExamplesBundle\Controller;
 
 use Acme\OtherExamplesBundle\Model\Cart;
-use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Core\Registry\RegistryInterface;
+use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -77,7 +77,7 @@ class CartExamplesController extends Controller
     }
 
     /**
-     * @return TokenFactory
+     * @return GenericTokenFactoryInterface
      */
     protected function getTokenFactory()
     {

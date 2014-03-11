@@ -4,7 +4,7 @@ namespace Acme\OtherExamplesBundle\Controller;
 use JMS\Payment\CoreBundle\Entity\Payment;
 use JMS\Payment\CoreBundle\Entity\PaymentInstruction;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
-use Payum\Bundle\PayumBundle\Security\TokenFactory;
+use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Core\Request\BinaryMaskStatusRequest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
@@ -133,7 +133,7 @@ class JmsPaymentExamplesController extends PayumController
 
 
     /**
-     * @return TokenFactory
+     * @return GenericTokenFactoryInterface
      */
     protected function getTokenFactory()
     {

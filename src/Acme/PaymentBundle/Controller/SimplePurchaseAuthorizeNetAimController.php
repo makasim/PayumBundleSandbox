@@ -1,8 +1,8 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
-use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Core\Registry\RegistryInterface;
+use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Core\Security\SensitiveValue;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -72,7 +72,7 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
     }
 
     /**
-     * @return TokenFactory
+     * @return GenericTokenFactoryInterface
      */
     protected function getTokenFactory()
     {

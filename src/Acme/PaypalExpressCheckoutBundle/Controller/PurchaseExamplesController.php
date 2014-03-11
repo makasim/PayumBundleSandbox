@@ -2,7 +2,7 @@
 namespace Acme\PaypalExpressCheckoutBundle\Controller;
 
 use Acme\PaymentBundle\Model\PaymentDetails;
-use Payum\Bundle\PayumBundle\Security\TokenFactory;
+use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Core\Registry\RegistryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
@@ -292,7 +292,7 @@ class PurchaseExamplesController extends Controller
     }
 
     /**
-     * @return TokenFactory
+     * @return GenericTokenFactoryInterface
      */
     protected function getTokenFactory()
     {

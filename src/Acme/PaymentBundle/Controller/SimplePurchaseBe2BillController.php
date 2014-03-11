@@ -2,8 +2,8 @@
 namespace Acme\PaymentBundle\Controller;
 
 use Acme\PaymentBundle\Model\PaymentDetails;
-use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Core\Registry\RegistryInterface;
+use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Core\Security\SensitiveValue;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -153,7 +153,7 @@ class SimplePurchaseBe2BillController extends Controller
     }
 
     /**
-     * @return TokenFactory
+     * @return GenericTokenFactoryInterface
      */
     protected function getTokenFactory()
     {

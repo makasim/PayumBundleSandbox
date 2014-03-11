@@ -4,10 +4,10 @@ namespace Acme\PayexBundle\Controller;
 use Acme\PaymentBundle\Model\AgreementDetails;
 use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
-use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Core\Request\BinaryMaskStatusRequest;
 use Payum\Core\Request\SyncRequest;
 use Payum\Core\Model\Identificator;
+use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Payex\Api\AgreementApi;
 use Payum\Payex\Api\RecurringApi;
 use Payum\Payex\Request\Api\CreateAgreementRequest;
@@ -150,7 +150,7 @@ class RecurringExamplesController extends PayumController
 
         $cancelToken = null;
         if ($paymentStatus->isSuccess()) {
-            $cancelToken = $this->getTokenFactory()->createTokenForRoute(
+            $cancelToken = $this->getTokenFactory()->createToken(
                 $paymentName,
                 $paymentStatus->getModel(),
                 'acme_payex_cancel_recurring_payment',
@@ -197,7 +197,7 @@ class RecurringExamplesController extends PayumController
     }
 
     /**
-     * @return TokenFactory
+     * @return GenericTokenFactoryInterface
      */
     protected function getTokenFactory()
     {

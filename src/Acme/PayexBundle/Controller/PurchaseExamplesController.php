@@ -2,7 +2,7 @@
 namespace Acme\PayexBundle\Controller;
 
 use Acme\PaymentBundle\Model\PaymentDetails;
-use Payum\Bundle\PayumBundle\Security\TokenFactory;
+use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Payex\Api\OrderApi;
 use Payum\Core\Registry\RegistryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
@@ -155,7 +155,7 @@ class PurchaseExamplesController extends Controller
     }
 
     /**
-     * @return TokenFactory
+     * @return GenericTokenFactoryInterface
      */
     protected function getTokenFactory()
     {
