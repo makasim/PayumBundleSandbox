@@ -2,8 +2,8 @@
 namespace Acme\KlarnaBundle\Controller;
 
 use Acme\PaymentBundle\Model\PaymentDetails;
-use Payum\Bundle\PayumBundle\Security\TokenFactory;
 use Payum\Core\Registry\RegistryInterface;
+use Payum\Core\Security\GenericTokenFactoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -88,7 +88,7 @@ class PurchaseExamplesController extends Controller
     }
 
     /**
-     * @return TokenFactory
+     * @return GenericTokenFactoryInterface
      */
     protected function getTokenFactory()
     {
