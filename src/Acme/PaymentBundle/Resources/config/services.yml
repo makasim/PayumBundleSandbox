@@ -1,4 +1,9 @@
 services:
+    acme.payment.payum.extension.store_notification:
+        class: Acme\PaymentBundle\Payum\Extension\StoreNotificationExtension
+        arguments:
+            - @doctrine
+
     acme.payment.payum.action.store_notification:
         class: Acme\PaymentBundle\Payum\Action\StoreNotificationAction
         arguments:

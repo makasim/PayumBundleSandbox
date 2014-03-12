@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "8ee6b4829ff84f4948985e071e4ff4a2",
+    "hash": "d2f0860bdb31eaf59ff5e67b1e881293",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -1269,6 +1269,37 @@
                 "paypal"
             ],
             "time": "2013-08-14 16:58:12"
+        },
+        {
+            "name": "klarna/checkout",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/klarna/kco_php.git",
+                "reference": "db3c6dbd43a5addcc93bc265d5895dd0f79c1c43"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/klarna/kco_php/zipball/db3c6dbd43a5addcc93bc265d5895dd0f79c1c43",
+                "reference": "db3c6dbd43a5addcc93bc265d5895dd0f79c1c43",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.16"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Klarna": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Wrapper for the Klarna Checkout API",
+            "homepage": "http://integration.klarna.com",
+            "time": "2013-09-12 08:25:17"
         },
         {
             "name": "kriswallsmith/assetic",

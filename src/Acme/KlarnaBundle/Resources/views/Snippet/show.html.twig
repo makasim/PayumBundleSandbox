@@ -1,0 +1,10 @@
+{% extends "AcmePaymentBundle::layout.html.twig" %}
+
+{% block title "Klarna Checkout " %}
+
+{% block content %}
+    <div>{{ snippet|raw }}</div>
+    <form>
+        <input type="submit" value="Continue">
+    </form>
+{% endblock %}
