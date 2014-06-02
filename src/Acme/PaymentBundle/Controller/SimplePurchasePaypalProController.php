@@ -14,7 +14,7 @@ class SimplePurchasePaypalProController extends Controller
     {
         $paymentName = 'paypal_pro_checkout';
 
-        $form = $this->createPurchaseForm();
+        $form = $this->createPurchasePlusCreditCardForm();
         $form->handleRequest($request);
         if ($form->isValid()) {
             $data = $form->getData();
@@ -48,6 +48,58 @@ class SimplePurchasePaypalProController extends Controller
         ));
     }
 
+    public function prepareObtainCreditCardAction(Request $request)
+    {
+        $paymentName = 'paypal_pro_checkout';
+
+        $form = $this->createPurchaseForm();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaymentBundle\Model\PaymentDetails',
+                $paymentName
+            );
+
+            $paymentDetails = $storage->createModel();
+            $paymentDetails['amt'] = number_format($data['amt'], 2);
+            $paymentDetails['currency'] = $data['currency'];
+            $storage->updateModel($paymentDetails);
+
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        return $this->render('AcmePaymentBundle:SimplePurchasePaypalPro:prepare.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * @return \Symfony\Component\Form\Form
+     */
+    protected function createPurchasePlusCreditCardForm()
+    {
+        return $this->createFormBuilder()
+            ->add('amt', null, array(
+                'data' => 1,
+                'constraints' => array(new Range(array('max' => 2)))
+            ))
+            ->add('acct', null, array('data' => '5105105105105100'))
+            ->add('exp_date', null, array('data' => '1214'))
+            ->add('cvv2', null, array('data' => '123'))
+            ->add('currency', null, array('data' => 'USD'))
+
+            ->getForm()
+        ;
+    }
+
     /**
      * @return \Symfony\Component\Form\Form
      */
@@ -58,9 +110,6 @@ class SimplePurchasePaypalProController extends Controller
                 'data' => 1,
                 'constraints' => array(new Range(array('max' => 2)))
             ))
-            ->add('acct', null, array('data' => '5105105105105100'))
-            ->add('exp_date', null, array('data' => '1214'))
-            ->add('cvv2', null, array('data' => '123'))
             ->add('currency', null, array('data' => 'USD'))
 
             ->getForm()
