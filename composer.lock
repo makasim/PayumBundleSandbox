@@ -1868,12 +1868,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "63c09eda8e123fb58df034b09d3a25caddd89963"
+                "reference": "c1f13a88ad9a28e080c3fbb2291efdf1e5fee772"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/63c09eda8e123fb58df034b09d3a25caddd89963",
-                "reference": "63c09eda8e123fb58df034b09d3a25caddd89963",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/c1f13a88ad9a28e080c3fbb2291efdf1e5fee772",
+                "reference": "c1f13a88ad9a28e080c3fbb2291efdf1e5fee772",
                 "shasum": ""
             },
             "require": {
@@ -1968,7 +1968,7 @@
                 "paypal rest",
                 "recurring payment"
             ],
-            "time": "2014-05-14 16:51:26"
+            "time": "2014-06-03 09:25:30"
         },
         {
             "name": "payum/payum-bundle",
@@ -1977,19 +1977,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "6f53fa5283948d9b564d48dc896776ca7a086940"
+                "reference": "c4063e6b92b6b2737ea8502e552ccc18e1bfbd72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/6f53fa5283948d9b564d48dc896776ca7a086940",
-                "reference": "6f53fa5283948d9b564d48dc896776ca7a086940",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/c4063e6b92b6b2737ea8502e552ccc18e1bfbd72",
+                "reference": "c4063e6b92b6b2737ea8502e552ccc18e1bfbd72",
                 "shasum": ""
             },
             "require": {
                 "payum/core": "0.9.*@dev",
                 "php": ">=5.3.2",
-                "symfony/framework-bundle": "~2.0",
-                "twig/twig": "*"
+                "symfony/form": "~2.3",
+                "symfony/framework-bundle": "~2.3",
+                "symfony/twig-bundle": "~2.3",
+                "symfony/validator": "~2.3"
             },
             "require-dev": {
                 "doctrine/orm": "*",
@@ -2055,7 +2057,7 @@
                 "paypal pro checkout",
                 "recurring payment"
             ],
-            "time": "2014-05-28 09:34:47"
+            "time": "2014-06-03 15:41:20"
         },
         {
             "name": "psr/log",
@@ -2518,16 +2520,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.4.5",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "885b6d17447fcc3cd9c42622321e5af4283dbde1"
+                "reference": "59365832a09a1d914d14cbca6a21a7f572760c3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/885b6d17447fcc3cd9c42622321e5af4283dbde1",
-                "reference": "885b6d17447fcc3cd9c42622321e5af4283dbde1",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/59365832a09a1d914d14cbca6a21a7f572760c3b",
+                "reference": "59365832a09a1d914d14cbca6a21a7f572760c3b",
                 "shasum": ""
             },
             "require": {
@@ -2585,6 +2587,7 @@
                 "doctrine/data-fixtures": "1.0.*",
                 "doctrine/dbal": "~2.2",
                 "doctrine/orm": "~2.2,>=2.2.3",
+                "egulias/email-validator": "1.1.0",
                 "ircmaxell/password-compat": "1.0.*",
                 "monolog/monolog": "~1.3",
                 "ocramius/proxy-manager": ">=0.3.1,<0.6-dev",
@@ -2593,7 +2596,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -2629,7 +2632,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-05-22 21:04:05"
+            "time": "2014-05-31 18:45:50"
         },
         {
             "name": "twig/extensions",

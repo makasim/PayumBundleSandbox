@@ -14,7 +14,7 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
     {
         $paymentName = 'authorize_net';
 
-        $form = $this->createPurchaseForm();
+        $form = $this->createPurchasePlusCreditCardForm();
         $form->handleRequest($request);
         if ($form->isValid()) {
             $data = $form->getData();
@@ -46,10 +46,42 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
         ));
     }
 
+    public function prepareObtainCreditCardAction(Request $request)
+    {
+        $paymentName = 'authorize_net';
+
+        $form = $this->createPurchaseForm();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaymentBundle\Model\PaymentDetails',
+                $paymentName
+            );
+
+            $paymentDetails = $storage->createModel();
+            $paymentDetails['amount'] = $data['amount'];
+            $storage->updateModel($paymentDetails);
+
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        return $this->render('AcmePaymentBundle:SimplePurchaseAuthorizeNetAim:prepare.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
     /**
      * @return \Symfony\Component\Form\Form
      */
-    protected function createPurchaseForm()
+    protected function createPurchasePlusCreditCardForm()
     {
         return $this->createFormBuilder()
             ->add('amount', null, array(
@@ -59,6 +91,20 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
             ->add('card_number', null, array('data' => '4007000000027'))
             ->add('card_expiration_date', null, array('data' => '10/16'))
 
+            ->getForm()
+        ;
+    }
+
+    /**
+     * @return \Symfony\Component\Form\Form
+     */
+    protected function createPurchaseForm()
+    {
+        return $this->createFormBuilder()
+            ->add('amount', null, array(
+                'data' => 1.23,
+                'constraints' => array(new Range(array('max' => 2)))
+            ))
             ->getForm()
         ;
     }

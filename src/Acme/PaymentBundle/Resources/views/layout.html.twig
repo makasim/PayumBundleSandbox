@@ -7,3 +7,10 @@
     <li><a href="{{ path('acme_payment_notifications_list') }}">Instant notifications</a></li>
     <li><a href="http://payum.forma-dev.com/documentation" target="_blank">Documentation</a></li>
 {% endblock %}
+
+{% block content %}
+    {{ parent() }}
+
+    {% block payum_content %}
+    {% endblock %}
+{% endblock %}

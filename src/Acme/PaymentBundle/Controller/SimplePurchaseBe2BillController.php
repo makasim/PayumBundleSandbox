@@ -57,6 +57,46 @@ class SimplePurchaseBe2BillController extends Controller
         ));
     }
 
+    public function prepareObtainCreditCardAction(Request $request)
+    {
+        $paymentName = 'be2bill';
+
+        $form = $this->createPurchaseForm();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $storage = $this->getPayum()->getStorageForClass(
+                'Acme\PaymentBundle\Model\PaymentDetails',
+                $paymentName
+            );
+
+            /** @var PaymentDetails */
+            $paymentDetails = $storage->createModel();
+            //be2bill amount format is cents: for example:  100.05 (EUR). will be 10005.
+            $paymentDetails['AMOUNT'] = $data['amount'] * 100;
+            $paymentDetails['CLIENTEMAIL'] = 'user@email.com';
+            $paymentDetails['CLIENTUSERAGENT'] = $request->headers->get('User-Agent', 'Unknown');
+            $paymentDetails['CLIENTIP'] = $request->getClientIp();
+            $paymentDetails['CLIENTIDENT'] = 'payerId'.uniqid();
+            $paymentDetails['DESCRIPTION'] = 'Payment for digital stuff';
+            $paymentDetails['ORDERID'] = 'orderId'.uniqid();
+            $storage->updateModel($paymentDetails);
+
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $paymentDetails,
+                'acme_payment_details_view'
+            );
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        return $this->render('AcmePaymentBundle:SimplePurchaseBe2Bill:prepare.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
     public function prepareOnsiteAction(Request $request)
     {
         $paymentName = 'be2bill_onsite';
