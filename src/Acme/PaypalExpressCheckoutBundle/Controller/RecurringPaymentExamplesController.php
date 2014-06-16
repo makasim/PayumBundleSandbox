@@ -44,10 +44,7 @@ class RecurringPaymentExamplesController extends PayumController
         $subscription = $this->getWeatherForecastSubscriptionDetails();
         
         if ($request->isMethod('POST')) {
-            $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Entity\AgreementDetails',
-                $paymentName
-            );
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\AgreementDetails');
             
             /** @var $agreement AgreementDetails */
             $agreement = $storage->createModel();
@@ -100,10 +97,7 @@ class RecurringPaymentExamplesController extends PayumController
         $subscription = $this->getWeatherForecastSubscriptionDetails();
         $agreement = $agreementStatus->getModel();
 
-        $storage = $this->getPayum()->getStorageForClass(
-            'Acme\PaymentBundle\Entity\RecurringPaymentDetails',
-            $token->getPaymentName()
-        );
+        $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\RecurringPaymentDetails');
 
         $paymentDetails = $storage->createModel();
         $paymentDetails['TOKEN'] = $agreement['TOKEN'];
@@ -140,20 +134,14 @@ class RecurringPaymentExamplesController extends PayumController
     {
         $payment = $this->getPayum()->getPayment($paymentName);
 
-        $billingAgreementStorage = $this->getPayum()->getStorageForClass(
-            'Acme\PaymentBundle\Entity\AgreementDetails',
-            $paymentName
-        );
+        $billingAgreementStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\AgreementDetails');
 
         $billingAgreementDetails = $billingAgreementStorage->findModelById($billingAgreementId);
 
         $billingAgreementStatus = new BinaryMaskStatusRequest($billingAgreementDetails);
         $payment->execute($billingAgreementStatus);
 
-        $recurringPaymentStorage = $this->getPayum()->getStorageForClass(
-            'Acme\PaymentBundle\Entity\RecurringPaymentDetails',
-            $paymentName
-        );
+        $recurringPaymentStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\RecurringPaymentDetails');
 
         $recurringPaymentDetails = $recurringPaymentStorage->findModelById($recurringPaymentId);
 

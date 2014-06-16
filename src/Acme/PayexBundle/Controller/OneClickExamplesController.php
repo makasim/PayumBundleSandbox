@@ -31,10 +31,7 @@ class OneClickExamplesController extends Controller
     {
         $paymentName = 'payex_agreement';
         
-        $agreementStorage = $this->getPayum()->getStorageForClass(
-            'Acme\PaymentBundle\Model\AgreementDetails',
-            $paymentName
-        );
+        $agreementStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\AgreementDetails');
 
         if ($request->get('agreementRef')) {
             $syncAgreement = new SyncRequest(new Identificator(
@@ -55,10 +52,7 @@ class OneClickExamplesController extends Controller
                     'agreementRef' => $agreement->getAgreementRef()
                 )));
             } else if ($agreementStatus->isNew()) {
-                $paymentStorage = $this->getPayum()->getStorageForClass(
-                    'Acme\PaymentBundle\Model\PaymentDetails',
-                    $paymentName
-                );
+                $paymentStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
                 /** @var $paymentDetails PaymentDetails */
                 $paymentDetails = $paymentStorage->createModel();
@@ -130,10 +124,7 @@ class OneClickExamplesController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
 
-            $paymentStorage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Model\PaymentDetails',
-                $paymentName
-            );
+            $paymentStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var $paymentDetails PaymentDetails */
             $paymentDetails = $paymentStorage->createModel();

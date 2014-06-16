@@ -50,10 +50,7 @@ class RecurringExamplesController extends PayumController
             $startDate = new \DateTime('now');
             $stopDate = new \DateTime(sprintf('now + %d days', $subscription['frequency']));
 
-            $agreementDetailsStorage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Model\AgreementDetails',
-                $paymentName
-            );
+            $agreementDetailsStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\AgreementDetails');
             
             /** @var AgreementDetails $agreementDetails */
             $agreementDetails = $agreementDetailsStorage->createModel();
@@ -69,10 +66,7 @@ class RecurringExamplesController extends PayumController
             
             $agreementDetailsStorage->updateModel($agreementDetails);
             
-            $paymentDetailsStorage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Model\PaymentDetails',
-                $paymentName
-            );
+            $paymentDetailsStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var PaymentDetails $paymentDetails */
             $paymentDetails = $paymentDetailsStorage->createModel();

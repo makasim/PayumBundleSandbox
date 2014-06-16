@@ -19,17 +19,14 @@ class SimplePurchasePaypalProController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Model\PaymentDetails',
-                $paymentName
-            );
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             $paymentDetails = $storage->createModel();
-            $paymentDetails['acct'] = new SensitiveValue($data['acct']);
-            $paymentDetails['cvv2'] = new SensitiveValue($data['cvv2']);
-            $paymentDetails['expdate'] = new SensitiveValue($data['exp_date']);
-            $paymentDetails['amt'] = number_format($data['amt'], 2);
-            $paymentDetails['currency'] = $data['currency'];
+            $paymentDetails['ACCT'] = new SensitiveValue($data['acct']);
+            $paymentDetails['CVV2'] = new SensitiveValue($data['cvv2']);
+            $paymentDetails['EXPDATE'] = new SensitiveValue($data['exp_date']);
+            $paymentDetails['AMT'] = number_format($data['amt'], 2);
+            $paymentDetails['CURRENCY'] = $data['currency'];
             $storage->updateModel($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
@@ -57,10 +54,7 @@ class SimplePurchasePaypalProController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Model\PaymentDetails',
-                $paymentName
-            );
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             $paymentDetails = $storage->createModel();
             $paymentDetails['amt'] = number_format($data['amt'], 2);
