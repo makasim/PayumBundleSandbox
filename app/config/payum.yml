@@ -29,7 +29,7 @@ payum:
                     - payex_agreement
             filesystem:
                 storage_dir: %kernel.root_dir%/Resources/payments
-                id_property: agreementRef
+                id_property: id
 
         Acme\OtherExamplesBundle\Model\Cart:
             payment:
@@ -63,7 +63,7 @@ payum:
                 password:  %paypal.express_checkout.password%
                 signature: %paypal.express_checkout.signature%
                 sandbox: true
-#
+
         paypal_express_checkout_and_doctrine_mongo_odm:
             paypal_express_checkout_nvp:
                 username:  %paypal.express_checkout.username%

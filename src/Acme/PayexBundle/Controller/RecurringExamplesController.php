@@ -101,7 +101,7 @@ class RecurringExamplesController extends PayumController
                 'acme_payex_recurring_payment_details',
                 array(
                     'paymentName' => $paymentName,
-                    'agreementRef' => $agreementDetails->getAgreementRef(),
+                    'agreementId' => $agreementDetails->getId(),
                     'paymentId' => $paymentDetails->getId(),
                 )
             );
@@ -120,18 +120,18 @@ class RecurringExamplesController extends PayumController
 
     /**
      * @Extra\Route(
-     *   "/recurring_payment_details/{paymentName}/agreement/{agreementRef}/payment/{paymentId}",
+     *   "/recurring_payment_details/{paymentName}/agreement/{agreementId}/payment/{paymentId}",
      *   name="acme_payex_recurring_payment_details"
      * )
      *
      * @Extra\Template
      */
-    public function viewRecurringPaymentDetailsAction(Request $request, $paymentName, $agreementRef, $paymentId)
+    public function viewRecurringPaymentDetailsAction(Request $request, $paymentName, $agreementId, $paymentId)
     {
         $payment = $this->getPayum()->getPayment($paymentName);
         
         $payment->execute($syncAgreement = new SyncRequest(new Identificator(
-            $agreementRef,
+            $agreementId,
             'Acme\PaymentBundle\Model\AgreementDetails'
         )));
         $payment->execute($agreementStatus = new BinaryMaskStatusRequest($syncAgreement->getModel()));
