@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "db2c58c574998a6807e4af0d5b2c58bc",
+    "hash": "b97c43afd4fdf0098ad08ca8c33624c4",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -789,16 +789,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "2.3.5",
+            "version": "v2.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "2c31ec4809a28a549bf22d7cb7504add98156cd6"
+                "reference": "c2135b38216c6c8a410e764792aa368e946f2ae5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/2c31ec4809a28a549bf22d7cb7504add98156cd6",
-                "reference": "2c31ec4809a28a549bf22d7cb7504add98156cd6",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/c2135b38216c6c8a410e764792aa368e946f2ae5",
+                "reference": "c2135b38216c6c8a410e764792aa368e946f2ae5",
                 "shasum": ""
             },
             "require": {
@@ -856,7 +856,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2014-02-08 16:28:24"
+            "time": "2014-06-03 19:53:45"
         },
         {
             "name": "guzzle/common",
@@ -1431,16 +1431,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.9.1",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "65026b610f8c19e61d7242f600530677b0466aac"
+                "reference": "25b16e801979098cb2f120e697bfce454b18bf23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/65026b610f8c19e61d7242f600530677b0466aac",
-                "reference": "65026b610f8c19e61d7242f600530677b0466aac",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/25b16e801979098cb2f120e697bfce454b18bf23",
+                "reference": "25b16e801979098cb2f120e697bfce454b18bf23",
                 "shasum": ""
             },
             "require": {
@@ -1468,7 +1468,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.9.x-dev"
+                    "dev-master": "1.10.x-dev"
                 }
             },
             "autoload": {
@@ -1495,7 +1495,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2014-04-24 13:29:03"
+            "time": "2014-06-04 16:30:04"
         },
         {
             "name": "omnipay/common",
@@ -1597,16 +1597,16 @@
         },
         {
             "name": "omnipay/paypal",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/omnipay/paypal.git",
-                "reference": "a08b9f06ee014e31102008a71d85a4272dace724"
+                "reference": "1c7ac319ab80993d14bf9d3bf43872cf522bcd70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/omnipay/paypal/zipball/a08b9f06ee014e31102008a71d85a4272dace724",
-                "reference": "a08b9f06ee014e31102008a71d85a4272dace724",
+                "url": "https://api.github.com/repos/omnipay/paypal/zipball/1c7ac319ab80993d14bf9d3bf43872cf522bcd70",
+                "reference": "1c7ac319ab80993d14bf9d3bf43872cf522bcd70",
                 "shasum": ""
             },
             "require": {
@@ -1651,7 +1651,7 @@
                 "paypal",
                 "purchase"
             ],
-            "time": "2014-04-05 16:45:15"
+            "time": "2014-04-08 08:12:59"
         },
         {
             "name": "omnipay/stripe",
@@ -1864,16 +1864,16 @@
         },
         {
             "name": "payum/payum",
-            "version": "dev-master",
+            "version": "0.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "c1f13a88ad9a28e080c3fbb2291efdf1e5fee772"
+                "reference": "f8d428a684eb1738b7cd029582111d165b27be52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/c1f13a88ad9a28e080c3fbb2291efdf1e5fee772",
-                "reference": "c1f13a88ad9a28e080c3fbb2291efdf1e5fee772",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/f8d428a684eb1738b7cd029582111d165b27be52",
+                "reference": "f8d428a684eb1738b7cd029582111d165b27be52",
                 "shasum": ""
             },
             "require": {
@@ -1968,25 +1968,25 @@
                 "paypal rest",
                 "recurring payment"
             ],
-            "time": "2014-06-03 09:25:30"
+            "time": "2014-06-17 07:02:36"
         },
         {
             "name": "payum/payum-bundle",
-            "version": "dev-master",
+            "version": "0.9.0",
             "target-dir": "Payum/Bundle/PayumBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "c4063e6b92b6b2737ea8502e552ccc18e1bfbd72"
+                "reference": "6ed060da68f62000ee1ab77b9a83484938ff4007"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/c4063e6b92b6b2737ea8502e552ccc18e1bfbd72",
-                "reference": "c4063e6b92b6b2737ea8502e552ccc18e1bfbd72",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/6ed060da68f62000ee1ab77b9a83484938ff4007",
+                "reference": "6ed060da68f62000ee1ab77b9a83484938ff4007",
                 "shasum": ""
             },
             "require": {
-                "payum/core": "0.9.*@dev",
+                "payum/core": "0.9.*",
                 "php": ">=5.3.2",
                 "symfony/form": "~2.3",
                 "symfony/framework-bundle": "~2.3",
@@ -1998,10 +1998,10 @@
                 "omnipay/dummy": "~2.0",
                 "omnipay/paypal": "~2.0",
                 "omnipay/stripe": "~2.0",
-                "payum/payum": "0.9.*@dev",
+                "payum/payum": "0.9.*",
                 "phpunit/phpunit": "~3.7",
-                "symfony/browser-kit": "~2.0",
-                "symfony/class-loader": "~2.0"
+                "symfony/browser-kit": "~2.3",
+                "symfony/class-loader": "~2.3"
             },
             "suggest": {
                 "payum/authorize-net-aim": "If you want to use authorize.net gateway",
@@ -2057,7 +2057,7 @@
                 "paypal pro checkout",
                 "recurring payment"
             ],
-            "time": "2014-06-03 15:41:20"
+            "time": "2014-06-17 07:58:36"
         },
         {
             "name": "psr/log",
@@ -2240,16 +2240,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.2.0",
+            "version": "v5.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "043e336b871f17a117f76ef8e190eddfc04c8d48"
+                "reference": "2b9af56cc676c338d52fca4c657e5bdff73bb7af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/043e336b871f17a117f76ef8e190eddfc04c8d48",
-                "reference": "043e336b871f17a117f76ef8e190eddfc04c8d48",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/2b9af56cc676c338d52fca4c657e5bdff73bb7af",
+                "reference": "2b9af56cc676c338d52fca4c657e5bdff73bb7af",
                 "shasum": ""
             },
             "require": {
@@ -2290,7 +2290,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2014-05-08 08:11:19"
+            "time": "2014-06-13 11:44:54"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -2750,8 +2750,6 @@
         "doctrine/mongodb": 20,
         "doctrine/mongodb-odm": 20,
         "doctrine/mongodb-odm-bundle": 20,
-        "payum/payum-bundle": 20,
-        "payum/payum": 20,
         "payum/jms-payment-bridge": 20
     },
     "platform": {
