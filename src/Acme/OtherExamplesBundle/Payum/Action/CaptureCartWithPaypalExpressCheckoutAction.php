@@ -36,15 +36,9 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
         /** @var Cart $cart */
         $cart = $request->getModel();
 
-        $cartStorage = $this->payum->getStorageForClass(
-            $cart,
-            $request->getToken()->getPaymentName()
-        );
+        $cartStorage = $this->payum->getStorage($cart);
 
-        $paymentDetailsStorage = $this->payum->getStorageForClass(
-            'Acme\PaymentBundle\Model\PaymentDetails',
-            $request->getToken()->getPaymentName()
-        );
+        $paymentDetailsStorage = $this->payum->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
         /** @var $paymentDetails PaymentDetails */
         $paymentDetails = $paymentDetailsStorage->createModel();

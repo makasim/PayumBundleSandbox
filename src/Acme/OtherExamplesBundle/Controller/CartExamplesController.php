@@ -27,10 +27,7 @@ class CartExamplesController extends Controller
             $data = $form->getData();
             $paymentName = $data['payment_name'];
 
-            $cartStorage = $this->getPayum()->getStorageForClass(
-                'Acme\OtherExamplesBundle\Model\Cart',
-                $paymentName
-            );
+            $cartStorage = $this->getPayum()->getStorage('Acme\OtherExamplesBundle\Model\Cart');
 
             /** @var $cart Cart */
             $cart = $cartStorage->createModel();

@@ -18,10 +18,7 @@ class SimplePurchaseOfflineController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Model\PaymentDetails',
-                $paymentName
-            );
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var PaymentDetails */
             $paymentDetails = $storage->createModel();

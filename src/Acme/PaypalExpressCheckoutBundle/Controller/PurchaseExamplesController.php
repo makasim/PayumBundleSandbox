@@ -29,10 +29,7 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Entity\PaymentDetails',
-                $paymentName
-            );
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             /** @var $paymentDetails PaymentDetails */
             $paymentDetails = $storage->createModel();
@@ -77,10 +74,7 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Document\PaymentDetails',
-                $paymentName
-            );
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Document\PaymentDetails');
 
             /** @var $paymentDetails PaymentDetails */
             $paymentDetails = $storage->createModel();
@@ -131,10 +125,7 @@ class PurchaseExamplesController extends Controller
         );
 
         if ('POST' === $request->getMethod()) {
-            $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Entity\PaymentDetails',
-                $paymentName
-            );
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             /** @var $paymentDetails PaymentDetails */
             $paymentDetails = $storage->createModel();
@@ -186,10 +177,7 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Entity\PaymentDetails',
-                $paymentName
-            );
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             /** @var $paymentDetails PaymentDetails */
             $paymentDetails = $storage->createModel();
@@ -234,10 +222,7 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Entity\PaymentDetails',
-                $paymentName
-            );
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             /** @var $paymentDetails PaymentDetails */
             $paymentDetails = $storage->createModel();

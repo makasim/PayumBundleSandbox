@@ -42,10 +42,7 @@ class PurchaseExamplesController extends Controller
         $paymentName = 'klarna_checkout';
 
         if ($request->isMethod('POST')) {
-            $storage = $this->getPayum()->getStorageForClass(
-                'Acme\PaymentBundle\Model\PaymentDetails',
-                $paymentName
-            );
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var $paymentDetails PaymentDetails */
             $details = $storage->createModel();
