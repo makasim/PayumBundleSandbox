@@ -22,7 +22,7 @@ class NotificationDetails
     protected $paymentName;
 
     /**
-     * @ORM\Column(name="details", type="object", nullable=false)
+     * @ORM\Column(name="details", type="json_array", nullable=false)
      */
     protected $details;
 
