@@ -24,7 +24,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "jms/payment-paypal-bundle": "~1",
         "payum/payum-bundle": "0.10.*@dev",
-        "payum/payum": "0.10.*@dev",
+        "payum/payum": "dev-order as 0.10.0",
         "payum/jms-payment-bridge": "0.10.*@dev",
         "omnipay/stripe": "~2.0",
         "omnipay/paypal": "~2.0"
@@ -48,6 +48,12 @@
     "config": {
         "bin-dir": "bin"
     },
+    "repositories": [
+        {
+            "type": "vcs"
+            ,"url": "git@github.com:formapro-forks/Payum.git"
+        }
+    ],
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",

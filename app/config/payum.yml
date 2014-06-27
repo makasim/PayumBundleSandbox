@@ -51,6 +51,11 @@ payum:
                 storage_dir: %kernel.root_dir%/Resources/payments
                 id_property: id
 
+        Payum\Core\Model\Order:
+            filesystem:
+                storage_dir: %kernel.root_dir%/Resources/payments
+                id_property: id
+
     security:
         token_storage:
             Acme\PaymentBundle\Entity\PaymentSecurityToken:
