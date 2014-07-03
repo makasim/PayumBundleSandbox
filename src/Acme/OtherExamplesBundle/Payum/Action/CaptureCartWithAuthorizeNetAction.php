@@ -4,7 +4,7 @@ namespace Acme\OtherExamplesBundle\Payum\Action;
 use Acme\OtherExamplesBundle\Model\Cart;
 use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Core\Action\PaymentAwareAction;
-use Payum\Bundle\PayumBundle\Request\ResponseInteractiveRequest;
+use Payum\Core\Bridge\Symfony\Request\ResponseInteractiveRequest;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Request\SecuredCaptureRequest;

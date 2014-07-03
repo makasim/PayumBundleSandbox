@@ -2,7 +2,7 @@
 namespace Acme\PayexBundle\Payum\Action;
 
 use Acme\PaymentBundle\Payum\Action\StoreNotificationAction as BaseStoreNotificationAction;
-use Payum\Bundle\PayumBundle\Request\ResponseInteractiveRequest;
+use Payum\Core\Bridge\Symfony\Request\ResponseInteractiveRequest;
 use Payum\Core\Request\NotifyRequest;
 use Symfony\Component\HttpFoundation\Response;
 
