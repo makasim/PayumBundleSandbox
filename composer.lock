@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b97c43afd4fdf0098ad08ca8c33624c4",
+    "hash": "c3b848e2e7b9f75fc876d8372f8e31b1",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -1808,18 +1808,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/JMSPaymentBridge.git",
-                "reference": "0ea99cd58afbff27693bf00e7d5c80e0cc013c9a"
+                "reference": "d24f9c2331ef24dda1b53f2e798e272c1339d6c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/JMSPaymentBridge/zipball/0ea99cd58afbff27693bf00e7d5c80e0cc013c9a",
-                "reference": "0ea99cd58afbff27693bf00e7d5c80e0cc013c9a",
+                "url": "https://api.github.com/repos/Payum/JMSPaymentBridge/zipball/d24f9c2331ef24dda1b53f2e798e272c1339d6c1",
+                "reference": "d24f9c2331ef24dda1b53f2e798e272c1339d6c1",
                 "shasum": ""
             },
             "require": {
                 "jms/payment-core-bundle": "~1",
-                "payum/core": "0.9.*@dev",
-                "payum/payum-bundle": "0.9.*@dev",
+                "payum/core": "0.10.*@dev",
+                "payum/payum-bundle": "0.10.*@dev",
                 "php": ">=5.3.2"
             },
             "require-dev": {
@@ -1828,7 +1828,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.9-dev"
+                    "dev-master": "0.10-dev"
                 }
             },
             "autoload": {
@@ -1860,20 +1860,20 @@
                 "jms payment",
                 "payment"
             ],
-            "time": "2014-04-02 12:42:15"
+            "time": "2014-06-23 15:51:35"
         },
         {
             "name": "payum/payum",
-            "version": "0.9.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "f8d428a684eb1738b7cd029582111d165b27be52"
+                "reference": "de2fce2db9c599b2dd407d9e77f8d35e543e47c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/f8d428a684eb1738b7cd029582111d165b27be52",
-                "reference": "f8d428a684eb1738b7cd029582111d165b27be52",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/de2fce2db9c599b2dd407d9e77f8d35e543e47c8",
+                "reference": "de2fce2db9c599b2dd407d9e77f8d35e543e47c8",
                 "shasum": ""
             },
             "require": {
@@ -1883,7 +1883,8 @@
                 "kriswallsmith/buzz": "*",
                 "omnipay/common": "~2.0",
                 "paypal/rest-api-sdk-php": "0.5.*",
-                "php": ">=5.3.2"
+                "php": ">=5.3.2",
+                "twig/twig": "~1.0"
             },
             "replace": {
                 "payum/authorize-net-aim": "self.version",
@@ -1924,7 +1925,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.9-dev"
+                    "dev-master": "0.10-dev"
                 }
             },
             "autoload": {
@@ -1968,25 +1969,25 @@
                 "paypal rest",
                 "recurring payment"
             ],
-            "time": "2014-06-17 07:02:36"
+            "time": "2014-07-03 11:02:14"
         },
         {
             "name": "payum/payum-bundle",
-            "version": "0.9.0",
+            "version": "dev-master",
             "target-dir": "Payum/Bundle/PayumBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "6ed060da68f62000ee1ab77b9a83484938ff4007"
+                "reference": "0adbedd3d6ad04f9bee4d520491c3a378fd0b28b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/6ed060da68f62000ee1ab77b9a83484938ff4007",
-                "reference": "6ed060da68f62000ee1ab77b9a83484938ff4007",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/0adbedd3d6ad04f9bee4d520491c3a378fd0b28b",
+                "reference": "0adbedd3d6ad04f9bee4d520491c3a378fd0b28b",
                 "shasum": ""
             },
             "require": {
-                "payum/core": "0.9.*",
+                "payum/core": "0.10.*@dev",
                 "php": ">=5.3.2",
                 "symfony/form": "~2.3",
                 "symfony/framework-bundle": "~2.3",
@@ -1998,7 +1999,7 @@
                 "omnipay/dummy": "~2.0",
                 "omnipay/paypal": "~2.0",
                 "omnipay/stripe": "~2.0",
-                "payum/payum": "0.9.*",
+                "payum/payum": "0.10.*@dev",
                 "phpunit/phpunit": "~3.7",
                 "symfony/browser-kit": "~2.3",
                 "symfony/class-loader": "~2.3"
@@ -2015,7 +2016,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.9-dev"
+                    "dev-master": "0.10-dev"
                 }
             },
             "autoload": {
@@ -2057,7 +2058,7 @@
                 "paypal pro checkout",
                 "recurring payment"
             ],
-            "time": "2014-06-17 07:58:36"
+            "time": "2014-07-03 11:27:22"
         },
         {
             "name": "psr/log",
@@ -2192,17 +2193,17 @@
         },
         {
             "name": "sensio/generator-bundle",
-            "version": "v2.3.4",
+            "version": "v2.3.5",
             "target-dir": "Sensio/Bundle/GeneratorBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "4a7b126e9c22f858e3584b19ddce6e5bdd7677ee"
+                "reference": "8b7a33aa3d22388443b6de0b0cf184122e9f60d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/4a7b126e9c22f858e3584b19ddce6e5bdd7677ee",
-                "reference": "4a7b126e9c22f858e3584b19ddce6e5bdd7677ee",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/8b7a33aa3d22388443b6de0b0cf184122e9f60d2",
+                "reference": "8b7a33aa3d22388443b6de0b0cf184122e9f60d2",
                 "shasum": ""
             },
             "require": {
@@ -2232,11 +2233,13 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2013-08-21 18:09:35"
+            "time": "2014-04-28 14:01:06"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2750,6 +2753,8 @@
         "doctrine/mongodb": 20,
         "doctrine/mongodb-odm": 20,
         "doctrine/mongodb-odm-bundle": 20,
+        "payum/payum-bundle": 20,
+        "payum/payum": 20,
         "payum/jms-payment-bridge": 20
     },
     "platform": {

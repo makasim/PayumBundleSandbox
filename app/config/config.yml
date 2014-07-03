@@ -3,6 +3,9 @@ imports:
     - { resource: security.yml }
     - { resource: payum.yml }
 
+parameters:
+    payum.template.layout: AcmePaymentBundle::layout.html.twig
+
 framework:
     #esi:             ~
     #translator:      { fallback: %locale% }
