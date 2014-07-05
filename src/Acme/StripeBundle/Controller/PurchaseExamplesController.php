@@ -18,12 +18,53 @@ class PurchaseExamplesController extends Controller
      *   name="acme_stripe_prepare_js"
      * )
      * 
-     * @Extra\Template
+     * @Extra\Template("AcmeStripeBundle:PurchaseExamples:prepare.html.twig")
      */
     public function prepareJsAction(Request $request)
     {
         $paymentName = 'stripe_js';
         
+        $form = $this->createPurchaseForm();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+
+            /** @var $details PaymentDetails */
+            $details = $storage->createModel();
+            $details["amount"] = $data['amount'] * 100;
+            $details["currency"] = $data['currency'];
+            $details["description"] = "a description";
+            $storage->updateModel($details);
+
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $details,
+                'acme_payment_details_view'
+            );
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        return array(
+            'form' => $form->createView(),
+            'paymentName' => $paymentName
+        );
+    }
+
+    /**
+     * @Extra\Route(
+     *   "/prepare_checkout",
+     *   name="acme_stripe_prepare_checkout"
+     * )
+     *
+     * @Extra\Template("AcmeStripeBundle:PurchaseExamples:prepare.html.twig")
+     */
+    public function prepareCheckoutAction(Request $request)
+    {
+        $paymentName = 'stripe_checkout';
+
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
         if ($form->isValid()) {

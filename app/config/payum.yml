@@ -146,6 +146,11 @@ payum:
                 publishable_key: %stripe.publishable_key%
                 secret_key: %stripe.secret_key%
 
+        stripe_checkout:
+            stripe_checkout:
+                publishable_key: %stripe.publishable_key%
+                secret_key: %stripe.secret_key%
+
         stripe_via_omnipay:
             omnipay:
                 type: Stripe
