@@ -1,5 +1,11 @@
 {% extends "AcmeDemoBundle::layout.html.twig" %}
 
+{% block head %}
+    {{ parent() }}
+
+    {% block payum_stylesheets "" %}
+{% endblock %}
+
 {% block content_header_more %}
     {{ parent() }}
     
@@ -16,4 +22,6 @@
 
     {% block payum_body %}
     {% endblock %}
+
+    {% block payum_javascripts "" %}
 {% endblock %}

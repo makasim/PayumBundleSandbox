@@ -141,6 +141,11 @@ payum:
                     signature: %paypal.express_checkout.signature%
                     testMode: true
 
+        stripe_js:
+            stripe_js:
+                publishable_key: %stripe.publishable_key%
+                secret_key: %stripe.secret_key%
+
         stripe_via_omnipay:
             omnipay:
                 type: Stripe
