@@ -5,6 +5,7 @@ use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Core\Registry\RegistryInterface;
+use Payum\Stripe\Keys;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,9 +60,53 @@ class PurchaseExamplesController extends Controller
      *   name="acme_stripe_prepare_checkout"
      * )
      *
-     * @Extra\Template("AcmeStripeBundle:PurchaseExamples:prepare.html.twig")
+     * @Extra\Template("AcmeStripeBundle:PurchaseExamples:prepareCheckout.html.twig")
      */
     public function prepareCheckoutAction(Request $request)
+    {
+        $paymentName = 'stripe_checkout';
+
+        $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+
+        /** @var $details PaymentDetails */
+        $details = $storage->createModel();
+        $details["amount"] = 100;
+        $details["currency"] = 'USD';
+        $details["description"] = "a description";
+
+        if ($request->isMethod('POST') && $request->request->get('stripeToken')) {
+
+            $details["card"] = $request->request->get('stripeToken');
+            $storage->updateModel($details);
+
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $details,
+                'acme_payment_details_view'
+            );
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        /** @var Keys $keys */
+        $keys = $this->get('payum.context.'.$paymentName.'.keys');
+
+        return array(
+            'publishable_key' => $keys->getPublishable(),
+            'model' => $details,
+            'paymentName' => $paymentName
+        );
+    }
+
+    /**
+     * @Extra\Route(
+     *   "/prepare_delayed_checkout",
+     *   name="acme_stripe_prepare_checkout_delayed"
+     * )
+     *
+     * @Extra\Template("AcmeStripeBundle:PurchaseExamples:prepare.html.twig")
+     */
+    public function prepareCheckoutDelayedAction(Request $request)
     {
         $paymentName = 'stripe_checkout';
 
