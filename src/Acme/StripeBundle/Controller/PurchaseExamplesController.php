@@ -92,7 +92,7 @@ class PurchaseExamplesController extends Controller
         $keys = $this->get('payum.context.'.$paymentName.'.keys');
 
         return array(
-            'publishable_key' => $keys->getPublishable(),
+            'publishable_key' => $keys->getPublishableKey(),
             'model' => $details,
             'paymentName' => $paymentName
         );
