@@ -1,0 +1,20 @@
+{% extends "AcmePaymentBundle::layout.html.twig" %}
+
+{% block title "Payment demo - Simple purchase with Stripe - Prepare" %}
+
+{% block payum_body %}
+    {{ parent() }}
+
+    <form action="" method="POST">
+        <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="{{ publishable_key }}"
+                data-image="{{ model.image|default("") }}"
+                data-name="{{ model.name|default("") }}"
+                data-description="{{ model.description }}"
+                data-amount="{{ model.amount }}">
+        </script>
+    </form>
+{% endblock %}
+
+{% set code = code(_self, paymentName) %}

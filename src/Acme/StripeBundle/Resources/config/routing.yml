@@ -1,0 +1,4 @@
+acme_stripe:
+    resource:   "@AcmeStripeBundle/Controller/"
+    type:       annotation
+    prefix:     /stripe
