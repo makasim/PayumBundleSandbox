@@ -1868,12 +1868,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "de2fce2db9c599b2dd407d9e77f8d35e543e47c8"
+                "reference": "cc1d4288114c64aad1dcf79dd1239998860345ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/de2fce2db9c599b2dd407d9e77f8d35e543e47c8",
-                "reference": "de2fce2db9c599b2dd407d9e77f8d35e543e47c8",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/cc1d4288114c64aad1dcf79dd1239998860345ff",
+                "reference": "cc1d4288114c64aad1dcf79dd1239998860345ff",
                 "shasum": ""
             },
             "require": {
@@ -1884,6 +1884,7 @@
                 "omnipay/common": "~2.0",
                 "paypal/rest-api-sdk-php": "0.5.*",
                 "php": ">=5.3.2",
+                "stripe/stripe-php": "~1.0",
                 "twig/twig": "~1.0"
             },
             "replace": {
@@ -1897,7 +1898,8 @@
                 "payum/paypal-express-checkout-nvp": "self.version",
                 "payum/paypal-ipn": "self.version",
                 "payum/paypal-pro-checkout-nvp": "self.version",
-                "payum/paypal-rest": "self.version"
+                "payum/paypal-rest": "self.version",
+                "payum/stripe": "self.version"
             },
             "require-dev": {
                 "doctrine/mongodb": "1.0.*@dev",
@@ -1967,9 +1969,12 @@
                 "paypal express",
                 "paypal pro",
                 "paypal rest",
-                "recurring payment"
+                "recurring payment",
+                "stripe",
+                "stripe checkout",
+                "stripe.js"
             ],
-            "time": "2014-07-03 11:02:14"
+            "time": "2014-07-10 06:26:34"
         },
         {
             "name": "payum/payum-bundle",
@@ -1978,12 +1983,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "0adbedd3d6ad04f9bee4d520491c3a378fd0b28b"
+                "reference": "9a99267710cd80f94084eaba4fdfd07442cbce74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/0adbedd3d6ad04f9bee4d520491c3a378fd0b28b",
-                "reference": "0adbedd3d6ad04f9bee4d520491c3a378fd0b28b",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/9a99267710cd80f94084eaba4fdfd07442cbce74",
+                "reference": "9a99267710cd80f94084eaba4fdfd07442cbce74",
                 "shasum": ""
             },
             "require": {
@@ -2011,7 +2016,8 @@
                 "payum/omnipay-bridge": "If you want to use omnipay provided gateways",
                 "payum/payex": "If you want to use payex gateway",
                 "payum/paypal-express-checkout-nvp": "If you want to use paypal express checkout nvp gateway",
-                "payum/paypal-pro-checkout-nvp": "If you want to use paypal pro checkout nvp gateway"
+                "payum/paypal-pro-checkout-nvp": "If you want to use paypal pro checkout nvp gateway",
+                "payum/stripe": "If you want to manage stripe.js or checkout payments"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -2056,9 +2062,12 @@
                 "paypal",
                 "paypal express checkout",
                 "paypal pro checkout",
-                "recurring payment"
+                "recurring payment",
+                "stripe",
+                "stripe checkout",
+                "stripe.js"
             ],
-            "time": "2014-07-03 11:27:22"
+            "time": "2014-07-10 07:43:26"
         },
         {
             "name": "psr/log",
