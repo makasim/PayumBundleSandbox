@@ -24,7 +24,7 @@ class Factory
      */
     public function createPaypalExpressCheckoutApi()
     {
-        return new Api($this->container->get('payum.buzz.client'), array(
+        return new Api(array(
             'username' => $this->container->getParameter('paypal.express_checkout.username'),
             'password' => $this->container->getParameter('paypal.express_checkout.password'),
             'signature' => $this->container->getParameter('paypal.express_checkout.signature'),
