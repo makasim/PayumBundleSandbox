@@ -41,16 +41,16 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "v1.1.2",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "40db0c96985aab2822edbc4848b3bd2429e02670"
+                "reference": "d9b1a37e9351ddde1f19f09a02e3d6ee92e82efd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/40db0c96985aab2822edbc4848b3bd2429e02670",
-                "reference": "40db0c96985aab2822edbc4848b3bd2429e02670",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/d9b1a37e9351ddde1f19f09a02e3d6ee92e82efd",
+                "reference": "d9b1a37e9351ddde1f19f09a02e3d6ee92e82efd",
                 "shasum": ""
             },
             "require": {
@@ -58,12 +58,13 @@
                 "php": ">=5.3.2"
             },
             "require-dev": {
-                "doctrine/cache": "1.*"
+                "doctrine/cache": "1.*",
+                "phpunit/phpunit": "4.*"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.3.x-dev"
                 }
             },
             "autoload": {
@@ -109,7 +110,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2013-06-16 21:33:03"
+            "time": "2014-07-06 15:52:21"
         },
         {
             "name": "doctrine/cache",
@@ -1383,16 +1384,16 @@
         },
         {
             "name": "kriswallsmith/buzz",
-            "version": "v0.10",
+            "version": "v0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/Buzz.git",
-                "reference": "759432d66387e3433d3b06cb6f773b97225b9b17"
+                "reference": "a0f207ac4939978b604be9bec5d5b19baecd8165"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/759432d66387e3433d3b06cb6f773b97225b9b17",
-                "reference": "759432d66387e3433d3b06cb6f773b97225b9b17",
+                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/a0f207ac4939978b604be9bec5d5b19baecd8165",
+                "reference": "a0f207ac4939978b604be9bec5d5b19baecd8165",
                 "shasum": ""
             },
             "require": {
@@ -1427,7 +1428,7 @@
                 "curl",
                 "http client"
             ],
-            "time": "2013-05-19 03:41:15"
+            "time": "2014-03-24 21:56:09"
         },
         {
             "name": "monolog/monolog",
@@ -1808,12 +1809,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/JMSPaymentBridge.git",
-                "reference": "d24f9c2331ef24dda1b53f2e798e272c1339d6c1"
+                "reference": "e11406d1205dbc4ee2d92e1d63b08ec374fe3c66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/JMSPaymentBridge/zipball/d24f9c2331ef24dda1b53f2e798e272c1339d6c1",
-                "reference": "d24f9c2331ef24dda1b53f2e798e272c1339d6c1",
+                "url": "https://api.github.com/repos/Payum/JMSPaymentBridge/zipball/e11406d1205dbc4ee2d92e1d63b08ec374fe3c66",
+                "reference": "e11406d1205dbc4ee2d92e1d63b08ec374fe3c66",
                 "shasum": ""
             },
             "require": {
@@ -1842,7 +1843,7 @@
             ],
             "authors": [
                 {
-                    "name": "Kotlyar Maksim",
+                    "name": "Maksim Kotlyar",
                     "email": "kotlyar.maksim@gmail.com"
                 },
                 {
@@ -1860,7 +1861,7 @@
                 "jms payment",
                 "payment"
             ],
-            "time": "2014-06-23 15:51:35"
+            "time": "2014-07-16 09:53:31"
         },
         {
             "name": "payum/payum",
@@ -1868,12 +1869,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "cc1d4288114c64aad1dcf79dd1239998860345ff"
+                "reference": "b7057376c9bab148675f4ae999d7c74dc61c8bff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/cc1d4288114c64aad1dcf79dd1239998860345ff",
-                "reference": "cc1d4288114c64aad1dcf79dd1239998860345ff",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/b7057376c9bab148675f4ae999d7c74dc61c8bff",
+                "reference": "b7057376c9bab148675f4ae999d7c74dc61c8bff",
                 "shasum": ""
             },
             "require": {
@@ -1941,20 +1942,20 @@
             ],
             "authors": [
                 {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/Payum/Payum/contributors"
+                },
+                {
                     "name": "Kotlyar Maksim",
                     "email": "kotlyar.maksim@gmail.com"
                 },
                 {
                     "name": "Payum project",
-                    "homepage": "http://payum.forma-dev.com/"
-                },
-                {
-                    "name": "Community contributions",
-                    "homepage": "https://github.com/Payum/Payum/contributors"
+                    "homepage": "http://payum.org/"
                 }
             ],
-            "description": "Domain friendly payment framework. Paypal, payex, authorize.net, be2bill, omnipay, recurring paymens, instant notifications and many more",
-            "homepage": "http://payum.forma-dev.com",
+            "description": "Domain friendly payment framework. Paypal, payex, authorize.net, be2bill, omnipay, recurring payments, instant notifications and many more",
+            "homepage": "http://payum.org",
             "keywords": [
                 "authorize.net",
                 "be2bill",
@@ -1974,7 +1975,7 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2014-07-10 06:26:34"
+            "time": "2014-07-31 08:21:18"
         },
         {
             "name": "payum/payum-bundle",
@@ -1983,12 +1984,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "9a99267710cd80f94084eaba4fdfd07442cbce74"
+                "reference": "e5e769f69b4f5a0c1e7c2ed2b6a3857c50a82674"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/9a99267710cd80f94084eaba4fdfd07442cbce74",
-                "reference": "9a99267710cd80f94084eaba4fdfd07442cbce74",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/e5e769f69b4f5a0c1e7c2ed2b6a3857c50a82674",
+                "reference": "e5e769f69b4f5a0c1e7c2ed2b6a3857c50a82674",
                 "shasum": ""
             },
             "require": {
@@ -2036,20 +2037,20 @@
             ],
             "authors": [
                 {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/Payum/PayumBundle/contributors"
+                },
+                {
                     "name": "Kotlyar Maksim",
                     "email": "kotlyar.maksim@gmail.com"
                 },
                 {
                     "name": "Payum project",
-                    "homepage": "http://payum.forma-dev.com/"
-                },
-                {
-                    "name": "Community contributions",
-                    "homepage": "https://github.com/Payum/PayumBundle/contributors"
+                    "homepage": "http://payum.org/"
                 }
             ],
             "description": "Rich payment solutions for symfony2. Paypal, payex, authorize.net, be2bill, omnipay, recurring payments, instant notifications and many more",
-            "homepage": "http://payum.forma-dev.com",
+            "homepage": "http://payum.org",
             "keywords": [
                 "authorize.net",
                 "be2bill",
@@ -2065,9 +2066,10 @@
                 "recurring payment",
                 "stripe",
                 "stripe checkout",
-                "stripe.js"
+                "stripe.js",
+                "symfony"
             ],
-            "time": "2014-07-10 07:43:26"
+            "time": "2014-07-31 08:28:32"
         },
         {
             "name": "psr/log",
@@ -2252,16 +2254,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v1.16.0",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "9401a361fa0323935002aa96f46983f9ecd880bb"
+                "reference": "a7b9c582ceb3728d78778dcaf0a70d08c65f2e86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/9401a361fa0323935002aa96f46983f9ecd880bb",
-                "reference": "9401a361fa0323935002aa96f46983f9ecd880bb",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/a7b9c582ceb3728d78778dcaf0a70d08c65f2e86",
+                "reference": "a7b9c582ceb3728d78778dcaf0a70d08c65f2e86",
                 "shasum": ""
             },
             "require": {
@@ -2296,7 +2298,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2014-06-18 00:21:25"
+            "time": "2014-07-30 03:11:22"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2417,20 +2419,21 @@
         },
         {
             "name": "symfony/icu",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "98e197da54df1f966dd5e8a4992135703569c987"
+                "reference": "d4d85d6055b87f394d941b45ddd3a9173e1e3d2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/98e197da54df1f966dd5e8a4992135703569c987",
-                "reference": "98e197da54df1f966dd5e8a4992135703569c987",
+                "url": "https://api.github.com/repos/symfony/Icu/zipball/d4d85d6055b87f394d941b45ddd3a9173e1e3d2a",
+                "reference": "d4d85d6055b87f394d941b45ddd3a9173e1e3d2a",
                 "shasum": ""
             },
             "require": {
+                "ext-intl": "*",
                 "lib-icu": ">=4.4",
                 "php": ">=5.3.3",
                 "symfony/intl": "~2.3"
@@ -2461,7 +2464,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2013-10-04 10:06:38"
+            "time": "2014-07-25 09:58:17"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -2580,16 +2583,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.5.0",
+            "version": "v2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "59365832a09a1d914d14cbca6a21a7f572760c3b"
+                "reference": "e66ee967571b89234c90946fe0d50dad195ad29c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/59365832a09a1d914d14cbca6a21a7f572760c3b",
-                "reference": "59365832a09a1d914d14cbca6a21a7f572760c3b",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/e66ee967571b89234c90946fe0d50dad195ad29c",
+                "reference": "e66ee967571b89234c90946fe0d50dad195ad29c",
                 "shasum": ""
             },
             "require": {
@@ -2597,7 +2600,7 @@
                 "php": ">=5.3.3",
                 "psr/log": "~1.0",
                 "symfony/icu": "~1.0",
-                "twig/twig": "~1.11"
+                "twig/twig": "~1.12"
             },
             "replace": {
                 "symfony/browser-kit": "self.version",
@@ -2692,7 +2695,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-05-31 18:45:50"
+            "time": "2014-07-15 15:39:46"
         },
         {
             "name": "twig/extensions",
@@ -2743,16 +2746,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.15.1",
+            "version": "v1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "1fb5784662f438d7d96a541e305e28b812e2eeed"
+                "reference": "8ce37115802e257a984a82d38254884085060024"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/1fb5784662f438d7d96a541e305e28b812e2eeed",
-                "reference": "1fb5784662f438d7d96a541e305e28b812e2eeed",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/8ce37115802e257a984a82d38254884085060024",
+                "reference": "8ce37115802e257a984a82d38254884085060024",
                 "shasum": ""
             },
             "require": {
@@ -2761,7 +2764,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.15-dev"
+                    "dev-master": "1.16-dev"
                 }
             },
             "autoload": {
@@ -2781,7 +2784,7 @@
                     "role": "Lead Developer"
                 },
                 {
-                    "name": "Armin Ronacher",
+                    "name": "Armin Ronacher2",
                     "email": "armin.ronacher@active-4.com",
                     "role": "Project Founder"
                 },
@@ -2796,7 +2799,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-02-13 10:19:29"
+            "time": "2014-07-05 12:19:05"
         }
     ],
     "packages-dev": [
