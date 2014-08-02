@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e6d0761380ca45f43cc31f5d044750b5",
+    "hash": "51084b578b1f4cfd66b6414dcae9e0ab",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -1805,22 +1805,22 @@
         },
         {
             "name": "payum/jms-payment-bridge",
-            "version": "0.10.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/JMSPaymentBridge.git",
-                "reference": "3210b844d533e030890814a7ff415ccf0c854188"
+                "reference": "3489b0116081e8da057179ed903410c560d02c1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/JMSPaymentBridge/zipball/3210b844d533e030890814a7ff415ccf0c854188",
-                "reference": "3210b844d533e030890814a7ff415ccf0c854188",
+                "url": "https://api.github.com/repos/Payum/JMSPaymentBridge/zipball/3489b0116081e8da057179ed903410c560d02c1f",
+                "reference": "3489b0116081e8da057179ed903410c560d02c1f",
                 "shasum": ""
             },
             "require": {
                 "jms/payment-core-bundle": "~1",
-                "payum/core": "0.10.*",
-                "payum/payum-bundle": "0.10.*",
+                "payum/core": "0.11.*@dev",
+                "payum/payum-bundle": "0.11.*@dev",
                 "php": ">=5.3.2"
             },
             "require-dev": {
@@ -1829,7 +1829,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.10-dev"
+                    "dev-master": "0.11-dev"
                 }
             },
             "autoload": {
@@ -1861,20 +1861,20 @@
                 "jms payment",
                 "payment"
             ],
-            "time": "2014-08-01 19:40:58"
+            "time": "2014-08-01 19:41:38"
         },
         {
             "name": "payum/payum",
-            "version": "0.10.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "7f7249873db902569fdc3f122aac1f1a56669ad3"
+                "reference": "4919a5a2fde1b35db92bc22c511bbc7a49022b40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/7f7249873db902569fdc3f122aac1f1a56669ad3",
-                "reference": "7f7249873db902569fdc3f122aac1f1a56669ad3",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/4919a5a2fde1b35db92bc22c511bbc7a49022b40",
+                "reference": "4919a5a2fde1b35db92bc22c511bbc7a49022b40",
                 "shasum": ""
             },
             "require": {
@@ -1928,7 +1928,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.10-dev"
+                    "dev-master": "0.11-dev"
                 }
             },
             "autoload": {
@@ -1975,25 +1975,25 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2014-07-31 16:49:00"
+            "time": "2014-08-01 19:31:36"
         },
         {
             "name": "payum/payum-bundle",
-            "version": "0.10.0",
+            "version": "dev-master",
             "target-dir": "Payum/Bundle/PayumBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "eee260331c956732054d8d2496d6cb2b0c8cf812"
+                "reference": "129c14dfda75022e9c82b117d9f1616c9599b19a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/eee260331c956732054d8d2496d6cb2b0c8cf812",
-                "reference": "eee260331c956732054d8d2496d6cb2b0c8cf812",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/129c14dfda75022e9c82b117d9f1616c9599b19a",
+                "reference": "129c14dfda75022e9c82b117d9f1616c9599b19a",
                 "shasum": ""
             },
             "require": {
-                "payum/core": "0.10.*",
+                "payum/core": "0.11.*@dev",
                 "php": ">=5.3.2",
                 "symfony/form": "~2.3",
                 "symfony/framework-bundle": "~2.3",
@@ -2005,7 +2005,7 @@
                 "omnipay/dummy": "~2.0",
                 "omnipay/paypal": "~2.0",
                 "omnipay/stripe": "~2.0",
-                "payum/payum": "0.10.*",
+                "payum/payum": "0.11.*@dev",
                 "phpunit/phpunit": "~3.7",
                 "symfony/browser-kit": "~2.3",
                 "symfony/class-loader": "~2.3"
@@ -2023,7 +2023,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.10-dev"
+                    "dev-master": "0.11-dev"
                 }
             },
             "autoload": {
@@ -2069,7 +2069,7 @@
                 "stripe.js",
                 "symfony"
             ],
-            "time": "2014-08-01 08:04:12"
+            "time": "2014-08-01 08:12:54"
         },
         {
             "name": "psr/log",
@@ -2812,7 +2812,10 @@
     "stability-flags": {
         "doctrine/mongodb": 20,
         "doctrine/mongodb-odm": 20,
-        "doctrine/mongodb-odm-bundle": 20
+        "doctrine/mongodb-odm-bundle": 20,
+        "payum/payum-bundle": 20,
+        "payum/payum": 20,
+        "payum/jms-payment-bridge": 20
     },
     "prefer-stable": false,
     "platform": {
