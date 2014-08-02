@@ -23,9 +23,9 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "jms/payment-paypal-bundle": "~1",
-        "payum/payum-bundle": "0.10.*@dev",
-        "payum/payum": "0.10.*@dev",
-        "payum/jms-payment-bridge": "0.10.*@dev",
+        "payum/payum-bundle": "0.10.*",
+        "payum/payum": "0.10.*",
+        "payum/jms-payment-bridge": "0.10.*",
         "omnipay/stripe": "~2.0",
         "omnipay/paypal": "~2.0",
         "stripe/stripe-php": "~1.0"
