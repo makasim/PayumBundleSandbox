@@ -3,15 +3,15 @@ namespace Acme\PayexBundle\Controller;
 
 use Acme\PaymentBundle\Model\AgreementDetails;
 use Acme\PaymentBundle\Model\PaymentDetails;
-use Payum\Core\Request\BinaryMaskStatusRequest;
-use Payum\Core\Request\SimpleStatusRequest;
-use Payum\Core\Request\SyncRequest;
+use Payum\Core\Request\GetBinaryStatus;
+use Payum\Core\Request\SimpleGetStatus;
+use Payum\Core\Request\Sync;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Model\Identificator;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Payex\Api\AgreementApi;
 use Payum\Payex\Api\OrderApi;
-use Payum\Payex\Request\Api\CreateAgreementRequest;
+use Payum\Payex\Request\Api\CreateAgreement;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,7 +36,7 @@ class OneClickExamplesController extends Controller
         $agreementStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\AgreementDetails');
 
         if ($request->get('confirm')) {
-            $syncAgreement = new SyncRequest(new Identificator(
+            $syncAgreement = new Sync(new Identificator(
                 $request->get('agreementId'),
                 'Acme\PaymentBundle\Model\AgreementDetails'
             ));
@@ -46,7 +46,7 @@ class OneClickExamplesController extends Controller
             /** @var AgreementDetails $agreement */
             $agreement = $syncAgreement->getModel();
             
-            $agreementStatus = new BinaryMaskStatusRequest($agreement);
+            $agreementStatus = new GetBinaryStatus($agreement);
             $this->getPayum()->getPayment($paymentName)->execute($agreementStatus);
 
             if ($agreementStatus->isSuccess()) {
@@ -98,10 +98,10 @@ class OneClickExamplesController extends Controller
             $agreement['startDate'] = '';
             $agreement['stopDate'] = '';
 
-            $this->getPayum()->getPayment($paymentName)->execute(new CreateAgreementRequest($agreement));
-            $this->getPayum()->getPayment($paymentName)->execute(new SyncRequest($agreement));
+            $this->getPayum()->getPayment($paymentName)->execute(new CreateAgreement($agreement));
+            $this->getPayum()->getPayment($paymentName)->execute(new Sync($agreement));
 
-            $agreementStatus = new BinaryMaskStatusRequest($agreement);
+            $agreementStatus = new GetBinaryStatus($agreement);
             $this->getPayum()->getPayment($paymentName)->execute($agreementStatus);
         }
         
@@ -126,7 +126,7 @@ class OneClickExamplesController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
 
-            $agreementStatus = new SimpleStatusRequest(new Identificator(
+            $agreementStatus = new SimpleGetStatus(new Identificator(
                 $request->get('agreementId'),
                 'Acme\PaymentBundle\Model\AgreementDetails'
             ));

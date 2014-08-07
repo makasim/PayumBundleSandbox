@@ -2,7 +2,7 @@
 namespace Acme\OtherExamplesBundle\Payum\FooBarGateway\Action;
 
 use Payum\Core\Action\ActionInterface;
-use Payum\Core\Request\CaptureRequest;
+use Payum\Core\Request\Capture;
 
 class CaptureAction implements ActionInterface
 {
@@ -33,7 +33,7 @@ class CaptureAction implements ActionInterface
     public function supports($request)
     {
         return
-            $request instanceof CaptureRequest &&
+            $request instanceof Capture &&
             $request->getModel() instanceof \ArrayAccess
         ;
     }

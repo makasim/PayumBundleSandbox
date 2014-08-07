@@ -4,9 +4,9 @@ namespace Acme\PaymentBundle\Payum\Extension;
 use Acme\PaymentBundle\Entity\NotificationDetails;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Extension\ExtensionInterface;
-use Payum\Core\Request\InteractiveRequestInterface;
-use Payum\Core\Request\NotifyRequest;
-use Payum\Core\Request\SecuredNotifyRequest;
+use Payum\Core\Reply\ReplyInterface;
+use Payum\Core\Request\Notify;
+use Payum\Core\Request\SecuredNotify;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class StoreNotificationExtension implements ExtensionInterface
@@ -17,7 +17,7 @@ class StoreNotificationExtension implements ExtensionInterface
     protected $doctrine;
 
     /**
-     * @var NotifyRequest[]
+     * @var Notify[]
      */
     protected $processedRequests;
 
@@ -34,17 +34,17 @@ class StoreNotificationExtension implements ExtensionInterface
      */
     public function onPreExecute($request)
     {
-        if (false == $request instanceof NotifyRequest) {
+        if (false == $request instanceof Notify) {
             return;
         }
         if (in_array($request, $this->processedRequests)) {
             return;
         }
 
-        /** @var NotifyRequest $request */
+        /** @var Notify $request */
 
         $notification = new NotificationDetails;
-        if ($request instanceof SecuredNotifyRequest) {
+        if ($request instanceof SecuredNotify) {
             $notification->setPaymentName($request->getToken()->getPaymentName());
         } else {
             $notification->setPaymentName('unknown');
@@ -73,7 +73,7 @@ class StoreNotificationExtension implements ExtensionInterface
     /**
      * {@inheritDoc}
      */
-    public function onInteractiveRequest(InteractiveRequestInterface $interactiveRequest, $request, ActionInterface $action)
+    public function onReply(ReplyInterface $reply, $request, ActionInterface $action)
     {
     }
 

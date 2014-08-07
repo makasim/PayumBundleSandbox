@@ -1869,12 +1869,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "4919a5a2fde1b35db92bc22c511bbc7a49022b40"
+                "reference": "fcad2393f58c0bd6c9a879e56588ef9b8ab3e46a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/4919a5a2fde1b35db92bc22c511bbc7a49022b40",
-                "reference": "4919a5a2fde1b35db92bc22c511bbc7a49022b40",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/fcad2393f58c0bd6c9a879e56588ef9b8ab3e46a",
+                "reference": "fcad2393f58c0bd6c9a879e56588ef9b8ab3e46a",
                 "shasum": ""
             },
             "require": {
@@ -1920,7 +1920,7 @@
                 "doctrine/mongodb-odm": "If you want to store models to mongo doctrin2 ODM",
                 "doctrine/orm": "If you want to store models to database using doctrin2 ORM",
                 "monolog/monolog": "In case you want to use PSR-3 logger",
-                "symfony/http-foundation": "If you want to use HttpRequestVerifier or ResponseInteractiveRequest from symfony's bridge",
+                "symfony/http-foundation": "If you want to use HttpRequestVerifier or HttpResponse reply from symfony's bridge",
                 "symfony/http-kernel": "If you want to use HttpRequestVerifier from symfony's bridge",
                 "symfony/routing": "If you want to use TokenFactory from symfony's bridge",
                 "zendframework/zend-db": "If you want to store models to Zend Db ORM"
@@ -1975,7 +1975,7 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2014-08-01 19:31:36"
+            "time": "2014-08-07 09:33:05"
         },
         {
             "name": "payum/payum-bundle",
@@ -1984,12 +1984,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "129c14dfda75022e9c82b117d9f1616c9599b19a"
+                "reference": "1ffb7d2d8dcca8f96af3fb61d850c55a7d2cf605"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/129c14dfda75022e9c82b117d9f1616c9599b19a",
-                "reference": "129c14dfda75022e9c82b117d9f1616c9599b19a",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/1ffb7d2d8dcca8f96af3fb61d850c55a7d2cf605",
+                "reference": "1ffb7d2d8dcca8f96af3fb61d850c55a7d2cf605",
                 "shasum": ""
             },
             "require": {
@@ -2069,7 +2069,7 @@
                 "stripe.js",
                 "symfony"
             ],
-            "time": "2014-08-01 08:12:54"
+            "time": "2014-08-07 16:04:03"
         },
         {
             "name": "psr/log",
@@ -2583,16 +2583,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.5.2",
+            "version": "v2.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "e66ee967571b89234c90946fe0d50dad195ad29c"
+                "reference": "f077a238c781f845487a7c81fea8033ccd0e6a02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/e66ee967571b89234c90946fe0d50dad195ad29c",
-                "reference": "e66ee967571b89234c90946fe0d50dad195ad29c",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/f077a238c781f845487a7c81fea8033ccd0e6a02",
+                "reference": "f077a238c781f845487a7c81fea8033ccd0e6a02",
                 "shasum": ""
             },
             "require": {
@@ -2680,14 +2680,12 @@
             ],
             "authors": [
                 {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
                     "name": "Symfony Community",
                     "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "The Symfony PHP framework",
@@ -2695,7 +2693,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-07-15 15:39:46"
+            "time": "2014-08-06 07:03:01"
         },
         {
             "name": "twig/extensions",

@@ -3,8 +3,8 @@ namespace Acme\PaymentBundle\Controller;
 
 use Payum\Bundle\PayumBundle\Controller\PayumController;
 use Payum\Core\Exception\RequestNotSupportedException;
-use Payum\Core\Request\BinaryMaskStatusRequest;
-use Payum\Core\Request\SyncRequest;
+use Payum\Core\Request\GetBinaryStatus;
+use Payum\Core\Request\Sync;
 use Symfony\Component\HttpFoundation\Request;
 
 class DetailsController extends PayumController
@@ -16,10 +16,10 @@ class DetailsController extends PayumController
         $payment = $this->getPayum()->getPayment($token->getPaymentName());
 
         try {
-            $payment->execute(new SyncRequest($token));
+            $payment->execute(new Sync($token));
         } catch (RequestNotSupportedException $e) {}
         
-        $status = new BinaryMaskStatusRequest($token);
+        $status = new GetBinaryStatus($token);
         $payment->execute($status);
 
         return $this->render('AcmePaymentBundle:Details:view.html.twig', array(

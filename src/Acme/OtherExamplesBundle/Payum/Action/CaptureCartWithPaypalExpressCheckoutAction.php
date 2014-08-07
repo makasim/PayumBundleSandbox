@@ -6,7 +6,7 @@ use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Core\Action\PaymentAwareAction;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Registry\RegistryInterface;
-use Payum\Core\Request\SecuredCaptureRequest;
+use Payum\Core\Request\SecuredCapture;
 
 class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction 
 {
@@ -28,7 +28,7 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
      */
     public function execute($request)
     {
-        /** @var $request SecuredCaptureRequest */
+        /** @var $request SecuredCapture */
         if (false == $this->supports($request)) {
             throw RequestNotSupportedException::createActionNotSupported($this, $request);
         }
@@ -61,7 +61,7 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
     public function supports($request)
     {
         return
-            $request instanceof SecuredCaptureRequest &&
+            $request instanceof SecuredCapture &&
             $request->getModel() instanceof Cart &&
             null === $request->getModel()->getDetails()
         ;

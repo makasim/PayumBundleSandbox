@@ -4,10 +4,10 @@ namespace Acme\OtherExamplesBundle\Payum\Action;
 use Acme\OtherExamplesBundle\Model\Cart;
 use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Core\Action\PaymentAwareAction;
-use Payum\Core\Bridge\Symfony\Request\ResponseInteractiveRequest;
+use Payum\Core\Bridge\Symfony\Reply\HttpResponse;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Registry\RegistryInterface;
-use Payum\Core\Request\SecuredCaptureRequest;
+use Payum\Core\Request\SecuredCapture;
 use Payum\Core\Security\SensitiveValue;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -53,7 +53,7 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
      */
     public function execute($request)
     {
-        /** @var $request SecuredCaptureRequest */
+        /** @var $request SecuredCapture */
         if (false == $this->supports($request)) {
             throw RequestNotSupportedException::createActionNotSupported($this, $request);
         }
@@ -86,7 +86,7 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
             return;
         }
 
-        throw new ResponseInteractiveRequest(new Response(
+        throw new HttpResponse(new Response(
             $this->templating->render('AcmeOtherExamplesBundle:CartExamples:_submit_credit_card.html.twig', array(
                 'form' => $form->createView()
             ))
@@ -99,7 +99,7 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
     public function supports($request)
     {
         return
-            $request instanceof SecuredCaptureRequest &&
+            $request instanceof SecuredCapture &&
             $request->getModel() instanceof Cart &&
             null === $request->getModel()->getDetails()
         ;

@@ -2,8 +2,8 @@
 namespace Acme\PayexBundle\Payum\Action;
 
 use Acme\PaymentBundle\Payum\Action\StoreNotificationAction as BaseStoreNotificationAction;
-use Payum\Core\Bridge\Symfony\Request\ResponseInteractiveRequest;
-use Payum\Core\Request\NotifyRequest;
+use Payum\Core\Bridge\Symfony\Reply\HttpResponse;
+use Payum\Core\Request\Notify;
 use Symfony\Component\HttpFoundation\Response;
 
 class StoreNotificationAction extends BaseStoreNotificationAction
@@ -15,7 +15,7 @@ class StoreNotificationAction extends BaseStoreNotificationAction
     {
         parent::execute($request);
 
-        throw new ResponseInteractiveRequest(new Response('OK'));
+        throw new HttpResponse(new Response('OK'));
     }
 
     /**
@@ -23,6 +23,6 @@ class StoreNotificationAction extends BaseStoreNotificationAction
      */
     public function supports($request)
     {
-        return $request instanceof NotifyRequest;
+        return $request instanceof Notify;
     }
 }

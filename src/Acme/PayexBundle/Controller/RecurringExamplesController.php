@@ -4,14 +4,14 @@ namespace Acme\PayexBundle\Controller;
 use Acme\PaymentBundle\Model\AgreementDetails;
 use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
-use Payum\Core\Request\BinaryMaskStatusRequest;
-use Payum\Core\Request\SyncRequest;
+use Payum\Core\Request\GetBinaryStatus;
+use Payum\Core\Request\Sync;
 use Payum\Core\Model\Identificator;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Payex\Api\AgreementApi;
 use Payum\Payex\Api\RecurringApi;
-use Payum\Payex\Request\Api\CreateAgreementRequest;
-use Payum\Payex\Request\Api\StopRecurringPaymentRequest;
+use Payum\Payex\Request\Api\CreateAgreement;
+use Payum\Payex\Request\Api\StopRecurringPayment;
 use Payum\Payex\Api\OrderApi;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Component\HttpFoundation\Request;
@@ -61,8 +61,8 @@ class RecurringExamplesController extends PayumController
             $agreementDetails['startDate'] = $startDate->format('Y-m-d H:i:s');
             $agreementDetails['stopDate'] = $stopDate->format('Y-m-d H:i:s');
 
-            $this->getPayum()->getPayment($paymentName)->execute(new CreateAgreementRequest($agreementDetails));
-            $this->getPayum()->getPayment($paymentName)->execute(new SyncRequest($agreementDetails));
+            $this->getPayum()->getPayment($paymentName)->execute(new CreateAgreement($agreementDetails));
+            $this->getPayum()->getPayment($paymentName)->execute(new Sync($agreementDetails));
             
             $agreementDetailsStorage->updateModel($agreementDetails);
             
@@ -130,13 +130,13 @@ class RecurringExamplesController extends PayumController
     {
         $payment = $this->getPayum()->getPayment($paymentName);
         
-        $payment->execute($syncAgreement = new SyncRequest(new Identificator(
+        $payment->execute($syncAgreement = new Sync(new Identificator(
             $agreementId,
             'Acme\PaymentBundle\Model\AgreementDetails'
         )));
-        $payment->execute($agreementStatus = new BinaryMaskStatusRequest($syncAgreement->getModel()));
+        $payment->execute($agreementStatus = new GetBinaryStatus($syncAgreement->getModel()));
 
-        $paymentStatus = new BinaryMaskStatusRequest(new Identificator(
+        $paymentStatus = new GetBinaryStatus(new Identificator(
             $paymentId,
             'Acme\PaymentBundle\Model\PaymentDetails'
         ));
@@ -173,7 +173,7 @@ class RecurringExamplesController extends PayumController
 
         $payment = $this->getPayum()->getPayment($token->getPaymentName());
 
-        $status = new BinaryMaskStatusRequest($token);
+        $status = new GetBinaryStatus($token);
         $payment->execute($status);
         if (false == $status->isSuccess()) {
             throw new HttpException(400, 'The model status must be success.');
@@ -182,8 +182,8 @@ class RecurringExamplesController extends PayumController
         /** @var PaymentDetails $recurringPayment */
         $paymentDetails = $status->getModel();
 
-        $payment->execute(new StopRecurringPaymentRequest($paymentDetails));
-        $payment->execute(new SyncRequest($paymentDetails));
+        $payment->execute(new StopRecurringPayment($paymentDetails));
+        $payment->execute(new Sync($paymentDetails));
 
         $this->getHttpRequestVerifier()->invalidate($token);
 
