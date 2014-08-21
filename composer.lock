@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "51084b578b1f4cfd66b6414dcae9e0ab",
+    "hash": "97eda7b14cba4a9eed9fa4297a4b09f1",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -1312,6 +1312,41 @@
             "time": "2014-03-27 13:35:56"
         },
         {
+            "name": "klarna/invoice",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/formapro/KlarnaInvoice.git",
+                "reference": "2cff5dc36da2760baff9c1faf729dab0d503be24"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/formapro/KlarnaInvoice/zipball/2cff5dc36da2760baff9c1faf729dab0d503be24",
+                "reference": "2cff5dc36da2760baff9c1faf729dab0d503be24",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.16",
+                "phpxmlrpc/phpxmlrpc": "~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "Klarna.php"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Wrapper for the Klarna Invoice API",
+            "homepage": "http://developers.klarna.com",
+            "support": {
+                "source": "https://github.com/formapro/KlarnaInvoice/tree/master",
+                "issues": "https://github.com/formapro/KlarnaInvoice/issues"
+            },
+            "time": "2014-08-21 09:25:10"
+        },
+        {
             "name": "kriswallsmith/assetic",
             "version": "v1.1.2",
             "source": {
@@ -1869,12 +1904,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "79b8f5d5a8e93e7083daeff32b1bd75759f2b836"
+                "reference": "2c07b890e076a80147dd7dd240ac7de6309053ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/79b8f5d5a8e93e7083daeff32b1bd75759f2b836",
-                "reference": "79b8f5d5a8e93e7083daeff32b1bd75759f2b836",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/2c07b890e076a80147dd7dd240ac7de6309053ab",
+                "reference": "2c07b890e076a80147dd7dd240ac7de6309053ab",
                 "shasum": ""
             },
             "require": {
@@ -1975,7 +2010,7 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2014-08-07 19:13:14"
+            "time": "2014-08-20 16:41:07"
         },
         {
             "name": "payum/payum-bundle",
@@ -1984,12 +2019,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "1ffb7d2d8dcca8f96af3fb61d850c55a7d2cf605"
+                "reference": "12fcd530db98e0dfbf50ca50ec14f3bf151b34a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/1ffb7d2d8dcca8f96af3fb61d850c55a7d2cf605",
-                "reference": "1ffb7d2d8dcca8f96af3fb61d850c55a7d2cf605",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/12fcd530db98e0dfbf50ca50ec14f3bf151b34a3",
+                "reference": "12fcd530db98e0dfbf50ca50ec14f3bf151b34a3",
                 "shasum": ""
             },
             "require": {
@@ -2006,7 +2041,7 @@
                 "omnipay/paypal": "~2.0",
                 "omnipay/stripe": "~2.0",
                 "payum/payum": "0.11.*@dev",
-                "phpunit/phpunit": "~3.7",
+                "phpunit/phpunit": "~4.0",
                 "symfony/browser-kit": "~2.3",
                 "symfony/class-loader": "~2.3"
             },
@@ -2069,7 +2104,43 @@
                 "stripe.js",
                 "symfony"
             ],
-            "time": "2014-08-07 16:04:03"
+            "time": "2014-08-20 13:43:38"
+        },
+        {
+            "name": "phpxmlrpc/phpxmlrpc",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gggeek/phpxmlrpc.git",
+                "reference": "9b4a6c23f9d77c7c1e487f97d66b739b3cacf1bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/9b4a6c23f9d77c7c1e487f97d66b739b3cacf1bf",
+                "reference": "9b4a6c23f9d77c7c1e487f97d66b739b3cacf1bf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/xmlrpc.inc",
+                    "lib/xmlrpcs.inc"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "A php library for building xmlrpc clients and servers",
+            "homepage": "http://gggeek.github.io/phpxmlrpc/",
+            "keywords": [
+                "webservices",
+                "xmlrpc"
+            ],
+            "time": "2014-06-15 19:48:04"
         },
         {
             "name": "psr/log",
@@ -2813,7 +2884,8 @@
         "doctrine/mongodb-odm-bundle": 20,
         "payum/payum-bundle": 20,
         "payum/payum": 20,
-        "payum/jms-payment-bridge": 20
+        "payum/jms-payment-bridge": 20,
+        "klarna/invoice": 20
     },
     "prefer-stable": false,
     "platform": {

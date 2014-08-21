@@ -33,6 +33,8 @@ parameters:
 
     klarna.checkout.secret: EDIT ME
     klarna.checkout.eid:    EDIT ME
+    klarna.invoice.secret:  EDIT ME
+    klarna.invoice.eid:     EDIT ME
     
     payex.encryption_key: EDIT ME
     payex.account_number:   EDIT ME

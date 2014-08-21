@@ -28,7 +28,8 @@
         "payum/jms-payment-bridge": "0.11.*@dev",
         "omnipay/stripe": "~2.0",
         "omnipay/paypal": "~2.0",
-        "stripe/stripe-php": "~1.0"
+        "stripe/stripe-php": "~1.0",
+        "klarna/invoice": "*@dev"
     },
     "scripts": {
         "post-install-cmd": [
@@ -57,6 +58,12 @@
         },
         "branch-alias": {
             "dev-master": "0.11-dev"
+        }
+    },
+    "repositories": {
+        "klarna/invoice": {
+            "type": "vcs",
+            "url": "git@github.com:formapro/KlarnaInvoice.git"
         }
     }
 }

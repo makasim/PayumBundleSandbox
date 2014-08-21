@@ -3,7 +3,7 @@ namespace Acme\PaymentBundle\Controller;
 
 use Payum\Bundle\PayumBundle\Controller\PayumController;
 use Payum\Core\Exception\RequestNotSupportedException;
-use Payum\Core\Request\GetBinaryStatus;
+use Payum\Core\Request\GetHumanStatus;
 use Payum\Core\Request\Sync;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -19,11 +19,12 @@ class DetailsController extends PayumController
             $payment->execute(new Sync($token));
         } catch (RequestNotSupportedException $e) {}
         
-        $status = new GetBinaryStatus($token);
+        $status = new GetHumanStatus($token);
         $payment->execute($status);
 
         return $this->render('AcmePaymentBundle:Details:view.html.twig', array(
-            'status' => $status,
+            'status' => $status->getStatus(),
+            'details' => iterator_to_array($status->getModel()),
             'paymentTitle' => ucwords(str_replace(array('_', '-'), ' ', $token->getPaymentName()))
         ));
     }

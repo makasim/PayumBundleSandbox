@@ -78,7 +78,13 @@
 
         <h3>Klarna</h3>
         <li>
-            <a href="{{ path("acme_klarna_prepare_simple_purchase") }}">Simple purchase (Klarna Checkout)</a>
+            <a href="{{ path("acme_klarna_prepare_checkout") }}">Checkout</a>
+        </li>
+        <li>
+            <a href="{{ path("acme_klarna_prepare_authorize_invoice") }}">Reserve Invoice</a>
+        </li>
+        <li>
+            <a href="{{ path("acme_klarna_prepare_invoice") }}">Reserve&Activate Invoice</a>
         </li>
 
         <h3>Omnipay</h3>
