@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "711373a43e4d1775bf64790309761f04",
+    "hash": "d6952ac77d21e5135001dcfb12c6f15e",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -99,7 +99,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -174,7 +174,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -241,7 +241,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -317,7 +317,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -367,7 +367,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -445,7 +445,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -514,9 +516,9 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -570,7 +572,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -618,7 +620,7 @@
                     "homepage": "http://avalanche123.com"
                 },
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -691,7 +693,7 @@
                     "homepage": "http://avalanche123.com"
                 },
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -858,6 +860,38 @@
                 "orm"
             ],
             "time": "2014-06-03 19:53:45"
+        },
+        {
+            "name": "fp/klarna-invoice",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/formapro/KlarnaInvoice.git",
+                "reference": "0bfa6c7db932b98dbcadb0665c5ed587c302d302"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/formapro/KlarnaInvoice/zipball/0bfa6c7db932b98dbcadb0665c5ed587c302d302",
+                "reference": "0bfa6c7db932b98dbcadb0665c5ed587c302d302",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.16",
+                "phpxmlrpc/phpxmlrpc": "~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "Klarna.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Wrapper for the Klarna Invoice API",
+            "homepage": "http://developers.klarna.com",
+            "time": "2014-08-22 08:04:40"
         },
         {
             "name": "guzzle/common",
@@ -1213,9 +1247,9 @@
             ],
             "authors": [
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -1261,9 +1295,9 @@
             ],
             "authors": [
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -1310,41 +1344,6 @@
             "description": "Wrapper for the Klarna Checkout API",
             "homepage": "http://developers.klarna.com",
             "time": "2014-03-27 13:35:56"
-        },
-        {
-            "name": "klarna/invoice",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/formapro/KlarnaInvoice.git",
-                "reference": "2cff5dc36da2760baff9c1faf729dab0d503be24"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/formapro/KlarnaInvoice/zipball/2cff5dc36da2760baff9c1faf729dab0d503be24",
-                "reference": "2cff5dc36da2760baff9c1faf729dab0d503be24",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.16",
-                "phpxmlrpc/phpxmlrpc": "~3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "Klarna.php"
-                ]
-            },
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "Wrapper for the Klarna Invoice API",
-            "homepage": "http://developers.klarna.com",
-            "support": {
-                "source": "https://github.com/formapro/KlarnaInvoice/tree/master",
-                "issues": "https://github.com/formapro/KlarnaInvoice/issues"
-            },
-            "time": "2014-08-21 09:25:10"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -1904,19 +1903,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/formapro-forks/Payum.git",
-                "reference": "c589f0fe9c8c7829edc8facd4b4c12a272fc492e"
+                "reference": "6817188dd4c8946133b495e2a2cd633b6ea3b182"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/formapro-forks/Payum/zipball/c589f0fe9c8c7829edc8facd4b4c12a272fc492e",
-                "reference": "c589f0fe9c8c7829edc8facd4b4c12a272fc492e",
+                "url": "https://api.github.com/repos/formapro-forks/Payum/zipball/6817188dd4c8946133b495e2a2cd633b6ea3b182",
+                "reference": "6817188dd4c8946133b495e2a2cd633b6ea3b182",
                 "shasum": ""
             },
             "require": {
                 "ajbdev/authorizenet-php-api": "1.1.*",
                 "ext-soap": "*",
+                "fp/klarna-invoice": "0.1.*",
                 "klarna/checkout": "~1",
-                "klarna/invoice": "*@dev",
                 "kriswallsmith/buzz": "*",
                 "omnipay/common": "~2.0",
                 "paypal/rest-api-sdk-php": "0.5.*",
@@ -2014,7 +2013,7 @@
             "support": {
                 "source": "https://github.com/formapro-forks/Payum/tree/klarna-invoice"
             },
-            "time": "2014-08-21 13:15:53"
+            "time": "2014-08-22 08:31:38"
         },
         {
             "name": "payum/payum-bundle",
@@ -2222,7 +2221,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 }
             ],
             "description": "The base bundle for the Symfony Distributions",
@@ -2269,7 +2270,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 }
             ],
             "description": "This bundle provides a way to configure your controllers with annotations",
@@ -2586,7 +2589,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -2807,7 +2812,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 }
             ],
             "description": "Common additional features for Twig that do not directly belong in core",
@@ -2859,7 +2866,7 @@
                     "role": "Lead Developer"
                 },
                 {
-                    "name": "Armin Ronacher2",
+                    "name": "Armin Ronacher",
                     "email": "armin.ronacher@active-4.com",
                     "role": "Project Founder"
                 },
@@ -2901,8 +2908,7 @@
         "doctrine/mongodb-odm-bundle": 20,
         "payum/payum-bundle": 20,
         "payum/payum": 20,
-        "payum/jms-payment-bridge": 20,
-        "klarna/invoice": 20
+        "payum/jms-payment-bridge": 20
     },
     "prefer-stable": false,
     "platform": {
