@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d6952ac77d21e5135001dcfb12c6f15e",
+    "hash": "51084b578b1f4cfd66b6414dcae9e0ab",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -1899,16 +1899,16 @@
         },
         {
             "name": "payum/payum",
-            "version": "dev-klarna-invoice",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/formapro-forks/Payum.git",
-                "reference": "6817188dd4c8946133b495e2a2cd633b6ea3b182"
+                "url": "https://github.com/Payum/Payum.git",
+                "reference": "5892d80d3535a0e72af948154675427fbd87fd30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/formapro-forks/Payum/zipball/6817188dd4c8946133b495e2a2cd633b6ea3b182",
-                "reference": "6817188dd4c8946133b495e2a2cd633b6ea3b182",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/5892d80d3535a0e72af948154675427fbd87fd30",
+                "reference": "5892d80d3535a0e72af948154675427fbd87fd30",
                 "shasum": ""
             },
             "require": {
@@ -1972,10 +1972,15 @@
                     "Payum": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/Payum/Payum/contributors"
+                },
                 {
                     "name": "Kotlyar Maksim",
                     "email": "kotlyar.maksim@gmail.com"
@@ -1983,10 +1988,6 @@
                 {
                     "name": "Payum project",
                     "homepage": "http://payum.org/"
-                },
-                {
-                    "name": "Community contributions",
-                    "homepage": "https://github.com/Payum/Payum/contributors"
                 }
             ],
             "description": "Domain friendly payment framework. Paypal, payex, authorize.net, be2bill, omnipay, recurring payments, instant notifications and many more",
@@ -2010,24 +2011,21 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "support": {
-                "source": "https://github.com/formapro-forks/Payum/tree/klarna-invoice"
-            },
-            "time": "2014-08-22 08:31:38"
+            "time": "2014-08-22 14:01:38"
         },
         {
             "name": "payum/payum-bundle",
-            "version": "dev-klarna-invoice",
+            "version": "dev-master",
             "target-dir": "Payum/Bundle/PayumBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/formapro-forks/PayumBundle.git",
-                "reference": "2fd7e54741e85a3a3c51021a55219cd1115f9732"
+                "url": "https://github.com/Payum/PayumBundle.git",
+                "reference": "e3d87519d8cc8e8fc22e5bab36f084597e78df45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/formapro-forks/PayumBundle/zipball/2fd7e54741e85a3a3c51021a55219cd1115f9732",
-                "reference": "2fd7e54741e85a3a3c51021a55219cd1115f9732",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/e3d87519d8cc8e8fc22e5bab36f084597e78df45",
+                "reference": "e3d87519d8cc8e8fc22e5bab36f084597e78df45",
                 "shasum": ""
             },
             "require": {
@@ -2069,10 +2067,15 @@
                     "Payum\\Bundle\\PayumBundle": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/Payum/PayumBundle/contributors"
+                },
                 {
                     "name": "Kotlyar Maksim",
                     "email": "kotlyar.maksim@gmail.com"
@@ -2080,10 +2083,6 @@
                 {
                     "name": "Payum project",
                     "homepage": "http://payum.org/"
-                },
-                {
-                    "name": "Community contributions",
-                    "homepage": "https://github.com/Payum/PayumBundle/contributors"
                 }
             ],
             "description": "Rich payment solutions for symfony2. Paypal, payex, authorize.net, be2bill, omnipay, recurring payments, instant notifications and many more",
@@ -2106,10 +2105,7 @@
                 "stripe.js",
                 "symfony"
             ],
-            "support": {
-                "source": "https://github.com/formapro-forks/PayumBundle/tree/klarna-invoice"
-            },
-            "time": "2014-08-21 13:11:59"
+            "time": "2014-08-22 12:05:09"
         },
         {
             "name": "phpxmlrpc/phpxmlrpc",
@@ -2888,18 +2884,7 @@
 
     ],
     "aliases": [
-        {
-            "alias": "0.11.0",
-            "alias_normalized": "0.11.0.0",
-            "version": "dev-klarna-invoice",
-            "package": "payum/payum-bundle"
-        },
-        {
-            "alias": "0.11.0",
-            "alias_normalized": "0.11.0.0",
-            "version": "dev-klarna-invoice",
-            "package": "payum/payum"
-        }
+
     ],
     "minimum-stability": "stable",
     "stability-flags": {
