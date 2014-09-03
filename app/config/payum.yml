@@ -124,6 +124,12 @@ payum:
                 actions:
                     - acme.payex.payum.action.store_notification
 
+        klarna_invoice:
+            klarna_invoice:
+                secret: %klarna.invoice.secret%
+                eid: %klarna.invoice.eid%
+                sandbox: true
+
         klarna_checkout:
             klarna_checkout:
                 secret: %klarna.checkout.secret%

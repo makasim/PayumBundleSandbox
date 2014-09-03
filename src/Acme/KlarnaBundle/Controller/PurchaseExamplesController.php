@@ -4,6 +4,7 @@ namespace Acme\KlarnaBundle\Controller;
 use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
+use Payum\Klarna\Invoice\Request\Api\GetAddresses;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,13 +13,13 @@ class PurchaseExamplesController extends Controller
 {
     /**
      * @Extra\Route(
-     *   "/prepare_simple_purchase", 
-     *   name="acme_klarna_prepare_simple_purchase"
+     *   "/prepare_checkout",
+     *   name="acme_klarna_prepare_checkout"
      * )
      * 
      * @Extra\Template
      */
-    public function prepareAction(Request $request)
+    public function prepareCheckoutAction(Request $request)
     {
         $cartItems = array(
             array(
@@ -73,6 +74,140 @@ class PurchaseExamplesController extends Controller
         
         return array(
             'cartItems' => $cartItems
+        );
+    }
+
+    /**
+     * @Extra\Route(
+     *   "/prepare_invoice",
+     *   name="acme_klarna_prepare_invoice"
+     * )
+     *
+     * @Extra\Template
+     */
+    public function prepareInvoiceAction(Request $request)
+    {
+        $paymentName = 'klarna_invoice';
+
+        /** @link http://developers.klarna.com/en/testing/invoice-and-account */
+        $pno = '410321-9202';
+
+        $payment = $this->getPayum()->getPayment($paymentName);
+        $payment->execute($getAddresses = new GetAddresses($pno));
+
+        $firstAddress = $getAddresses->getFirstAddress();
+        $firstAddress->setEmail($firstAddress->getEmail() ?: 'info@payum.com');
+        $firstAddress->setTelno($firstAddress->getTelno() ?: '0700 00 00 00');
+
+        $rawDetails = array(
+            'pno' => '410321-9202',
+            'amount' => -1,
+            'gender' => \KlarnaFlags::MALE,
+            'articles' => array(
+                array(
+                    'qty' => 4,
+                    'artNo' => 'HANDLING',
+                    'title' => 'Handling fee',
+                    'price' => '50.99',
+                    'vat' => '25',
+                    'discount' => '0',
+                    'flags' => \KlarnaFlags::INC_VAT | \KlarnaFlags::IS_HANDLING
+                ),
+            ),
+            'billing_address' => $firstAddress->toArray(),
+            'shipping_address' => $firstAddress->toArray(),
+        );
+
+        if ($request->isMethod('POST')) {
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+
+            /** @var $details PaymentDetails */
+            $details = $storage->createModel();
+
+            foreach ($rawDetails as $name => $value) {
+                $details[$name] = $value;
+            }
+
+            $storage->updateModel($details);
+
+            $captureToken = $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $details,
+                'acme_payment_details_view'
+            );
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        return array(
+            'details' => $rawDetails
+        );
+    }
+
+    /**
+     * @Extra\Route(
+     *   "/prepare_authorize_invoice",
+     *   name="acme_klarna_prepare_authorize_invoice"
+     * )
+     *
+     * @Extra\Template
+     */
+    public function prepareAuthorizeInvoiceAction(Request $request)
+    {
+        $paymentName = 'klarna_invoice';
+
+        /** @link http://developers.klarna.com/en/testing/invoice-and-account */
+        $pno = '410321-9202';
+
+        $payment = $this->getPayum()->getPayment($paymentName);
+        $payment->execute($getAddresses = new GetAddresses($pno));
+
+        $firstAddress = $getAddresses->getFirstAddress();
+        $firstAddress->setEmail($firstAddress->getEmail() ?: 'info@payum.com');
+        $firstAddress->setTelno($firstAddress->getTelno() ?: '0700 00 00 00');
+
+        $rawDetails = array(
+            'pno' => '410321-9202',
+            'amount' => -1,
+            'gender' => \KlarnaFlags::MALE,
+            'articles' => array(
+                array(
+                    'qty' => 4,
+                    'artNo' => 'HANDLING',
+                    'title' => 'Handling fee',
+                    'price' => '50.99',
+                    'vat' => '25',
+                    'discount' => '0',
+                    'flags' => \KlarnaFlags::INC_VAT | \KlarnaFlags::IS_HANDLING
+                ),
+            ),
+            'billing_address' => $firstAddress->toArray(),
+            'shipping_address' => $firstAddress->toArray(),
+        );
+
+        if ($request->isMethod('POST')) {
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+
+            /** @var $details PaymentDetails */
+            $details = $storage->createModel();
+
+            foreach ($rawDetails as $name => $value) {
+                $details[$name] = $value;
+            }
+
+            $storage->updateModel($details);
+
+            $captureToken = $captureToken = $this->getTokenFactory()->createAuthorizeToken(
+                $paymentName,
+                $details,
+                'acme_payment_details_view'
+            );
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        return array(
+            'details' => $rawDetails
         );
     }
 

@@ -1,0 +1,34 @@
+{% extends "AcmePaymentBundle::layout.html.twig" %}
+
+{% block title "Klarna - Simple purchase" %}
+
+{% block content %}
+    <style>
+        td {
+            border: 1px black solid;
+            min-width: 100px;
+        }
+    </style>
+
+    Your cart:
+    <table>
+        PNO: {{ details.pno }}
+        <br />
+        {% for article in details.articles %}
+            <tr>
+                <td>{{ article.artNo }}</td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.qty }}</td>
+                <td>{{ article.price }}</td>
+                <td>{{ article.vat }}</td>
+                <td>{{ article.discount }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p />
+    <form method="POST">
+        <input type="submit" value="Pay" />
+    </form>
+{% endblock %}
+
+{% set code = code(_self) %}

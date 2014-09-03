@@ -99,7 +99,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -174,7 +174,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -241,7 +241,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -317,7 +317,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -367,7 +367,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -445,7 +445,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -514,9 +516,9 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -570,7 +572,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -618,7 +620,7 @@
                     "homepage": "http://avalanche123.com"
                 },
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -691,7 +693,7 @@
                     "homepage": "http://avalanche123.com"
                 },
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -858,6 +860,38 @@
                 "orm"
             ],
             "time": "2014-06-03 19:53:45"
+        },
+        {
+            "name": "fp/klarna-invoice",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/formapro/KlarnaInvoice.git",
+                "reference": "0bfa6c7db932b98dbcadb0665c5ed587c302d302"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/formapro/KlarnaInvoice/zipball/0bfa6c7db932b98dbcadb0665c5ed587c302d302",
+                "reference": "0bfa6c7db932b98dbcadb0665c5ed587c302d302",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.16",
+                "phpxmlrpc/phpxmlrpc": "~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "Klarna.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Wrapper for the Klarna Invoice API",
+            "homepage": "http://developers.klarna.com",
+            "time": "2014-08-22 08:04:40"
         },
         {
             "name": "guzzle/common",
@@ -1213,9 +1247,9 @@
             ],
             "authors": [
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -1261,9 +1295,9 @@
             ],
             "authors": [
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -1869,17 +1903,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "79b8f5d5a8e93e7083daeff32b1bd75759f2b836"
+                "reference": "5892d80d3535a0e72af948154675427fbd87fd30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/79b8f5d5a8e93e7083daeff32b1bd75759f2b836",
-                "reference": "79b8f5d5a8e93e7083daeff32b1bd75759f2b836",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/5892d80d3535a0e72af948154675427fbd87fd30",
+                "reference": "5892d80d3535a0e72af948154675427fbd87fd30",
                 "shasum": ""
             },
             "require": {
                 "ajbdev/authorizenet-php-api": "1.1.*",
                 "ext-soap": "*",
+                "fp/klarna-invoice": "0.1.*",
                 "klarna/checkout": "~1",
                 "kriswallsmith/buzz": "*",
                 "omnipay/common": "~2.0",
@@ -1893,6 +1928,7 @@
                 "payum/be2bill": "self.version",
                 "payum/core": "self.version",
                 "payum/klarna-checkout": "self.version",
+                "payum/klarna-invoice": "self.version",
                 "payum/offline": "self.version",
                 "payum/omnipay-bridge": "self.version",
                 "payum/payex": "self.version",
@@ -1975,7 +2011,7 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2014-08-07 19:13:14"
+            "time": "2014-08-22 14:01:38"
         },
         {
             "name": "payum/payum-bundle",
@@ -1984,12 +2020,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "1ffb7d2d8dcca8f96af3fb61d850c55a7d2cf605"
+                "reference": "e3d87519d8cc8e8fc22e5bab36f084597e78df45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/1ffb7d2d8dcca8f96af3fb61d850c55a7d2cf605",
-                "reference": "1ffb7d2d8dcca8f96af3fb61d850c55a7d2cf605",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/e3d87519d8cc8e8fc22e5bab36f084597e78df45",
+                "reference": "e3d87519d8cc8e8fc22e5bab36f084597e78df45",
                 "shasum": ""
             },
             "require": {
@@ -2006,7 +2042,7 @@
                 "omnipay/paypal": "~2.0",
                 "omnipay/stripe": "~2.0",
                 "payum/payum": "0.11.*@dev",
-                "phpunit/phpunit": "~3.7",
+                "phpunit/phpunit": "~4.0",
                 "symfony/browser-kit": "~2.3",
                 "symfony/class-loader": "~2.3"
             },
@@ -2069,7 +2105,43 @@
                 "stripe.js",
                 "symfony"
             ],
-            "time": "2014-08-07 16:04:03"
+            "time": "2014-08-22 12:05:09"
+        },
+        {
+            "name": "phpxmlrpc/phpxmlrpc",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gggeek/phpxmlrpc.git",
+                "reference": "9b4a6c23f9d77c7c1e487f97d66b739b3cacf1bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/9b4a6c23f9d77c7c1e487f97d66b739b3cacf1bf",
+                "reference": "9b4a6c23f9d77c7c1e487f97d66b739b3cacf1bf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/xmlrpc.inc",
+                    "lib/xmlrpcs.inc"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "A php library for building xmlrpc clients and servers",
+            "homepage": "http://gggeek.github.io/phpxmlrpc/",
+            "keywords": [
+                "webservices",
+                "xmlrpc"
+            ],
+            "time": "2014-06-15 19:48:04"
         },
         {
             "name": "psr/log",
@@ -2145,7 +2217,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 }
             ],
             "description": "The base bundle for the Symfony Distributions",
@@ -2192,7 +2266,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 }
             ],
             "description": "This bundle provides a way to configure your controllers with annotations",
@@ -2509,7 +2585,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -2730,7 +2808,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 }
             ],
             "description": "Common additional features for Twig that do not directly belong in core",
@@ -2782,7 +2862,7 @@
                     "role": "Lead Developer"
                 },
                 {
-                    "name": "Armin Ronacher2",
+                    "name": "Armin Ronacher",
                     "email": "armin.ronacher@active-4.com",
                     "role": "Project Founder"
                 },
