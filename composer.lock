@@ -1903,12 +1903,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "5892d80d3535a0e72af948154675427fbd87fd30"
+                "reference": "a051f4bc519c6ae45b3e35117b408a62c69f093e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/5892d80d3535a0e72af948154675427fbd87fd30",
-                "reference": "5892d80d3535a0e72af948154675427fbd87fd30",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/a051f4bc519c6ae45b3e35117b408a62c69f093e",
+                "reference": "a051f4bc519c6ae45b3e35117b408a62c69f093e",
                 "shasum": ""
             },
             "require": {
@@ -2011,7 +2011,7 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2014-08-22 14:01:38"
+            "time": "2014-08-23 11:51:54"
         },
         {
             "name": "payum/payum-bundle",
@@ -2020,12 +2020,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "e3d87519d8cc8e8fc22e5bab36f084597e78df45"
+                "reference": "72516162146f03300c86d61580942126125a14df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/e3d87519d8cc8e8fc22e5bab36f084597e78df45",
-                "reference": "e3d87519d8cc8e8fc22e5bab36f084597e78df45",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/72516162146f03300c86d61580942126125a14df",
+                "reference": "72516162146f03300c86d61580942126125a14df",
                 "shasum": ""
             },
             "require": {
@@ -2105,7 +2105,7 @@
                 "stripe.js",
                 "symfony"
             ],
-            "time": "2014-08-22 12:05:09"
+            "time": "2014-08-22 14:19:33"
         },
         {
             "name": "phpxmlrpc/phpxmlrpc",
@@ -2880,12 +2880,8 @@
             "time": "2014-07-05 12:19:05"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "doctrine/mongodb": 20,
@@ -2899,7 +2895,5 @@
     "platform": {
         "php": ">=5.3.3"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
