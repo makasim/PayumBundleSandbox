@@ -23,9 +23,9 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "jms/payment-paypal-bundle": "~1",
-        "payum/payum-bundle": "0.11.*@dev",
-        "payum/payum": "0.11.*@dev",
-        "payum/jms-payment-bridge": "0.11.*@dev",
+        "payum/payum-bundle": "0.12.*@dev",
+        "payum/payum": "0.12.*@dev",
+        "payum/jms-payment-bridge": "0.12.*@dev",
         "omnipay/stripe": "~2.0",
         "omnipay/paypal": "~2.0",
         "stripe/stripe-php": "~1.0"
@@ -56,7 +56,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "0.11-dev"
+            "dev-master": "0.12-dev"
         }
     }
 }
