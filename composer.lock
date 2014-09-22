@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "51084b578b1f4cfd66b6414dcae9e0ab",
+    "hash": "74ccc0f034f940d3c002e38a8e8cbfda",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -114,16 +114,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "e16d7adf45664a50fa86f515b6d5e7f670130449"
+                "reference": "cf483685798a72c93bf4206e3dd6358ea07d64e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/e16d7adf45664a50fa86f515b6d5e7f670130449",
-                "reference": "e16d7adf45664a50fa86f515b6d5e7f670130449",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/cf483685798a72c93bf4206e3dd6358ea07d64e7",
+                "reference": "cf483685798a72c93bf4206e3dd6358ea07d64e7",
                 "shasum": ""
             },
             "require": {
@@ -139,7 +139,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.4.x-dev"
                 }
             },
             "autoload": {
@@ -153,17 +153,6 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
-                },
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com",
-                    "homepage": "http://www.instaclick.com"
-                },
-                {
                     "name": "Roman Borschel",
                     "email": "roman@code-factory.org"
                 },
@@ -172,10 +161,16 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
                     "name": "Johannes Schmitt",
-                    "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
-                    "role": "Developer of wrapped JMSSerializerBundle"
+                    "email": "schmittjoh@gmail.com"
                 }
             ],
             "description": "Caching library offering an object-oriented API for many cache backends",
@@ -184,7 +179,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2013-10-25 19:04:14"
+            "time": "2014-09-17 14:24:04"
         },
         {
             "name": "doctrine/collections",
@@ -587,12 +582,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb.git",
-                "reference": "f4d27b066418d37622c434ab9f965271b56496f5"
+                "reference": "86c5e1fa2e9455fdef1eaf259ef13747bba6c233"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/f4d27b066418d37622c434ab9f965271b56496f5",
-                "reference": "f4d27b066418d37622c434ab9f965271b56496f5",
+                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/86c5e1fa2e9455fdef1eaf259ef13747bba6c233",
+                "reference": "86c5e1fa2e9455fdef1eaf259ef13747bba6c233",
                 "shasum": ""
             },
             "require": {
@@ -612,25 +607,20 @@
             ],
             "authors": [
                 {
-                    "name": "Bulat Shakirzyanov",
-                    "email": "mallluhuct@gmail.com",
-                    "homepage": "http://avalanche123.com"
-                },
-                {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
-                },
-                {
-                    "name": "Kris Wallsmith",
-                    "email": "kris.wallsmith@gmail.com",
-                    "homepage": "http://kriswallsmith.net/"
+                    "name": "Jonathan H. Wage",
+                    "email": "jonwage@gmail.com"
                 },
                 {
                     "name": "Jeremy Mikola",
-                    "email": "jmikola@gmail.com",
-                    "homepage": "http://jmikola.net"
+                    "email": "jmikola@gmail.com"
+                },
+                {
+                    "name": "Bulat Shakirzyanov",
+                    "email": "mallluhuct@gmail.com"
+                },
+                {
+                    "name": "Kris Wallsmith",
+                    "email": "kris.wallsmith@gmail.com"
                 }
             ],
             "description": "Doctrine MongoDB Abstraction Layer",
@@ -640,7 +630,7 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2014-04-29 21:03:55"
+            "time": "2014-09-18 17:50:10"
         },
         {
             "name": "doctrine/mongodb-odm",
@@ -1532,16 +1522,16 @@
         },
         {
             "name": "omnipay/common",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/omnipay/common.git",
-                "reference": "f7d50ce82f3528e7402500d8722391ebb69070b8"
+                "url": "https://github.com/thephpleague/omnipay-common.git",
+                "reference": "2c83349327ed3534237043a7a882cbaff55a7866"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/omnipay/common/zipball/f7d50ce82f3528e7402500d8722391ebb69070b8",
-                "reference": "f7d50ce82f3528e7402500d8722391ebb69070b8",
+                "url": "https://api.github.com/repos/thephpleague/omnipay-common/zipball/2c83349327ed3534237043a7a882cbaff55a7866",
+                "reference": "2c83349327ed3534237043a7a882cbaff55a7866",
                 "shasum": ""
             },
             "require": {
@@ -1613,11 +1603,11 @@
                 },
                 {
                     "name": "Omnipay Contributors",
-                    "homepage": "https://github.com/omnipay/common/contributors"
+                    "homepage": "https://github.com/thephpleague/omnipay-common/contributors"
                 }
             ],
             "description": "Common components for Omnipay payment processing library",
-            "homepage": "https://github.com/omnipay/common",
+            "homepage": "https://github.com/thephpleague/omnipay-common",
             "keywords": [
                 "gateway",
                 "merchant",
@@ -1626,20 +1616,20 @@
                 "payment",
                 "purchase"
             ],
-            "time": "2014-05-12 00:54:17"
+            "time": "2014-09-17 00:38:32"
         },
         {
             "name": "omnipay/paypal",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/omnipay/paypal.git",
-                "reference": "1c7ac319ab80993d14bf9d3bf43872cf522bcd70"
+                "url": "https://github.com/thephpleague/omnipay-paypal.git",
+                "reference": "c323164929de91d877661a519d0991515ef5e762"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/omnipay/paypal/zipball/1c7ac319ab80993d14bf9d3bf43872cf522bcd70",
-                "reference": "1c7ac319ab80993d14bf9d3bf43872cf522bcd70",
+                "url": "https://api.github.com/repos/thephpleague/omnipay-paypal/zipball/c323164929de91d877661a519d0991515ef5e762",
+                "reference": "c323164929de91d877661a519d0991515ef5e762",
                 "shasum": ""
             },
             "require": {
@@ -1670,11 +1660,11 @@
                 },
                 {
                     "name": "Omnipay Contributors",
-                    "homepage": "https://github.com/omnipay/paypal/contributors"
+                    "homepage": "https://github.com/thephpleague/omnipay-paypal/contributors"
                 }
             ],
             "description": "PayPal gateway for Omnipay payment processing library",
-            "homepage": "https://github.com/omnipay/paypal",
+            "homepage": "https://github.com/thephpleague/omnipay-paypal",
             "keywords": [
                 "gateway",
                 "merchant",
@@ -1684,7 +1674,7 @@
                 "paypal",
                 "purchase"
             ],
-            "time": "2014-04-08 08:12:59"
+            "time": "2014-09-17 00:39:56"
         },
         {
             "name": "omnipay/stripe",
@@ -1841,18 +1831,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/JMSPaymentBridge.git",
-                "reference": "3489b0116081e8da057179ed903410c560d02c1f"
+                "reference": "db1e94d1219f7671695ea87dd73df54ecface3ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/JMSPaymentBridge/zipball/3489b0116081e8da057179ed903410c560d02c1f",
-                "reference": "3489b0116081e8da057179ed903410c560d02c1f",
+                "url": "https://api.github.com/repos/Payum/JMSPaymentBridge/zipball/db1e94d1219f7671695ea87dd73df54ecface3ce",
+                "reference": "db1e94d1219f7671695ea87dd73df54ecface3ce",
                 "shasum": ""
             },
             "require": {
                 "jms/payment-core-bundle": "~1",
-                "payum/core": "0.11.*@dev",
-                "payum/payum-bundle": "0.11.*@dev",
+                "payum/core": "0.12.*@dev",
+                "payum/payum-bundle": "0.12.*@dev",
                 "php": ">=5.3.2"
             },
             "require-dev": {
@@ -1861,7 +1851,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.11-dev"
+                    "dev-master": "0.12-dev"
                 }
             },
             "autoload": {
@@ -1893,7 +1883,7 @@
                 "jms payment",
                 "payment"
             ],
-            "time": "2014-08-01 19:41:38"
+            "time": "2014-09-22 17:59:08"
         },
         {
             "name": "payum/payum",
@@ -1901,12 +1891,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "f9ba06402f663f24a7981c3bf6cdbdf8ec5d3794"
+                "reference": "1ca6db1a41e1ea1ea1331eee3c2c45dce6e65ea3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/f9ba06402f663f24a7981c3bf6cdbdf8ec5d3794",
-                "reference": "f9ba06402f663f24a7981c3bf6cdbdf8ec5d3794",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/1ca6db1a41e1ea1ea1331eee3c2c45dce6e65ea3",
+                "reference": "1ca6db1a41e1ea1ea1331eee3c2c45dce6e65ea3",
                 "shasum": ""
             },
             "require": {
@@ -1962,7 +1952,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.11-dev"
+                    "dev-master": "0.12-dev"
                 }
             },
             "autoload": {
@@ -2009,25 +1999,25 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2014-09-16 13:35:05"
+            "time": "2014-09-22 17:50:29"
         },
         {
             "name": "payum/payum-bundle",
-            "version": "0.11.x-dev",
+            "version": "dev-master",
             "target-dir": "Payum/Bundle/PayumBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "9ab96b28039108f127843497837bd6d58855eb74"
+                "reference": "80e6ebcb7a55479ee5a7b189c680cc3ec5355086"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/9ab96b28039108f127843497837bd6d58855eb74",
-                "reference": "9ab96b28039108f127843497837bd6d58855eb74",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/80e6ebcb7a55479ee5a7b189c680cc3ec5355086",
+                "reference": "80e6ebcb7a55479ee5a7b189c680cc3ec5355086",
                 "shasum": ""
             },
             "require": {
-                "payum/core": "0.11.*",
+                "payum/core": "0.12.*@dev",
                 "php": ">=5.3.2",
                 "symfony/form": "~2.3",
                 "symfony/framework-bundle": "~2.3",
@@ -2039,7 +2029,7 @@
                 "omnipay/dummy": "~2.0",
                 "omnipay/paypal": "~2.0",
                 "omnipay/stripe": "~2.0",
-                "payum/payum": "0.11.*",
+                "payum/payum": "0.12.*@dev",
                 "phpunit/phpunit": "~4.0",
                 "symfony/browser-kit": "~2.3",
                 "symfony/class-loader": "~2.3"
@@ -2057,7 +2047,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.11-dev"
+                    "dev-master": "0.12-dev"
                 }
             },
             "autoload": {
@@ -2103,7 +2093,7 @@
                 "stripe.js",
                 "symfony"
             ],
-            "time": "2014-09-11 07:31:31"
+            "time": "2014-09-11 07:35:15"
         },
         {
             "name": "phpxmlrpc/phpxmlrpc",
@@ -2374,16 +2364,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.2.1",
+            "version": "v5.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "2b9af56cc676c338d52fca4c657e5bdff73bb7af"
+                "reference": "e02f71a35436af4bd58a1bd90116089e632e29e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/2b9af56cc676c338d52fca4c657e5bdff73bb7af",
-                "reference": "2b9af56cc676c338d52fca4c657e5bdff73bb7af",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/e02f71a35436af4bd58a1bd90116089e632e29e1",
+                "reference": "e02f71a35436af4bd58a1bd90116089e632e29e1",
                 "shasum": ""
             },
             "require": {
@@ -2409,13 +2399,11 @@
             ],
             "authors": [
                 {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
+                    "name": "Chris Corbyn"
                 },
                 {
-                    "name": "Chris Corbyn"
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "Swiftmailer, free feature-rich PHP mailer",
@@ -2424,7 +2412,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2014-06-13 11:44:54"
+            "time": "2014-09-20 07:17:36"
         },
         {
             "name": "symfony/assetic-bundle",
