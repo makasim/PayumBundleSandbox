@@ -49,7 +49,7 @@ class OneClickExamplesController extends Controller
             $agreementStatus = new GetBinaryStatus($agreement);
             $this->getPayum()->getPayment($paymentName)->execute($agreementStatus);
 
-            if ($agreementStatus->isSuccess()) {
+            if ($agreementStatus->isCaptured()) {
                 return $this->redirect($this->generateUrl('acme_payex_one_click_purchase', array(
                     'agreementId' => $agreement->getId()
                 )));
@@ -131,7 +131,7 @@ class OneClickExamplesController extends Controller
                 'Acme\PaymentBundle\Model\AgreementDetails'
             ));
             $this->getPayum()->getPayment($paymentName)->execute($agreementStatus);
-            if (false == $agreementStatus->isSuccess()) {
+            if (false == $agreementStatus->isCaptured()) {
                 throw new HttpException(400, sprintf(
                     'Agreement has to have confirmed status, but it is %s',
                     $agreementStatus->getStatus()

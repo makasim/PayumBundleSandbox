@@ -143,7 +143,7 @@ class RecurringExamplesController extends PayumController
         $payment->execute($paymentStatus);
 
         $cancelToken = null;
-        if ($paymentStatus->isSuccess()) {
+        if ($paymentStatus->isCaptured()) {
             $cancelToken = $this->getTokenFactory()->createToken(
                 $paymentName,
                 $paymentStatus->getModel(),
@@ -175,7 +175,7 @@ class RecurringExamplesController extends PayumController
 
         $status = new GetBinaryStatus($token);
         $payment->execute($status);
-        if (false == $status->isSuccess()) {
+        if (false == $status->isCaptured()) {
             throw new HttpException(400, 'The model status must be success.');
         }
 

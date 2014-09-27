@@ -6,6 +6,9 @@ use Payum\Core\Request\GetStatusInterface;
 
 class StatusAction implements ActionInterface
 {
+    /**
+     * @param GetStatusInterface $request
+     */
     public function execute($request)
     {
         $model = $request->getModel();
@@ -16,8 +19,8 @@ class StatusAction implements ActionInterface
             return;
         }
 
-        if (isset($model['status']) && 'success' == $model['status']) {
-            $request->markSuccess();
+        if (isset($model['status']) && 'captured' == $model['status']) {
+            $request->markCaptured();
 
             return;
         }

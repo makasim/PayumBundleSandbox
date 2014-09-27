@@ -24,7 +24,7 @@ class CaptureAction implements ActionInterface
 
             //do purchase call to the payment gateway using username and password.
 
-            $model['status'] = 'success';
+            $model['status'] = 'captured';
         } else {
             $model['status'] = 'error';
         }

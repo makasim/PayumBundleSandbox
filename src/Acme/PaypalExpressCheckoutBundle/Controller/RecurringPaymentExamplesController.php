@@ -90,7 +90,7 @@ class RecurringPaymentExamplesController extends PayumController
         $payment->execute($agreementStatus);
 
         $recurringPaymentStatus = null;
-        if (false == $agreementStatus->isSuccess()) {
+        if (false == $agreementStatus->isCaptured()) {
             throw new HttpException(400, 'Billing agreement status is not success.');
         }
 
@@ -149,7 +149,7 @@ class RecurringPaymentExamplesController extends PayumController
         $payment->execute($recurringPaymentStatus);
 
         $cancelToken = null;
-        if ($recurringPaymentStatus->isSuccess()) {
+        if ($recurringPaymentStatus->isCaptured()) {
             $cancelToken = $this->getTokenFactory()->createToken(
                 $paymentName, 
                 $recurringPaymentDetails, 
@@ -183,7 +183,7 @@ class RecurringPaymentExamplesController extends PayumController
 
         $status = new GetBinaryStatus($token);
         $payment->execute($status);
-        if (false == $status->isSuccess()) {
+        if (false == $status->isCaptured()) {
             throw new HttpException(400, 'The model status must be success.');
         }
         if (false == $status->getModel() instanceof RecurringPaymentDetails) {

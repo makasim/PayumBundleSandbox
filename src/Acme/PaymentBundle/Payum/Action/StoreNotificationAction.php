@@ -2,12 +2,12 @@
 namespace Acme\PaymentBundle\Payum\Action;
 
 use Acme\PaymentBundle\Entity\NotificationDetails;
-use Payum\Core\Action\ActionInterface;
+use Payum\Core\Action\PaymentAwareAction;
+use Payum\Core\Request\GetHttpRequest;
 use Payum\Core\Request\Notify;
-use Payum\Core\Request\SecuredNotify;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class StoreNotificationAction implements ActionInterface
+class StoreNotificationAction extends PaymentAwareAction
 {
     /**
      * @var RegistryInterface
@@ -24,18 +24,21 @@ class StoreNotificationAction implements ActionInterface
     
     /**
      * {@inheritDoc}
+     *
+     * @param Notify $request
      */
     public function execute($request)
     {
-        /** @var Notify $request */
-        
         $notification = new NotificationDetails;
-        if ($request instanceof SecuredNotify) {
-            $notification->setPaymentName($request->getToken()->getPaymentName());
-        } else {
-            $notification->setPaymentName('unknown');
-        }
-        $notification->setDetails($request->getNotification());
+
+        $request->getToken() ?
+            $notification->setPaymentName($request->getToken()->getPaymentName()) :
+            $notification->setPaymentName('unknown')
+        ;
+
+        $this->payment->execute($getHttpRequest = new GetHttpRequest);
+
+        $notification->setDetails($getHttpRequest->query);
         $notification->setCreatedAt(new \DateTime);
         $this->doctrine->getManager()->persist($notification);
 

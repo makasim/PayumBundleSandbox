@@ -31,6 +31,8 @@ class StoreNotificationExtension implements ExtensionInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @param Notify $request
      */
     public function onPreExecute($request)
     {
@@ -41,14 +43,12 @@ class StoreNotificationExtension implements ExtensionInterface
             return;
         }
 
-        /** @var Notify $request */
-
         $notification = new NotificationDetails;
-        if ($request instanceof SecuredNotify) {
-            $notification->setPaymentName($request->getToken()->getPaymentName());
-        } else {
-            $notification->setPaymentName('unknown');
-        }
+        $request->getToken() ?
+            $notification->setPaymentName($request->getToken()->getPaymentName()) :
+            $notification->setPaymentName('unknown')
+        ;
+
         $notification->setDetails($request->getNotification());
         $notification->setCreatedAt(new \DateTime);
         $this->doctrine->getManager()->persist($notification);

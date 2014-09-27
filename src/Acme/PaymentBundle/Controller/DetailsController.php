@@ -23,7 +23,7 @@ class DetailsController extends PayumController
         $payment->execute($status);
 
         return $this->render('AcmePaymentBundle:Details:view.html.twig', array(
-            'status' => $status->getStatus(),
+            'status' => $status->getValue(),
             'details' => iterator_to_array($status->getModel()),
             'paymentTitle' => ucwords(str_replace(array('_', '-'), ' ', $token->getPaymentName()))
         ));

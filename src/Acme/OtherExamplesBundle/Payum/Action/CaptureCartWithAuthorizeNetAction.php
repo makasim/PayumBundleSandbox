@@ -7,7 +7,7 @@ use Payum\Core\Action\PaymentAwareAction;
 use Payum\Core\Bridge\Symfony\Reply\HttpResponse;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Registry\RegistryInterface;
-use Payum\Core\Request\SecuredCapture;
+use Payum\Core\Request\Capture;
 use Payum\Core\Security\SensitiveValue;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -49,11 +49,12 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     *
+     * @param Capture $request
      */
     public function execute($request)
     {
-        /** @var $request SecuredCapture */
         if (false == $this->supports($request)) {
             throw RequestNotSupportedException::createActionNotSupported($this, $request);
         }
@@ -99,7 +100,8 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
     public function supports($request)
     {
         return
-            $request instanceof SecuredCapture &&
+            $request instanceof Capture &&
+            $request->getToken() &&
             $request->getModel() instanceof Cart &&
             null === $request->getModel()->getDetails()
         ;
