@@ -19,7 +19,7 @@ class DetailsController extends PayumController
             $payment->execute(new Sync($token));
         } catch (RequestNotSupportedException $e) {}
         
-        $status = new GetHumanStatus($token);
+        $status = new SimpleStatusRequest($token);
         $payment->execute($status);
 
         return $this->render('AcmePaymentBundle:Details:view.html.twig', array(
