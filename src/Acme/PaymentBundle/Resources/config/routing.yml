@@ -2,6 +2,10 @@ acme_payment_homepage:
     pattern:  /payment
     defaults: { _controller: AcmePaymentBundle:Default:index }
 
+acme_payment_prepare_order_purchase:
+    pattern:  /payment/order_purchase/prepare
+    defaults: { _controller: AcmePaymentBundle:OrderPurchase:prepare }
+
 acme_payment_prepare_simple_purchase_authorize_net:
     pattern:  /payment/simple_purchase/authorize_net/prepare
     defaults: { _controller: AcmePaymentBundle:SimplePurchaseAuthorizeNetAim:prepare }
@@ -45,6 +49,10 @@ acme_payment_prepare_obtain_credit_card_paypal_pro:
 acme_payment_details_view:
     pattern:  /payment/details
     defaults: { _controller: AcmePaymentBundle:Details:view }
+
+acme_payment_order_done:
+    pattern:  /payment/order/done
+    defaults: { _controller: AcmePaymentBundle:Details:viewOrder }
     
 acme_payment_notifications_list:
     pattern:  /payment/notifications/list

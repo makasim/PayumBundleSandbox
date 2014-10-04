@@ -4,6 +4,11 @@
 
 {% block content %}
     <ol>
+        <h3>Order</h3>
+        <li>
+            <a href="{{ path("acme_payment_prepare_order_purchase") }}">Choose payment and purchase.</a>
+        </li>
+
         <h3>Paypal Express Checkout</h3>
         <li>
             <a href="{{ path("acme_paypal_express_checkout_prepare_simple_purchase_doctrine_orm") }}">Simple purchase. Doctrine ORM storage</a>

@@ -23,12 +23,13 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "jms/payment-paypal-bundle": "~1",
-        "payum/payum-bundle": "0.12.*@dev",
-        "payum/payum": "0.12.*@dev",
+        "payum/payum-bundle": "dev-order as 0.12.0",
+        "payum/payum": "dev-order as 0.12.0",
         "payum/jms-payment-bridge": "0.12.*@dev",
         "omnipay/stripe": "~2.0",
         "omnipay/paypal": "~2.0",
-        "stripe/stripe-php": "~1.0"
+        "stripe/stripe-php": "~1.0",
+        "phpunit/phpunit": "~4.0"
     },
     "scripts": {
         "post-install-cmd": [
@@ -58,5 +59,15 @@
         "branch-alias": {
             "dev-master": "0.12-dev"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:formapro-forks/PayumBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:formapro-forks/Payum.git"
+        }
+    ]
 }
