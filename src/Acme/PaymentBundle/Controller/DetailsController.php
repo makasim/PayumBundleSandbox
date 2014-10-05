@@ -50,11 +50,14 @@ class DetailsController extends PayumController
             'status' => $status->getValue(),
             'order' => array(
                 'client' => array(
-                    'email' => $order->getClient()->getEmail(),
+                    'id' => $order->getClientId(),
+                    'email' => $order->getClientEmail(),
                 ),
                 'number' => $order->getNumber(),
-                'total_amount' => $order->getTotalPrice()->getAmount() / 100,
-                'currency' => $order->getTotalPrice()->getCurrency()->getCode(),
+                'description' => $order->getCurrencyCode(),
+                'total_amount' => $order->getTotalAmount(),
+                'currency_code' => $order->getCurrencyCode(),
+                'currency_digits_after_decimal_point' => $order->getCurrencyDigitsAfterDecimalPoint(),
                 'details' => $order->getDetails(),
             ),
             'paymentTitle' => ucwords(str_replace(array('_', '-'), ' ', $token->getPaymentName()))

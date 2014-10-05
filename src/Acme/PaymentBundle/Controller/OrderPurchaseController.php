@@ -1,9 +1,6 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
-use Payum\Core\Model\Client;
-use Payum\Core\Model\Currency;
-use Payum\Core\Model\Money;
 use Payum\Core\Model\Order;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
@@ -20,22 +17,18 @@ class OrderPurchaseController extends Controller
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-
-            $storage = $this->getPayum()->getStorage('Payum\Core\Model\Order');
-
-            $client = new Client;
-            $client->setEmail($data['email']);
-
             /** @var Order $order */
-            $order = $storage->createModel();
-            $order->setClient($client);
+            $order = $form->getData();
+
             $order->setNumber(uniqid());
-            $order->setTotalPrice(new Money($data['amount'] * 100, new Currency($data['currency'])));
+            $order->setClientId($order->getClientEmail());
+            $order->setDescription(sprintf('An order %s for a client %s', $order->getNumber(), $order->getClientEmail()));
+
+            $storage = $this->getPayum()->getStorage($order);
             $storage->updateModel($order);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $data['payment_name'],
+                $form->get('payment_name')->getData(),
                 $order,
                 'acme_payment_order_done'
             );
@@ -53,7 +46,9 @@ class OrderPurchaseController extends Controller
      */
     protected function createPurchaseForm()
     {
-        return $this->createFormBuilder()
+        $formBuilder = $this->createFormBuilder(null, array('data_class' => 'Payum\Core\Model\Order'));
+
+        return $formBuilder
             ->add('payment_name', 'choice', array(
                 'choices' => array(
                     'paypal_express_checkout_with_ipn_enabled' => 'Paypal ExpressCheckout',
@@ -61,17 +56,18 @@ class OrderPurchaseController extends Controller
                     'be2bill' => 'Be2bill',
                     'be2bill_onsite' => 'Be2bill Onsite',
                 ),
+                'mapped' => false,
                 'constraints' => array(new NotBlank)
             ))
-            ->add('amount', 'integer', array(
-                'data' => 2,
-                'constraints' => array(new Range(array('max' => 10)), new NotBlank)
+            ->add('totalAmount', 'integer', array(
+                'data' => 200,
+                'constraints' => array(new Range(array('max' => 1000, 'min' => 100)), new NotBlank)
             ))
-            ->add('currency', 'text', array(
+            ->add('currencyCode', 'text', array(
                 'data' => 'USD',
                 'constraints' => array(new NotBlank)
             ))
-            ->add('email', 'text', array(
+            ->add('clientEmail', 'text', array(
                 'data' => 'foo@example.com',
                 'constraints' => array(new Email, new NotBlank)
             ))
