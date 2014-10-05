@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5c8d4f3519c95015b68af33059ab22da",
+    "hash": "7636929d1ad4b8a3ae106d864226327f",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -2002,13 +2002,13 @@
             "version": "dev-order",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Payum/Payum.git",
-                "reference": "4fc7cf0214d43612fbdd3ed2c9d4d0ba66fac309"
+                "url": "https://github.com/formapro-forks/Payum.git",
+                "reference": "40628ab30d86aba9baec27d1ea6c889700045156"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/4fc7cf0214d43612fbdd3ed2c9d4d0ba66fac309",
-                "reference": "4fc7cf0214d43612fbdd3ed2c9d4d0ba66fac309",
+                "url": "https://api.github.com/repos/formapro-forks/Payum/zipball/40628ab30d86aba9baec27d1ea6c889700045156",
+                "reference": "40628ab30d86aba9baec27d1ea6c889700045156",
                 "shasum": ""
             },
             "require": {
@@ -2113,7 +2113,7 @@
             "support": {
                 "source": "https://github.com/formapro-forks/Payum/tree/order"
             },
-            "time": "2014-10-04 12:57:07"
+            "time": "2014-10-05 12:02:39"
         },
         {
             "name": "payum/payum-bundle",
