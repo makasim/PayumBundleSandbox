@@ -52,6 +52,8 @@ class OrderPurchaseController extends Controller
             ->add('payment_name', 'choice', array(
                 'choices' => array(
                     'paypal_express_checkout_with_ipn_enabled' => 'Paypal ExpressCheckout',
+                    'stripe_js' => 'Stripe.Js',
+                    'stripe_checkout' => 'Stripe Checkout',
                     'authorize_net' => 'Authorize.Net AIM',
                     'be2bill' => 'Be2bill',
                     'be2bill_onsite' => 'Be2bill Onsite',
