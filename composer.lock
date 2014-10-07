@@ -2003,12 +2003,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/formapro-forks/Payum.git",
-                "reference": "680f0a23348fa3a9c656d16c01ead201d824d6ed"
+                "reference": "c7aa5273ea825ba8566c24c091a91ea43a550e2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/formapro-forks/Payum/zipball/680f0a23348fa3a9c656d16c01ead201d824d6ed",
-                "reference": "680f0a23348fa3a9c656d16c01ead201d824d6ed",
+                "url": "https://api.github.com/repos/formapro-forks/Payum/zipball/c7aa5273ea825ba8566c24c091a91ea43a550e2d",
+                "reference": "c7aa5273ea825ba8566c24c091a91ea43a550e2d",
                 "shasum": ""
             },
             "require": {
@@ -2113,7 +2113,7 @@
             "support": {
                 "source": "https://github.com/formapro-forks/Payum/tree/order"
             },
-            "time": "2014-10-06 14:06:43"
+            "time": "2014-10-07 20:03:47"
         },
         {
             "name": "payum/payum-bundle",
@@ -2122,12 +2122,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/formapro-forks/PayumBundle.git",
-                "reference": "ef9fcc2fa54a79217a03b6a0e9db2668978c38e9"
+                "reference": "1c4a13ce10337b823f9c39264f573ee891c0db1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/formapro-forks/PayumBundle/zipball/ef9fcc2fa54a79217a03b6a0e9db2668978c38e9",
-                "reference": "ef9fcc2fa54a79217a03b6a0e9db2668978c38e9",
+                "url": "https://api.github.com/repos/formapro-forks/PayumBundle/zipball/1c4a13ce10337b823f9c39264f573ee891c0db1e",
+                "reference": "1c4a13ce10337b823f9c39264f573ee891c0db1e",
                 "shasum": ""
             },
             "require": {
@@ -2209,7 +2209,7 @@
             "support": {
                 "source": "https://github.com/formapro-forks/PayumBundle/tree/order"
             },
-            "time": "2014-10-06 14:07:42"
+            "time": "2014-10-07 20:01:08"
         },
         {
             "name": "phpunit/php-code-coverage",

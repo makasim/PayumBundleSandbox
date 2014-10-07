@@ -21,7 +21,7 @@ class OrderPurchaseController extends Controller
             $order = $form->getData();
 
             $order->setNumber(uniqid());
-            $order->setClientId($order->getClientEmail());
+            $order->setClientId(uniqid());
             $order->setDescription(sprintf('An order %s for a client %s', $order->getNumber(), $order->getClientEmail()));
 
             $storage = $this->getPayum()->getStorage($order);
@@ -52,11 +52,16 @@ class OrderPurchaseController extends Controller
             ->add('payment_name', 'choice', array(
                 'choices' => array(
                     'paypal_express_checkout_with_ipn_enabled' => 'Paypal ExpressCheckout',
+                    'paypal_pro_checkout' => 'Paypal ProCheckout',
                     'stripe_js' => 'Stripe.Js',
                     'stripe_checkout' => 'Stripe Checkout',
                     'authorize_net' => 'Authorize.Net AIM',
                     'be2bill' => 'Be2bill',
                     'be2bill_onsite' => 'Be2bill Onsite',
+                    'payex' => 'Payex',
+                    'offline' => 'Offline',
+                    'stripe_via_omnipay' => 'Stripe (Omnipay)',
+                    'paypal_express_checkout_via_omnipay' => 'Paypal ExpressCheckout (Omnipay)',
                 ),
                 'mapped' => false,
                 'constraints' => array(new NotBlank)
