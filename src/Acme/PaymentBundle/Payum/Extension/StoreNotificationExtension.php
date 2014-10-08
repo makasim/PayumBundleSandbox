@@ -27,6 +27,7 @@ class StoreNotificationExtension implements ExtensionInterface
     public function __construct(RegistryInterface $doctrine)
     {
         $this->doctrine = $doctrine;
+        $this->processedRequests = array();
     }
 
     /**
@@ -43,12 +44,14 @@ class StoreNotificationExtension implements ExtensionInterface
             return;
         }
 
+        $this->processedRequests[] = $request;
+
         $notification = new NotificationDetails;
         $request->getToken() ?
             $notification->setPaymentName($request->getToken()->getPaymentName()) :
             $notification->setPaymentName('unknown')
         ;
-        
+
         $notification->setCreatedAt(new \DateTime);
         $this->doctrine->getManager()->persist($notification);
 
