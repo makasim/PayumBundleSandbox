@@ -1891,12 +1891,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "1ca6db1a41e1ea1ea1331eee3c2c45dce6e65ea3"
+                "reference": "047cd4dd109008f20471d662a88722bcf8095b45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/1ca6db1a41e1ea1ea1331eee3c2c45dce6e65ea3",
-                "reference": "1ca6db1a41e1ea1ea1331eee3c2c45dce6e65ea3",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/047cd4dd109008f20471d662a88722bcf8095b45",
+                "reference": "047cd4dd109008f20471d662a88722bcf8095b45",
                 "shasum": ""
             },
             "require": {
@@ -1999,7 +1999,7 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2014-09-22 17:50:29"
+            "time": "2014-10-08 09:25:09"
         },
         {
             "name": "payum/payum-bundle",
@@ -2008,12 +2008,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "80e6ebcb7a55479ee5a7b189c680cc3ec5355086"
+                "reference": "bc489e46b0a672a7c5ebc401e068f5a917910ed7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/80e6ebcb7a55479ee5a7b189c680cc3ec5355086",
-                "reference": "80e6ebcb7a55479ee5a7b189c680cc3ec5355086",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/bc489e46b0a672a7c5ebc401e068f5a917910ed7",
+                "reference": "bc489e46b0a672a7c5ebc401e068f5a917910ed7",
                 "shasum": ""
             },
             "require": {
@@ -2093,7 +2093,7 @@
                 "stripe.js",
                 "symfony"
             ],
-            "time": "2014-09-11 07:35:15"
+            "time": "2014-10-08 09:31:01"
         },
         {
             "name": "phpxmlrpc/phpxmlrpc",

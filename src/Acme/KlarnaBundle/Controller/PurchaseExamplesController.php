@@ -52,7 +52,7 @@ class PurchaseExamplesController extends Controller
             $details['locale'] = 'sv-se';
             $storage->updateModel($details);
 
-            $captureToken = $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $authorizeToken = $this->getTokenFactory()->createAuthorizeToken(
                 $paymentName,
                 $details,
                 'acme_payment_details_view'
@@ -61,7 +61,7 @@ class PurchaseExamplesController extends Controller
             $details['merchant'] = array(
                 'terms_uri' => 'http://example.com/terms',
                 'checkout_uri' => 'http://example.com/fuck',
-                'confirmation_uri' => $captureToken->getTargetUrl(),
+                'confirmation_uri' => $authorizeToken->getTargetUrl(),
                 'push_uri' => $this->getTokenFactory()->createNotifyToken($paymentName, $details)->getTargetUrl()
             );
             $details['cart'] = array(
@@ -69,7 +69,7 @@ class PurchaseExamplesController extends Controller
             );
             $storage->updateModel($details);
 
-            return $this->redirect($captureToken->getTargetUrl());
+            return $this->redirect($authorizeToken->getTargetUrl());
         }
         
         return array(
