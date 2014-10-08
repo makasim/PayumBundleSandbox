@@ -31,6 +31,12 @@ class NotificationDetails
      */
     protected $createdAt;
 
+    public function __construct()
+    {
+        $this->details = [];
+        $this->paymentName = '';
+    }
+
     /**
      * @return int
      */
