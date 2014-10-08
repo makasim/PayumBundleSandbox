@@ -48,8 +48,7 @@ class StoreNotificationExtension implements ExtensionInterface
             $notification->setPaymentName($request->getToken()->getPaymentName()) :
             $notification->setPaymentName('unknown')
         ;
-
-        $notification->setDetails($request->getNotification());
+        
         $notification->setCreatedAt(new \DateTime);
         $this->doctrine->getManager()->persist($notification);
 
