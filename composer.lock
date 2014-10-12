@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7636929d1ad4b8a3ae106d864226327f",
+    "hash": "e85f9ce62be9620d54a42b0375059ae3",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -1940,16 +1940,16 @@
         },
         {
             "name": "payum/payum",
-            "version": "dev-order",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/formapro-forks/Payum.git",
-                "reference": "02daf9d5a5320ffcf1066aa12e82fbf561c2d0c1"
+                "url": "https://github.com/Payum/Payum.git",
+                "reference": "3d0655560455440f27ccc32589d9d9ea21e91dc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/formapro-forks/Payum/zipball/02daf9d5a5320ffcf1066aa12e82fbf561c2d0c1",
-                "reference": "02daf9d5a5320ffcf1066aa12e82fbf561c2d0c1",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/3d0655560455440f27ccc32589d9d9ea21e91dc7",
+                "reference": "3d0655560455440f27ccc32589d9d9ea21e91dc7",
                 "shasum": ""
             },
             "require": {
@@ -1988,15 +1988,17 @@
                 "omnipay/dummy": "~2.0",
                 "phpunit/phpunit": "~4.0",
                 "psr/log": "~1.0",
-                "symfony/http-foundation": "~2",
-                "symfony/http-kernel": "~2",
-                "symfony/routing": "~2",
+                "symfony/form": "~2.3",
+                "symfony/http-foundation": "~2.3",
+                "symfony/http-kernel": "~2.3",
+                "symfony/routing": "~2.3",
                 "zendframework/zend-db": "~2"
             },
             "suggest": {
                 "doctrine/mongodb-odm": "If you want to store models to mongo doctrin2 ODM",
                 "doctrine/orm": "If you want to store models to database using doctrin2 ORM",
                 "monolog/monolog": "In case you want to use PSR-3 logger",
+                "symfony/form": "If you want to use forms",
                 "symfony/http-foundation": "If you want to use HttpRequestVerifier or HttpResponse reply from symfony's bridge",
                 "symfony/http-kernel": "If you want to use HttpRequestVerifier from symfony's bridge",
                 "symfony/routing": "If you want to use TokenFactory from symfony's bridge",
@@ -2013,10 +2015,15 @@
                     "Payum": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/Payum/Payum/contributors"
+                },
                 {
                     "name": "Kotlyar Maksim",
                     "email": "kotlyar.maksim@gmail.com"
@@ -2024,10 +2031,6 @@
                 {
                     "name": "Payum project",
                     "homepage": "http://payum.org/"
-                },
-                {
-                    "name": "Community contributions",
-                    "homepage": "https://github.com/Payum/Payum/contributors"
                 }
             ],
             "description": "Domain friendly payment framework. Paypal, payex, authorize.net, be2bill, omnipay, recurring payments, instant notifications and many more",
@@ -2051,24 +2054,21 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "support": {
-                "source": "https://github.com/formapro-forks/Payum/tree/order"
-            },
-            "time": "2014-10-08 10:34:19"
+            "time": "2014-10-12 16:11:32"
         },
         {
             "name": "payum/payum-bundle",
-            "version": "dev-order",
+            "version": "dev-master",
             "target-dir": "Payum/Bundle/PayumBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/formapro-forks/PayumBundle.git",
-                "reference": "b9127e6bb89454be657e782699b8069ddb890b53"
+                "url": "https://github.com/Payum/PayumBundle.git",
+                "reference": "028552184b94633dac2033cdcbcb65baa2f3805c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/formapro-forks/PayumBundle/zipball/b9127e6bb89454be657e782699b8069ddb890b53",
-                "reference": "b9127e6bb89454be657e782699b8069ddb890b53",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/028552184b94633dac2033cdcbcb65baa2f3805c",
+                "reference": "028552184b94633dac2033cdcbcb65baa2f3805c",
                 "shasum": ""
             },
             "require": {
@@ -2110,10 +2110,15 @@
                     "Payum\\Bundle\\PayumBundle": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/Payum/PayumBundle/contributors"
+                },
                 {
                     "name": "Kotlyar Maksim",
                     "email": "kotlyar.maksim@gmail.com"
@@ -2121,10 +2126,6 @@
                 {
                     "name": "Payum project",
                     "homepage": "http://payum.org/"
-                },
-                {
-                    "name": "Community contributions",
-                    "homepage": "https://github.com/Payum/PayumBundle/contributors"
                 }
             ],
             "description": "Rich payment solutions for symfony2. Paypal, payex, authorize.net, be2bill, omnipay, recurring payments, instant notifications and many more",
@@ -2147,10 +2148,7 @@
                 "stripe.js",
                 "symfony"
             ],
-            "support": {
-                "source": "https://github.com/formapro-forks/PayumBundle/tree/order"
-            },
-            "time": "2014-10-08 10:35:44"
+            "time": "2014-10-12 16:26:55"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2401,16 +2399,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.2.6",
+            "version": "4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c28a790620fe30b049bb693be1ef9cd4e0fe906c"
+                "reference": "06005259429c156c02596add91f6a59c7dc3d4af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c28a790620fe30b049bb693be1ef9cd4e0fe906c",
-                "reference": "c28a790620fe30b049bb693be1ef9cd4e0fe906c",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/06005259429c156c02596add91f6a59c7dc3d4af",
+                "reference": "06005259429c156c02596add91f6a59c7dc3d4af",
                 "shasum": ""
             },
             "require": {
@@ -2424,7 +2422,7 @@
                 "phpunit/php-file-iterator": "~1.3.1",
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-timer": "~1.0.2",
-                "phpunit/phpunit-mock-objects": "~2.2",
+                "phpunit/phpunit-mock-objects": "~2.3",
                 "sebastian/comparator": "~1.0",
                 "sebastian/diff": "~1.1",
                 "sebastian/environment": "~1.0",
@@ -2441,7 +2439,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2.x-dev"
+                    "dev-master": "4.3.x-dev"
                 }
             },
             "autoload": {
@@ -2471,7 +2469,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-09-14 09:31:24"
+            "time": "2014-10-06 06:20:35"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3507,16 +3505,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.16.0",
+            "version": "v1.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "8ce37115802e257a984a82d38254884085060024"
+                "reference": "7c4c01dcf578523cfcddf383641a4f12790270ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/8ce37115802e257a984a82d38254884085060024",
-                "reference": "8ce37115802e257a984a82d38254884085060024",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/7c4c01dcf578523cfcddf383641a4f12790270ec",
+                "reference": "7c4c01dcf578523cfcddf383641a4f12790270ec",
                 "shasum": ""
             },
             "require": {
@@ -3560,25 +3558,14 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-07-05 12:19:05"
+            "time": "2014-10-10 14:09:53"
         }
     ],
     "packages-dev": [
 
     ],
     "aliases": [
-        {
-            "alias": "0.12.0",
-            "alias_normalized": "0.12.0.0",
-            "version": "dev-order",
-            "package": "payum/payum-bundle"
-        },
-        {
-            "alias": "0.12.0",
-            "alias_normalized": "0.12.0.0",
-            "version": "dev-order",
-            "package": "payum/payum"
-        }
+
     ],
     "minimum-stability": "stable",
     "stability-flags": {
