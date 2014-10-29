@@ -5,7 +5,7 @@
 {% block content %}
     <div class="block">
         Agreement status:
-        {% if agreementStatus.success %}
+        {% if agreementStatus.captured %}
             Successful - now you can purchase in <a href="{{ path('acme_payex_one_click_purchase', { 'agreementId': agreementStatus.model.id }) }}">one click</a>.
         {% elseif agreementStatus.new %}
             New - please <a href="{{ path('acme_payex_one_click_confirm_agreement', { 'agreementId': agreementStatus.model.id, 'confirm': 1 }) }}">confirm</a> billing agreement.
@@ -17,7 +17,7 @@
             Pending
         {% elseif agreementStatus.expired %}
             Expired
-        {% elseif agreementStatus.suspended %}
+        {% elseif agreementStatus.casuspended %}
             Suspended
         {% else %}
             Unknown

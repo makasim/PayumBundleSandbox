@@ -5,7 +5,7 @@
 {% block content %}
     <div class="block">
         Billing agreement status:
-        {% if billingAgreementStatus.success %}
+        {% if billingAgreementStatus.captured %}
             Successful
         {% elseif billingAgreementStatus.canceled %}
             Canceled
@@ -31,7 +31,7 @@
     {% if recurringPaymentStatus %}
         <div class="block">
             Recurring payment status:
-            {% if recurringPaymentStatus.success %}
+            {% if recurringPaymentStatus.captured %}
                 Active
             {% elseif recurringPaymentStatus.canceled %}
                 Canceled

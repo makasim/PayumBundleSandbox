@@ -3,8 +3,7 @@ namespace Acme\PayexBundle\Controller;
 
 use Acme\PaymentBundle\Model\AgreementDetails;
 use Acme\PaymentBundle\Model\PaymentDetails;
-use Payum\Core\Request\GetBinaryStatus;
-use Payum\Core\Request\SimpleGetStatus;
+use Payum\Core\Request\GetHumanStatus;
 use Payum\Core\Request\Sync;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Model\Identificator;
@@ -46,7 +45,7 @@ class OneClickExamplesController extends Controller
             /** @var AgreementDetails $agreement */
             $agreement = $syncAgreement->getModel();
             
-            $agreementStatus = new GetBinaryStatus($agreement);
+            $agreementStatus = new GetHumanStatus($agreement);
             $this->getPayum()->getPayment($paymentName)->execute($agreementStatus);
 
             if ($agreementStatus->isCaptured()) {
@@ -101,7 +100,7 @@ class OneClickExamplesController extends Controller
             $this->getPayum()->getPayment($paymentName)->execute(new CreateAgreement($agreement));
             $this->getPayum()->getPayment($paymentName)->execute(new Sync($agreement));
 
-            $agreementStatus = new GetBinaryStatus($agreement);
+            $agreementStatus = new GetHumanStatus($agreement);
             $this->getPayum()->getPayment($paymentName)->execute($agreementStatus);
         }
         
@@ -126,7 +125,7 @@ class OneClickExamplesController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
 
-            $agreementStatus = new SimpleGetStatus(new Identificator(
+            $agreementStatus = new GetHumanStatus(new Identificator(
                 $request->get('agreementId'),
                 'Acme\PaymentBundle\Model\AgreementDetails'
             ));
