@@ -1884,12 +1884,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/JMSPaymentBridge.git",
-                "reference": "db1e94d1219f7671695ea87dd73df54ecface3ce"
+                "reference": "3fedf630f484706406f111eec95b6f15828c805a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/JMSPaymentBridge/zipball/db1e94d1219f7671695ea87dd73df54ecface3ce",
-                "reference": "db1e94d1219f7671695ea87dd73df54ecface3ce",
+                "url": "https://api.github.com/repos/Payum/JMSPaymentBridge/zipball/3fedf630f484706406f111eec95b6f15828c805a",
+                "reference": "3fedf630f484706406f111eec95b6f15828c805a",
                 "shasum": ""
             },
             "require": {
@@ -1936,7 +1936,7 @@
                 "jms payment",
                 "payment"
             ],
-            "time": "2014-09-22 17:59:08"
+            "time": "2014-10-29 08:46:25"
         },
         {
             "name": "payum/payum",
@@ -2072,7 +2072,7 @@
                 "shasum": ""
             },
             "require": {
-                "payum/core": "0.11.*@dev",
+                "payum/core": "0.12.*@dev",
                 "php": ">=5.3.2",
                 "symfony/form": "~2.3",
                 "symfony/framework-bundle": "~2.3",
