@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d3ac8c4d5a734a3f59b53cd60b2bd08c",
+    "hash": "fdad25cbe4a09028d0696331c1d2b202",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -1502,6 +1502,63 @@
             "time": "2014-09-15 12:42:36"
         },
         {
+            "name": "league/url",
+            "version": "3.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/url.git",
+                "reference": "53e87bdcfa5dd9709ce538f5680fed6e34eef0b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/url/zipball/53e87bdcfa5dd9709ce538f5680fed6e34eef0b4",
+                "reference": "53e87bdcfa5dd9709ce538f5680fed6e34eef0b4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.0",
+                "true/punycode": "~1.0"
+            },
+            "replace": {
+                "bakame/url": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "2.0.*@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Url\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ignace Nyamagana Butera",
+                    "email": "nyamsprod@gmail.com",
+                    "homepage": "https://github.com/nyamsprod/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "League/url is a lightweight PHP Url manipulating library",
+            "keywords": [
+                "parse_url",
+                "php",
+                "url"
+            ],
+            "time": "2014-09-02 07:57:45"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.11.0",
             "source": {
@@ -2004,13 +2061,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/formapro-forks/Payum.git",
-                "reference": "5206d18344a364284a1e7e93ae846a2df6c0062e"
+                "url": "https://github.com/Payum/Payum.git",
+                "reference": "947428ab16bb75696fe121a37da6229ac55fd1e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/formapro-forks/Payum/zipball/5206d18344a364284a1e7e93ae846a2df6c0062e",
-                "reference": "5206d18344a364284a1e7e93ae846a2df6c0062e",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/947428ab16bb75696fe121a37da6229ac55fd1e2",
+                "reference": "947428ab16bb75696fe121a37da6229ac55fd1e2",
                 "shasum": ""
             },
             "require": {
@@ -2018,7 +2075,8 @@
                 "ext-soap": "*",
                 "fp/klarna-invoice": "0.1.*",
                 "klarna/checkout": "~1",
-                "kriswallsmith/buzz": "*",
+                "kriswallsmith/buzz": "~0.13",
+                "league/url": "~3.0",
                 "paypal/rest-api-sdk-php": "0.5.*",
                 "php": ">=5.3.2",
                 "stripe/stripe-php": "~1.0",
@@ -2073,10 +2131,15 @@
                     "Payum": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/Payum/Payum/contributors"
+                },
                 {
                     "name": "Kotlyar Maksim",
                     "email": "kotlyar.maksim@gmail.com"
@@ -2084,10 +2147,6 @@
                 {
                     "name": "Payum project",
                     "homepage": "http://payum.org/"
-                },
-                {
-                    "name": "Community contributions",
-                    "homepage": "https://github.com/Payum/Payum/contributors"
                 }
             ],
             "description": "Domain friendly payment framework. Paypal, payex, authorize.net, be2bill, recurring payments, instant notifications and many more",
@@ -2110,10 +2169,7 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "support": {
-                "source": "https://github.com/formapro-forks/Payum/tree/master"
-            },
-            "time": "2014-11-05 16:15:46"
+            "time": "2014-11-06 12:09:40"
         },
         {
             "name": "payum/payum-bundle",
@@ -3465,6 +3521,53 @@
                 "framework"
             ],
             "time": "2014-10-24 06:55:39"
+        },
+        {
+            "name": "true/punycode",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/true/php-punycode.git",
+                "reference": "59dca474914324763397be2ea3d6ad3bc48f4688"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/true/php-punycode/zipball/59dca474914324763397be2ea3d6ad3bc48f4688",
+                "reference": "59dca474914324763397be2ea3d6ad3bc48f4688",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.x",
+                "satooshi/php-coveralls": "dev-master",
+                "squizlabs/php_codesniffer": "2.0.x-dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "True\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Renan Gonçalves",
+                    "email": "renan.saddam@gmail.com"
+                }
+            ],
+            "description": "A Bootstring encoding of Unicode for Internationalized Domain Names in Applications (IDNA)",
+            "homepage": "https://github.com/true/php-punycode",
+            "keywords": [
+                "idna",
+                "punycode"
+            ],
+            "time": "2014-08-26 14:21:01"
         },
         {
             "name": "twig/extensions",

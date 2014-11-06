@@ -60,15 +60,5 @@
         "branch-alias": {
             "dev-master": "0.13-dev"
         }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:formapro-forks/PayumBundle.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:formapro-forks/Payum.git"
-        }
-    ]
+    }
 }
