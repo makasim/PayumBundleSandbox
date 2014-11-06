@@ -7,6 +7,9 @@
 {% block content %}
     <div class="block">
         Status: {{ status }}
+        {% if refundToken %}
+            <a href="{{ refundToken.targetUrl }}">Refund</a>
+        {% endif %}
     </div>
 
     <div class="block">

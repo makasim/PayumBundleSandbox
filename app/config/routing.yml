@@ -23,6 +23,10 @@ payum_notify:
     resource: "@PayumBundle/Resources/config/routing/notify.xml"
     prefix:   /
 
+payum_refund:
+    resource: "@PayumBundle/Resources/config/routing/refund.xml"
+    prefix:   /
+
 acme_paypal_express_checkout:
     resource: "@AcmePaypalExpressCheckoutBundle/Resources/config/routing.yml"
     prefix:   /

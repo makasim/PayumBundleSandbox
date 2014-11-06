@@ -2004,13 +2004,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Payum/Payum.git",
-                "reference": "840fe9c57a7730f1bf2814019e3e0904dc24ba4b"
+                "url": "https://github.com/formapro-forks/Payum.git",
+                "reference": "5206d18344a364284a1e7e93ae846a2df6c0062e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/840fe9c57a7730f1bf2814019e3e0904dc24ba4b",
-                "reference": "840fe9c57a7730f1bf2814019e3e0904dc24ba4b",
+                "url": "https://api.github.com/repos/formapro-forks/Payum/zipball/5206d18344a364284a1e7e93ae846a2df6c0062e",
+                "reference": "5206d18344a364284a1e7e93ae846a2df6c0062e",
                 "shasum": ""
             },
             "require": {
@@ -2073,15 +2073,10 @@
                     "Payum": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
-                {
-                    "name": "Community contributions",
-                    "homepage": "https://github.com/Payum/Payum/contributors"
-                },
                 {
                     "name": "Kotlyar Maksim",
                     "email": "kotlyar.maksim@gmail.com"
@@ -2089,6 +2084,10 @@
                 {
                     "name": "Payum project",
                     "homepage": "http://payum.org/"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/Payum/Payum/contributors"
                 }
             ],
             "description": "Domain friendly payment framework. Paypal, payex, authorize.net, be2bill, recurring payments, instant notifications and many more",
@@ -2111,7 +2110,10 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2014-10-31 20:00:44"
+            "support": {
+                "source": "https://github.com/formapro-forks/Payum/tree/master"
+            },
+            "time": "2014-11-05 16:15:46"
         },
         {
             "name": "payum/payum-bundle",
@@ -2120,12 +2122,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "4148e2164ef900608e561e4919cd5ae7cdaef136"
+                "reference": "ab1ac440bbf74a85f0e0b7e4fa594c8ddb6e2334"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/4148e2164ef900608e561e4919cd5ae7cdaef136",
-                "reference": "4148e2164ef900608e561e4919cd5ae7cdaef136",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/ab1ac440bbf74a85f0e0b7e4fa594c8ddb6e2334",
+                "reference": "ab1ac440bbf74a85f0e0b7e4fa594c8ddb6e2334",
                 "shasum": ""
             },
             "require": {
@@ -2141,6 +2143,8 @@
                 "omnipay/dummy": "~2.0",
                 "omnipay/paypal": "~2.0",
                 "omnipay/stripe": "~2.0",
+                "payum/jms-payment-bridge": "0.13.*dev",
+                "payum/omnipay-bridge": "0.13.*dev",
                 "payum/payum": "0.13.*@dev",
                 "phpunit/phpunit": "~4.0",
                 "symfony/browser-kit": "~2.3",
@@ -2149,6 +2153,7 @@
             "suggest": {
                 "payum/authorize-net-aim": "If you want to use authorize.net gateway",
                 "payum/be2bill": "If you want to use be2bill gateway",
+                "payum/jms-payment-bridge": "If you want to use jms payment plugins",
                 "payum/offline": "If you want to manage offline payments",
                 "payum/omnipay-bridge": "If you want to use omnipay provided gateways",
                 "payum/payex": "If you want to use payex gateway",
@@ -2205,7 +2210,7 @@
                 "stripe.js",
                 "symfony"
             ],
-            "time": "2014-10-29 15:10:07"
+            "time": "2014-11-06 09:53:04"
         },
         {
             "name": "phpunit/php-code-coverage",

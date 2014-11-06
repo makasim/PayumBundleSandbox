@@ -22,10 +22,20 @@ class DetailsController extends PayumController
         
         $payment->execute($status = new GetHumanStatus($token));
 
+        $refundToken = null;
+        if ($status->isCaptured() || $status->isAuthorized()) {
+            $refundToken = $this->getTokenFactory()->createRefundToken(
+                $token->getPaymentName(),
+                $status->getModel(),
+                $request->getUri()
+            );
+        }
+
         return $this->render('AcmePaymentBundle:Details:view.html.twig', array(
             'status' => $status->getValue(),
             'details' => iterator_to_array($status->getModel()),
-            'paymentTitle' => ucwords(str_replace(array('_', '-'), ' ', $token->getPaymentName()))
+            'paymentTitle' => ucwords(str_replace(array('_', '-'), ' ', $token->getPaymentName())),
+            'refundToken' => $refundToken
         ));
     }
 
