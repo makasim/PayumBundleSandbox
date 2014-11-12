@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e54e6741769629fb8583c2e58f085ed3",
+    "hash": "a7ac5aa104c472bbcd6adacc220e4f1e",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -38,6 +38,68 @@
                 "payment"
             ],
             "time": "2013-02-11 21:09:06"
+        },
+        {
+            "name": "crevillo/payum-redsys",
+            "version": "dev-master",
+            "target-dir": "Crevillo/Payum/Redsys",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/formapro-forks/payum-redsys.git",
+                "reference": "0791f71229637e99374e72d443e9731e36c7c10e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/formapro-forks/payum-redsys/zipball/0791f71229637e99374e72d443e9731e36c7c10e",
+                "reference": "0791f71229637e99374e72d443e9731e36c7c10e",
+                "shasum": ""
+            },
+            "require": {
+                "payum/core": "0.13.*@dev",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.13-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Crevillo\\Payum\\Redsys": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carlos Revillo",
+                    "email": "crevillo@gmail.com"
+                },
+                {
+                    "name": "Payum project",
+                    "homepage": "http://payum.org/"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/crevillo/payum-redsys/contributors"
+                }
+            ],
+            "description": "Redsys payment",
+            "homepage": "http://payum.org",
+            "keywords": [
+                "payment",
+                "payum",
+                "redsys"
+            ],
+            "support": {
+                "source": "https://github.com/formapro-forks/payum-redsys/tree/master"
+            },
+            "time": "2014-11-12 14:43:21"
         },
         {
             "name": "doctrine/annotations",
@@ -2269,67 +2331,6 @@
             "time": "2014-11-07 21:35:02"
         },
         {
-            "name": "payum/redsys",
-            "version": "dev-master",
-            "target-dir": "Payum/Redsys",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/formapro-forks/payum-redsys.git",
-                "reference": "f0f62793d1a83a20d736322005489960988150cc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/formapro-forks/payum-redsys/zipball/f0f62793d1a83a20d736322005489960988150cc",
-                "reference": "f0f62793d1a83a20d736322005489960988150cc",
-                "shasum": ""
-            },
-            "require": {
-                "payum/core": "0.13.*@dev",
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.13-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Payum\\Redsys": ""
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Carlos Revillo",
-                    "email": "crevillo@gmail.com"
-                },
-                {
-                    "name": "Payum project",
-                    "homepage": "http://payum.org/"
-                },
-                {
-                    "name": "Community contributions",
-                    "homepage": "https://github.com/crevillo/payum-redsys/contributors"
-                }
-            ],
-            "description": "Redsys pament",
-            "homepage": "http://payum.org",
-            "keywords": [
-                "payment",
-                "redsys"
-            ],
-            "support": {
-                "source": "https://github.com/formapro-forks/payum-redsys/tree/master"
-            },
-            "time": "2014-11-12 14:22:25"
-        },
-        {
             "name": "phpunit/php-code-coverage",
             "version": "2.0.11",
             "source": {
@@ -3752,7 +3753,7 @@
         "payum/payum": 20,
         "payum/jms-payment-bridge": 20,
         "payum/omnipay-bridge": 20,
-        "payum/redsys": 20
+        "crevillo/payum-redsys": 20
     },
     "prefer-stable": false,
     "platform": {
