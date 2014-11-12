@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fdad25cbe4a09028d0696331c1d2b202",
+    "hash": "e54e6741769629fb8583c2e58f085ed3",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -2062,12 +2062,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "947428ab16bb75696fe121a37da6229ac55fd1e2"
+                "reference": "581bb8f6df0f41edb497a5e50f21147a5119970f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/947428ab16bb75696fe121a37da6229ac55fd1e2",
-                "reference": "947428ab16bb75696fe121a37da6229ac55fd1e2",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/581bb8f6df0f41edb497a5e50f21147a5119970f",
+                "reference": "581bb8f6df0f41edb497a5e50f21147a5119970f",
                 "shasum": ""
             },
             "require": {
@@ -2169,7 +2169,7 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2014-11-06 12:09:40"
+            "time": "2014-11-11 14:34:45"
         },
         {
             "name": "payum/payum-bundle",
@@ -2178,12 +2178,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "ab1ac440bbf74a85f0e0b7e4fa594c8ddb6e2334"
+                "reference": "a7b99f21d0fc2580e2a166c70d877a335dd13b10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/ab1ac440bbf74a85f0e0b7e4fa594c8ddb6e2334",
-                "reference": "ab1ac440bbf74a85f0e0b7e4fa594c8ddb6e2334",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/a7b99f21d0fc2580e2a166c70d877a335dd13b10",
+                "reference": "a7b99f21d0fc2580e2a166c70d877a335dd13b10",
                 "shasum": ""
             },
             "require": {
@@ -2266,7 +2266,68 @@
                 "stripe.js",
                 "symfony"
             ],
-            "time": "2014-11-06 09:53:04"
+            "time": "2014-11-07 21:35:02"
+        },
+        {
+            "name": "payum/redsys",
+            "version": "dev-master",
+            "target-dir": "Payum/Redsys",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/formapro-forks/payum-redsys.git",
+                "reference": "f0f62793d1a83a20d736322005489960988150cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/formapro-forks/payum-redsys/zipball/f0f62793d1a83a20d736322005489960988150cc",
+                "reference": "f0f62793d1a83a20d736322005489960988150cc",
+                "shasum": ""
+            },
+            "require": {
+                "payum/core": "0.13.*@dev",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.13-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Payum\\Redsys": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carlos Revillo",
+                    "email": "crevillo@gmail.com"
+                },
+                {
+                    "name": "Payum project",
+                    "homepage": "http://payum.org/"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/crevillo/payum-redsys/contributors"
+                }
+            ],
+            "description": "Redsys pament",
+            "homepage": "http://payum.org",
+            "keywords": [
+                "payment",
+                "redsys"
+            ],
+            "support": {
+                "source": "https://github.com/formapro-forks/payum-redsys/tree/master"
+            },
+            "time": "2014-11-12 14:22:25"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2517,16 +2578,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.3.4",
+            "version": "4.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "23e4e0310f037aae873cc81b8658dbbb82878f71"
+                "reference": "2dab9d593997db4abcf58d0daf798eb4e9cecfe1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/23e4e0310f037aae873cc81b8658dbbb82878f71",
-                "reference": "23e4e0310f037aae873cc81b8658dbbb82878f71",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2dab9d593997db4abcf58d0daf798eb4e9cecfe1",
+                "reference": "2dab9d593997db4abcf58d0daf798eb4e9cecfe1",
                 "shasum": ""
             },
             "require": {
@@ -2587,7 +2648,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-10-22 11:43:12"
+            "time": "2014-11-11 10:11:09"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3131,16 +3192,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v1.17.2",
+            "version": "v1.17.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "548ed675dc3b1dd6fa4d20b40867cb756e952d2a"
+                "reference": "d07ee46fe6862a36ca5cd30107493e1e335b35d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/548ed675dc3b1dd6fa4d20b40867cb756e952d2a",
-                "reference": "548ed675dc3b1dd6fa4d20b40867cb756e952d2a",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/d07ee46fe6862a36ca5cd30107493e1e335b35d5",
+                "reference": "d07ee46fe6862a36ca5cd30107493e1e335b35d5",
                 "shasum": ""
             },
             "require": {
@@ -3175,7 +3236,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2014-09-23 22:42:10"
+            "time": "2014-11-07 04:41:03"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3690,7 +3751,8 @@
         "payum/payum-bundle": 20,
         "payum/payum": 20,
         "payum/jms-payment-bridge": 20,
-        "payum/omnipay-bridge": 20
+        "payum/omnipay-bridge": 20,
+        "payum/redsys": 20
     },
     "prefer-stable": false,
     "platform": {

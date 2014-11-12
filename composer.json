@@ -6,6 +6,12 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:formapro-forks/payum-redsys.git"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "~2.3",
@@ -27,6 +33,7 @@
         "payum/payum": "0.13.*@dev",
         "payum/jms-payment-bridge": "0.13.*@dev",
         "payum/omnipay-bridge": "0.13.*@dev",
+        "payum/redsys": "0.13.*@dev",
         "omnipay/stripe": "~2.0",
         "omnipay/paypal": "~2.0",
         "stripe/stripe-php": "~1.0",
