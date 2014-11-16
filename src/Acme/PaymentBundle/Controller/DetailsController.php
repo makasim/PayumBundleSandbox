@@ -33,7 +33,10 @@ class DetailsController extends PayumController
 
         return $this->render('AcmePaymentBundle:Details:view.html.twig', array(
             'status' => $status->getValue(),
-            'details' => iterator_to_array($status->getModel()),
+            'details' => htmlspecialchars(json_encode(
+                iterator_to_array($status->getModel()),
+                JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+            )),
             'paymentTitle' => ucwords(str_replace(array('_', '-'), ' ', $token->getPaymentName())),
             'refundToken' => $refundToken
         ));
@@ -58,18 +61,21 @@ class DetailsController extends PayumController
 
         return $this->render('AcmePaymentBundle:Details:viewOrder.html.twig', array(
             'status' => $status->getValue(),
-            'order' => array(
-                'client' => array(
-                    'id' => $order->getClientId(),
-                    'email' => $order->getClientEmail(),
+            'order' => htmlspecialchars(json_encode(
+                array(
+                    'client' => array(
+                        'id' => $order->getClientId(),
+                        'email' => $order->getClientEmail(),
+                    ),
+                    'number' => $order->getNumber(),
+                    'description' => $order->getCurrencyCode(),
+                    'total_amount' => $order->getTotalAmount(),
+                    'currency_code' => $order->getCurrencyCode(),
+                    'currency_digits_after_decimal_point' => $order->getCurrencyDigitsAfterDecimalPoint(),
+                    'details' => $order->getDetails(),
                 ),
-                'number' => $order->getNumber(),
-                'description' => $order->getCurrencyCode(),
-                'total_amount' => $order->getTotalAmount(),
-                'currency_code' => $order->getCurrencyCode(),
-                'currency_digits_after_decimal_point' => $order->getCurrencyDigitsAfterDecimalPoint(),
-                'details' => $order->getDetails(),
-            ),
+                JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+            )),
             'paymentTitle' => ucwords(str_replace(array('_', '-'), ' ', $token->getPaymentName()))
         ));
     }
