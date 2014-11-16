@@ -16,11 +16,16 @@ class PurchaseExamplesController extends Controller
      *   "/prepare",
      *   name="acme_redsys_prepare"
      * )
-     * 
+     *
      * @Extra\Template("AcmeRedsysBundle:PurchaseExamples:prepare.html.twig")
      */
     public function prepareAction(Request $request)
     {
+        // 4548 8120 4940 0004
+        // 12/20
+        // 123
+        // 123456
+
         $paymentName = 'redsys';
 
         $form = $this->createPurchaseForm();
@@ -35,22 +40,32 @@ class PurchaseExamplesController extends Controller
             $details['Ds_Merchant_Amount'] = $data['amount'];
             $details['Ds_Merchant_Currency'] = $data['currencyCode'];
             $details['Ds_Merchant_Order'] = date('ymdHis');
-            $details['Ds_Merchant_TransactionType'] = Api::TRANSACTIONTYPE_DEFAULT;
+            $details['Ds_Merchant_TransactionType'] = Api::TRANSACTIONTYPE_AUTHORIZATION;
             $details['Ds_Merchant_ConsumerLanguage'] = Api::CONSUMERLANGUAGE_SPANISH;
             $storage->updateModel($details);
 
             $notifyToken = $this->getTokenFactory()->createNotifyToken($paymentName, $details);
             $details['Ds_Merchant_MerchantURL'] = $notifyToken->getTargetUrl();
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureSuccessToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
                 $details,
-                'acme_payment_details_view'
+                'acme_payment_details_view',
+                array('status' => Api::STATUS_CAPTURED)
             );
+            $details['Ds_Merchant_UrlOK'] = $captureSuccessToken->getTargetUrl();
+
+            $captureCanceledToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $details,
+                'acme_payment_details_view',
+                array('status' => Api::STATUS_CANCELED)
+            );
+            $details['Ds_Merchant_UrlKO'] = $captureCanceledToken->getTargetUrl();
 
             $storage->updateModel($details);
 
-            return $this->redirect($captureToken->getTargetUrl());
+            return $this->redirect($captureSuccessToken->getTargetUrl());
         }
 
         return $this->render('AcmePaymentBundle:SimplePurchaseBe2Bill:prepare.html.twig', array(

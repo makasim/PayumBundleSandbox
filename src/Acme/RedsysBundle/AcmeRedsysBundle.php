@@ -18,6 +18,6 @@ class AcmeRedsysBundle extends Bundle
         /** @var $extension \Payum\Bundle\PayumBundle\DependencyInjection\PayumExtension */
         $extension = $container->getExtension('payum');
 
-        $extension->addPaymentFactory(new RedsysPaymentFactory);
+        $extension->addPaymentFactory(new RedsysPaymentFactory());
     }
 }
