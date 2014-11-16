@@ -37,7 +37,8 @@
         "omnipay/stripe": "~2.0",
         "omnipay/paypal": "~2.0",
         "stripe/stripe-php": "~1.0",
-        "phpunit/phpunit": "~4.0"
+        "phpunit/phpunit": "~4.0",
+        "fabpot/php-cs-fixer": "~0.5.7"
     },
     "scripts": {
         "post-install-cmd": [

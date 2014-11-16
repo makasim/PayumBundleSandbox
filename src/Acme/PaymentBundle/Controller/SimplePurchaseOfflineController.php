@@ -11,6 +11,11 @@ class SimplePurchaseOfflineController extends Controller
 {
     public function prepareAction(Request $request)
     {
+        // 4548 8120 4940 0004
+        // 12/20
+        // 123
+        // 123456
+
         $paymentName = 'offline';
 
         $form = $this->createPurchaseForm();

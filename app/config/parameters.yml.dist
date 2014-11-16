@@ -41,3 +41,7 @@ parameters:
 
     stripe.secret_key:  EDIT ME
     stripe.publishable_key: EDIT ME
+
+    redsys.merchant_code:  EDIT ME
+    redsys.terminal:  EDIT ME
+    redsys.secret_key: EDIT ME

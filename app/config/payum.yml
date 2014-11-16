@@ -183,6 +183,13 @@ payum:
                 encryption_key:  %payex.encryption_key%
                 sandbox: true
 
+        redsys:
+            redsys:
+                merchant_code:  %redsys.merchant_code%
+                terminal:  %redsys.terminal%
+                secret_key: %redsys.secret_key%
+                sandbox: true
+
         paypal_express_checkout_plus_cart:
             paypal_express_checkout_nvp:
                 username:  %paypal.express_checkout.username%

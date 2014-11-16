@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a7ac5aa104c472bbcd6adacc220e4f1e",
+    "hash": "6d6d5ecf6f6f3c12f89158a1e371f63f",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -40,18 +40,72 @@
             "time": "2013-02-11 21:09:06"
         },
         {
+            "name": "alcohol/iso4217",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alcohol/iso4217.git",
+                "reference": "905cb79050560c4cd60f65755eb48036b691878a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alcohol/iso4217/zipball/905cb79050560c4cd60f65755eb48036b691878a",
+                "reference": "905cb79050560c4cd60f65755eb48036b691878a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~2.0@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Alcohol\\": "source/",
+                    "Alcohol\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Bast",
+                    "email": "rob.bast@gmail.com"
+                }
+            ],
+            "description": "ISO 4217 PHP Library",
+            "homepage": "http://alcohol.github.io/iso4217/",
+            "keywords": [
+                "4217",
+                "ISO 4217",
+                "currencies",
+                "iso",
+                "library"
+            ],
+            "time": "2014-11-08 17:54:32"
+        },
+        {
             "name": "crevillo/payum-redsys",
             "version": "dev-master",
             "target-dir": "Crevillo/Payum/Redsys",
             "source": {
                 "type": "git",
                 "url": "https://github.com/formapro-forks/payum-redsys.git",
-                "reference": "0791f71229637e99374e72d443e9731e36c7c10e"
+                "reference": "a375bfe25078835a7e60a75751268f2297645ad3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/formapro-forks/payum-redsys/zipball/0791f71229637e99374e72d443e9731e36c7c10e",
-                "reference": "0791f71229637e99374e72d443e9731e36c7c10e",
+                "url": "https://api.github.com/repos/formapro-forks/payum-redsys/zipball/a375bfe25078835a7e60a75751268f2297645ad3",
+                "reference": "a375bfe25078835a7e60a75751268f2297645ad3",
                 "shasum": ""
             },
             "require": {
@@ -99,7 +153,7 @@
             "support": {
                 "source": "https://github.com/formapro-forks/payum-redsys/tree/master"
             },
-            "time": "2014-11-12 14:43:21"
+            "time": "2014-11-16 11:52:36"
         },
         {
             "name": "doctrine/annotations",
@@ -960,6 +1014,54 @@
             "time": "2014-06-03 19:53:45"
         },
         {
+            "name": "fabpot/php-cs-fixer",
+            "version": "v0.5.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
+                "reference": "29477d018cb78549a3f96656a36b93e99e1edbaf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/29477d018cb78549a3f96656a36b93e99e1edbaf",
+                "reference": "29477d018cb78549a3f96656a36b93e99e1edbaf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.6",
+                "sebastian/diff": "1.1.*",
+                "symfony/console": "~2.1",
+                "symfony/filesystem": "~2.1",
+                "symfony/finder": "~2.1"
+            },
+            "bin": [
+                "php-cs-fixer"
+            ],
+            "type": "application",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\CS": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "A script to automatically fix Symfony Coding Standard",
+            "time": "2014-08-07 12:40:36"
+        },
+        {
             "name": "fp/klarna-invoice",
             "version": "0.1",
             "source": {
@@ -1565,16 +1667,16 @@
         },
         {
             "name": "league/url",
-            "version": "3.1.1",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/url.git",
-                "reference": "53e87bdcfa5dd9709ce538f5680fed6e34eef0b4"
+                "reference": "aea2094e1b6598617bd80b87166a2818314cf1dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/url/zipball/53e87bdcfa5dd9709ce538f5680fed6e34eef0b4",
-                "reference": "53e87bdcfa5dd9709ce538f5680fed6e34eef0b4",
+                "url": "https://api.github.com/repos/thephpleague/url/zipball/aea2094e1b6598617bd80b87166a2818314cf1dc",
+                "reference": "aea2094e1b6598617bd80b87166a2818314cf1dc",
                 "shasum": ""
             },
             "require": {
@@ -1582,17 +1684,13 @@
                 "php": ">=5.3.0",
                 "true/punycode": "~1.0"
             },
-            "replace": {
-                "bakame/url": "*"
-            },
             "require-dev": {
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "2.0.*@dev"
+                "phpunit/phpunit": "~4.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "3.3-dev"
                 }
             },
             "autoload": {
@@ -1618,7 +1716,7 @@
                 "php",
                 "url"
             ],
-            "time": "2014-09-02 07:57:45"
+            "time": "2014-11-12 20:19:18"
         },
         {
             "name": "monolog/monolog",
@@ -2846,28 +2944,25 @@
         },
         {
             "name": "sebastian/diff",
-            "version": "1.2.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "5843509fed39dee4b356a306401e9dd1a931fec7"
+                "reference": "1e091702a5a38e6b4c1ba9ca816e3dd343df2e2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/5843509fed39dee4b356a306401e9dd1a931fec7",
-                "reference": "5843509fed39dee4b356a306401e9dd1a931fec7",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/1e091702a5a38e6b4c1ba9ca816e3dd343df2e2d",
+                "reference": "1e091702a5a38e6b4c1ba9ca816e3dd343df2e2d",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "require-dev": {
-                "phpunit/phpunit": "~4.2"
-            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -2881,12 +2976,13 @@
             ],
             "authors": [
                 {
-                    "name": "Kore Nordmann",
-                    "email": "mail@kore-nordmann.de"
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 },
                 {
-                    "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de"
+                    "name": "Kore Nordmann",
+                    "email": "mail@kore-nordmann.de"
                 }
             ],
             "description": "Diff implementation",
@@ -2894,7 +2990,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2014-08-15 10:29:00"
+            "time": "2013-08-03 16:46:33"
         },
         {
             "name": "sebastian/environment",
