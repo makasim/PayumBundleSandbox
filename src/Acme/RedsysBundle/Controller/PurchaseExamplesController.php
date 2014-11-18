@@ -47,25 +47,13 @@ class PurchaseExamplesController extends Controller
             $notifyToken = $this->getTokenFactory()->createNotifyToken($paymentName, $details);
             $details['Ds_Merchant_MerchantURL'] = $notifyToken->getTargetUrl();
 
-            $captureSuccessToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
                 $details,
-                'acme_payment_details_view',
-                array('status' => Api::STATUS_CAPTURED)
+                'acme_payment_details_view'
             );
-            $details['Ds_Merchant_UrlOK'] = $captureSuccessToken->getTargetUrl();
 
-            $captureCanceledToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $details,
-                'acme_payment_details_view',
-                array('status' => Api::STATUS_CANCELED)
-            );
-            $details['Ds_Merchant_UrlKO'] = $captureCanceledToken->getTargetUrl();
-
-            $storage->updateModel($details);
-
-            return $this->redirect($captureSuccessToken->getTargetUrl());
+            return $this->redirect($captureToken->getTargetUrl());
         }
 
         return $this->render('AcmePaymentBundle:SimplePurchaseBe2Bill:prepare.html.twig', array(

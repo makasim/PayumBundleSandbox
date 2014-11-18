@@ -13,13 +13,13 @@ class DetailsController extends PayumController
     public function viewAction(Request $request)
     {
         $token = $this->getHttpRequestVerifier()->verify($request);
-        
+
         $payment = $this->getPayum()->getPayment($token->getPaymentName());
 
         try {
             $payment->execute(new Sync($token));
         } catch (RequestNotSupportedException $e) {}
-        
+
         $payment->execute($status = new GetHumanStatus($token));
 
         $refundToken = null;

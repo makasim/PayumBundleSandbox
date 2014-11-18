@@ -20,7 +20,7 @@ class OrderPurchaseController extends Controller
             /** @var Order $order */
             $order = $form->getData();
 
-            $order->setNumber(uniqid());
+            $order->setNumber(date('ymdHis'));
             $order->setClientId(uniqid());
             $order->setDescription(sprintf('An order %s for a client %s', $order->getNumber(), $order->getClientEmail()));
 
