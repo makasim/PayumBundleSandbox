@@ -20,7 +20,7 @@ class OrderPurchaseController extends Controller
             /** @var Order $order */
             $order = $form->getData();
 
-            $order->setNumber(uniqid());
+            $order->setNumber(date('ymdHis'));
             $order->setClientId(uniqid());
             $order->setDescription(sprintf('An order %s for a client %s', $order->getNumber(), $order->getClientEmail()));
 
@@ -59,24 +59,25 @@ class OrderPurchaseController extends Controller
                     'be2bill' => 'Be2bill',
                     'be2bill_onsite' => 'Be2bill Onsite',
                     'payex' => 'Payex',
+                    'redsys' => 'Redsys',
                     'offline' => 'Offline',
                     'stripe_via_omnipay' => 'Stripe (Omnipay)',
                     'paypal_express_checkout_via_omnipay' => 'Paypal ExpressCheckout (Omnipay)',
                 ),
                 'mapped' => false,
-                'constraints' => array(new NotBlank)
+                'constraints' => array(new NotBlank())
             ))
             ->add('totalAmount', 'integer', array(
                 'data' => 200,
-                'constraints' => array(new Range(array('max' => 1000, 'min' => 100)), new NotBlank)
+                'constraints' => array(new Range(array('max' => 1000, 'min' => 100)), new NotBlank())
             ))
             ->add('currencyCode', 'text', array(
                 'data' => 'USD',
-                'constraints' => array(new NotBlank)
+                'constraints' => array(new NotBlank())
             ))
             ->add('clientEmail', 'text', array(
                 'data' => 'foo@example.com',
-                'constraints' => array(new Email, new NotBlank)
+                'constraints' => array(new Email(), new NotBlank())
             ))
             ->getForm()
         ;

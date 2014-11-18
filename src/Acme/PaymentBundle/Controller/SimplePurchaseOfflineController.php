@@ -59,7 +59,6 @@ class SimplePurchaseOfflineController extends Controller
             ->getForm()
         ;
     }
-    
 
     /**
      * @return RegistryInterface
