@@ -55,9 +55,7 @@ class DetailsController extends PayumController
         $payment->execute($status = new GetHumanStatus($token));
 
         /** @var OrderInterface $order */
-        $order = $this->getPayum()->getStorage($token->getDetails()->getClass())->findModelById(
-            $token->getDetails()->getId()
-        );
+        $order = $status->getModel();
 
         return $this->render('AcmePaymentBundle:Details:viewOrder.html.twig', array(
             'status' => $status->getValue(),
