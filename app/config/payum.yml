@@ -190,6 +190,10 @@ payum:
                 secret_key: %redsys.secret_key%
                 sandbox: true
 
+        bitcoind:
+            bitcoind:
+                dsn: %bitcoind.dsn%
+
         paypal_express_checkout_plus_cart:
             paypal_express_checkout_nvp:
                 username:  %paypal.express_checkout.username%
