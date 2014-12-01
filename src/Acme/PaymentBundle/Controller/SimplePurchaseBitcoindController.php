@@ -3,7 +3,6 @@ namespace Acme\PaymentBundle\Controller;
 
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
-use Payum\Core\Security\SensitiveValue;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -35,7 +34,7 @@ class SimplePurchaseBitcoindController extends Controller
                 'payum_token' => $captureToken,
             ));
         }
-        
+
         return $this->render('AcmePaymentBundle:SimplePurchaseBitcoind:prepare.html.twig', array(
             'form' => $form->createView(),
         ));
