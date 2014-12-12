@@ -6,46 +6,26 @@ use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Core\Action\PaymentAwareAction;
 use Payum\Core\Bridge\Symfony\Reply\HttpResponse;
 use Payum\Core\Exception\RequestNotSupportedException;
-use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Request\Capture;
 use Payum\Core\Security\SensitiveValue;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Templating\EngineInterface;
 
 class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction 
 {
     /**
-     * @var RegistryInterface
+     * @var ContainerInterface
      */
-    protected $payum;
-
-    /**
-     * @var FormFactoryInterface
-     */
-    protected $formFactory;
-
-    /**
-     * @var EngineInterface
-     */
-    protected $templating;
-
-    /**
-     * @var Request
-     */
-    protected $request;
+    protected $container;
 
     /**
      * @param ContainerInterface $container
      */
     public function __construct(ContainerInterface $container) 
     {
-        $this->payum = $container->get('payum');
-        $this->formFactory = $container->get('form.factory');
-        $this->templating = $container->get('templating');
-        $this->request = $container->get('request');
+        $this->container = $container;
     }
 
     /**
@@ -60,16 +40,16 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
         }
 
         $form = $this->createPurchaseForm();
-        $form->handleRequest($this->request);
+        $form->handleRequest($this->container->get('request'));
         if ($form->isValid()) {
             $data = $form->getData();
 
             /** @var Cart $cart */
             $cart = $request->getModel();
 
-            $cartStorage = $this->payum->getStorage($cart);
+            $cartStorage = $this->container->get('payum')->getStorage($cart);
 
-            $paymentDetailsStorage = $this->payum->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $paymentDetailsStorage = $this->container->get('payum')->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var $paymentDetails PaymentDetails */
             $paymentDetails = $paymentDetailsStorage->createModel();
@@ -88,7 +68,7 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
         }
 
         throw new HttpResponse(new Response(
-            $this->templating->render('AcmeOtherExamplesBundle:CartExamples:_submit_credit_card.html.twig', array(
+            $this->container->get('templating')->render('AcmeOtherExamplesBundle:CartExamples:_submit_credit_card.html.twig', array(
                 'form' => $form->createView()
             ))
         ));
@@ -112,7 +92,7 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
      */
     protected function createPurchaseForm()
     {
-        return $this->formFactory->createBuilder()
+        return $this->container->get('form.factory')->createBuilder()
             ->add('card_number', null, array('data' => '4007000000027'))
             ->add('card_expiration_date', null, array('data' => '10/16'))
 
