@@ -23,7 +23,7 @@ class SimplePurchaseBe2BillController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var PaymentDetails */
-            $paymentDetails = $storage->createModel();
+            $paymentDetails = $storage->create();
             //be2bill amount format is cents: for example:  100.05 (EUR). will be 10005.
             $paymentDetails['AMOUNT'] = $data['amount'] * 100;
             $paymentDetails['CLIENTEMAIL'] = 'user@email.com';
@@ -36,7 +36,7 @@ class SimplePurchaseBe2BillController extends Controller
             $paymentDetails['CARDCVV'] = new SensitiveValue($data['card_cvv']);
             $paymentDetails['CARDFULLNAME'] = new SensitiveValue($data['card_holder']);
             $paymentDetails['CARDVALIDITYDATE'] = new SensitiveValue($data['card_expiration_date']);
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
@@ -66,7 +66,7 @@ class SimplePurchaseBe2BillController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var PaymentDetails */
-            $paymentDetails = $storage->createModel();
+            $paymentDetails = $storage->create();
             //be2bill amount format is cents: for example:  100.05 (EUR). will be 10005.
             $paymentDetails['AMOUNT'] = $data['amount'] * 100;
             $paymentDetails['CLIENTEMAIL'] = 'user@email.com';
@@ -75,7 +75,7 @@ class SimplePurchaseBe2BillController extends Controller
             $paymentDetails['CLIENTIDENT'] = 'payerId'.uniqid();
             $paymentDetails['DESCRIPTION'] = 'Payment for digital stuff';
             $paymentDetails['ORDERID'] = 'orderId'.uniqid();
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
@@ -103,13 +103,13 @@ class SimplePurchaseBe2BillController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var PaymentDetails */
-            $paymentDetails = $storage->createModel();
+            $paymentDetails = $storage->create();
             //be2bill amount format is cents: for example:  100.05 (EUR). will be 10005.
             $paymentDetails['AMOUNT'] = $data['amount'] * 100;
             $paymentDetails['CLIENTIDENT'] = 'payerId';
             $paymentDetails['DESCRIPTION'] = 'Payment for digital stuff';
             $paymentDetails['ORDERID'] = uniqid();
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,

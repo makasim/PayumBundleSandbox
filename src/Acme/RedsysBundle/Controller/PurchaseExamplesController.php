@@ -36,13 +36,13 @@ class PurchaseExamplesController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var PaymentDetails */
-            $details = $storage->createModel();
+            $details = $storage->create();
             $details['Ds_Merchant_Amount'] = $data['amount'];
             $details['Ds_Merchant_Currency'] = $data['currencyCode'];
             $details['Ds_Merchant_Order'] = date('ymdHis');
             $details['Ds_Merchant_TransactionType'] = Api::TRANSACTIONTYPE_AUTHORIZATION;
             $details['Ds_Merchant_ConsumerLanguage'] = Api::CONSUMERLANGUAGE_SPANISH;
-            $storage->updateModel($details);
+            $storage->update($details);
 
             $notifyToken = $this->getTokenFactory()->createNotifyToken($paymentName, $details);
             $details['Ds_Merchant_MerchantURL'] = $notifyToken->getTargetUrl();

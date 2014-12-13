@@ -8,7 +8,7 @@ use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Request\Capture;
 
-class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction 
+class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
 {
     /**
      * @var \Payum\Core\Registry\RegistryInterface
@@ -22,7 +22,7 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
     {
         $this->payum = $payum;
     }
-    
+
     /**
      * {@inheritDoc}
      *
@@ -42,16 +42,16 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
         $paymentDetailsStorage = $this->payum->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
         /** @var $paymentDetails PaymentDetails */
-        $paymentDetails = $paymentDetailsStorage->createModel();
+        $paymentDetails = $paymentDetailsStorage->create();
         $paymentDetails['PAYMENTREQUEST_0_CURRENCYCODE'] = $cart->getCurrency();
         $paymentDetails['PAYMENTREQUEST_0_AMT'] = $cart->getPrice();
         $paymentDetails['RETURNURL'] = $request->getToken()->getTargetUrl();
         $paymentDetails['CANCELURL'] = $request->getToken()->getTargetUrl();
-        $paymentDetailsStorage->updateModel($paymentDetails);
+        $paymentDetailsStorage->update($paymentDetails);
 
         $cart->setDetails($paymentDetails);
-        $cartStorage->updateModel($cart);
-        
+        $cartStorage->update($cart);
+
         $request->setModel($paymentDetails);
         $this->payment->execute($request);
     }

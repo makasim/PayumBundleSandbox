@@ -21,13 +21,13 @@ class SimplePurchaseOfflineController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var PaymentDetails */
-            $paymentDetails = $storage->createModel();
+            $paymentDetails = $storage->create();
             $paymentDetails['transaction_number'] = $data['transaction_number'];
             $paymentDetails['transaction_date'] = $data['transaction_date'];
             $paymentDetails['description'] = $data['description'];
             $paymentDetails['paid'] = $data['paid'];
 
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,

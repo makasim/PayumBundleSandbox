@@ -4,7 +4,6 @@ namespace Acme\OtherExamplesBundle\Controller;
 use Acme\OtherExamplesBundle\Model\Cart;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
-use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,10 +12,10 @@ class CartExamplesController extends Controller
 {
     /**
      * @Extra\Route(
-     *   "/select_payment", 
+     *   "/select_payment",
      *   name="acme_other_example_select_payment"
      * )
-     * 
+     *
      * @Extra\Template
      */
     public function selectPaymentAction(Request $request)
@@ -30,10 +29,10 @@ class CartExamplesController extends Controller
             $cartStorage = $this->getPayum()->getStorage('Acme\OtherExamplesBundle\Model\Cart');
 
             /** @var $cart Cart */
-            $cart = $cartStorage->createModel();
+            $cart = $cartStorage->create();
             $cart->setPrice(1.23);
             $cart->setCurrency('USD');
-            $cartStorage->updateModel($cart);
+            $cartStorage->update($cart);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
@@ -43,7 +42,7 @@ class CartExamplesController extends Controller
 
             return $this->redirect($captureToken->getTargetUrl());
         }
-        
+
         return array(
             'form' => $form->createView()
         );

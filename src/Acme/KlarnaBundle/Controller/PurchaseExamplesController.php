@@ -16,7 +16,7 @@ class PurchaseExamplesController extends Controller
      *   "/prepare_checkout",
      *   name="acme_klarna_prepare_checkout"
      * )
-     * 
+     *
      * @Extra\Template
      */
     public function prepareCheckoutAction(Request $request)
@@ -46,11 +46,11 @@ class PurchaseExamplesController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var $paymentDetails PaymentDetails */
-            $details = $storage->createModel();
+            $details = $storage->create();
             $details['purchase_country'] = 'SE';
             $details['purchase_currency'] = 'SEK';
             $details['locale'] = 'sv-se';
-            $storage->updateModel($details);
+            $storage->update($details);
 
             $authorizeToken = $this->getTokenFactory()->createAuthorizeToken(
                 $paymentName,
@@ -67,11 +67,11 @@ class PurchaseExamplesController extends Controller
             $details['cart'] = array(
                 'items' => $cartItems
             );
-            $storage->updateModel($details);
+            $storage->update($details);
 
             return $this->redirect($authorizeToken->getTargetUrl());
         }
-        
+
         return array(
             'cartItems' => $cartItems
         );
@@ -122,13 +122,13 @@ class PurchaseExamplesController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var $details PaymentDetails */
-            $details = $storage->createModel();
+            $details = $storage->create();
 
             foreach ($rawDetails as $name => $value) {
                 $details[$name] = $value;
             }
 
-            $storage->updateModel($details);
+            $storage->update($details);
 
             $captureToken = $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
@@ -189,13 +189,13 @@ class PurchaseExamplesController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var $details PaymentDetails */
-            $details = $storage->createModel();
+            $details = $storage->create();
 
             foreach ($rawDetails as $name => $value) {
                 $details[$name] = $value;
             }
 
-            $storage->updateModel($details);
+            $storage->update($details);
 
             $captureToken = $captureToken = $this->getTokenFactory()->createAuthorizeToken(
                 $paymentName,

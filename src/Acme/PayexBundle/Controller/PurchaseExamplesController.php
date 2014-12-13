@@ -14,16 +14,16 @@ class PurchaseExamplesController extends Controller
 {
     /**
      * @Extra\Route(
-     *   "/prepare_simple_purchase", 
+     *   "/prepare_simple_purchase",
      *   name="acme_payex_prepare_simple_purchase"
      * )
-     * 
+     *
      * @Extra\Template
      */
     public function prepareAction(Request $request)
     {
         $paymentName = 'payex';
-        
+
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -32,7 +32,7 @@ class PurchaseExamplesController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var $paymentDetails PaymentDetails */
-            $paymentDetails = $storage->createModel();
+            $paymentDetails = $storage->create();
             $paymentDetails['price'] = $data['amount'] * 100;
             $paymentDetails['priceArgList'] = '';
             $paymentDetails['vat'] = 0;
@@ -49,7 +49,7 @@ class PurchaseExamplesController extends Controller
             $paymentDetails['clientLanguage'] = 'en-US';
             $paymentDetails['autoPay'] = false;
 
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
@@ -59,11 +59,11 @@ class PurchaseExamplesController extends Controller
 
             $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
             $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             return $this->redirect($captureToken->getTargetUrl());
         }
-        
+
         return array(
             'form' => $form->createView()
         );
@@ -89,7 +89,7 @@ class PurchaseExamplesController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var $paymentDetails PaymentDetails */
-            $paymentDetails = $storage->createModel();
+            $paymentDetails = $storage->create();
             $paymentDetails['price'] = $data['amount'] * 100;
             $paymentDetails['priceArgList'] = '';
             $paymentDetails['vat'] = 0;
@@ -105,7 +105,7 @@ class PurchaseExamplesController extends Controller
             $paymentDetails['agreementRef'] = '';
             $paymentDetails['clientLanguage'] = 'en-US';
 
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
@@ -115,7 +115,7 @@ class PurchaseExamplesController extends Controller
 
             $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
             $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             return $this->redirect($captureToken->getTargetUrl());
         }

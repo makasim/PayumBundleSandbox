@@ -21,11 +21,11 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            $paymentDetails = $storage->createModel();
+            $paymentDetails = $storage->create();
             $paymentDetails['amount'] = $data['amount'];
             $paymentDetails['card_num'] = new SensitiveValue($data['card_number']);
             $paymentDetails['exp_date'] = new SensitiveValue($data['card_expiration_date']);
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
@@ -37,7 +37,7 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
                 'payum_token' => $captureToken,
             ));
         }
-        
+
         return $this->render('AcmePaymentBundle:SimplePurchaseAuthorizeNetAim:prepare.html.twig', array(
             'form' => $form->createView()
         ));
@@ -54,9 +54,9 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            $paymentDetails = $storage->createModel();
+            $paymentDetails = $storage->create();
             $paymentDetails['amount'] = $data['amount'];
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,

@@ -9,11 +9,10 @@ use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Request\Capture;
 use Payum\Core\Security\SensitiveValue;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction 
+class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
 {
     /**
      * @var ContainerInterface
@@ -23,7 +22,7 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
     /**
      * @param ContainerInterface $container
      */
-    public function __construct(ContainerInterface $container) 
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
@@ -52,14 +51,14 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
             $paymentDetailsStorage = $this->container->get('payum')->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var $paymentDetails PaymentDetails */
-            $paymentDetails = $paymentDetailsStorage->createModel();
+            $paymentDetails = $paymentDetailsStorage->create();
             $paymentDetails['amount'] = $cart->getPrice();
             $paymentDetails['card_num'] = new SensitiveValue($data['card_number']);
             $paymentDetails['exp_date'] = new SensitiveValue($data['card_expiration_date']);
-            $paymentDetailsStorage->updateModel($paymentDetails);
+            $paymentDetailsStorage->update($paymentDetails);
 
             $cart->setDetails($paymentDetails);
-            $cartStorage->updateModel($cart);
+            $cartStorage->update($cart);
 
             $request->setModel($paymentDetails);
             $this->payment->execute($request);

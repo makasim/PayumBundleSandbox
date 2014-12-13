@@ -31,7 +31,7 @@ class RecurringExamplesController extends PayumController
             'frequency' => 7
         );
     }
-    
+
     /**
      * @Extra\Route(
      *   "/prepare_recurring_payment",
@@ -43,17 +43,17 @@ class RecurringExamplesController extends PayumController
     public function prepareAction(Request $request)
     {
         $paymentName = 'payex_agreement';
-        
+
         $subscription = $this->getWeatherForecastSubscriptionDetails();
-        
+
         if ($request->isMethod('POST')) {
             $startDate = new \DateTime('now');
             $stopDate = new \DateTime(sprintf('now + %d days', $subscription['frequency']));
 
             $agreementDetailsStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\AgreementDetails');
-            
+
             /** @var AgreementDetails $agreementDetails */
-            $agreementDetails = $agreementDetailsStorage->createModel();
+            $agreementDetails = $agreementDetailsStorage->create();
             $agreementDetails['maxAmount'] = 10000;
             $agreementDetails['purchaseOperation'] = AgreementApi::PURCHASEOPERATION_AUTHORIZATION;
             $agreementDetails['merchantRef'] = 'aRef';
@@ -63,13 +63,13 @@ class RecurringExamplesController extends PayumController
 
             $this->getPayum()->getPayment($paymentName)->execute(new CreateAgreement($agreementDetails));
             $this->getPayum()->getPayment($paymentName)->execute(new Sync($agreementDetails));
-            
-            $agreementDetailsStorage->updateModel($agreementDetails);
-            
+
+            $agreementDetailsStorage->update($agreementDetails);
+
             $paymentDetailsStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var PaymentDetails $paymentDetails */
-            $paymentDetails = $paymentDetailsStorage->createModel();
+            $paymentDetails = $paymentDetailsStorage->create();
             $paymentDetails['price'] = $subscription['price'] * 100;
             $paymentDetails['priceArgList'] = '';
             $paymentDetails['vat'] = 0;
@@ -93,8 +93,8 @@ class RecurringExamplesController extends PayumController
             $paymentDetails['period'] = 0;
             $paymentDetails['alertPeriod'] = 0;
 
-            $paymentDetailsStorage->updateModel($paymentDetails);
-            
+            $paymentDetailsStorage->update($paymentDetails);
+
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
                 $paymentDetails,
@@ -108,7 +108,7 @@ class RecurringExamplesController extends PayumController
 
             $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
             $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
-            $paymentDetailsStorage->updateModel($paymentDetails);
+            $paymentDetailsStorage->update($paymentDetails);
 
             return $this->redirect($captureToken->getTargetUrl());
         }
@@ -129,7 +129,7 @@ class RecurringExamplesController extends PayumController
     public function viewRecurringPaymentDetailsAction(Request $request, $paymentName, $agreementId, $paymentId)
     {
         $payment = $this->getPayum()->getPayment($paymentName);
-        
+
         $payment->execute($syncAgreement = new Sync(new Identificator(
             $agreementId,
             'Acme\PaymentBundle\Model\AgreementDetails'

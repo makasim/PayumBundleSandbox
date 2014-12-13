@@ -21,13 +21,13 @@ class SimplePurchasePaypalProController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            $paymentDetails = $storage->createModel();
+            $paymentDetails = $storage->create();
             $paymentDetails['ACCT'] = new SensitiveValue($data['acct']);
             $paymentDetails['CVV2'] = new SensitiveValue($data['cvv2']);
             $paymentDetails['EXPDATE'] = new SensitiveValue($data['exp_date']);
             $paymentDetails['AMT'] = number_format($data['amt'], 2);
             $paymentDetails['CURRENCY'] = $data['currency'];
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
@@ -39,7 +39,7 @@ class SimplePurchasePaypalProController extends Controller
                 'payum_token' => $captureToken,
             ));
         }
-        
+
         return $this->render('AcmePaymentBundle:SimplePurchasePaypalPro:prepare.html.twig', array(
             'form' => $form->createView(),
         ));
@@ -56,10 +56,10 @@ class SimplePurchasePaypalProController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            $paymentDetails = $storage->createModel();
+            $paymentDetails = $storage->create();
             $paymentDetails['amt'] = number_format($data['amt'], 2);
             $paymentDetails['currency'] = $data['currency'];
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,

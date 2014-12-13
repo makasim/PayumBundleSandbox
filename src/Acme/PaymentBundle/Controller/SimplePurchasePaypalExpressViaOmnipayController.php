@@ -12,7 +12,7 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
     public function prepareAction(Request $request)
     {
         $paymentName = 'paypal_express_checkout_via_omnipay';
-        
+
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -20,11 +20,11 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            $paymentDetails = $storage->createModel();
+            $paymentDetails = $storage->create();
             $paymentDetails['amount'] = (float) $data['amount'];
             $paymentDetails['currency'] = $data['currency'];
 
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
@@ -35,7 +35,7 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
             $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
             $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
 
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             return $this->redirect($captureToken->getTargetUrl());
         }

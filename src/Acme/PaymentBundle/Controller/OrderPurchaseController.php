@@ -25,7 +25,7 @@ class OrderPurchaseController extends Controller
             $order->setDescription(sprintf('An order %s for a client %s', $order->getNumber(), $order->getClientEmail()));
 
             $storage = $this->getPayum()->getStorage($order);
-            $storage->updateModel($order);
+            $storage->update($order);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $form->get('payment_name')->getData(),

@@ -13,7 +13,7 @@ class SimplePurchaseStripeViaOmnipayController extends Controller
     public function prepareAction(Request $request)
     {
         $paymentName = 'stripe_via_omnipay';
-        
+
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -21,11 +21,11 @@ class SimplePurchaseStripeViaOmnipayController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            $paymentDetails = $storage->createModel();
+            $paymentDetails = $storage->create();
             $paymentDetails['amount'] = $data['amount'] * 100;
             $paymentDetails['currency'] = $data['currency'];
             $paymentDetails['card'] = new SensitiveValue($data['card']);
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,

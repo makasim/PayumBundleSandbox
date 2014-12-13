@@ -4,7 +4,6 @@ namespace Acme\OtherExamplesBundle\Controller;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
-use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +16,7 @@ class DevelopPaymentGatewayOnTopOfPayumExampleController extends PayumController
      *   "/develop-payment-gateway-on-top-of-payum",
      *   name="acme_other_develop_payment_gateway_on_top_of_payum"
      * )
-     * 
+     *
      * @Extra\Template
      */
     public function developPaymentGatewayAction(Request $request)
@@ -31,10 +30,10 @@ class DevelopPaymentGatewayOnTopOfPayumExampleController extends PayumController
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            $paymentDetails = $storage->createModel();
+            $paymentDetails = $storage->create();
             $paymentDetails['amount'] = (float) $data['amount'];
             $paymentDetails['currency'] = $data['currency'];
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,

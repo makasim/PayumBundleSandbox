@@ -3,7 +3,6 @@ namespace Acme\StripeBundle\Controller;
 
 use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Core\Security\GenericTokenFactoryInterface;
-use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Stripe\Keys;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
@@ -18,13 +17,13 @@ class PurchaseExamplesController extends Controller
      *   "/prepare_js",
      *   name="acme_stripe_prepare_js"
      * )
-     * 
+     *
      * @Extra\Template("AcmeStripeBundle:PurchaseExamples:prepare.html.twig")
      */
     public function prepareJsAction(Request $request)
     {
         $paymentName = 'stripe_js';
-        
+
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -33,11 +32,11 @@ class PurchaseExamplesController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var $details PaymentDetails */
-            $details = $storage->createModel();
+            $details = $storage->create();
             $details["amount"] = $data['amount'] * 100;
             $details["currency"] = $data['currency'];
             $details["description"] = "a description";
-            $storage->updateModel($details);
+            $storage->update($details);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
@@ -69,7 +68,7 @@ class PurchaseExamplesController extends Controller
         $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
         /** @var $details PaymentDetails */
-        $details = $storage->createModel();
+        $details = $storage->create();
         $details["amount"] = 100;
         $details["currency"] = 'USD';
         $details["description"] = "a description";
@@ -77,7 +76,7 @@ class PurchaseExamplesController extends Controller
         if ($request->isMethod('POST') && $request->request->get('stripeToken')) {
 
             $details["card"] = $request->request->get('stripeToken');
-            $storage->updateModel($details);
+            $storage->update($details);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
@@ -118,11 +117,11 @@ class PurchaseExamplesController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var $details PaymentDetails */
-            $details = $storage->createModel();
+            $details = $storage->create();
             $details["amount"] = $data['amount'] * 100;
             $details["currency"] = $data['currency'];
             $details["description"] = "a description";
-            $storage->updateModel($details);
+            $storage->update($details);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
