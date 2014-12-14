@@ -21,7 +21,7 @@ framework:
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_proxies: ~
-    session:         ~
+    session:         { save_path: /var/lib/php5 }
     fragments:       ~
 
 # Twig Configuration
@@ -30,6 +30,7 @@ twig:
         %kernel.root_dir%/../vendor/payum/payum/src/Payum/Core/Resources/views: PayumCore
         %kernel.root_dir%/../vendor/payum/payum/src/Payum/Klarna/Checkout/Resources/views: PayumKlarnaCheckout
         %kernel.root_dir%/../vendor/payum/payum/src/Payum/Stripe/Resources/views: PayumStripe
+#        %kernel.root_dir%/../vendor/payum/payum/src/Payum/Bitcoind/Resources/views: PayumBitcoind
 
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%

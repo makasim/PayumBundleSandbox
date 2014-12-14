@@ -3,6 +3,7 @@ namespace Acme\PaymentBundle\Controller;
 
 use Payum\Bundle\PayumBundle\Controller\PayumController;
 use Payum\Core\Exception\RequestNotSupportedException;
+use Payum\Core\Model\ArrayObject;
 use Payum\Core\Model\OrderInterface;
 use Payum\Core\Request\GetHumanStatus;
 use Payum\Core\Request\Sync;
@@ -13,19 +14,25 @@ class DetailsController extends PayumController
     public function viewAction(Request $request)
     {
         $token = $this->getHttpRequestVerifier()->verify($request);
-        
+
         $payment = $this->getPayum()->getPayment($token->getPaymentName());
 
         try {
             $payment->execute(new Sync($token));
         } catch (RequestNotSupportedException $e) {}
-        
+
         $payment->execute($status = new GetHumanStatus($token));
+
+        /** @var ArrayObject $details */
+        $details = $status->getFirstModel();
 
         return $this->render('AcmePaymentBundle:Details:view.html.twig', array(
             'status' => $status->getValue(),
-            'details' => iterator_to_array($status->getModel()),
-            'paymentTitle' => ucwords(str_replace(array('_', '-'), ' ', $token->getPaymentName()))
+            'details' => htmlspecialchars(json_encode(
+                iterator_to_array($details),
+                JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+            )),
+            'paymentTitle' => ucwords(str_replace(array('_', '-'), ' ', $token->getPaymentName())),
         ));
     }
 
@@ -42,9 +49,7 @@ class DetailsController extends PayumController
         $payment->execute($status = new GetHumanStatus($token));
 
         /** @var OrderInterface $order */
-        $order = $this->getPayum()->getStorage($token->getDetails()->getClass())->findModelById(
-            $token->getDetails()->getId()
-        );
+        $order = $status->getFirstModel();
 
         return $this->render('AcmePaymentBundle:Details:viewOrder.html.twig', array(
             'status' => $status->getValue(),
