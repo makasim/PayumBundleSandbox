@@ -26,7 +26,7 @@ class DetailsController extends PayumController
         if ($status->isCaptured() || $status->isAuthorized()) {
             $refundToken = $this->getTokenFactory()->createRefundToken(
                 $token->getPaymentName(),
-                $status->getModel(),
+                $status->getFirstModel(),
                 $request->getUri()
             );
         }
@@ -34,7 +34,7 @@ class DetailsController extends PayumController
         return $this->render('AcmePaymentBundle:Details:view.html.twig', array(
             'status' => $status->getValue(),
             'details' => htmlspecialchars(json_encode(
-                iterator_to_array($status->getModel()),
+                iterator_to_array($status->getFirstModel()),
                 JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
             )),
             'paymentTitle' => ucwords(str_replace(array('_', '-'), ' ', $token->getPaymentName())),
@@ -55,7 +55,7 @@ class DetailsController extends PayumController
         $payment->execute($status = new GetHumanStatus($token));
 
         /** @var OrderInterface $order */
-        $order = $status->getModel();
+        $order = $status->getFirstModel();
 
         return $this->render('AcmePaymentBundle:Details:viewOrder.html.twig', array(
             'status' => $status->getValue(),
