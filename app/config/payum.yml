@@ -121,8 +121,8 @@ payum:
                 password: %be2bill.password%
                 sandbox: true
 
-        be2bill_onsite:
-            be2bill_onsite:
+        be2bill_offsite:
+            be2bill_offsite:
                 identifier: %be2bill.identifier%
                 password: %be2bill.password%
                 sandbox: true
@@ -144,7 +144,7 @@ payum:
                     - acme.payment.payum.extension.store_notification
 
         paypal_express_checkout_via_omnipay:
-            omnipay_onsite:
+            omnipay_offsite:
                 type: PayPal_Express
                 options:
                     username:  %paypal.express_checkout.username%
@@ -163,7 +163,7 @@ payum:
                 secret_key: %stripe.secret_key%
 
         stripe_via_omnipay:
-            omnipay:
+            omnipay_direct:
                 type: Stripe
                 options:
                     apiKey:  %stripe.secret_key%

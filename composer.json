@@ -10,6 +10,10 @@
         {
             "type": "vcs",
             "url": "git@github.com:formapro-forks/payum-redsys.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:formapro-forks/PayumBundle.git"
         }
     ],
     "require": {
@@ -29,7 +33,7 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "jms/payment-paypal-bundle": "~1",
-        "payum/payum-bundle": "0.13.*@dev",
+        "payum/payum-bundle": "dev-payment-factory as 0.13.0",
         "payum/payum": "0.13.*@dev",
         "payum/jms-payment-bridge": "0.13.*@dev",
         "payum/omnipay-bridge": "0.13.*@dev",
