@@ -4,6 +4,7 @@ namespace Acme\OtherExamplesBundle\Controller;
 use JMS\Payment\CoreBundle\Entity\Payment;
 use JMS\Payment\CoreBundle\Entity\PaymentInstruction;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
+use Payum\Core\Request\GetHumanStatus;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Core\Request\GetBinaryStatus;
@@ -91,7 +92,7 @@ class JmsPaymentExamplesController extends PayumController
     {
         $token = $this->getHttpRequestVerifier()->verify($request);
 
-        $status = new GetBinaryStatus($token);
+        $status = new GetHumanStatus($token);
 
         $this->getPayum()->getPayment($token->getPaymentName())->execute($status);
 

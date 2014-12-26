@@ -6,7 +6,7 @@
 
 {% block content %}
     <div class="block">
-        {% include "AcmePaymentBundle:Details:_status.html.twig" with { 'status': status } only %}
+        Status: {{ status.value }}
     </div>
 
     <div class="block">
