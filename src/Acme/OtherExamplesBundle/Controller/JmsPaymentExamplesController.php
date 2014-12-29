@@ -6,8 +6,6 @@ use JMS\Payment\CoreBundle\Entity\PaymentInstruction;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
 use Payum\Core\Request\GetHumanStatus;
 use Payum\Core\Security\GenericTokenFactoryInterface;
-use Payum\Paypal\ExpressCheckout\Nvp\Api;
-use Payum\Core\Request\GetBinaryStatus;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
@@ -131,7 +129,6 @@ class JmsPaymentExamplesController extends PayumController
             ->getForm()
         ;
     }
-
 
     /**
      * @return GenericTokenFactoryInterface
