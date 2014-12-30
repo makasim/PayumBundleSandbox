@@ -103,3 +103,20 @@ jms_payment_paypal:
     password:                                             %paypal.express_checkout.password%
     signature:                                            %paypal.express_checkout.signature%
     debug:                                                true
+
+# app/config/config.yml
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+services:
+    sonata.admin.store:
+        class: Payum\Bundle\PayumBundle\Sonata\PaymentConfigAdmin
+        arguments: [~, Acme\PaymentBundle\Entity\PaymentConfig, ~]
+        calls:
+            - [setFormFactory, [@form.factory]]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Payments", label: "Configs" }
