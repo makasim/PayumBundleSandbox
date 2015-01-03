@@ -4,7 +4,6 @@ namespace Acme\StripeBundle\Controller;
 use Acme\PaymentBundle\Model\PaymentDetails;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Core\Registry\RegistryInterface;
-use Payum\Stripe\Keys;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -87,11 +86,8 @@ class PurchaseExamplesController extends Controller
             return $this->redirect($captureToken->getTargetUrl());
         }
 
-        /** @var Keys $keys */
-        $keys = $this->get('payum.context.'.$paymentName.'.keys');
-
         return array(
-            'publishable_key' => $keys->getPublishableKey(),
+            'publishable_key' => $this->container->getParameter('stripe.publishable_key'),
             'model' => $details,
             'paymentName' => $paymentName
         );

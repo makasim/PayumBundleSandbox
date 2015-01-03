@@ -86,7 +86,7 @@ class SimplePurchasePaypalProController extends Controller
                 'constraints' => array(new Range(array('max' => 2)))
             ))
             ->add('acct', null, array('data' => '5105105105105100'))
-            ->add('exp_date', null, array('data' => '1214'))
+            ->add('exp_date', null, array('data' => '1215'))
             ->add('cvv2', null, array('data' => '123'))
             ->add('currency', null, array('data' => 'USD'))
 

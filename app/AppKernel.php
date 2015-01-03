@@ -29,7 +29,7 @@ class AppKernel extends Kernel
             new JMS\Payment\PaypalBundle\JMSPaymentPaypalBundle(),
 
             new Payum\Bundle\PayumBundle\PayumBundle(),
-            
+
             new Acme\DemoBundle\AcmeDemoBundle(),
             new Acme\PaymentBundle\AcmePaymentBundle(),
             new Acme\PaypalExpressCheckoutBundle\AcmePaypalExpressCheckoutBundle(),

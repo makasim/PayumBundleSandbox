@@ -93,7 +93,7 @@ class SimplePurchaseBe2BillController extends Controller
 
     public function prepareOnsiteAction(Request $request)
     {
-        $paymentName = 'be2bill_onsite';
+        $paymentName = 'be2bill_offsite';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -125,9 +125,9 @@ class SimplePurchaseBe2BillController extends Controller
              * return url: http://your-domain-here.dev/payment/capture/session-token
              * cancel url: http://your-domain-here.dev/payment/capture/session-token
              *
-             * To get notifications add this url to be2bill as notify url (change be2bill_onsite to your payment name):
+             * To get notifications add this url to be2bill as notify url (change be2bill_offsite to your payment name):
              *
-             * http://your-domain-here.dev/payment/notify/unsafe/be2bill_onsite
+             * http://your-domain-here.dev/payment/notify/unsafe/be2bill_offsite
              */
             $request->getSession()->set('payum_token', $captureToken->getHash());
 

@@ -1,39 +1,39 @@
 payum:
     storages:
         Acme\PaymentBundle\Entity\PaymentDetails:
-            payment:
+            extension:
                 all: true
             doctrine: orm
 
         Acme\PaymentBundle\Document\PaymentDetails:
-            payment:
-                contexts:
+            extension:
+                payments:
                     - paypal_express_checkout_and_doctrine_mongo_odm
             doctrine: mongodb
 
         Acme\PaymentBundle\Entity\AgreementDetails:
-            payment:
-                contexts:
+            extension:
+                payments:
                     - paypal_express_checkout_recurring_payment_and_doctrine_orm
             doctrine: orm
 
         Acme\PaymentBundle\Entity\RecurringPaymentDetails:
-            payment:
-                contexts:
+            extension:
+                payments:
                     - paypal_express_checkout_recurring_payment_and_doctrine_orm
             doctrine: orm
 
         Acme\PaymentBundle\Model\AgreementDetails:
-            payment:
-                contexts:
+            extension:
+                payments:
                     - payex_agreement
             filesystem:
                 storage_dir: %kernel.root_dir%/Resources/payments
                 id_property: id
 
         Acme\OtherExamplesBundle\Model\Cart:
-            payment:
-                contexts:
+            extension:
+                payments:
                     - paypal_express_checkout_plus_cart
                     - authorize_net_plus_cart
             filesystem:
@@ -41,8 +41,8 @@ payum:
                 id_property: id
 
         JMS\Payment\CoreBundle\Entity\Payment:
-            payment:
-                contexts:
+            extension:
+                payments:
                     - paypal_express_checkout_via_jms_plugin
             doctrine: orm
 
@@ -61,7 +61,7 @@ payum:
             Acme\PaymentBundle\Entity\PaymentSecurityToken:
                 doctrine: orm
 
-    contexts:
+    payments:
         paypal_express_checkout_and_doctrine_orm:
             paypal_express_checkout_nvp:
                 username:  %paypal.express_checkout.username%

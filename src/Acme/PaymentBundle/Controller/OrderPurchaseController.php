@@ -57,7 +57,7 @@ class OrderPurchaseController extends Controller
                     'stripe_checkout' => 'Stripe Checkout',
                     'authorize_net' => 'Authorize.Net AIM',
                     'be2bill' => 'Be2bill',
-                    'be2bill_onsite' => 'Be2bill Onsite',
+                    'be2bill_offsite' => 'Be2bill Offsite',
                     'payex' => 'Payex',
                     'redsys' => 'Redsys',
                     'offline' => 'Offline',

@@ -42,8 +42,8 @@ class DemoExtension extends \Twig_Extension
                 array(
                     'payum' => array(
                         'security' => $config['payum']['security'],
-                        'contexts' => array(
-                            $paymentContext => $config['payum']['contexts'][$paymentContext]
+                        'payments' => array(
+                            $paymentContext => $config['payum']['payments'][$paymentContext]
                         )
                     )
                 ),
