@@ -26,12 +26,6 @@ framework:
 
 # Twig Configuration
 twig:
-    paths:
-        %kernel.root_dir%/../vendor/payum/payum/src/Payum/Core/Resources/views: PayumCore
-        %kernel.root_dir%/../vendor/payum/payum/src/Payum/Core/Bridge/Symfony/Resources/views: PayumSymfonyBridge
-        %kernel.root_dir%/../vendor/payum/payum/src/Payum/Klarna/Checkout/Resources/views: PayumKlarnaCheckout
-        %kernel.root_dir%/../vendor/payum/payum/src/Payum/Stripe/Resources/views: PayumStripe
-
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
     globals:
