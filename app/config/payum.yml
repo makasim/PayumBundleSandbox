@@ -116,7 +116,7 @@ payum:
                 sandbox: true
 
         be2bill:
-            be2bill:
+            be2bill_direct:
                 identifier: %be2bill.identifier%
                 password: %be2bill.password%
                 sandbox: true
