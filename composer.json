@@ -33,7 +33,7 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "jms/payment-paypal-bundle": "~1",
-        "payum/payum-bundle": "dev-payment-factory as 0.14.0",
+        "payum/payum-bundle": "0.14.*@dev",
         "payum/payum": "0.14.*@dev",
         "payum/jms-payment-bridge": "0.14.*@dev",
         "payum/omnipay-bridge": "0.14.*@dev",

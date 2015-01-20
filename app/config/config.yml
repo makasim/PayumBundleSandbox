@@ -110,13 +110,3 @@ sonata_block:
     blocks:
         # Enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
-            contexts:   [admin]
-
-services:
-    sonata.admin.store:
-        class: Payum\Bundle\PayumBundle\Sonata\PaymentConfigAdmin
-        arguments: [~, Acme\PaymentBundle\Entity\PaymentConfig, ~]
-        calls:
-            - [setFormFactory, [@form.factory]]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Payments", label: "Configs" }

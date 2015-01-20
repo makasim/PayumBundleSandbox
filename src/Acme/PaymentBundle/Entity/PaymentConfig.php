@@ -10,4 +10,10 @@ use Payum\Core\Model\PaymentConfig as BasePaymentConfig;
  */
 class PaymentConfig extends BasePaymentConfig
 {
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    protected $id;
 }
