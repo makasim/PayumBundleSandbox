@@ -58,8 +58,12 @@ payum:
 
     security:
         token_storage:
-            Acme\PaymentBundle\Entity\PaymentSecurityToken:
-                doctrine: orm
+            Acme\PaymentBundle\Entity\PaymentSecurityToken: { doctrine: orm }
+
+    dynamic_payments:
+        sonata_admin: true
+        config_storage:
+            Acme\PaymentBundle\Entity\PaymentConfig: { doctrine: orm }
 
     payments:
         paypal_express_checkout_and_doctrine_orm:

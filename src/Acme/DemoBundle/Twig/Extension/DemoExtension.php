@@ -31,10 +31,10 @@ class DemoExtension extends \Twig_Extension
         );
     }
 
-    public function getCode($template, $paymentContext = null)
+    public function getCode($template, $paymentName = null)
     {
         $payumConfigHtml = '';
-        if ($paymentContext) {
+        if ($paymentName) {
             ob_start();
             include __DIR__.'/../../../../../app/config/payum.yml';
             $config = Yaml::parse(ob_get_clean());
@@ -43,7 +43,7 @@ class DemoExtension extends \Twig_Extension
                     'payum' => array(
                         'security' => $config['payum']['security'],
                         'payments' => array(
-                            $paymentContext => $config['payum']['payments'][$paymentContext]
+                            $paymentName => $config['payum']['payments'][$paymentName]
                         )
                     )
                 ),

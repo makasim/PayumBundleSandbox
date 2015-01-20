@@ -43,8 +43,6 @@ class PurchaseExamplesController extends Controller
                 'acme_payment_details_view'
             );
 
-            $paymentDetails['RETURNURL'] = $captureToken->getTargetUrl();
-            $paymentDetails['CANCELURL'] = $captureToken->getTargetUrl();
             $paymentDetails['INVNUM'] = $paymentDetails->getId();
             $storage->update($paymentDetails);
 
@@ -88,8 +86,6 @@ class PurchaseExamplesController extends Controller
                 'acme_payment_details_view'
             );
 
-            $paymentDetails['RETURNURL'] = $captureToken->getTargetUrl();
-            $paymentDetails['CANCELURL'] = $captureToken->getTargetUrl();
             $paymentDetails['INVNUM'] = $paymentDetails->getId();
             $storage->update($paymentDetails);
 
@@ -99,6 +95,50 @@ class PurchaseExamplesController extends Controller
         return array(
             'form' => $form->createView(),
             'paymentName' => $paymentName
+        );
+    }
+
+    /**
+     * @Extra\Route(
+     *   "/prepare_purchase_configured_in_backend",
+     *   name="acme_paypal_prepare_purchase_configured_in_backend"
+     * )
+     *
+     * @Extra\Template("AcmePaypalExpressCheckoutBundle:PurchaseExamples:prepare.html.twig")
+     */
+    public function preparePurchaseConfiguredInBackendAction(Request $request)
+    {
+        $paymentName = 'paypal_configured_in_backend';
+
+        $form = $this->createPurchaseForm();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Document\PaymentDetails');
+
+            /** @var $details PaymentDetails */
+            $details = $storage->create();
+            $details['PAYMENTREQUEST_0_CURRENCYCODE'] = $data['currency'];
+            $details['PAYMENTREQUEST_0_AMT'] = $data['amount'];
+            $storage->update($details);
+
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $details,
+                'acme_payment_details_view'
+            );
+
+            $details['INVNUM'] = $details->getId();
+            $storage->update($details);
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        return array(
+            'form' => $form->createView(),
+            'paymentName' => '', // dynamic we cannot show a code example
+            'message' => 'This payment must be configured in sonata backend. If you get an exception go to /admin/dashboard and configure it.',
         );
     }
 
@@ -146,8 +186,6 @@ class PurchaseExamplesController extends Controller
                 'acme_payment_details_view'
             );
 
-            $paymentDetails['RETURNURL'] = $captureToken->getTargetUrl();
-            $paymentDetails['CANCELURL'] = $captureToken->getTargetUrl();
             $paymentDetails['INVNUM'] = $paymentDetails->getId();
             $storage->update($paymentDetails);
 
@@ -191,8 +229,6 @@ class PurchaseExamplesController extends Controller
                 'acme_payment_details_view'
             );
 
-            $paymentDetails['RETURNURL'] = $captureToken->getTargetUrl();
-            $paymentDetails['CANCELURL'] = $captureToken->getTargetUrl();
             $paymentDetails['INVNUM'] = $paymentDetails->getId();
             $storage->update($paymentDetails);
 
@@ -238,8 +274,6 @@ class PurchaseExamplesController extends Controller
                 'acme_payment_details_view'
             );
 
-            $paymentDetails['RETURNURL'] = $captureToken->getTargetUrl();
-            $paymentDetails['CANCELURL'] = $captureToken->getTargetUrl();
             $paymentDetails['PAYMENTREQUEST_0_NOTIFYURL'] = $notifyToken->getTargetUrl();
             $paymentDetails['INVNUM'] = $paymentDetails->getId();
             $storage->update($paymentDetails);
