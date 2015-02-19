@@ -46,12 +46,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/crevillo/payum-redsys.git",
-                "reference": "0832012b84924d9b449befb909860fb23a4c468a"
+                "reference": "e5b3c6c0203e3ed49921e81b593771152a4684a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/crevillo/payum-redsys/zipball/0832012b84924d9b449befb909860fb23a4c468a",
-                "reference": "0832012b84924d9b449befb909860fb23a4c468a",
+                "url": "https://api.github.com/repos/crevillo/payum-redsys/zipball/e5b3c6c0203e3ed49921e81b593771152a4684a4",
+                "reference": "e5b3c6c0203e3ed49921e81b593771152a4684a4",
                 "shasum": ""
             },
             "require": {
@@ -97,7 +97,7 @@
                 "payum",
                 "redsys"
             ],
-            "time": "2014-12-29 12:49:02"
+            "time": "2015-02-15 06:50:32"
         },
         {
             "name": "doctrine/annotations",
@@ -697,12 +697,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb.git",
-                "reference": "ffb7cf576a2d0a19468c3a923afcb368cb802057"
+                "reference": "a89ca5c78b41e0389dcc3c2b91437648ed5c7755"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/ffb7cf576a2d0a19468c3a923afcb368cb802057",
-                "reference": "ffb7cf576a2d0a19468c3a923afcb368cb802057",
+                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/a89ca5c78b41e0389dcc3c2b91437648ed5c7755",
+                "reference": "a89ca5c78b41e0389dcc3c2b91437648ed5c7755",
                 "shasum": ""
             },
             "require": {
@@ -745,7 +745,7 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2014-12-08 22:46:26"
+            "time": "2015-02-02 22:44:05"
         },
         {
             "name": "doctrine/mongodb-odm",
@@ -2247,12 +2247,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/OmnipayBridge.git",
-                "reference": "a7fcf39718997c8fa8a2aad3fed2865660c83d5a"
+                "reference": "4d92793ab2153547e39aa1e55891af4bb81c772f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/OmnipayBridge/zipball/a7fcf39718997c8fa8a2aad3fed2865660c83d5a",
-                "reference": "a7fcf39718997c8fa8a2aad3fed2865660c83d5a",
+                "url": "https://api.github.com/repos/Payum/OmnipayBridge/zipball/4d92793ab2153547e39aa1e55891af4bb81c772f",
+                "reference": "4d92793ab2153547e39aa1e55891af4bb81c772f",
                 "shasum": ""
             },
             "require": {
@@ -2299,7 +2299,7 @@
                 "omnipay",
                 "payment"
             ],
-            "time": "2015-01-17 11:38:34"
+            "time": "2015-02-13 08:07:21"
         },
         {
             "name": "payum/payum",
@@ -2307,12 +2307,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "57b199169b0b3edecb522c670c408df0e727422f"
+                "reference": "b491441fc0d32449e91b7e60c75cbf03c1bd5ff4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/57b199169b0b3edecb522c670c408df0e727422f",
-                "reference": "57b199169b0b3edecb522c670c408df0e727422f",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/b491441fc0d32449e91b7e60c75cbf03c1bd5ff4",
+                "reference": "b491441fc0d32449e91b7e60c75cbf03c1bd5ff4",
                 "shasum": ""
             },
             "require": {
@@ -2348,6 +2348,7 @@
                 "ext-curl": "*",
                 "ext-pdo_sqlite": "*",
                 "phpunit/phpunit": "~4.0",
+                "propel/propel1": "~1.7",
                 "psr/log": "~1.0",
                 "symfony/form": "~2.3",
                 "symfony/http-foundation": "~2.3",
@@ -2359,6 +2360,8 @@
                 "doctrine/mongodb-odm": "If you want to store models to mongo doctrin2 ODM",
                 "doctrine/orm": "If you want to store models to database using doctrin2 ORM",
                 "monolog/monolog": "In case you want to use PSR-3 logger",
+                "propel/propel": "If you want to store models to Propel2 ORM",
+                "propel/propel1": "If you want to store models to Propel1 ORM",
                 "symfony/form": "If you want to use forms",
                 "symfony/http-foundation": "If you want to use HttpRequestVerifier or HttpResponse reply from symfony's bridge",
                 "symfony/http-kernel": "If you want to use HttpRequestVerifier from symfony's bridge",
@@ -2414,7 +2417,7 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2015-01-19 21:05:52"
+            "time": "2015-02-18 20:51:41"
         },
         {
             "name": "payum/payum-bundle",
@@ -2422,12 +2425,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "cd3897bcd2bfd5b49539a4131c0098defa9ce8e4"
+                "reference": "2f3e2dd9e8a7dc5e040f936890666c9ba95bb7a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/cd3897bcd2bfd5b49539a4131c0098defa9ce8e4",
-                "reference": "cd3897bcd2bfd5b49539a4131c0098defa9ce8e4",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/2f3e2dd9e8a7dc5e040f936890666c9ba95bb7a7",
+                "reference": "2f3e2dd9e8a7dc5e040f936890666c9ba95bb7a7",
                 "shasum": ""
             },
             "require": {
@@ -2505,7 +2508,115 @@
                 "stripe.js",
                 "symfony"
             ],
-            "time": "2015-01-20 14:04:29"
+            "time": "2015-02-13 09:20:12"
+        },
+        {
+            "name": "phpdocumentor/reflection-docblock",
+            "version": "2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
+                "reference": "d68dbdc53dc358a816f00b300704702b2eaff7b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/d68dbdc53dc358a816f00b300704702b2eaff7b8",
+                "reference": "d68dbdc53dc358a816f00b300704702b2eaff7b8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "dflydev/markdown": "~1.0",
+                "erusev/parsedown": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "phpDocumentor": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mike van Riel",
+                    "email": "mike.vanriel@naenius.com"
+                }
+            ],
+            "time": "2015-02-03 12:10:50"
+        },
+        {
+            "name": "phpspec/prophecy",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpspec/prophecy.git",
+                "reference": "9ca52329bcdd1500de24427542577ebf3fc2f1c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/9ca52329bcdd1500de24427542577ebf3fc2f1c9",
+                "reference": "9ca52329bcdd1500de24427542577ebf3fc2f1c9",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/instantiator": "~1.0,>=1.0.2",
+                "phpdocumentor/reflection-docblock": "~2.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Prophecy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                },
+                {
+                    "name": "Marcello Duarte",
+                    "email": "marcello.duarte@gmail.com"
+                }
+            ],
+            "description": "Highly opinionated mocking framework for PHP 5.3+",
+            "homepage": "http://phpspec.org",
+            "keywords": [
+                "Double",
+                "Dummy",
+                "fake",
+                "mock",
+                "spy",
+                "stub"
+            ],
+            "time": "2014-11-17 16:23:49"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2753,16 +2864,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.4.5",
+            "version": "4.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2e8580deebb7d1ac92ac878595e6bffe01069c2a"
+                "reference": "5b578d3865a9128b9c209b011fda6539ec06e7a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2e8580deebb7d1ac92ac878595e6bffe01069c2a",
-                "reference": "2e8580deebb7d1ac92ac878595e6bffe01069c2a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5b578d3865a9128b9c209b011fda6539ec06e7a5",
+                "reference": "5b578d3865a9128b9c209b011fda6539ec06e7a5",
                 "shasum": ""
             },
             "require": {
@@ -2772,17 +2883,17 @@
                 "ext-reflection": "*",
                 "ext-spl": "*",
                 "php": ">=5.3.3",
+                "phpspec/prophecy": "~1.3.1",
                 "phpunit/php-code-coverage": "~2.0",
                 "phpunit/php-file-iterator": "~1.3.2",
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-timer": "~1.0.2",
                 "phpunit/phpunit-mock-objects": "~2.3",
-                "sebastian/comparator": "~1.0",
+                "sebastian/comparator": "~1.1",
                 "sebastian/diff": "~1.1",
-                "sebastian/environment": "~1.1",
-                "sebastian/exporter": "~1.1",
+                "sebastian/environment": "~1.2",
+                "sebastian/exporter": "~1.2",
                 "sebastian/global-state": "~1.0",
-                "sebastian/recursion-context": "~1.0",
                 "sebastian/version": "~1.0",
                 "symfony/yaml": "~2.0"
             },
@@ -2795,7 +2906,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.4.x-dev"
+                    "dev-master": "4.5.x-dev"
                 }
             },
             "autoload": {
@@ -2821,7 +2932,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-01-27 16:06:15"
+            "time": "2015-02-05 15:51:19"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3118,16 +3229,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "35ab8d385eef068186c83e23ae83c96b0288b3ee"
+                "reference": "84839970d05254c73cde183a721c7af13aede943"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/35ab8d385eef068186c83e23ae83c96b0288b3ee",
-                "reference": "35ab8d385eef068186c83e23ae83c96b0288b3ee",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/84839970d05254c73cde183a721c7af13aede943",
+                "reference": "84839970d05254c73cde183a721c7af13aede943",
                 "shasum": ""
             },
             "require": {
@@ -3140,7 +3251,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -3180,7 +3291,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2015-01-24 09:57:24"
+            "time": "2015-01-27 07:23:06"
         },
         {
             "name": "sebastian/global-state",
@@ -3323,17 +3434,17 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v2.3.8",
+            "version": "v2.3.9",
             "target-dir": "Sensio/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "9a72f821957141ee3d9703da3fa8266d59ef4b1c"
+                "reference": "ac4893621b30faf8f970758afea7640122767817"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/9a72f821957141ee3d9703da3fa8266d59ef4b1c",
-                "reference": "9a72f821957141ee3d9703da3fa8266d59ef4b1c",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/ac4893621b30faf8f970758afea7640122767817",
+                "reference": "ac4893621b30faf8f970758afea7640122767817",
                 "shasum": ""
             },
             "require": {
@@ -3365,7 +3476,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2015-01-07 07:11:03"
+            "time": "2015-02-01 05:39:51"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -3734,16 +3845,16 @@
         },
         {
             "name": "sonata-project/doctrine-orm-admin-bundle",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "1ab6b728ef03d6565bdde6b0c2b65a9e7a2659b9"
+                "reference": "7230b4f5388319bb21dfff7903cda07dfa4e9fba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/1ab6b728ef03d6565bdde6b0c2b65a9e7a2659b9",
-                "reference": "1ab6b728ef03d6565bdde6b0c2b65a9e7a2659b9",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/7230b4f5388319bb21dfff7903cda07dfa4e9fba",
+                "reference": "7230b4f5388319bb21dfff7903cda07dfa4e9fba",
                 "shasum": ""
             },
             "require": {
@@ -3800,7 +3911,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2014-09-01 20:21:38"
+            "time": "2015-02-14 15:52:30"
         },
         {
             "name": "sonata-project/exporter",
@@ -4145,16 +4256,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.6.3",
+            "version": "v2.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "c34ef418015793a4653f2670afb69dd167ebf578"
+                "reference": "23b647f1e4eeb24a457d3c47f5f5046377d5a3bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/c34ef418015793a4653f2670afb69dd167ebf578",
-                "reference": "c34ef418015793a4653f2670afb69dd167ebf578",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/23b647f1e4eeb24a457d3c47f5f5046377d5a3bf",
+                "reference": "23b647f1e4eeb24a457d3c47f5f5046377d5a3bf",
                 "shasum": ""
             },
             "require": {
@@ -4257,7 +4368,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-01-07 14:47:29"
+            "time": "2015-02-02 18:02:30"
         },
         {
             "name": "true/punycode",
