@@ -41,7 +41,7 @@
         },
         {
             "name": "crevillo/payum-redsys",
-            "version": "dev-master",
+            "version": "0.14.0",
             "target-dir": "Crevillo/Payum/Redsys",
             "source": {
                 "type": "git",
@@ -697,16 +697,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb.git",
-                "reference": "a89ca5c78b41e0389dcc3c2b91437648ed5c7755"
+                "reference": "2d68d06b4b9e9dff8e48636c57ce744e1fc2a2e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/a89ca5c78b41e0389dcc3c2b91437648ed5c7755",
-                "reference": "a89ca5c78b41e0389dcc3c2b91437648ed5c7755",
+                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/2d68d06b4b9e9dff8e48636c57ce744e1fc2a2e8",
+                "reference": "2d68d06b4b9e9dff8e48636c57ce744e1fc2a2e8",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": ">=2.1.0,<2.5-dev",
+                "doctrine/common": "~2.1",
                 "ext-mongo": ">=1.2.12,<1.7-dev",
                 "php": ">=5.3.2"
             },
@@ -745,7 +745,7 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2015-02-02 22:44:05"
+            "time": "2015-02-24 23:42:35"
         },
         {
             "name": "doctrine/mongodb-odm",
@@ -2183,22 +2183,22 @@
         },
         {
             "name": "payum/jms-payment-bridge",
-            "version": "dev-master",
+            "version": "0.14.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/JMSPaymentBridge.git",
-                "reference": "21e4f7d148991bc1d9d077913fab20bdbe4afb16"
+                "reference": "1056cab6a51b4ea2e9da29815f24019728388c0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/JMSPaymentBridge/zipball/21e4f7d148991bc1d9d077913fab20bdbe4afb16",
-                "reference": "21e4f7d148991bc1d9d077913fab20bdbe4afb16",
+                "url": "https://api.github.com/repos/Payum/JMSPaymentBridge/zipball/1056cab6a51b4ea2e9da29815f24019728388c0b",
+                "reference": "1056cab6a51b4ea2e9da29815f24019728388c0b",
                 "shasum": ""
             },
             "require": {
                 "jms/payment-core-bundle": "~1",
-                "payum/core": "0.14.*@dev",
-                "payum/payum-bundle": "0.14.*@dev",
+                "payum/core": "0.14.*",
+                "payum/payum-bundle": "0.14.*",
                 "php": ">=5.3.2"
             },
             "require-dev": {
@@ -2239,25 +2239,25 @@
                 "jms payment",
                 "payment"
             ],
-            "time": "2014-12-28 09:41:31"
+            "time": "2015-02-23 09:25:03"
         },
         {
             "name": "payum/omnipay-bridge",
-            "version": "dev-master",
+            "version": "0.14.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/OmnipayBridge.git",
-                "reference": "4d92793ab2153547e39aa1e55891af4bb81c772f"
+                "reference": "2318483c966cf29d1c7cb86561eb3dc32e321614"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/OmnipayBridge/zipball/4d92793ab2153547e39aa1e55891af4bb81c772f",
-                "reference": "4d92793ab2153547e39aa1e55891af4bb81c772f",
+                "url": "https://api.github.com/repos/Payum/OmnipayBridge/zipball/2318483c966cf29d1c7cb86561eb3dc32e321614",
+                "reference": "2318483c966cf29d1c7cb86561eb3dc32e321614",
                 "shasum": ""
             },
             "require": {
                 "omnipay/common": "~2.0",
-                "payum/core": "0.14.*@dev",
+                "payum/core": "0.14.*",
                 "php": ">=5.3.2"
             },
             "require-dev": {
@@ -2299,7 +2299,7 @@
                 "omnipay",
                 "payment"
             ],
-            "time": "2015-02-13 08:07:21"
+            "time": "2015-02-23 09:28:03"
         },
         {
             "name": "payum/payum",
@@ -2421,20 +2421,20 @@
         },
         {
             "name": "payum/payum-bundle",
-            "version": "dev-master",
+            "version": "0.14.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "2f3e2dd9e8a7dc5e040f936890666c9ba95bb7a7"
+                "reference": "3d765c10529d0c7ba7f63e68f41391e081b73e27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/2f3e2dd9e8a7dc5e040f936890666c9ba95bb7a7",
-                "reference": "2f3e2dd9e8a7dc5e040f936890666c9ba95bb7a7",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/3d765c10529d0c7ba7f63e68f41391e081b73e27",
+                "reference": "3d765c10529d0c7ba7f63e68f41391e081b73e27",
                 "shasum": ""
             },
             "require": {
-                "payum/core": "0.14.*@dev",
+                "payum/core": "0.14.*",
                 "php": ">=5.3.2",
                 "symfony/form": "~2.3",
                 "symfony/framework-bundle": "~2.3",
@@ -2446,9 +2446,9 @@
                 "omnipay/dummy": "~2.0",
                 "omnipay/paypal": "~2.0",
                 "omnipay/stripe": "~2.0",
-                "payum/jms-payment-bridge": "0.14.*@dev",
-                "payum/omnipay-bridge": "0.14.*@dev",
-                "payum/payum": "0.14.*@dev",
+                "payum/jms-payment-bridge": "0.14.*",
+                "payum/omnipay-bridge": "0.14.*",
+                "payum/payum": "0.14.*",
                 "phpunit/phpunit": "~4.0",
                 "sonata-project/admin-bundle": "~2.0",
                 "symfony/browser-kit": "~2.3",
@@ -2508,7 +2508,7 @@
                 "stripe.js",
                 "symfony"
             ],
-            "time": "2015-02-13 09:20:12"
+            "time": "2015-02-23 09:20:01"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
