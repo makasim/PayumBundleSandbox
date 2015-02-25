@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "554769ece58513f3dc0720e832f76fd1",
+    "hash": "37c83b58a7eb300bf14df42b20d53be1",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -2183,7 +2183,7 @@
         },
         {
             "name": "payum/jms-payment-bridge",
-            "version": "0.14.x-dev",
+            "version": "0.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/JMSPaymentBridge.git",
@@ -2243,7 +2243,7 @@
         },
         {
             "name": "payum/omnipay-bridge",
-            "version": "0.14.x-dev",
+            "version": "0.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/OmnipayBridge.git",
@@ -2303,16 +2303,16 @@
         },
         {
             "name": "payum/payum",
-            "version": "dev-master",
+            "version": "0.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "b491441fc0d32449e91b7e60c75cbf03c1bd5ff4"
+                "reference": "9bf0f80a503de2129a3fb5e0ec643f31a2672c65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/b491441fc0d32449e91b7e60c75cbf03c1bd5ff4",
-                "reference": "b491441fc0d32449e91b7e60c75cbf03c1bd5ff4",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/9bf0f80a503de2129a3fb5e0ec643f31a2672c65",
+                "reference": "9bf0f80a503de2129a3fb5e0ec643f31a2672c65",
                 "shasum": ""
             },
             "require": {
@@ -2417,11 +2417,11 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2015-02-18 20:51:41"
+            "time": "2015-02-20 07:44:44"
         },
         {
             "name": "payum/payum-bundle",
-            "version": "0.14.x-dev",
+            "version": "0.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
@@ -4529,11 +4529,6 @@
         "doctrine/mongodb": 20,
         "doctrine/mongodb-odm": 20,
         "doctrine/mongodb-odm-bundle": 20,
-        "payum/payum-bundle": 20,
-        "payum/payum": 20,
-        "payum/jms-payment-bridge": 20,
-        "payum/omnipay-bridge": 20,
-        "crevillo/payum-redsys": 20,
         "sonata-project/doctrine-orm-admin-bundle": 0
     },
     "prefer-stable": false,

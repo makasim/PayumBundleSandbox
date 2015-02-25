@@ -6,16 +6,6 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:formapro-forks/payum-redsys.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:formapro-forks/PayumBundle.git"
-        }
-    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "~2.3",
@@ -33,11 +23,11 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "jms/payment-paypal-bundle": "~1",
-        "payum/payum-bundle": "0.14.*@dev",
-        "payum/payum": "0.14.*@dev",
-        "payum/jms-payment-bridge": "0.14.*@dev",
-        "payum/omnipay-bridge": "0.14.*@dev",
-        "crevillo/payum-redsys": "0.14.*@dev",
+        "payum/payum-bundle": "0.14.*",
+        "payum/payum": "0.14.*",
+        "payum/jms-payment-bridge": "0.14.*",
+        "payum/omnipay-bridge": "0.14.*",
+        "crevillo/payum-redsys": "0.14.*",
         "omnipay/stripe": "~2.0",
         "omnipay/paypal": "~2.0",
         "sonata-project/doctrine-orm-admin-bundle": "~2.0@stable",
