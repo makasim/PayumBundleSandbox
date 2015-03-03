@@ -45,3 +45,6 @@ parameters:
     redsys.merchant_code:  EDIT ME
     redsys.terminal:  EDIT ME
     redsys.secret_key: EDIT ME
+
+    securepay.merchant_id: EDIT ME
+    securepay.transaction_password: EDIT ME

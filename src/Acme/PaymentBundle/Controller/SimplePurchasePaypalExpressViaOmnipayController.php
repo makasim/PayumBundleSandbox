@@ -45,6 +45,43 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
         ));
     }
 
+    public function prepareSecurePayAction(Request $request)
+    {
+        $paymentName = 'securepay_via_omnipay';
+
+        $form = $this->createPurchaseForm();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+
+            $details = $storage->create();
+            $details['amount'] = 1.23;
+            $details['currency'] = 'AUD';
+            $details['transactionId'] = uniqid();
+            $details['EPS_CARDNUMBER'] = '4444333322221111';
+
+            $storage->update($details);
+
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $paymentName,
+                $details,
+                'acme_payment_details_view'
+            );
+
+            $details['returnUrl'] = $captureToken->getTargetUrl();
+
+            $storage->update($details);
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        return $this->render('AcmePaymentBundle:SimplePurchasePaypalExpressViaOmnipay:prepare.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
     /**
      * @return \Symfony\Component\Form\Form
      */
