@@ -54,13 +54,12 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             $details = $storage->create();
-            $details['amount'] = 1.23;
-            $details['currency'] = 'AUD';
+            $details['amount'] = $data['amount'];
+            $details['currency'] = $data['currency'];
             $details['transactionId'] = uniqid();
-            $details['EPS_CARDNUMBER'] = '4444333322221111';
 
             $storage->update($details);
 
