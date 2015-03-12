@@ -4,12 +4,12 @@ namespace Acme\PaypalExpressCheckoutBundle\Controller;
 use Acme\PaymentBundle\Model\AgreementDetails;
 use Acme\PaymentBundle\Model\RecurringPaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
+use Payum\Core\Request\Cancel;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfile;
-use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\ManageRecurringPaymentsProfileStatus;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Core\Request\Sync;
-use Payum\Core\Request\GetBinaryStatus;
+use Payum\Core\Request\GetHumanStatus;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -86,7 +86,7 @@ class RecurringPaymentExamplesController extends PayumController
 
         $payment = $this->getPayum()->getPayment($token->getPaymentName());
 
-        $agreementStatus = new GetBinaryStatus($token);
+        $agreementStatus = new GetHumanStatus($token);
         $payment->execute($agreementStatus);
 
         $recurringPaymentStatus = null;
@@ -112,7 +112,7 @@ class RecurringPaymentExamplesController extends PayumController
         $payment->execute(new CreateRecurringPaymentProfile($paymentDetails));
         $payment->execute(new Sync($paymentDetails));
 
-        $recurringPaymentStatus = new GetBinaryStatus($paymentDetails);
+        $recurringPaymentStatus = new GetHumanStatus($paymentDetails);
         $payment->execute($recurringPaymentStatus);
 
         return $this->redirect($this->generateUrl('acme_paypal_express_checkout_view_recurring_payment', array(
@@ -138,14 +138,14 @@ class RecurringPaymentExamplesController extends PayumController
 
         $billingAgreementDetails = $billingAgreementStorage->find($billingAgreementId);
 
-        $billingAgreementStatus = new GetBinaryStatus($billingAgreementDetails);
+        $billingAgreementStatus = new GetHumanStatus($billingAgreementDetails);
         $payment->execute($billingAgreementStatus);
 
         $recurringPaymentStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\RecurringPaymentDetails');
 
         $recurringPaymentDetails = $recurringPaymentStorage->find($recurringPaymentId);
 
-        $recurringPaymentStatus = new GetBinaryStatus($recurringPaymentDetails);
+        $recurringPaymentStatus = new GetHumanStatus($recurringPaymentDetails);
         $payment->execute($recurringPaymentStatus);
 
         $cancelToken = null;
@@ -181,7 +181,7 @@ class RecurringPaymentExamplesController extends PayumController
 
         $payment = $this->getPayum()->getPayment($token->getPaymentName());
 
-        $status = new GetBinaryStatus($token);
+        $status = new GetHumanStatus($token);
         $payment->execute($status);
         if (false == $status->isCaptured()) {
             throw new HttpException(400, 'The model status must be success.');
@@ -191,11 +191,10 @@ class RecurringPaymentExamplesController extends PayumController
         }
 
         /** @var RecurringPaymentDetails $recurringPayment */
-        $paymentDetails = $status->getModel();
-        $paymentDetails['ACTION'] = Api::RECURRINGPAYMENTACTION_CANCEL;
+        $recurringPayment = $status->getFirstModel();
 
-        $payment->execute(new ManageRecurringPaymentsProfileStatus($paymentDetails));
-        $payment->execute(new Sync($paymentDetails));
+        $payment->execute(new Cancel($recurringPayment));
+        $payment->execute(new Sync($recurringPayment));
 
         return $this->redirect($token->getAfterUrl());
     }
