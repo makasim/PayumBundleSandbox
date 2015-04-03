@@ -45,3 +45,8 @@ parameters:
     redsys.merchant_code:  EDIT ME
     redsys.terminal:  EDIT ME
     redsys.secret_key: EDIT ME
+
+    paylink.channel_id: EDIT ME
+    paylink.sender_id: EDIT ME
+    paylink.user_login: EDIT ME
+    paylink.user_password: EDIT ME

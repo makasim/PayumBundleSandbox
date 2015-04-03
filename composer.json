@@ -38,6 +38,7 @@
         "payum/jms-payment-bridge": "0.14.*@dev",
         "payum/omnipay-bridge": "0.14.*@dev",
         "crevillo/payum-redsys": "0.14.*@dev",
+        "locastic/paylink-payum": "dev-upgrade-to-0.14 as 0.14.0",
         "omnipay/stripe": "~2.0",
         "omnipay/paypal": "~2.0",
         "sonata-project/doctrine-orm-admin-bundle": "~2.0@stable",
@@ -73,5 +74,11 @@
         "branch-alias": {
             "dev-master": "0.14-dev"
         }
-    }
+    },
+    "repositories":[
+        {
+            "type": "vcs",
+            "url": "git@github.com:formapro-forks/PayumPaylinkJustpay.git"
+        }
+    ]
 }

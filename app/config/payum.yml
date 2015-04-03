@@ -194,6 +194,14 @@ payum:
                 secret_key: %redsys.secret_key%
                 sandbox: true
 
+        paylink:
+            paylink:
+                channel_id: %paylink.channel_id%
+                sender_id: %paylink.sender_id%
+                user_login: %paylink.user_login%
+                user_password: %paylink.user_password%
+                sandbox: true
+
         paypal_express_checkout_plus_cart:
             paypal_express_checkout_nvp:
                 username:  %paypal.express_checkout.username%
