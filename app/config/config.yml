@@ -21,7 +21,7 @@ framework:
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_proxies: ~
-    session:         ~
+    session:         { save_path: /tmp }
     fragments:       ~
 
 # Twig Configuration

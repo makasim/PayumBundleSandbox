@@ -21,7 +21,7 @@ class DevelopPaymentGatewayOnTopOfPayumExampleController extends PayumController
      */
     public function developPaymentGatewayAction(Request $request)
     {
-        $paymentName = 'foo_bar_gateway';
+        $gatewayName = 'foo_bar_gateway';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -30,14 +30,14 @@ class DevelopPaymentGatewayOnTopOfPayumExampleController extends PayumController
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            $paymentDetails = $storage->create();
-            $paymentDetails['amount'] = (float) $data['amount'];
-            $paymentDetails['currency'] = $data['currency'];
-            $storage->update($paymentDetails);
+            $payment = $storage->create();
+            $payment['amount'] = (float) $data['amount'];
+            $payment['currency'] = $data['currency'];
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 

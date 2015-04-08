@@ -2,13 +2,13 @@
 namespace Acme\PaymentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Payum\Core\Model\PaymentConfig as BasePaymentConfig;
+use Payum\Core\Model\GatewayConfig as BasePaymentConfig;
 
 /**
- * @ORM\Table(name="payum_payment_configs")
+ * @ORM\Table(name="payum_gateway_configs")
  * @ORM\Entity
  */
-class PaymentConfig extends BasePaymentConfig
+class GatewayConfig extends BasePaymentConfig
 {
     /**
      * @ORM\Column(name="id", type="integer")

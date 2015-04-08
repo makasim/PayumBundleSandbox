@@ -26,7 +26,7 @@ class PurchaseExamplesController extends Controller
         // 123
         // 123456
 
-        $paymentName = 'redsys';
+        $gatewayName = 'redsys';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -36,20 +36,20 @@ class PurchaseExamplesController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var PaymentDetails */
-            $details = $storage->create();
-            $details['Ds_Merchant_Amount'] = $data['amount'];
-            $details['Ds_Merchant_Currency'] = $data['currencyCode'];
-            $details['Ds_Merchant_Order'] = date('ymdHis');
-            $details['Ds_Merchant_TransactionType'] = Api::TRANSACTIONTYPE_AUTHORIZATION;
-            $details['Ds_Merchant_ConsumerLanguage'] = Api::CONSUMERLANGUAGE_SPANISH;
-            $storage->update($details);
+            $payment = $storage->create();
+            $payment['Ds_Merchant_Amount'] = $data['amount'];
+            $payment['Ds_Merchant_Currency'] = $data['currencyCode'];
+            $payment['Ds_Merchant_Order'] = date('ymdHis');
+            $payment['Ds_Merchant_TransactionType'] = Api::TRANSACTIONTYPE_AUTHORIZATION;
+            $payment['Ds_Merchant_ConsumerLanguage'] = Api::CONSUMERLANGUAGE_SPANISH;
+            $storage->update($payment);
 
-            $notifyToken = $this->getTokenFactory()->createNotifyToken($paymentName, $details);
-            $details['Ds_Merchant_MerchantURL'] = $notifyToken->getTargetUrl();
+            $notifyToken = $this->getTokenFactory()->createNotifyToken($gatewayName, $payment);
+            $payment['Ds_Merchant_MerchantURL'] = $notifyToken->getTargetUrl();
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $details,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 

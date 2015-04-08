@@ -11,7 +11,7 @@ class SimplePurchaseOfflineController extends Controller
 {
     public function prepareAction(Request $request)
     {
-        $paymentName = 'offline';
+        $gatewayName = 'offline';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -21,17 +21,17 @@ class SimplePurchaseOfflineController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var PaymentDetails */
-            $paymentDetails = $storage->create();
-            $paymentDetails['transaction_number'] = $data['transaction_number'];
-            $paymentDetails['transaction_date'] = $data['transaction_date'];
-            $paymentDetails['description'] = $data['description'];
-            $paymentDetails['paid'] = $data['paid'];
+            $payment = $storage->create();
+            $payment['transaction_number'] = $data['transaction_number'];
+            $payment['transaction_date'] = $data['transaction_date'];
+            $payment['description'] = $data['description'];
+            $payment['paid'] = $data['paid'];
 
-            $storage->update($paymentDetails);
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 

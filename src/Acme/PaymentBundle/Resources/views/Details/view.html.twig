@@ -1,7 +1,7 @@
 {% extends "AcmePaymentBundle::layout.html.twig" %}
 
 {% block title %}
-    {{ paymentTitle }} - Details View"
+    {{ gatewayTitle }} - Details View"
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@
     </div>
 
     <div class="block">
-        <pre style="white-space: pre;">{{ details|raw }}</pre>
+        <pre style="white-space: pre;">{{ payment|raw }}</pre>
     </div>
 {% endblock %}
 

@@ -14,12 +14,12 @@
 
     <form method="POST">
         <p>
-            {{ book.author }}. {{ book.name }}, 
+            {{ book.author }}. {{ book.name }},
             {{ book.quantity }} items for {{ book.price }}{{ book.currency_symbol }} each.
         </p>
-        
+
         <input type="submit" value="Buy" />
     </form>
 {% endblock %}
 
-{% set code = code(_self, paymentName) %}
+{% set code = code(_self, gatewayName) %}

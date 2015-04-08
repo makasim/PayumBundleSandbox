@@ -22,7 +22,7 @@ class JmsPaymentExamplesController extends PayumController
      */
     public function prepareAction(Request $request)
     {
-        $paymentName = 'paypal_express_checkout_via_jms_plugin';
+        $gatewayName = 'paypal_express_checkout_via_jms_plugin';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -43,7 +43,7 @@ class JmsPaymentExamplesController extends PayumController
             $this->getDoctrine()->getManager()->flush();
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
+                $gatewayName,
                 $payment,
                 'acme_other_purchase_done_paypal_via_jms_plugin'
             );
@@ -92,7 +92,7 @@ class JmsPaymentExamplesController extends PayumController
 
         $status = new GetHumanStatus($token);
 
-        $this->getPayum()->getPayment($token->getPaymentName())->execute($status);
+        $this->getPayum()->getGateway($token->getGatewayName())->execute($status);
 
         return array(
             'status' => $status,

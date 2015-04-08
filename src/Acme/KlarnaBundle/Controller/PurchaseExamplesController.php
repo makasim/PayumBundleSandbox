@@ -40,34 +40,34 @@ class PurchaseExamplesController extends Controller
             )
         );
 
-        $paymentName = 'klarna_checkout';
+        $gatewayName = 'klarna_checkout';
 
         if ($request->isMethod('POST')) {
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            /** @var $paymentDetails PaymentDetails */
-            $details = $storage->create();
-            $details['purchase_country'] = 'SE';
-            $details['purchase_currency'] = 'SEK';
-            $details['locale'] = 'sv-se';
-            $storage->update($details);
+            /** @var $payment PaymentDetails */
+            $payment = $storage->create();
+            $payment['purchase_country'] = 'SE';
+            $payment['purchase_currency'] = 'SEK';
+            $payment['locale'] = 'sv-se';
+            $storage->update($payment);
 
             $authorizeToken = $this->getTokenFactory()->createAuthorizeToken(
-                $paymentName,
-                $details,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 
-            $details['merchant'] = array(
+            $payment['merchant'] = array(
                 'terms_uri' => 'http://example.com/terms',
                 'checkout_uri' => 'http://example.com/fuck',
                 'confirmation_uri' => $authorizeToken->getTargetUrl(),
-                'push_uri' => $this->getTokenFactory()->createNotifyToken($paymentName, $details)->getTargetUrl()
+                'push_uri' => $this->getTokenFactory()->createNotifyToken($gatewayName, $payment)->getTargetUrl()
             );
-            $details['cart'] = array(
+            $payment['cart'] = array(
                 'items' => $cartItems
             );
-            $storage->update($details);
+            $storage->update($payment);
 
             return $this->redirect($authorizeToken->getTargetUrl());
         }
@@ -87,12 +87,12 @@ class PurchaseExamplesController extends Controller
      */
     public function prepareInvoiceAction(Request $request)
     {
-        $paymentName = 'klarna_invoice';
+        $gatewayName = 'klarna_invoice';
 
         /** @link http://developers.klarna.com/en/testing/invoice-and-account */
         $pno = '410321-9202';
 
-        $payment = $this->getPayum()->getPayment($paymentName);
+        $payment = $this->getPayum()->getGateway($gatewayName);
         $payment->execute($getAddresses = new GetAddresses($pno));
 
         $firstAddress = $getAddresses->getFirstAddress();
@@ -121,18 +121,18 @@ class PurchaseExamplesController extends Controller
         if ($request->isMethod('POST')) {
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            /** @var $details PaymentDetails */
-            $details = $storage->create();
+            /** @var $payment PaymentDetails */
+            $payment = $storage->create();
 
             foreach ($rawDetails as $name => $value) {
-                $details[$name] = $value;
+                $payment[$name] = $value;
             }
 
-            $storage->update($details);
+            $storage->update($payment);
 
             $captureToken = $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $details,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 
@@ -140,7 +140,7 @@ class PurchaseExamplesController extends Controller
         }
 
         return array(
-            'details' => $rawDetails
+            'payment' => $rawDetails
         );
     }
 
@@ -154,12 +154,12 @@ class PurchaseExamplesController extends Controller
      */
     public function prepareAuthorizeInvoiceAction(Request $request)
     {
-        $paymentName = 'klarna_invoice';
+        $gatewayName = 'klarna_invoice';
 
         /** @link http://developers.klarna.com/en/testing/invoice-and-account */
         $pno = '410321-9202';
 
-        $payment = $this->getPayum()->getPayment($paymentName);
+        $payment = $this->getPayum()->getGateway($gatewayName);
         $payment->execute($getAddresses = new GetAddresses($pno));
 
         $firstAddress = $getAddresses->getFirstAddress();
@@ -188,18 +188,18 @@ class PurchaseExamplesController extends Controller
         if ($request->isMethod('POST')) {
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            /** @var $details PaymentDetails */
-            $details = $storage->create();
+            /** @var $payment PaymentDetails */
+            $payment = $storage->create();
 
             foreach ($rawDetails as $name => $value) {
-                $details[$name] = $value;
+                $payment[$name] = $value;
             }
 
-            $storage->update($details);
+            $storage->update($payment);
 
             $captureToken = $captureToken = $this->getTokenFactory()->createAuthorizeToken(
-                $paymentName,
-                $details,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 
@@ -207,7 +207,7 @@ class PurchaseExamplesController extends Controller
         }
 
         return array(
-            'details' => $rawDetails
+            'payment' => $rawDetails
         );
     }
 

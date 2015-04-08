@@ -3,8 +3,8 @@ acme_payment_homepage:
     defaults: { _controller: AcmePaymentBundle:Default:index }
 
 acme_payment_prepare_order_purchase:
-    pattern:  /payment/order_purchase/prepare
-    defaults: { _controller: AcmePaymentBundle:OrderPurchase:prepare }
+    pattern:  /payment/prepare_universal/purchase
+    defaults: { _controller: AcmePaymentBundle:PaymentPurchase:prepare }
 
 acme_payment_prepare_simple_purchase_authorize_net:
     pattern:  /payment/simple_purchase/authorize_net/prepare

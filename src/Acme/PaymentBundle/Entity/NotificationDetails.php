@@ -17,9 +17,9 @@ class NotificationDetails
     protected $id;
 
     /**
-     * @ORM\Column(name="payment_name", type="string", nullable=false)
+     * @ORM\Column(name="gateway_name", type="string", nullable=false)
      */
-    protected $paymentName;
+    protected $gatewayName;
 
     /**
      * @ORM\Column(name="details", type="json_array", nullable=false)
@@ -34,7 +34,7 @@ class NotificationDetails
     public function __construct()
     {
         $this->details = [];
-        $this->paymentName = '';
+        $this->gatewayName = '';
     }
 
     /**
@@ -48,17 +48,17 @@ class NotificationDetails
     /**
      * @return string
      */
-    public function getPaymentName()
+    public function getGatewayName()
     {
-        return $this->paymentName;
+        return $this->gatewayName;
     }
 
     /**
-     * @param string $paymentName
+     * @param string $gatewayName
      */
-    public function setPaymentName($paymentName)
+    public function setGatewayName($gatewayName)
     {
-        $this->paymentName = $paymentName;
+        $this->gatewayName = $gatewayName;
     }
 
     /**

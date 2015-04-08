@@ -22,7 +22,7 @@ class PurchaseExamplesController extends Controller
      */
     public function prepareAction(Request $request)
     {
-        $paymentName = 'payex';
+        $gatewayName = 'payex';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -31,35 +31,35 @@ class PurchaseExamplesController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            /** @var $paymentDetails PaymentDetails */
-            $paymentDetails = $storage->create();
-            $paymentDetails['price'] = $data['amount'] * 100;
-            $paymentDetails['priceArgList'] = '';
-            $paymentDetails['vat'] = 0;
-            $paymentDetails['currency'] = $data['currency'];
-            $paymentDetails['orderId'] = 123;
-            $paymentDetails['productNumber'] = 123;
-            $paymentDetails['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
-            $paymentDetails['view'] = OrderApi::VIEW_CREDITCARD;
-            $paymentDetails['description'] = 'a desc';
-            $paymentDetails['clientIPAddress'] = $request->getClientIp();
-            $paymentDetails['clientIdentifier'] = '';
-            $paymentDetails['additionalValues'] = '';
-            $paymentDetails['agreementRef'] = '';
-            $paymentDetails['clientLanguage'] = 'en-US';
-            $paymentDetails['autoPay'] = false;
+            /** @var $payment PaymentDetails */
+            $payment = $storage->create();
+            $payment['price'] = $data['amount'] * 100;
+            $payment['priceArgList'] = '';
+            $payment['vat'] = 0;
+            $payment['currency'] = $data['currency'];
+            $payment['orderId'] = 123;
+            $payment['productNumber'] = 123;
+            $payment['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
+            $payment['view'] = OrderApi::VIEW_CREDITCARD;
+            $payment['description'] = 'a desc';
+            $payment['clientIPAddress'] = $request->getClientIp();
+            $payment['clientIdentifier'] = '';
+            $payment['additionalValues'] = '';
+            $payment['agreementRef'] = '';
+            $payment['clientLanguage'] = 'en-US';
+            $payment['autoPay'] = false;
 
-            $storage->update($paymentDetails);
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 
-            $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
-            $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
-            $storage->update($paymentDetails);
+            $payment['returnUrl'] = $captureToken->getTargetUrl();
+            $payment['cancelUrl'] = $captureToken->getTargetUrl();
+            $storage->update($payment);
 
             return $this->redirect($captureToken->getTargetUrl());
         }
@@ -79,7 +79,7 @@ class PurchaseExamplesController extends Controller
      */
     public function prepareWithTransactionCallbackAction(Request $request)
     {
-        $paymentName = 'payex';
+        $gatewayName = 'payex';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -88,34 +88,34 @@ class PurchaseExamplesController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            /** @var $paymentDetails PaymentDetails */
-            $paymentDetails = $storage->create();
-            $paymentDetails['price'] = $data['amount'] * 100;
-            $paymentDetails['priceArgList'] = '';
-            $paymentDetails['vat'] = 0;
-            $paymentDetails['currency'] = $data['currency'];
-            $paymentDetails['orderId'] = 123;
-            $paymentDetails['productNumber'] = 123;
-            $paymentDetails['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
-            $paymentDetails['view'] = OrderApi::VIEW_CREDITCARD;
-            $paymentDetails['description'] = 'a desc';
-            $paymentDetails['clientIPAddress'] = $request->getClientIp();
-            $paymentDetails['clientIdentifier'] = '';
-            $paymentDetails['additionalValues'] = '';
-            $paymentDetails['agreementRef'] = '';
-            $paymentDetails['clientLanguage'] = 'en-US';
+            /** @var $payment PaymentDetails */
+            $payment = $storage->create();
+            $payment['price'] = $data['amount'] * 100;
+            $payment['priceArgList'] = '';
+            $payment['vat'] = 0;
+            $payment['currency'] = $data['currency'];
+            $payment['orderId'] = 123;
+            $payment['productNumber'] = 123;
+            $payment['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
+            $payment['view'] = OrderApi::VIEW_CREDITCARD;
+            $payment['description'] = 'a desc';
+            $payment['clientIPAddress'] = $request->getClientIp();
+            $payment['clientIdentifier'] = '';
+            $payment['additionalValues'] = '';
+            $payment['agreementRef'] = '';
+            $payment['clientLanguage'] = 'en-US';
 
-            $storage->update($paymentDetails);
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 
-            $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
-            $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
-            $storage->update($paymentDetails);
+            $payment['returnUrl'] = $captureToken->getTargetUrl();
+            $payment['cancelUrl'] = $captureToken->getTargetUrl();
+            $storage->update($payment);
 
             return $this->redirect($captureToken->getTargetUrl());
         }

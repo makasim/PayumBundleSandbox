@@ -39,7 +39,7 @@ class RecurringPaymentExamplesController extends PayumController
      */
     public function createAgreementAction(Request $request)
     {
-        $paymentName = 'paypal_express_checkout_recurring_payment_and_doctrine_orm';
+        $gatewayName = 'paypal_express_checkout_recurring_payment_and_doctrine_orm';
 
         $subscription = $this->getWeatherForecastSubscriptionDetails();
 
@@ -55,7 +55,7 @@ class RecurringPaymentExamplesController extends PayumController
             $storage->update($agreement);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
+                $gatewayName,
                 $agreement,
                 'acme_paypal_express_checkout_create_recurring_payment'
             );
@@ -70,7 +70,7 @@ class RecurringPaymentExamplesController extends PayumController
 
         return array(
             'subscription' => $subscription,
-            'paymentName' => $paymentName
+            'gatewayName' => $gatewayName
         );
     }
 
@@ -84,10 +84,10 @@ class RecurringPaymentExamplesController extends PayumController
     {
         $token = $this->getHttpRequestVerifier()->verify($request);
 
-        $payment = $this->getPayum()->getPayment($token->getPaymentName());
+        $gateway = $this->getPayum()->getGateway($token->getGatewayName());
 
         $agreementStatus = new GetHumanStatus($token);
-        $payment->execute($agreementStatus);
+        $gateway->execute($agreementStatus);
 
         $recurringPaymentStatus = null;
         if (false == $agreementStatus->isCaptured()) {
@@ -99,59 +99,59 @@ class RecurringPaymentExamplesController extends PayumController
 
         $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\RecurringPaymentDetails');
 
-        $paymentDetails = $storage->create();
-        $paymentDetails['TOKEN'] = $agreement['TOKEN'];
-        $paymentDetails['DESC'] = $agreement['L_BILLINGAGREEMENTDESCRIPTION0'];
-        $paymentDetails['EMAIL'] = $agreement['EMAIL'];
-        $paymentDetails['AMT'] = $subscription['price'];
-        $paymentDetails['CURRENCYCODE'] = $subscription['currency'];
-        $paymentDetails['BILLINGFREQUENCY'] = $subscription['frequency'];
-        $paymentDetails['PROFILESTARTDATE'] = date(DATE_ATOM);
-        $paymentDetails['BILLINGPERIOD'] = Api::BILLINGPERIOD_DAY;
+        $payment = $storage->create();
+        $payment['TOKEN'] = $agreement['TOKEN'];
+        $payment['DESC'] = $agreement['L_BILLINGAGREEMENTDESCRIPTION0'];
+        $payment['EMAIL'] = $agreement['EMAIL'];
+        $payment['AMT'] = $subscription['price'];
+        $payment['CURRENCYCODE'] = $subscription['currency'];
+        $payment['BILLINGFREQUENCY'] = $subscription['frequency'];
+        $payment['PROFILESTARTDATE'] = date(DATE_ATOM);
+        $payment['BILLINGPERIOD'] = Api::BILLINGPERIOD_DAY;
 
-        $payment->execute(new CreateRecurringPaymentProfile($paymentDetails));
-        $payment->execute(new Sync($paymentDetails));
+        $gateway->execute(new CreateRecurringPaymentProfile($payment));
+        $gateway->execute(new Sync($payment));
 
-        $recurringPaymentStatus = new GetHumanStatus($paymentDetails);
-        $payment->execute($recurringPaymentStatus);
+        $recurringPaymentStatus = new GetHumanStatus($payment);
+        $gateway->execute($recurringPaymentStatus);
 
         return $this->redirect($this->generateUrl('acme_paypal_express_checkout_view_recurring_payment', array(
-            'paymentName' => $token->getPaymentName(),
+            'gatewayName' => $token->getGatewayName(),
             'billingAgreementId' => $agreement->getId(),
-            'recurringPaymentId' => $paymentDetails->getId(),
+            'recurringPaymentId' => $payment->getId(),
         )));
     }
 
     /**
      * @Extra\Route(
-     *   "/payment/{paymentName}/details/{billingAgreementId}/{recurringPaymentId}",
+     *   "/payment/{gatewayName}/details/{billingAgreementId}/{recurringPaymentId}",
      *   name="acme_paypal_express_checkout_view_recurring_payment"
      * )
      *
      * @Extra\Template
      */
-    public function viewRecurringPaymentDetailsAction($paymentName, $billingAgreementId, $recurringPaymentId, Request $request)
+    public function viewRecurringPaymentDetailsAction($gatewayName, $billingAgreementId, $recurringPaymentId, Request $request)
     {
-        $payment = $this->getPayum()->getPayment($paymentName);
+        $gateway = $this->getPayum()->getGateway($gatewayName);
 
         $billingAgreementStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\AgreementDetails');
 
         $billingAgreementDetails = $billingAgreementStorage->find($billingAgreementId);
 
         $billingAgreementStatus = new GetHumanStatus($billingAgreementDetails);
-        $payment->execute($billingAgreementStatus);
+        $gateway->execute($billingAgreementStatus);
 
         $recurringPaymentStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\RecurringPaymentDetails');
 
         $recurringPaymentDetails = $recurringPaymentStorage->find($recurringPaymentId);
 
         $recurringPaymentStatus = new GetHumanStatus($recurringPaymentDetails);
-        $payment->execute($recurringPaymentStatus);
+        $gateway->execute($recurringPaymentStatus);
 
         $cancelToken = null;
         if ($recurringPaymentStatus->isCaptured()) {
             $cancelToken = $this->getTokenFactory()->createToken(
-                $paymentName,
+                $gatewayName,
                 $recurringPaymentDetails,
                 'acme_paypal_express_checkout_cancel_recurring_payment',
                 array(),
@@ -164,7 +164,7 @@ class RecurringPaymentExamplesController extends PayumController
             'cancelToken' => $cancelToken,
             'billingAgreementStatus' => $billingAgreementStatus,
             'recurringPaymentStatus' => $recurringPaymentStatus,
-            'paymentName' => $paymentName
+            'gatewayName' => $gatewayName
         );
     }
 
@@ -179,10 +179,10 @@ class RecurringPaymentExamplesController extends PayumController
         $token = $this->getHttpRequestVerifier()->verify($request);
         $this->getHttpRequestVerifier()->invalidate($token);
 
-        $payment = $this->getPayum()->getPayment($token->getPaymentName());
+        $gateway = $this->getPayum()->getGateway($token->getGatewayName());
 
         $status = new GetHumanStatus($token);
-        $payment->execute($status);
+        $gateway->execute($status);
         if (false == $status->isCaptured()) {
             throw new HttpException(400, 'The model status must be success.');
         }
@@ -190,11 +190,11 @@ class RecurringPaymentExamplesController extends PayumController
             throw new HttpException(400, 'The model associated with token not a recurring payment one.');
         }
 
-        /** @var RecurringPaymentDetails $recurringPayment */
-        $recurringPayment = $status->getFirstModel();
+        /** @var RecurringPaymentDetails $payment */
+        $payment = $status->getFirstModel();
 
-        $payment->execute(new Cancel($recurringPayment));
-        $payment->execute(new Sync($recurringPayment));
+        $gateway->execute(new Cancel($payment));
+        $gateway->execute(new Sync($payment));
 
         return $this->redirect($token->getAfterUrl());
     }
