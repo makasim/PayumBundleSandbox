@@ -21,7 +21,7 @@ class PurchaseExamplesController extends Controller
      */
     public function prepareJsAction(Request $request)
     {
-        $paymentName = 'stripe_js';
+        $gatewayName = 'stripe_js';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -30,16 +30,16 @@ class PurchaseExamplesController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            /** @var $details PaymentDetails */
-            $details = $storage->create();
-            $details["amount"] = $data['amount'] * 100;
-            $details["currency"] = $data['currency'];
-            $details["description"] = "a description";
-            $storage->update($details);
+            /** @var $payment PaymentDetails */
+            $payment = $storage->create();
+            $payment["amount"] = $data['amount'] * 100;
+            $payment["currency"] = $data['currency'];
+            $payment["description"] = "a description";
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $details,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 
@@ -48,7 +48,7 @@ class PurchaseExamplesController extends Controller
 
         return array(
             'form' => $form->createView(),
-            'paymentName' => $paymentName
+            'gatewayName' => $gatewayName
         );
     }
 
@@ -62,24 +62,24 @@ class PurchaseExamplesController extends Controller
      */
     public function prepareCheckoutAction(Request $request)
     {
-        $paymentName = 'stripe_checkout';
+        $gatewayName = 'stripe_checkout';
 
         $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-        /** @var $details PaymentDetails */
-        $details = $storage->create();
-        $details["amount"] = 100;
-        $details["currency"] = 'USD';
-        $details["description"] = "a description";
+        /** @var $payment PaymentDetails */
+        $payment = $storage->create();
+        $payment["amount"] = 100;
+        $payment["currency"] = 'USD';
+        $payment["description"] = "a description";
 
         if ($request->isMethod('POST') && $request->request->get('stripeToken')) {
 
-            $details["card"] = $request->request->get('stripeToken');
-            $storage->update($details);
+            $payment["card"] = $request->request->get('stripeToken');
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $details,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 
@@ -88,8 +88,8 @@ class PurchaseExamplesController extends Controller
 
         return array(
             'publishable_key' => $this->container->getParameter('stripe.publishable_key'),
-            'model' => $details,
-            'paymentName' => $paymentName
+            'model' => $payment,
+            'gatewayName' => $gatewayName
         );
     }
 
@@ -103,7 +103,7 @@ class PurchaseExamplesController extends Controller
      */
     public function prepareCheckoutDelayedAction(Request $request)
     {
-        $paymentName = 'stripe_checkout';
+        $gatewayName = 'stripe_checkout';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -112,16 +112,16 @@ class PurchaseExamplesController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            /** @var $details PaymentDetails */
-            $details = $storage->create();
-            $details["amount"] = $data['amount'] * 100;
-            $details["currency"] = $data['currency'];
-            $details["description"] = "a description";
-            $storage->update($details);
+            /** @var $payment PaymentDetails */
+            $payment = $storage->create();
+            $payment["amount"] = $data['amount'] * 100;
+            $payment["currency"] = $data['currency'];
+            $payment["description"] = "a description";
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $details,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 
@@ -130,7 +130,7 @@ class PurchaseExamplesController extends Controller
 
         return array(
             'form' => $form->createView(),
-            'paymentName' => $paymentName
+            'gatewayName' => $gatewayName
         );
     }
 

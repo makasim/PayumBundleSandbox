@@ -2,7 +2,7 @@
 
 namespace Acme\RedsysBundle;
 
-use Crevillo\Payum\Redsys\Bridge\Symfony\RedsysPaymentFactory;
+use Crevillo\Payum\Redsys\Bridge\Symfony\RedsysGatewayFactory;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -18,6 +18,6 @@ class AcmeRedsysBundle extends Bundle
         /** @var $extension \Payum\Bundle\PayumBundle\DependencyInjection\PayumExtension */
         $extension = $container->getExtension('payum');
 
-        $extension->addPaymentFactory(new RedsysPaymentFactory());
+        $extension->addGatewayFactory(new RedsysGatewayFactory());
     }
 }

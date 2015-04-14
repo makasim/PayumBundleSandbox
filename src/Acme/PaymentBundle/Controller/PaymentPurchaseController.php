@@ -1,7 +1,7 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
-use Payum\Core\Model\Order;
+use Payum\Core\Model\Payment;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,26 +10,26 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Range;
 
-class OrderPurchaseController extends Controller
+class PaymentPurchaseController extends Controller
 {
     public function prepareAction(Request $request)
     {
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Order $order */
-            $order = $form->getData();
+            /** @var Payment $payment */
+            $payment = $form->getData();
 
-            $order->setNumber(date('ymdHis'));
-            $order->setClientId(uniqid());
-            $order->setDescription(sprintf('An order %s for a client %s', $order->getNumber(), $order->getClientEmail()));
+            $payment->setNumber(date('ymdHis'));
+            $payment->setClientId(uniqid());
+            $payment->setDescription(sprintf('An order %s for a client %s', $payment->getNumber(), $payment->getClientEmail()));
 
-            $storage = $this->getPayum()->getStorage($order);
-            $storage->update($order);
+            $storage = $this->getPayum()->getStorage($payment);
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $form->get('payment_name')->getData(),
-                $order,
+                $form->get('gateway_name')->getData(),
+                $payment,
                 'acme_payment_order_done'
             );
 
@@ -46,10 +46,10 @@ class OrderPurchaseController extends Controller
      */
     protected function createPurchaseForm()
     {
-        $formBuilder = $this->createFormBuilder(null, array('data_class' => 'Payum\Core\Model\Order'));
+        $formBuilder = $this->createFormBuilder(null, array('data_class' => 'Payum\Core\Model\Payment'));
 
         return $formBuilder
-            ->add('payment_name', 'choice', array(
+            ->add('gateway_name', 'choice', array(
                 'choices' => array(
                     'paypal_express_checkout_with_ipn_enabled' => 'Paypal ExpressCheckout',
                     'paypal_pro_checkout' => 'Paypal ProCheckout',

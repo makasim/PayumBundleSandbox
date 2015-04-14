@@ -29,7 +29,7 @@ class OneClickExamplesController extends Controller
      */
     public function confirmAgreementAction(Request $request)
     {
-        $paymentName = 'payex_agreement';
+        $gatewayName = 'payex_agreement';
 
         $agreementStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\AgreementDetails');
 
@@ -39,13 +39,13 @@ class OneClickExamplesController extends Controller
                 'Acme\PaymentBundle\Model\AgreementDetails'
             ));
 
-            $this->getPayum()->getPayment($paymentName)->execute($syncAgreement);
+            $this->getPayum()->getGateway($gatewayName)->execute($syncAgreement);
 
             /** @var AgreementDetails $agreement */
             $agreement = $syncAgreement->getModel();
 
             $agreementStatus = new GetHumanStatus($agreement);
-            $this->getPayum()->getPayment($paymentName)->execute($agreementStatus);
+            $this->getPayum()->getGateway($gatewayName)->execute($agreementStatus);
 
             if ($agreementStatus->isCaptured()) {
                 return $this->redirect($this->generateUrl('acme_payex_one_click_purchase', array(
@@ -54,35 +54,35 @@ class OneClickExamplesController extends Controller
             } elseif ($agreementStatus->isNew()) {
                 $paymentStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-                /** @var $paymentDetails PaymentDetails */
-                $paymentDetails = $paymentStorage->create();
-                $paymentDetails['price'] = 1000;
-                $paymentDetails['priceArgList'] = '';
-                $paymentDetails['vat'] = 0;
-                $paymentDetails['currency'] = 'NOK';
-                $paymentDetails['orderId'] = 123;
-                $paymentDetails['productNumber'] = 123;
-                $paymentDetails['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
-                $paymentDetails['view'] = OrderApi::VIEW_CREDITCARD;
-                $paymentDetails['description'] = 'a desc';
-                $paymentDetails['clientIPAddress'] = $request->getClientIp();
-                $paymentDetails['clientIdentifier'] = '';
-                $paymentDetails['additionalValues'] = '';
-                $paymentDetails['agreementRef'] = $agreement['agreementRef'];
-                $paymentDetails['clientLanguage'] = 'en-US';
+                /** @var $payment PaymentDetails */
+                $payment = $paymentStorage->create();
+                $payment['price'] = 1000;
+                $payment['priceArgList'] = '';
+                $payment['vat'] = 0;
+                $payment['currency'] = 'NOK';
+                $payment['orderId'] = 123;
+                $payment['productNumber'] = 123;
+                $payment['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
+                $payment['view'] = OrderApi::VIEW_CREDITCARD;
+                $payment['description'] = 'a desc';
+                $payment['clientIPAddress'] = $request->getClientIp();
+                $payment['clientIdentifier'] = '';
+                $payment['additionalValues'] = '';
+                $payment['agreementRef'] = $agreement['agreementRef'];
+                $payment['clientLanguage'] = 'en-US';
 
-                $paymentStorage->update($paymentDetails);
+                $paymentStorage->update($payment);
 
                 $captureToken = $this->getTokenFactory()->createCaptureToken(
-                    $paymentName,
-                    $paymentDetails,
+                    $gatewayName,
+                    $payment,
                     'acme_payex_one_click_confirm_agreement',
                     array('agreementId' => $agreement->getId(), 'confirm' => 1)
                 );
 
-                $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
-                $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
-                $paymentStorage->update($paymentDetails);
+                $payment['returnUrl'] = $captureToken->getTargetUrl();
+                $payment['cancelUrl'] = $captureToken->getTargetUrl();
+                $paymentStorage->update($payment);
 
                 return $this->redirect($captureToken->getTargetUrl());
             }
@@ -96,11 +96,11 @@ class OneClickExamplesController extends Controller
             $agreement['startDate'] = '';
             $agreement['stopDate'] = '';
 
-            $this->getPayum()->getPayment($paymentName)->execute(new CreateAgreement($agreement));
-            $this->getPayum()->getPayment($paymentName)->execute(new Sync($agreement));
+            $this->getPayum()->getGateway($gatewayName)->execute(new CreateAgreement($agreement));
+            $this->getPayum()->getGateway($gatewayName)->execute(new Sync($agreement));
 
             $agreementStatus = new GetHumanStatus($agreement);
-            $this->getPayum()->getPayment($paymentName)->execute($agreementStatus);
+            $this->getPayum()->getGateway($gatewayName)->execute($agreementStatus);
         }
 
         return array(
@@ -118,7 +118,7 @@ class OneClickExamplesController extends Controller
      */
     public function purchaseAction(Request $request)
     {
-        $paymentName = 'payex_agreement';
+        $gatewayName = 'payex_agreement';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -128,7 +128,7 @@ class OneClickExamplesController extends Controller
                 $request->get('agreementId'),
                 'Acme\PaymentBundle\Model\AgreementDetails'
             ));
-            $this->getPayum()->getPayment($paymentName)->execute($agreementStatus);
+            $this->getPayum()->getGateway($gatewayName)->execute($agreementStatus);
             if (false == $agreementStatus->isCaptured()) {
                 throw new HttpException(400, sprintf(
                     'Agreement has to have confirmed status, but it is %s',
@@ -141,28 +141,28 @@ class OneClickExamplesController extends Controller
 
             $paymentStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            /** @var $paymentDetails PaymentDetails */
-            $paymentDetails = $paymentStorage->create();
-            $paymentDetails['price'] = 1000;
-            $paymentDetails['currency'] = 'NOK';
-            $paymentDetails['orderId'] = 123;
-            $paymentDetails['productNumber'] = 123;
-            $paymentDetails['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
-            $paymentDetails['description'] = 'a desc';
-            $paymentDetails['agreementRef'] = $agreement['agreementRef'];
-            $paymentDetails['autoPay'] = true;
+            /** @var $payment PaymentDetails */
+            $payment = $paymentStorage->create();
+            $payment['price'] = 1000;
+            $payment['currency'] = 'NOK';
+            $payment['orderId'] = 123;
+            $payment['productNumber'] = 123;
+            $payment['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
+            $payment['description'] = 'a desc';
+            $payment['agreementRef'] = $agreement['agreementRef'];
+            $payment['autoPay'] = true;
 
-            $paymentStorage->update($paymentDetails);
+            $paymentStorage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 
-            $paymentDetails['Returnurl'] = $captureToken->getTargetUrl();
-            $paymentDetails['Cancelurl'] = $captureToken->getTargetUrl();
-            $paymentStorage->update($paymentDetails);
+            $payment['Returnurl'] = $captureToken->getTargetUrl();
+            $payment['Cancelurl'] = $captureToken->getTargetUrl();
+            $paymentStorage->update($payment);
 
             return $this->redirect($captureToken->getTargetUrl());
         }

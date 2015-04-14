@@ -12,9 +12,9 @@
 
     Your cart:
     <table>
-        PNO: {{ details.pno }}
+        PNO: {{ payment.pno }}
         <br />
-        {% for article in details.articles %}
+        {% for article in payment.articles %}
             <tr>
                 <td>{{ article.artNo }}</td>
                 <td>{{ article.title }}</td>

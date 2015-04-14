@@ -4,7 +4,7 @@
     Notifications list
 {% endblock %}
 
-{% block content %}  
+{% block content %}
     <style>
         table {
             border: 1px solid #DFDFDF;
@@ -51,7 +51,7 @@
                 {% for notification in notifications %}
                     <tr>
                         <td>{{ notification.id }}</td>
-                        <td>{{ notification.paymentName }}</td>
+                        <td>{{ notification.gatewayName }}</td>
                         <td>{{ notification.createdAt.format("Y-m-d H:i:s") }}</td>
                         <td><pre>{{ notification.details|raw }}</pre></td>
                     </tr>

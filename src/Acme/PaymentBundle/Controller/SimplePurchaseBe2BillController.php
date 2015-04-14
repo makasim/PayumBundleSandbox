@@ -13,7 +13,7 @@ class SimplePurchaseBe2BillController extends Controller
 {
     public function prepareAction(Request $request)
     {
-        $paymentName = 'be2bill';
+        $gatewayName = 'be2bill';
 
         $form = $this->createPurchaseWithCreditCardForm();
         $form->handleRequest($request);
@@ -23,24 +23,24 @@ class SimplePurchaseBe2BillController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var PaymentDetails */
-            $paymentDetails = $storage->create();
+            $payment = $storage->create();
             //be2bill amount format is cents: for example:  100.05 (EUR). will be 10005.
-            $paymentDetails['AMOUNT'] = $data['amount'] * 100;
-            $paymentDetails['CLIENTEMAIL'] = 'user@email.com';
-            $paymentDetails['CLIENTUSERAGENT'] = $request->headers->get('User-Agent', 'Unknown');
-            $paymentDetails['CLIENTIP'] = $request->getClientIp();
-            $paymentDetails['CLIENTIDENT'] = 'payerId'.uniqid();
-            $paymentDetails['DESCRIPTION'] = 'Payment for digital stuff';
-            $paymentDetails['ORDERID'] = 'orderId'.uniqid();
-            $paymentDetails['CARDCODE'] = new SensitiveValue($data['card_number']);
-            $paymentDetails['CARDCVV'] = new SensitiveValue($data['card_cvv']);
-            $paymentDetails['CARDFULLNAME'] = new SensitiveValue($data['card_holder']);
-            $paymentDetails['CARDVALIDITYDATE'] = new SensitiveValue($data['card_expiration_date']);
-            $storage->update($paymentDetails);
+            $payment['AMOUNT'] = $data['amount'] * 100;
+            $payment['CLIENTEMAIL'] = 'user@email.com';
+            $payment['CLIENTUSERAGENT'] = $request->headers->get('User-Agent', 'Unknown');
+            $payment['CLIENTIP'] = $request->getClientIp();
+            $payment['CLIENTIDENT'] = 'payerId'.uniqid();
+            $payment['DESCRIPTION'] = 'Payment for digital stuff';
+            $payment['ORDERID'] = 'orderId'.uniqid();
+            $payment['CARDCODE'] = new SensitiveValue($data['card_number']);
+            $payment['CARDCVV'] = new SensitiveValue($data['card_cvv']);
+            $payment['CARDFULLNAME'] = new SensitiveValue($data['card_holder']);
+            $payment['CARDVALIDITYDATE'] = new SensitiveValue($data['card_expiration_date']);
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 
@@ -56,7 +56,7 @@ class SimplePurchaseBe2BillController extends Controller
 
     public function prepareObtainCreditCardAction(Request $request)
     {
-        $paymentName = 'be2bill';
+        $gatewayName = 'be2bill';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -66,20 +66,20 @@ class SimplePurchaseBe2BillController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var PaymentDetails */
-            $paymentDetails = $storage->create();
+            $payment = $storage->create();
             //be2bill amount format is cents: for example:  100.05 (EUR). will be 10005.
-            $paymentDetails['AMOUNT'] = $data['amount'] * 100;
-            $paymentDetails['CLIENTEMAIL'] = 'user@email.com';
-            $paymentDetails['CLIENTUSERAGENT'] = $request->headers->get('User-Agent', 'Unknown');
-            $paymentDetails['CLIENTIP'] = $request->getClientIp();
-            $paymentDetails['CLIENTIDENT'] = 'payerId'.uniqid();
-            $paymentDetails['DESCRIPTION'] = 'Payment for digital stuff';
-            $paymentDetails['ORDERID'] = 'orderId'.uniqid();
-            $storage->update($paymentDetails);
+            $payment['AMOUNT'] = $data['amount'] * 100;
+            $payment['CLIENTEMAIL'] = 'user@email.com';
+            $payment['CLIENTUSERAGENT'] = $request->headers->get('User-Agent', 'Unknown');
+            $payment['CLIENTIP'] = $request->getClientIp();
+            $payment['CLIENTIDENT'] = 'payerId'.uniqid();
+            $payment['DESCRIPTION'] = 'Payment for digital stuff';
+            $payment['ORDERID'] = 'orderId'.uniqid();
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 
@@ -93,7 +93,7 @@ class SimplePurchaseBe2BillController extends Controller
 
     public function prepareOnsiteAction(Request $request)
     {
-        $paymentName = 'be2bill_offsite';
+        $gatewayName = 'be2bill_offsite';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -103,17 +103,17 @@ class SimplePurchaseBe2BillController extends Controller
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
             /** @var PaymentDetails */
-            $paymentDetails = $storage->create();
+            $payment = $storage->create();
             //be2bill amount format is cents: for example:  100.05 (EUR). will be 10005.
-            $paymentDetails['AMOUNT'] = $data['amount'] * 100;
-            $paymentDetails['CLIENTIDENT'] = 'payerId';
-            $paymentDetails['DESCRIPTION'] = 'Payment for digital stuff';
-            $paymentDetails['ORDERID'] = uniqid();
-            $storage->update($paymentDetails);
+            $payment['AMOUNT'] = $data['amount'] * 100;
+            $payment['CLIENTIDENT'] = 'payerId';
+            $payment['DESCRIPTION'] = 'Payment for digital stuff';
+            $payment['ORDERID'] = uniqid();
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 

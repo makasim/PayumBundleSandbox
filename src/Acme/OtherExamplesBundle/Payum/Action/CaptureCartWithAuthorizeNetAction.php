@@ -3,7 +3,7 @@ namespace Acme\OtherExamplesBundle\Payum\Action;
 
 use Acme\OtherExamplesBundle\Model\Cart;
 use Acme\PaymentBundle\Model\PaymentDetails;
-use Payum\Core\Action\PaymentAwareAction;
+use Payum\Core\Action\GatewayAwareAction;
 use Payum\Core\Bridge\Symfony\Reply\HttpResponse;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Request\Capture;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
+class CaptureCartWithAuthorizeNetAction extends GatewayAwareAction
 {
     /**
      * @var ContainerInterface
@@ -48,20 +48,20 @@ class CaptureCartWithAuthorizeNetAction extends PaymentAwareAction
 
             $cartStorage = $this->container->get('payum')->getStorage($cart);
 
-            $paymentDetailsStorage = $this->container->get('payum')->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $paymentStorage = $this->container->get('payum')->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            /** @var $paymentDetails PaymentDetails */
-            $paymentDetails = $paymentDetailsStorage->create();
-            $paymentDetails['amount'] = $cart->getPrice();
-            $paymentDetails['card_num'] = new SensitiveValue($data['card_number']);
-            $paymentDetails['exp_date'] = new SensitiveValue($data['card_expiration_date']);
-            $paymentDetailsStorage->update($paymentDetails);
+            /** @var $payment PaymentDetails */
+            $payment = $paymentStorage->create();
+            $payment['amount'] = $cart->getPrice();
+            $payment['card_num'] = new SensitiveValue($data['card_number']);
+            $payment['exp_date'] = new SensitiveValue($data['card_expiration_date']);
+            $paymentStorage->update($payment);
 
-            $cart->setDetails($paymentDetails);
+            $cart->setDetails($payment);
             $cartStorage->update($cart);
 
-            $request->setModel($paymentDetails);
-            $this->payment->execute($request);
+            $request->setModel($payment);
+            $this->gateway->execute($request);
 
             return;
         }

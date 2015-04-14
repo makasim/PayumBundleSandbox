@@ -3,12 +3,12 @@ namespace Acme\OtherExamplesBundle\Payum\Action;
 
 use Acme\OtherExamplesBundle\Model\Cart;
 use Acme\PaymentBundle\Model\PaymentDetails;
-use Payum\Core\Action\PaymentAwareAction;
+use Payum\Core\Action\GatewayAwareAction;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Request\Capture;
 
-class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
+class CaptureCartWithPaypalExpressCheckoutAction extends GatewayAwareAction
 {
     /**
      * @var \Payum\Core\Registry\RegistryInterface
@@ -39,21 +39,21 @@ class CaptureCartWithPaypalExpressCheckoutAction extends PaymentAwareAction
 
         $cartStorage = $this->payum->getStorage($cart);
 
-        $paymentDetailsStorage = $this->payum->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+        $paymentStorage = $this->payum->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-        /** @var $paymentDetails PaymentDetails */
-        $paymentDetails = $paymentDetailsStorage->create();
-        $paymentDetails['PAYMENTREQUEST_0_CURRENCYCODE'] = $cart->getCurrency();
-        $paymentDetails['PAYMENTREQUEST_0_AMT'] = $cart->getPrice();
-        $paymentDetails['RETURNURL'] = $request->getToken()->getTargetUrl();
-        $paymentDetails['CANCELURL'] = $request->getToken()->getTargetUrl();
-        $paymentDetailsStorage->update($paymentDetails);
+        /** @var $payment PaymentDetails */
+        $payment = $paymentStorage->create();
+        $payment['PAYMENTREQUEST_0_CURRENCYCODE'] = $cart->getCurrency();
+        $payment['PAYMENTREQUEST_0_AMT'] = $cart->getPrice();
+        $payment['RETURNURL'] = $request->getToken()->getTargetUrl();
+        $payment['CANCELURL'] = $request->getToken()->getTargetUrl();
+        $paymentStorage->update($payment);
 
-        $cart->setDetails($paymentDetails);
+        $cart->setDetails($payment);
         $cartStorage->update($cart);
 
-        $request->setModel($paymentDetails);
-        $this->payment->execute($request);
+        $request->setModel($payment);
+        $this->gateway->execute($request);
     }
 
     /**

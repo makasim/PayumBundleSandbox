@@ -42,7 +42,7 @@ class RecurringExamplesController extends PayumController
      */
     public function prepareAction(Request $request)
     {
-        $paymentName = 'payex_agreement';
+        $gatewayName = 'payex_agreement';
 
         $subscription = $this->getWeatherForecastSubscriptionDetails();
 
@@ -61,54 +61,54 @@ class RecurringExamplesController extends PayumController
             $agreementDetails['startDate'] = $startDate->format('Y-m-d H:i:s');
             $agreementDetails['stopDate'] = $stopDate->format('Y-m-d H:i:s');
 
-            $this->getPayum()->getPayment($paymentName)->execute(new CreateAgreement($agreementDetails));
-            $this->getPayum()->getPayment($paymentName)->execute(new Sync($agreementDetails));
+            $this->getPayum()->getGateway($gatewayName)->execute(new CreateAgreement($agreementDetails));
+            $this->getPayum()->getGateway($gatewayName)->execute(new Sync($agreementDetails));
 
             $agreementDetailsStorage->update($agreementDetails);
 
-            $paymentDetailsStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $paymentStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            /** @var PaymentDetails $paymentDetails */
-            $paymentDetails = $paymentDetailsStorage->create();
-            $paymentDetails['price'] = $subscription['price'] * 100;
-            $paymentDetails['priceArgList'] = '';
-            $paymentDetails['vat'] = 0;
-            $paymentDetails['currency'] = $subscription['currency'];
-            $paymentDetails['orderId'] = 123;
-            $paymentDetails['productNumber'] = 123;
-            $paymentDetails['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
-            $paymentDetails['view'] = OrderApi::VIEW_CREDITCARD;
-            $paymentDetails['description'] = 'a desc';
-            $paymentDetails['clientIPAddress'] = $request->getClientIp();
-            $paymentDetails['clientIdentifier'] = '';
-            $paymentDetails['additionalValues'] = '';
-            $paymentDetails['agreementRef'] = $agreementDetails['agreementRef'];
-            $paymentDetails['clientLanguage'] = 'en-US';
+            /** @var PaymentDetails $payment */
+            $payment = $paymentStorage->create();
+            $payment['price'] = $subscription['price'] * 100;
+            $payment['priceArgList'] = '';
+            $payment['vat'] = 0;
+            $payment['currency'] = $subscription['currency'];
+            $payment['orderId'] = 123;
+            $payment['productNumber'] = 123;
+            $payment['purchaseOperation'] = OrderApi::PURCHASEOPERATION_SALE;
+            $payment['view'] = OrderApi::VIEW_CREDITCARD;
+            $payment['description'] = 'a desc';
+            $payment['clientIPAddress'] = $request->getClientIp();
+            $payment['clientIdentifier'] = '';
+            $payment['additionalValues'] = '';
+            $payment['agreementRef'] = $agreementDetails['agreementRef'];
+            $payment['clientLanguage'] = 'en-US';
 
             //recurring payment fields
-            $paymentDetails['recurring'] = true;
-            $paymentDetails['startDate'] = $startDate->format('Y-m-d H:i:s');
-            $paymentDetails['stopDate'] = $stopDate->format('Y-m-d H:i:s');
-            $paymentDetails['periodType'] = RecurringApi::PERIODTYPE_DAILY;
-            $paymentDetails['period'] = 0;
-            $paymentDetails['alertPeriod'] = 0;
+            $payment['recurring'] = true;
+            $payment['startDate'] = $startDate->format('Y-m-d H:i:s');
+            $payment['stopDate'] = $stopDate->format('Y-m-d H:i:s');
+            $payment['periodType'] = RecurringApi::PERIODTYPE_DAILY;
+            $payment['period'] = 0;
+            $payment['alertPeriod'] = 0;
 
-            $paymentDetailsStorage->update($paymentDetails);
+            $paymentStorage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payex_recurring_payment_details',
                 array(
-                    'paymentName' => $paymentName,
+                    'gatewayName' => $gatewayName,
                     'agreementId' => $agreementDetails->getId(),
-                    'paymentId' => $paymentDetails->getId(),
+                    'paymentId' => $payment->getId(),
                 )
             );
 
-            $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
-            $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
-            $paymentDetailsStorage->update($paymentDetails);
+            $payment['returnUrl'] = $captureToken->getTargetUrl();
+            $payment['cancelUrl'] = $captureToken->getTargetUrl();
+            $paymentStorage->update($payment);
 
             return $this->redirect($captureToken->getTargetUrl());
         }
@@ -120,15 +120,15 @@ class RecurringExamplesController extends PayumController
 
     /**
      * @Extra\Route(
-     *   "/recurring_payment_details/{paymentName}/agreement/{agreementId}/payment/{paymentId}",
+     *   "/recurring_payment_details/{gatewayName}/agreement/{agreementId}/payment/{paymentId}",
      *   name="acme_payex_recurring_payment_details"
      * )
      *
      * @Extra\Template
      */
-    public function viewRecurringPaymentDetailsAction(Request $request, $paymentName, $agreementId, $paymentId)
+    public function viewRecurringPaymentDetailsAction(Request $request, $gatewayName, $agreementId, $paymentId)
     {
-        $payment = $this->getPayum()->getPayment($paymentName);
+        $payment = $this->getPayum()->getGateway($gatewayName);
 
         $payment->execute($syncAgreement = new Sync(new Identificator(
             $agreementId,
@@ -145,7 +145,7 @@ class RecurringExamplesController extends PayumController
         $cancelToken = null;
         if ($paymentStatus->isCaptured()) {
             $cancelToken = $this->getTokenFactory()->createToken(
-                $paymentName,
+                $gatewayName,
                 $paymentStatus->getModel(),
                 'acme_payex_cancel_recurring_payment',
                 array(),
@@ -171,7 +171,7 @@ class RecurringExamplesController extends PayumController
     {
         $token = $this->getHttpRequestVerifier()->verify($request);
 
-        $payment = $this->getPayum()->getPayment($token->getPaymentName());
+        $payment = $this->getPayum()->getGateway($token->getGatewayName());
 
         $status = new GetBinaryStatus($token);
         $payment->execute($status);
@@ -180,10 +180,10 @@ class RecurringExamplesController extends PayumController
         }
 
         /** @var PaymentDetails $recurringPayment */
-        $paymentDetails = $status->getModel();
+        $payment = $status->getModel();
 
-        $payment->execute(new StopRecurringPayment($paymentDetails));
-        $payment->execute(new Sync($paymentDetails));
+        $payment->execute(new StopRecurringPayment($payment));
+        $payment->execute(new Sync($payment));
 
         $this->getHttpRequestVerifier()->invalidate($token);
 

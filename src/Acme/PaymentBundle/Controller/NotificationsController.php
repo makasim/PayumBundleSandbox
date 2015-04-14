@@ -2,7 +2,6 @@
 namespace Acme\PaymentBundle\Controller;
 
 use Acme\PaymentBundle\Entity\NotificationDetails;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Doctrine\ORM\EntityRepository;
@@ -14,7 +13,7 @@ class NotificationsController extends Controller
         $query = $this->getNotificationDetailsRepository()->createQueryBuilder('n')
             ->setMaxResults(20)
             ->addOrderBy('n.createdAt', 'DESC')
-            
+
             ->getQuery()
         ;
 
@@ -22,7 +21,7 @@ class NotificationsController extends Controller
         foreach ($query->getResult() as $notification) {
             /** @var NotificationDetails $notification */
             $notifications[] = array(
-                'paymentName' => $notification->getPaymentName(),
+                'gatewayName' => $notification->getGatewayName(),
                 'details' => var_export($notification->getDetails(), true),
                 'createdAt' => $notification->getCreatedAt(),
             );

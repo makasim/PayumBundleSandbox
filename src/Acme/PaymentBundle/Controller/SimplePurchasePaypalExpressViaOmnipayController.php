@@ -11,7 +11,7 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
 {
     public function prepareAction(Request $request)
     {
-        $paymentName = 'paypal_express_checkout_via_omnipay';
+        $gatewayName = 'paypal_express_checkout_via_omnipay';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -20,22 +20,22 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            $paymentDetails = $storage->create();
-            $paymentDetails['amount'] = (float) $data['amount'];
-            $paymentDetails['currency'] = $data['currency'];
+            $payment = $storage->create();
+            $payment['amount'] = (float) $data['amount'];
+            $payment['currency'] = $data['currency'];
 
-            $storage->update($paymentDetails);
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 
-            $paymentDetails['returnUrl'] = $captureToken->getTargetUrl();
-            $paymentDetails['cancelUrl'] = $captureToken->getTargetUrl();
+            $payment['returnUrl'] = $captureToken->getTargetUrl();
+            $payment['cancelUrl'] = $captureToken->getTargetUrl();
 
-            $storage->update($paymentDetails);
+            $storage->update($payment);
 
             return $this->redirect($captureToken->getTargetUrl());
         }

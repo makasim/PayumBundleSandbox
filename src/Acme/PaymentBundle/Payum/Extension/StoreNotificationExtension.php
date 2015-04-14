@@ -6,7 +6,6 @@ use Payum\Core\Action\ActionInterface;
 use Payum\Core\Extension\ExtensionInterface;
 use Payum\Core\Reply\ReplyInterface;
 use Payum\Core\Request\Notify;
-use Payum\Core\Request\SecuredNotify;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class StoreNotificationExtension implements ExtensionInterface
@@ -46,14 +45,14 @@ class StoreNotificationExtension implements ExtensionInterface
 
         $this->processedRequests[] = $request;
 
-        $notification = new NotificationDetails;
+        $notification = new NotificationDetails();
         $request->getToken() ?
-            $notification->setPaymentName($request->getToken()->getPaymentName()) :
-            $notification->setPaymentName('unknown')
+            $notification->setGatewayName($request->getToken()->getGatewayName()) :
+            $notification->setGatewayName('unknown')
         ;
 
         $notification->setDetails($_REQUEST);
-        $notification->setCreatedAt(new \DateTime);
+        $notification->setCreatedAt(new \DateTime());
         $this->doctrine->getManager()->persist($notification);
 
         $this->doctrine->getManager()->flush();

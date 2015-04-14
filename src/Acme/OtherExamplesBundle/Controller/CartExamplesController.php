@@ -24,7 +24,7 @@ class CartExamplesController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             $data = $form->getData();
-            $paymentName = $data['payment_name'];
+            $gatewayName = $data['payment_name'];
 
             $cartStorage = $this->getPayum()->getStorage('Acme\OtherExamplesBundle\Model\Cart');
 
@@ -35,7 +35,7 @@ class CartExamplesController extends Controller
             $cartStorage->update($cart);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
+                $gatewayName,
                 $cart,
                 'acme_payment_details_view' // TODO
             );

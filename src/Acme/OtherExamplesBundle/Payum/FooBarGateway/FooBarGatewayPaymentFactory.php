@@ -1,26 +1,26 @@
 <?php
 namespace Acme\OtherExamplesBundle\Payum\FooBarGateway;
 
-use Payum\Bundle\PayumBundle\DependencyInjection\Factory\Payment\AbstractPaymentFactory;
+use Payum\Bundle\PayumBundle\DependencyInjection\Factory\Gateway\AbstractGatewayFactory;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Reference;
 
-class FooBarGatewayPaymentFactory extends AbstractPaymentFactory
+class FooBarGatewayPaymentFactory extends AbstractGatewayFactory
 {
     /**
      * {@inheritDoc}
      */
-    public function createPayment(ContainerBuilder $container, $paymentName, array $config)
+    public function createPayment(ContainerBuilder $container, $gatewayName, array $config)
     {
         if (isset($config['service'])) {
             return new DefinitionDecorator($config['service']);
         }
 
         $config['payum.factory'] = $this->getName();
-        $config['payum.context'] = $paymentName;
+        $config['payum.context'] = $gatewayName;
 
         $payment = new Definition('Payum\Core\Payment', array($config));
         $payment->setFactoryService('payum.payment_factory');

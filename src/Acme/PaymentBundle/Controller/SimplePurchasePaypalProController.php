@@ -12,7 +12,7 @@ class SimplePurchasePaypalProController extends Controller
 {
     public function prepareAction(Request $request)
     {
-        $paymentName = 'paypal_pro_checkout';
+        $gatewayName = 'paypal_pro_checkout';
 
         $form = $this->createPurchasePlusCreditCardForm();
         $form->handleRequest($request);
@@ -21,17 +21,17 @@ class SimplePurchasePaypalProController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            $paymentDetails = $storage->create();
-            $paymentDetails['ACCT'] = new SensitiveValue($data['acct']);
-            $paymentDetails['CVV2'] = new SensitiveValue($data['cvv2']);
-            $paymentDetails['EXPDATE'] = new SensitiveValue($data['exp_date']);
-            $paymentDetails['AMT'] = number_format($data['amt'], 2);
-            $paymentDetails['CURRENCY'] = $data['currency'];
-            $storage->update($paymentDetails);
+            $payment = $storage->create();
+            $payment['ACCT'] = new SensitiveValue($data['acct']);
+            $payment['CVV2'] = new SensitiveValue($data['cvv2']);
+            $payment['EXPDATE'] = new SensitiveValue($data['exp_date']);
+            $payment['AMT'] = number_format($data['amt'], 2);
+            $payment['CURRENCY'] = $data['currency'];
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 
@@ -47,7 +47,7 @@ class SimplePurchasePaypalProController extends Controller
 
     public function prepareObtainCreditCardAction(Request $request)
     {
-        $paymentName = 'paypal_pro_checkout';
+        $gatewayName = 'paypal_pro_checkout';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -56,14 +56,14 @@ class SimplePurchasePaypalProController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            $paymentDetails = $storage->create();
-            $paymentDetails['amt'] = number_format($data['amt'], 2);
-            $paymentDetails['currency'] = $data['currency'];
-            $storage->update($paymentDetails);
+            $payment = $storage->create();
+            $payment['amt'] = number_format($data['amt'], 2);
+            $payment['currency'] = $data['currency'];
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 

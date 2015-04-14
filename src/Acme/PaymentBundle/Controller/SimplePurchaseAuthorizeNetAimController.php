@@ -12,7 +12,7 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
 {
     public function prepareAction(Request $request)
     {
-        $paymentName = 'authorize_net';
+        $gatewayName = 'authorize_net';
 
         $form = $this->createPurchasePlusCreditCardForm();
         $form->handleRequest($request);
@@ -21,15 +21,15 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            $paymentDetails = $storage->create();
-            $paymentDetails['amount'] = $data['amount'];
-            $paymentDetails['card_num'] = new SensitiveValue($data['card_number']);
-            $paymentDetails['exp_date'] = new SensitiveValue($data['card_expiration_date']);
-            $storage->update($paymentDetails);
+            $payment = $storage->create();
+            $payment['amount'] = $data['amount'];
+            $payment['card_num'] = new SensitiveValue($data['card_number']);
+            $payment['exp_date'] = new SensitiveValue($data['card_expiration_date']);
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 
@@ -45,7 +45,7 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
 
     public function prepareObtainCreditCardAction(Request $request)
     {
-        $paymentName = 'authorize_net';
+        $gatewayName = 'authorize_net';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -54,13 +54,13 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            $paymentDetails = $storage->create();
-            $paymentDetails['amount'] = $data['amount'];
-            $storage->update($paymentDetails);
+            $payment = $storage->create();
+            $payment['amount'] = $data['amount'];
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 

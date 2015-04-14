@@ -12,7 +12,7 @@ class SimplePurchaseStripeViaOmnipayController extends Controller
 {
     public function prepareAction(Request $request)
     {
-        $paymentName = 'stripe_via_omnipay';
+        $gatewayName = 'stripe_via_omnipay';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
@@ -21,15 +21,15 @@ class SimplePurchaseStripeViaOmnipayController extends Controller
 
             $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
 
-            $paymentDetails = $storage->create();
-            $paymentDetails['amount'] = $data['amount'] * 100;
-            $paymentDetails['currency'] = $data['currency'];
-            $paymentDetails['card'] = new SensitiveValue($data['card']);
-            $storage->update($paymentDetails);
+            $payment = $storage->create();
+            $payment['amount'] = $data['amount'] * 100;
+            $payment['currency'] = $data['currency'];
+            $payment['card'] = new SensitiveValue($data['card']);
+            $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
-                $paymentName,
-                $paymentDetails,
+                $gatewayName,
+                $payment,
                 'acme_payment_details_view'
             );
 

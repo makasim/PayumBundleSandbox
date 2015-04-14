@@ -7,25 +7,25 @@ payum:
 
         Acme\PaymentBundle\Document\PaymentDetails:
             extension:
-                payments:
+                gateways:
                     - paypal_express_checkout_and_doctrine_mongo_odm
             doctrine: mongodb
 
         Acme\PaymentBundle\Entity\AgreementDetails:
             extension:
-                payments:
+                gateways:
                     - paypal_express_checkout_recurring_payment_and_doctrine_orm
             doctrine: orm
 
         Acme\PaymentBundle\Entity\RecurringPaymentDetails:
             extension:
-                payments:
+                gateways:
                     - paypal_express_checkout_recurring_payment_and_doctrine_orm
             doctrine: orm
 
         Acme\PaymentBundle\Model\AgreementDetails:
             extension:
-                payments:
+                gateways:
                     - payex_agreement
             filesystem:
                 storage_dir: %kernel.root_dir%/Resources/payments
@@ -33,7 +33,7 @@ payum:
 
         Acme\OtherExamplesBundle\Model\Cart:
             extension:
-                payments:
+                gateways:
                     - paypal_express_checkout_plus_cart
                     - authorize_net_plus_cart
             filesystem:
@@ -42,7 +42,7 @@ payum:
 
         JMS\Payment\CoreBundle\Entity\Payment:
             extension:
-                payments:
+                gateways:
                     - paypal_express_checkout_via_jms_plugin
             doctrine: orm
 
@@ -51,7 +51,7 @@ payum:
                 storage_dir: %kernel.root_dir%/Resources/payments
                 id_property: id
 
-        Payum\Core\Model\Order:
+        Payum\Core\Model\Payment:
             filesystem:
                 storage_dir: %kernel.root_dir%/Resources/payments
                 id_property: number
@@ -60,12 +60,12 @@ payum:
         token_storage:
             Acme\PaymentBundle\Entity\PaymentSecurityToken: { doctrine: orm }
 
-    dynamic_payments:
+    dynamic_gateways:
         sonata_admin: true
         config_storage:
-            Acme\PaymentBundle\Entity\PaymentConfig: { doctrine: orm }
+            Acme\PaymentBundle\Entity\GatewayConfig: { doctrine: orm }
 
-    payments:
+    gateways:
         paypal_express_checkout_and_doctrine_orm:
             paypal_express_checkout_nvp:
                 username:  %paypal.express_checkout.username%
