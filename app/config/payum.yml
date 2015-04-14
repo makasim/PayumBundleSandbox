@@ -156,6 +156,14 @@ payum:
                     signature: %paypal.express_checkout.signature%
                     testMode: true
 
+        securepay_via_omnipay:
+            omnipay_direct:
+                type: SecurePay_DirectPost
+                options:
+                    merchantId: %securepay.merchant_id%
+                    transactionPassword: %securepay.transaction_password%
+                    testMode: true
+
         stripe_js:
             stripe_js:
                 publishable_key: %stripe.publishable_key%
