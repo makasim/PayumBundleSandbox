@@ -69,7 +69,6 @@ class DetailsController extends PayumController
                     'description' => $payment->getCurrencyCode(),
                     'total_amount' => $payment->getTotalAmount(),
                     'currency_code' => $payment->getCurrencyCode(),
-                    'currency_digits_after_decimal_point' => $payment->getCurrencyDigitsAfterDecimalPoint(),
                     'details' => $payment->getDetails(),
                 ),
                 JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
