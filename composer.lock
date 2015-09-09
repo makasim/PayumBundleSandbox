@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6da0c3a8960e62edf234d31a7512e820",
+    "hash": "4860b21a5735a06fa515ce334b61b0d2",
     "packages": [
         {
             "name": "ajbdev/authorizenet-php-api",
@@ -919,7 +919,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/441966f77ff4ae2cdc7eeee4d261d3931e5a699e",
+                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/c3933ad5eb0c23e7262f60efa1ad12605484bf48",
                 "reference": "441966f77ff4ae2cdc7eeee4d261d3931e5a699e",
                 "shasum": ""
             },
@@ -2298,6 +2298,45 @@
             "time": "2015-04-14 18:55:56"
         },
         {
+            "name": "paradigm/payum-trustly",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/makasim/PayumTrustly.git",
+                "reference": "de30dc6e541d2d390fce56a88a0b440690866237"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/makasim/PayumTrustly/zipball/de30dc6e541d2d390fce56a88a0b440690866237",
+                "reference": "de30dc6e541d2d390fce56a88a0b440690866237",
+                "shasum": ""
+            },
+            "require": {
+                "payum/core": "1.0.0-BETA1",
+                "php": ">=5.5.0",
+                "trustly/trustly-client-php": "dev-patch-1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Paradigm": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "support": {
+                "source": "https://github.com/makasim/PayumTrustly/tree/master",
+                "issues": "https://github.com/makasim/PayumTrustly/issues"
+            },
+            "time": "2015-09-07 18:18:51"
+        },
+        {
             "name": "paypal/rest-api-sdk-php",
             "version": "v1.5.0",
             "source": {
@@ -2411,7 +2450,7 @@
         },
         {
             "name": "payum/jms-payment-bridge",
-            "version": "dev-master",
+            "version": "1.0.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/JMSPaymentBridge.git",
@@ -2471,16 +2510,16 @@
         },
         {
             "name": "payum/omnipay-bridge",
-            "version": "dev-master",
+            "version": "1.0.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/OmnipayBridge.git",
-                "reference": "75f16ef75a68c1131c148e353c68961b5427fca4"
+                "reference": "6746bc0a17c62f1471ae4bff8039253a65b4d94c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/OmnipayBridge/zipball/75f16ef75a68c1131c148e353c68961b5427fca4",
-                "reference": "75f16ef75a68c1131c148e353c68961b5427fca4",
+                "url": "https://api.github.com/repos/Payum/OmnipayBridge/zipball/6746bc0a17c62f1471ae4bff8039253a65b4d94c",
+                "reference": "6746bc0a17c62f1471ae4bff8039253a65b4d94c",
                 "shasum": ""
             },
             "require": {
@@ -2489,7 +2528,7 @@
                 "php": ">=5.5.0"
             },
             "require-dev": {
-                "omnipay/dummy": "~2.3",
+                "omnipay/dummy": "~2.0",
                 "phpunit/phpunit": "~4.0"
             },
             "type": "library",
@@ -2527,20 +2566,20 @@
                 "omnipay",
                 "payment"
             ],
-            "time": "2015-08-14 07:22:26"
+            "time": "2015-08-14 14:06:00"
         },
         {
             "name": "payum/payum",
-            "version": "dev-master",
+            "version": "1.0.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "1fce3f98ecffc923e4a477c6b15da52b4d084ecc"
+                "reference": "51d3d9f323f72f8ed613f73ac24eeb9a24fec867"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/1fce3f98ecffc923e4a477c6b15da52b4d084ecc",
-                "reference": "1fce3f98ecffc923e4a477c6b15da52b4d084ecc",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/51d3d9f323f72f8ed613f73ac24eeb9a24fec867",
+                "reference": "51d3d9f323f72f8ed613f73ac24eeb9a24fec867",
                 "shasum": ""
             },
             "require": {
@@ -2653,20 +2692,20 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2015-08-03 19:57:06"
+            "time": "2015-08-14 14:57:30"
         },
         {
             "name": "payum/payum-bundle",
-            "version": "dev-master",
+            "version": "1.0.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "fe4114f8f9f16c2fc083599e89e5e8d4ebf8e942"
+                "reference": "8d8e0f975ae67d8011d3a158bf1ac103cd6d9386"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/fe4114f8f9f16c2fc083599e89e5e8d4ebf8e942",
-                "reference": "fe4114f8f9f16c2fc083599e89e5e8d4ebf8e942",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/8d8e0f975ae67d8011d3a158bf1ac103cd6d9386",
+                "reference": "8d8e0f975ae67d8011d3a158bf1ac103cd6d9386",
                 "shasum": ""
             },
             "require": {
@@ -2752,7 +2791,7 @@
                 "stripe.js",
                 "symfony"
             ],
-            "time": "2015-07-30 12:28:31"
+            "time": "2015-08-17 07:29:45"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -4729,6 +4768,45 @@
             "time": "2015-06-24 09:36:39"
         },
         {
+            "name": "trustly/trustly-client-php",
+            "version": "dev-patch-1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/makasim/trustly-client-php.git",
+                "reference": "078556db92391df8a0f9fb9f034ee2effc3c5349"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/makasim/trustly-client-php/zipball/078556db92391df8a0f9fb9f034ee2effc3c5349",
+                "reference": "078556db92391df8a0f9fb9f034ee2effc3c5349",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "Trustly.php"
+                ]
+            },
+            "description": "Implementation of communications with Trustly public API for Online bank e-payments. See https://trustly.com for more information",
+            "homepage": "http://github.com/trustly/trustly-client-php",
+            "keywords": [
+                "payment",
+                "trustly"
+            ],
+            "support": {
+                "source": "https://github.com/makasim/trustly-client-php/tree/patch-1"
+            },
+            "time": "2015-09-07 17:25:58"
+        },
+        {
             "name": "twig/extensions",
             "version": "v1.2.0",
             "source": {
@@ -4844,11 +4922,13 @@
     "stability-flags": {
         "doctrine/mongodb-odm": 20,
         "doctrine/mongodb-odm-bundle": 10,
-        "payum/payum-bundle": 20,
-        "payum/payum": 20,
-        "payum/jms-payment-bridge": 20,
-        "payum/omnipay-bridge": 20,
+        "payum/payum-bundle": 10,
+        "payum/payum": 10,
+        "payum/jms-payment-bridge": 10,
+        "payum/omnipay-bridge": 10,
         "crevillo/payum-redsys": 20,
+        "paradigm/payum-trustly": 20,
+        "trustly/trustly-client-php": 20,
         "sonata-project/doctrine-orm-admin-bundle": 0
     },
     "prefer-stable": false,

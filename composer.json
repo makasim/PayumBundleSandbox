@@ -22,13 +22,15 @@
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
 
-        "payum/payum-bundle": "1.0.*@dev",
-        "payum/payum": "1.0.*@dev",
-        "payum/jms-payment-bridge": "1.0.*@dev",
-        "payum/omnipay-bridge": "1.0.*@dev",
+        "payum/payum-bundle": "1.0.0-BETA1",
+        "payum/payum": "1.0.0-BETA1",
+        "payum/jms-payment-bridge": "1.0.0-BETA1",
+        "payum/omnipay-bridge": "1.0.0-BETA1",
 
         "jms/payment-paypal-bundle": "~1",
         "crevillo/payum-redsys": "1.0.*@dev",
+        "paradigm/payum-trustly": "dev-master",
+        "trustly/trustly-client-php": "dev-patch-1",
         "ajbdev/authorizenet-php-api": "~1.1",
         "paypal/rest-api-sdk-php": "~1.0",
         "klarna/checkout": "~2.0",
@@ -70,5 +72,15 @@
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:makasim/trustly-client-php.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:makasim/PayumTrustly.git"
+        }
+    ]
 }

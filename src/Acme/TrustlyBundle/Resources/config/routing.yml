@@ -1,0 +1,4 @@
+acme_Trustly:
+    resource:   "@AcmeTrustlyBundle/Controller/"
+    type:       annotation
+    prefix:     /trustly

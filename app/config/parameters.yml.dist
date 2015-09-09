@@ -45,3 +45,7 @@ parameters:
     redsys.merchant_code:  EDIT ME
     redsys.terminal:  EDIT ME
     redsys.secret_key: EDIT ME
+
+    trustly.rsa_private_key:  EDIT ME
+    trustly.username:  EDIT ME
+    trustly.password:  EDIT ME
