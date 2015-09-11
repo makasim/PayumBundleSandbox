@@ -2,6 +2,7 @@
 /app/bootstrap.php.cache
 /app/cache/*
 /app/logs/*
+/app/credentials/*
 /app/config/config_dev_local.yml
 /app/config/parameters.yml
 /app/Resources/payments

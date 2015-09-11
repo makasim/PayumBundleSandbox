@@ -194,6 +194,13 @@ payum:
                 secret_key: %redsys.secret_key%
                 sandbox: true
 
+        trustly:
+            trustly:
+                rsa_private_key:  %trustly.rsa_private_key%
+                username:  %trustly.username%
+                password: %trustly.password%
+                sandbox: true
+
         paypal_express_checkout_plus_cart:
             paypal_express_checkout_nvp:
                 username:  %paypal.express_checkout.username%

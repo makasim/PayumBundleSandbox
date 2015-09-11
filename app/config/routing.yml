@@ -39,6 +39,10 @@ acme_redsys:
     resource: "@AcmeRedsysBundle/Resources/config/routing.yml"
     prefix:   /
 
+acme_trustly:
+    resource: "@AcmeTrustlyBundle/Resources/config/routing.yml"
+    prefix:   /
+
 acme_payex:
     resource: "@AcmePayexBundle/Resources/config/routing.yml"
     prefix:   /
