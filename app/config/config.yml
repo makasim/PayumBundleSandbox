@@ -31,6 +31,8 @@ twig:
     globals:
         paypal_usd_testuser_login: %paypal.express_checkout.usd_testuser_login%
         paypal_usd_testuser_password: %paypal.express_checkout.usd_testuser_password%
+    paths:
+        %kernel.root_dir%/../vendor/paradigm/payum-trustly/src/Paradigm/PayumTrustly/Resources/views: ParadigmTrustly
 
 # Assetic Configuration
 assetic:
