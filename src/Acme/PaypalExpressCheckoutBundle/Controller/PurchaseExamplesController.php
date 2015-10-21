@@ -57,6 +57,50 @@ class PurchaseExamplesController extends Controller
 
     /**
      * @Extra\Route(
+     *   "/prepare_simple_purchase_with_confirm_order_step",
+     *   name="acme_paypal_express_checkout_prepare_simple_purchase_with_confirm_order_step"
+     * )
+     *
+     * @Extra\Template("AcmePaypalExpressCheckoutBundle:PurchaseExamples:prepare.html.twig")
+     */
+    public function prepareSimplePurchaseWithConfirmOrderStepAction(Request $request)
+    {
+        $gatewayName = 'paypal_express_checkout_and_doctrine_orm';
+
+        $form = $this->createPurchaseForm();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
+
+            /** @var $payment PaymentDetails */
+            $payment = $storage->create();
+            $payment['PAYMENTREQUEST_0_CURRENCYCODE'] = $data['currency'];
+            $payment['PAYMENTREQUEST_0_AMT'] = $data['amount'];
+            $payment['AUTHORIZE_TOKEN_USERACTION'] = '';
+            $storage->update($payment);
+
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $gatewayName,
+                $payment,
+                'acme_payment_details_view'
+            );
+
+            $payment['INVNUM'] = $payment->getId();
+            $storage->update($payment);
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        return array(
+            'form' => $form->createView(),
+            'gatewayName' => $gatewayName
+        );
+    }
+
+    /**
+     * @Extra\Route(
      *   "/prepare_simple_purchase_doctrine_mongo_odm",
      *   name="acme_paypal_express_checkout_prepare_simple_purchase_doctrine_mongo_odm"
      * )
