@@ -19,7 +19,7 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             $payment = $storage->create();
             $payment['amount'] = $data['amount'];
@@ -52,7 +52,7 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             $payment = $storage->create();
             $payment['amount'] = $data['amount'];

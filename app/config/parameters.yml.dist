@@ -45,3 +45,8 @@ parameters:
     redsys.merchant_code:  EDIT ME
     redsys.terminal:  EDIT ME
     redsys.secret_key: EDIT ME
+
+    # configure if you want to use console create token commands
+    router.request_context.host: sandbox.payum.org
+    router.request_context.scheme: http
+    router.request_context.port: 80

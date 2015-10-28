@@ -2,7 +2,7 @@
 namespace Acme\OtherExamplesBundle\Payum\Action;
 
 use Acme\OtherExamplesBundle\Model\Cart;
-use Acme\PaymentBundle\Model\PaymentDetails;
+use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Core\Action\GatewayAwareAction;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Registry\RegistryInterface;
@@ -39,7 +39,7 @@ class CaptureCartWithPaypalExpressCheckoutAction extends GatewayAwareAction
 
         $cartStorage = $this->payum->getStorage($cart);
 
-        $paymentStorage = $this->payum->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+        $paymentStorage = $this->payum->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
         /** @var $payment PaymentDetails */
         $payment = $paymentStorage->create();

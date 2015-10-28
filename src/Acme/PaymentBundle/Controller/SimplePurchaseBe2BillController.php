@@ -1,7 +1,8 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
-use Acme\PaymentBundle\Model\PaymentDetails;
+use Acme\PaymentBundle\Entity\Payment;
+use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Core\Security\SensitiveValue;
@@ -20,9 +21,9 @@ class SimplePurchaseBe2BillController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
 
-            /** @var PaymentDetails */
+            /** @var PaymentDetails $payment */
             $payment = $storage->create();
             //be2bill amount format is cents: for example:  100.05 (EUR). will be 10005.
             $payment['AMOUNT'] = $data['amount'] * 100;
@@ -63,7 +64,7 @@ class SimplePurchaseBe2BillController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
 
             /** @var PaymentDetails */
             $payment = $storage->create();
@@ -91,7 +92,7 @@ class SimplePurchaseBe2BillController extends Controller
         ));
     }
 
-    public function prepareOnsiteAction(Request $request)
+    public function prepareOffsiteAction(Request $request)
     {
         $gatewayName = 'be2bill_offsite';
 
@@ -100,40 +101,24 @@ class SimplePurchaseBe2BillController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $storage = $this->getPayum()->getStorage(Payment::class);
 
-            /** @var PaymentDetails */
+            /** @var Payment $payment */
             $payment = $storage->create();
             //be2bill amount format is cents: for example:  100.05 (EUR). will be 10005.
-            $payment['AMOUNT'] = $data['amount'] * 100;
-            $payment['CLIENTIDENT'] = 'payerId';
-            $payment['DESCRIPTION'] = 'Payment for digital stuff';
-            $payment['ORDERID'] = uniqid();
+            $payment->setNumber('orderId'.uniqid());
+            $payment->setTotalAmount($data['amount'] * 100);
+            $payment->setClientId('payerId');
+            $payment->setDescription('Payment for digital stuff');
             $storage->update($payment);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
-                'acme_payment_details_view'
+                'acme_payment_payment_done'
             );
 
-            /**
-             * PAY ATTENTION
-             *
-             * You have also configure these urls in the account configuration section on be2bill site:
-             *
-             * return url: http://your-domain-here.dev/payment/capture/session-token
-             * cancel url: http://your-domain-here.dev/payment/capture/session-token
-             *
-             * To get notifications add this url to be2bill as notify url (change be2bill_offsite to your payment name):
-             *
-             * http://your-domain-here.dev/payment/notify/unsafe/be2bill_offsite
-             */
-            $request->getSession()->set('payum_token', $captureToken->getHash());
-
-            return $this->forward('PayumBundle:Capture:do', array(
-                'payum_token' => $captureToken,
-            ));
+            return $this->redirect($captureToken->getTargetUrl());
         }
 
         return $this->render('AcmePaymentBundle:SimplePurchaseBe2Bill:prepare.html.twig', array(

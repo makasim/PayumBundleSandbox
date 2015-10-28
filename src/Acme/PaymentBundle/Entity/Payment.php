@@ -2,13 +2,13 @@
 namespace Acme\PaymentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Payum\Core\Model\ArrayObject;
+use Payum\Core\Model\Payment as BasePayment;
 
 /**
- * @ORM\Table(name="payum_agreement_details")
+ * @ORM\Table(name="payum_payments")
  * @ORM\Entity
  */
-class AgreementDetails extends ArrayObject
+class Payment extends BasePayment
 {
     /**
      * @ORM\Column(name="id", type="integer")
@@ -16,14 +16,6 @@ class AgreementDetails extends ArrayObject
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
-
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
 
     /**
      * @return int

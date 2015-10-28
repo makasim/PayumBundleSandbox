@@ -2,7 +2,7 @@
 namespace Acme\OtherExamplesBundle\Payum\Action;
 
 use Acme\OtherExamplesBundle\Model\Cart;
-use Acme\PaymentBundle\Model\PaymentDetails;
+use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Core\Action\GatewayAwareAction;
 use Payum\Core\Bridge\Symfony\Reply\HttpResponse;
 use Payum\Core\Exception\RequestNotSupportedException;
@@ -48,7 +48,7 @@ class CaptureCartWithAuthorizeNetAction extends GatewayAwareAction
 
             $cartStorage = $this->container->get('payum')->getStorage($cart);
 
-            $paymentStorage = $this->container->get('payum')->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $paymentStorage = $this->container->get('payum')->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             /** @var $payment PaymentDetails */
             $payment = $paymentStorage->create();

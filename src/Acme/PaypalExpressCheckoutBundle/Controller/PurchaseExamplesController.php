@@ -1,7 +1,7 @@
 <?php
 namespace Acme\PaypalExpressCheckoutBundle\Controller;
 
-use Acme\PaymentBundle\Model\PaymentDetails;
+use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Core\Registry\RegistryInterface;

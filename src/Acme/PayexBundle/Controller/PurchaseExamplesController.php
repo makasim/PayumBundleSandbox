@@ -1,7 +1,7 @@
 <?php
 namespace Acme\PayexBundle\Controller;
 
-use Acme\PaymentBundle\Model\PaymentDetails;
+use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Payex\Api\OrderApi;
 use Payum\Core\Registry\RegistryInterface;
@@ -29,7 +29,7 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             /** @var $payment PaymentDetails */
             $payment = $storage->create();
@@ -86,7 +86,7 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             /** @var $payment PaymentDetails */
             $payment = $storage->create();

@@ -30,7 +30,7 @@ class PaymentPurchaseController extends Controller
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $form->get('gateway_name')->getData(),
                 $payment,
-                'acme_payment_order_done'
+                'acme_payment_payment_done'
             );
 
             return $this->redirect($captureToken->getTargetUrl());

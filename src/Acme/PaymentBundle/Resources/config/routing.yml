@@ -24,7 +24,7 @@ acme_payment_prepare_obtain_credit_card_be2bill:
 
 acme_payment_prepare_simple_purchase_be2bill_offsite:
     pattern:  /payment/simple_purchase/be2bill/prepare_onsite
-    defaults: { _controller: AcmePaymentBundle:SimplePurchaseBe2Bill:prepareOnsite }
+    defaults: { _controller: AcmePaymentBundle:SimplePurchaseBe2Bill:prepareOffsite }
 
 acme_payment_prepare_simple_purchase_offline:
     pattern:  /payment/simple_purchase/offline/prepare
@@ -50,9 +50,9 @@ acme_payment_details_view:
     pattern:  /payment/details
     defaults: { _controller: AcmePaymentBundle:Details:view }
 
-acme_payment_order_done:
+acme_payment_payment_done:
     pattern:  /payment/order/done
-    defaults: { _controller: AcmePaymentBundle:Details:viewOrder }
+    defaults: { _controller: AcmePaymentBundle:Details:viewPayment }
     
 acme_payment_notifications_list:
     pattern:  /payment/notifications/list

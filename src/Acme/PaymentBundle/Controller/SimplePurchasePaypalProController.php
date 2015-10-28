@@ -19,7 +19,7 @@ class SimplePurchasePaypalProController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             $payment = $storage->create();
             $payment['ACCT'] = new SensitiveValue($data['acct']);
@@ -54,7 +54,7 @@ class SimplePurchasePaypalProController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             $payment = $storage->create();
             $payment['amt'] = number_format($data['amt'], 2);

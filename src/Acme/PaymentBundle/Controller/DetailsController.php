@@ -42,7 +42,7 @@ class DetailsController extends PayumController
         ));
     }
 
-    public function viewOrderAction(Request $request)
+    public function viewPaymentAction(Request $request)
     {
         $token = $this->getHttpRequestVerifier()->verify($request);
 
@@ -57,7 +57,7 @@ class DetailsController extends PayumController
         /** @var PaymentInterface $payment */
         $payment = $status->getFirstModel();
 
-        return $this->render('AcmePaymentBundle:Details:viewOrder.html.twig', array(
+        return $this->render('AcmePaymentBundle:Details:viewPayment.html.twig', array(
             'status' => $status->getValue(),
             'payment' => htmlspecialchars(json_encode(
                 array(

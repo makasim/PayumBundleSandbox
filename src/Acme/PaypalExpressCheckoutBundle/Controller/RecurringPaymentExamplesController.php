@@ -1,8 +1,8 @@
 <?php
 namespace Acme\PaypalExpressCheckoutBundle\Controller;
 
-use Acme\PaymentBundle\Model\AgreementDetails;
-use Acme\PaymentBundle\Model\RecurringPaymentDetails;
+use Acme\PaymentBundle\Entity\AgreementDetails;
+use Acme\PaymentBundle\Entity\RecurringPaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
 use Payum\Core\Request\Cancel;
 use Payum\Core\Security\GenericTokenFactoryInterface;

@@ -1,8 +1,8 @@
 <?php
 namespace Acme\PayexBundle\Controller;
 
-use Acme\PaymentBundle\Model\AgreementDetails;
-use Acme\PaymentBundle\Model\PaymentDetails;
+use Acme\PaymentBundle\Entity\AgreementDetails;
+use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
 use Payum\Core\Request\GetBinaryStatus;
 use Payum\Core\Request\Sync;
@@ -50,7 +50,7 @@ class RecurringExamplesController extends PayumController
             $startDate = new \DateTime('now');
             $stopDate = new \DateTime(sprintf('now + %d days', $subscription['frequency']));
 
-            $agreementDetailsStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\AgreementDetails');
+            $agreementDetailsStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\AgreementDetails');
 
             /** @var AgreementDetails $agreementDetails */
             $agreementDetails = $agreementDetailsStorage->create();
@@ -66,7 +66,7 @@ class RecurringExamplesController extends PayumController
 
             $agreementDetailsStorage->update($agreementDetails);
 
-            $paymentStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $paymentStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             /** @var PaymentDetails $payment */
             $payment = $paymentStorage->create();
@@ -132,13 +132,13 @@ class RecurringExamplesController extends PayumController
 
         $payment->execute($syncAgreement = new Sync(new Identificator(
             $agreementId,
-            'Acme\PaymentBundle\Model\AgreementDetails'
+            'Acme\PaymentBundle\Entity\AgreementDetails'
         )));
         $payment->execute($agreementStatus = new GetBinaryStatus($syncAgreement->getModel()));
 
         $paymentStatus = new GetBinaryStatus(new Identificator(
             $paymentId,
-            'Acme\PaymentBundle\Model\PaymentDetails'
+            'Acme\PaymentBundle\Entity\PaymentDetails'
         ));
         $payment->execute($paymentStatus);
 

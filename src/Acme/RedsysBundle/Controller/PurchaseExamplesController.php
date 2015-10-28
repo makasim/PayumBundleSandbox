@@ -1,7 +1,7 @@
 <?php
 namespace Acme\RedsysBundle\Controller;
 
-use Acme\PaymentBundle\Model\PaymentDetails;
+use Acme\PaymentBundle\Entity\PaymentDetails;
 use Crevillo\Payum\Redsys\Api;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Core\Registry\RegistryInterface;
@@ -33,7 +33,7 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             /** @var PaymentDetails */
             $payment = $storage->create();

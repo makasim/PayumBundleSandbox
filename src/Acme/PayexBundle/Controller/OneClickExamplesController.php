@@ -1,8 +1,8 @@
 <?php
 namespace Acme\PayexBundle\Controller;
 
-use Acme\PaymentBundle\Model\AgreementDetails;
-use Acme\PaymentBundle\Model\PaymentDetails;
+use Acme\PaymentBundle\Entity\AgreementDetails;
+use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Core\Request\GetHumanStatus;
 use Payum\Core\Request\Sync;
 use Payum\Core\Registry\RegistryInterface;
@@ -31,12 +31,12 @@ class OneClickExamplesController extends Controller
     {
         $gatewayName = 'payex_agreement';
 
-        $agreementStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\AgreementDetails');
+        $agreementStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\AgreementDetails');
 
         if ($request->get('confirm')) {
             $syncAgreement = new Sync(new Identificator(
                 $request->get('agreementId'),
-                'Acme\PaymentBundle\Model\AgreementDetails'
+                'Acme\PaymentBundle\Entity\AgreementDetails'
             ));
 
             $this->getPayum()->getGateway($gatewayName)->execute($syncAgreement);
@@ -52,7 +52,7 @@ class OneClickExamplesController extends Controller
                     'agreementId' => $agreement->getId()
                 )));
             } elseif ($agreementStatus->isNew()) {
-                $paymentStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+                $paymentStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
                 /** @var $payment PaymentDetails */
                 $payment = $paymentStorage->create();
@@ -126,7 +126,7 @@ class OneClickExamplesController extends Controller
 
             $agreementStatus = new GetHumanStatus(new Identificator(
                 $request->get('agreementId'),
-                'Acme\PaymentBundle\Model\AgreementDetails'
+                'Acme\PaymentBundle\Entity\AgreementDetails'
             ));
             $this->getPayum()->getGateway($gatewayName)->execute($agreementStatus);
             if (false == $agreementStatus->isCaptured()) {
@@ -139,7 +139,7 @@ class OneClickExamplesController extends Controller
             /** @var AgreementDetails $agreement */
             $agreement = $agreementStatus->getModel();
 
-            $paymentStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Model\PaymentDetails');
+            $paymentStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
 
             /** @var $payment PaymentDetails */
             $payment = $paymentStorage->create();
