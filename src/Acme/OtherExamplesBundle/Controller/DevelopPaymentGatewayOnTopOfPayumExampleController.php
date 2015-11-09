@@ -1,11 +1,11 @@
 <?php
 namespace Acme\OtherExamplesBundle\Controller;
 
+use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
 
@@ -28,7 +28,7 @@ class DevelopPaymentGatewayOnTopOfPayumExampleController extends PayumController
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
 
             $payment = $storage->create();
             $payment['amount'] = (float) $data['amount'];
