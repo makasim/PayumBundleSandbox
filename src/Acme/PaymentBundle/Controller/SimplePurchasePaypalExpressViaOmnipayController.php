@@ -52,7 +52,7 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
     {
         return $this->createFormBuilder()
             ->add('amount', null, array(
-                    'data' => 1,
+                    'data' => 1.1,
                     'constraints' => array(new Range(array('max' => 2)))
                 ))
             ->add('currency', null, array('data' => 'USD'))

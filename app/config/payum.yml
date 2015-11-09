@@ -85,11 +85,11 @@ payum:
                 vendor:   %paypal.pro_checkout.vendor%
                 sandbox: true
 
-#        authorize_net:
-#            authorize_net_aim:
-#                login_id: %authorize_net.login_id%
-#                transaction_key: %authorize_net.transaction_key%
-#                sandbox: true
+        authorize_net:
+            authorize_net_aim:
+                login_id: %authorize_net.login_id%
+                transaction_key: %authorize_net.transaction_key%
+                sandbox: true
 
         be2bill:
             be2bill_direct:

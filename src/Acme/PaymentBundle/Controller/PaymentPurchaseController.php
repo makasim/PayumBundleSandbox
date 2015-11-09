@@ -1,7 +1,7 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
-use Payum\Core\Model\Payment;
+use Acme\PaymentBundle\Entity\Payment;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -46,7 +46,7 @@ class PaymentPurchaseController extends Controller
      */
     protected function createPurchaseForm()
     {
-        $formBuilder = $this->createFormBuilder(null, array('data_class' => 'Payum\Core\Model\Payment'));
+        $formBuilder = $this->createFormBuilder(null, array('data_class' => Payment::class));
 
         return $formBuilder
             ->add('gateway_name', 'choice', array(
