@@ -5,9 +5,6 @@
 # to each configured DirectoryIndex file (e.g. index.php, index.html, index.pl).
 DirectoryIndex index.php
 
-SetEnv SYMFONY_ENV dev
-SetEnv SYMFONY_DEBUG 1
-
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
