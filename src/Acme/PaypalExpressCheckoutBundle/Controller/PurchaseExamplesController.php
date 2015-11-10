@@ -29,7 +29,7 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
 
             /** @var $payment PaymentDetails */
             $payment = $storage->create();
@@ -72,7 +72,7 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
 
             /** @var $payment PaymentDetails */
             $payment = $storage->create();
@@ -209,7 +209,7 @@ class PurchaseExamplesController extends Controller
         );
 
         if ('POST' === $request->getMethod()) {
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
 
             /** @var $payment PaymentDetails */
             $payment = $storage->create();
@@ -259,7 +259,7 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
 
             /** @var $payment PaymentDetails */
             $payment = $storage->create();
@@ -302,7 +302,7 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
 
             /** @var $payment PaymentDetails */
             $payment = $storage->create();
@@ -319,6 +319,49 @@ class PurchaseExamplesController extends Controller
             );
 
             $payment['PAYMENTREQUEST_0_NOTIFYURL'] = $notifyToken->getTargetUrl();
+            $payment['INVNUM'] = $payment->getId();
+            $storage->update($payment);
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        return array(
+            'form' => $form->createView(),
+            'gatewayName' => $gatewayName
+        );
+    }
+
+    /**
+     * @Extra\Route(
+     *   "/prepare_simple_authorize",
+     *   name="acme_paypal_express_checkout_prepare_simple_authorize"
+     * )
+     *
+     * @Extra\Template("AcmePaypalExpressCheckoutBundle:PurchaseExamples:prepare.html.twig")
+     */
+    public function prepareSimpleAuthorizeAction(Request $request)
+    {
+        $gatewayName = 'paypal_express_checkout_and_doctrine_orm';
+
+        $form = $this->createPurchaseForm();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
+
+            /** @var $payment PaymentDetails */
+            $payment = $storage->create();
+            $payment['PAYMENTREQUEST_0_CURRENCYCODE'] = $data['currency'];
+            $payment['PAYMENTREQUEST_0_AMT'] = $data['amount'];
+            $storage->update($payment);
+
+            $captureToken = $this->getTokenFactory()->createAuthorizeToken(
+                $gatewayName,
+                $payment,
+                'acme_payment_details_view'
+            );
+
             $payment['INVNUM'] = $payment->getId();
             $storage->update($payment);
 

@@ -31,6 +31,15 @@ class DetailsController extends PayumController
             );
         }
 
+        $captureToken = null;
+        if ($status->isAuthorized()) {
+            $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $token->getGatewayName(),
+                $status->getFirstModel(),
+                $request->getUri()
+            );
+        }
+
         return $this->render('AcmePaymentBundle:Details:view.html.twig', array(
             'status' => $status->getValue(),
             'payment' => htmlspecialchars(json_encode(
@@ -38,7 +47,8 @@ class DetailsController extends PayumController
                 JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
             )),
             'gatewayTitle' => ucwords(str_replace(array('_', '-'), ' ', $token->getGatewayName())),
-            'refundToken' => $refundToken
+            'refundToken' => $refundToken,
+            'captureToken' => $captureToken,
         ));
     }
 
