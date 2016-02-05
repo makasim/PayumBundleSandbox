@@ -8,39 +8,39 @@
     },
     "require": {
         "php": ">=5.5.0",
-        "symfony/symfony": "~2.3",
-        "doctrine/orm": "~2.4",
-        "doctrine/mongodb-odm": "~1.0@dev",
-        "doctrine/mongodb-odm-bundle": "~3.0@beta",
-        "doctrine/doctrine-bundle": "~1.2",
-        "twig/extensions": "~1.0",
-        "symfony/assetic-bundle": "~2.3",
-        "symfony/swiftmailer-bundle": "~2.3",
-        "symfony/monolog-bundle": "~2.3",
-        "sensio/distribution-bundle": "~2.3",
-        "sensio/framework-extra-bundle": "~2.3",
-        "sensio/generator-bundle": "~2.3",
-        "incenteev/composer-parameter-handler": "~2.0",
+        "symfony/symfony": "^2.8",
+        "doctrine/orm": "^2.5",
+        "doctrine/mongodb-odm": "^1",
+        "doctrine/mongodb-odm-bundle": "^3",
+        "doctrine/doctrine-bundle": "^1.6",
+        "twig/extensions": "^1.0",
+        "symfony/assetic-bundle": "^2.3",
+        "symfony/swiftmailer-bundle": "^2.3",
+        "symfony/monolog-bundle": "^2.3",
+        "sensio/distribution-bundle": "^2.3",
+        "sensio/framework-extra-bundle": "^2.3",
+        "sensio/generator-bundle": "^2.3",
+        "incenteev/composer-parameter-handler": "^2.0",
 
-        "payum/payum-bundle": "1.0.*",
-        "payum/payum": "1.0.*",
-        "payum/jms-payment-bridge": "1.0.*",
-        "payum/omnipay-bridge": "1.0.*",
+        "payum/payum-bundle": "^1.2@dev",
+        "payum/payum": "^1.2@dev",
+        "payum/jms-payment-bridge": "^1",
+        "payum/omnipay-bridge": "^1",
 
         "jms/payment-paypal-bundle": "~1",
-        "crevillo/payum-redsys": "1.0.*@dev",
-        "authorizenet/authorizenet": "~1.8",
-        "paypal/rest-api-sdk-php": "~1.0",
-        "klarna/checkout": "~2.0",
-        "fp/klarna-invoice": "~0.1",
-        "omnipay/stripe": "~2.0",
-        "omnipay/paypal": "~2.0",
-        "phpxmlrpc/phpxmlrpc": "~3.0",
+        "crevillo/payum-redsys": "^1",
+        "authorizenet/authorizenet": "^1.8",
+        "paypal/rest-api-sdk-php": "^1.0",
+        "klarna/checkout": "^2.0",
+        "fp/klarna-invoice": "^0.1",
+        "omnipay/stripe": "^2.0",
+        "omnipay/paypal": "^2.0",
+        "phpxmlrpc/phpxmlrpc": "^3.0",
 
-        "sonata-project/doctrine-orm-admin-bundle": "~2.0@stable",
-        "stripe/stripe-php": "~1.0",
-        "phpunit/phpunit": "~4.0",
-        "fabpot/php-cs-fixer": "~1.10"
+        "sonata-project/doctrine-orm-admin-bundle": "^2.3",
+        "stripe/stripe-php": "^2.0",
+        "phpunit/phpunit": "^4.0",
+        "fabpot/php-cs-fixer": "^1.10"
     },
     "scripts": {
         "post-install-cmd": [
@@ -68,7 +68,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.2-dev"
         }
     }
 }
