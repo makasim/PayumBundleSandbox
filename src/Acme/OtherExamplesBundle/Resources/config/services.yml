@@ -4,6 +4,8 @@ services:
         arguments:
             - @payum
             - @payum.security.token_factory
+        tags:
+            - { name: payum.action, gateway: paypal_express_checkout_and_doctrine_orm, alias: foo }
             
     other_examples.payum.action.capture_cart_with_authorize_net:
         class: Acme\OtherExamplesBundle\Payum\Action\CaptureCartWithAuthorizeNetAction

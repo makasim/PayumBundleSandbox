@@ -2,6 +2,7 @@
 namespace Acme\PaypalExpressCheckoutBundle\Controller;
 
 use Acme\PaymentBundle\Entity\PaymentDetails;
+use Payum\Core\Payum;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Core\Registry\RegistryInterface;
@@ -37,7 +38,7 @@ class PurchaseExamplesController extends Controller
             $payment['PAYMENTREQUEST_0_AMT'] = $data['amount'];
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -81,7 +82,7 @@ class PurchaseExamplesController extends Controller
             $payment['AUTHORIZE_TOKEN_USERACTION'] = '';
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -124,7 +125,7 @@ class PurchaseExamplesController extends Controller
             $payment['PAYMENTREQUEST_0_AMT'] = $data['amount'];
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -167,7 +168,7 @@ class PurchaseExamplesController extends Controller
             $payment['PAYMENTREQUEST_0_AMT'] = $data['amount'];
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -224,7 +225,7 @@ class PurchaseExamplesController extends Controller
             $payment['L_PAYMENTREQUEST_0_DESC0'] = $eBook['description'];
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -267,7 +268,7 @@ class PurchaseExamplesController extends Controller
             $payment['PAYMENTREQUEST_0_AMT'] = $data['amount'];
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -310,9 +311,9 @@ class PurchaseExamplesController extends Controller
             $payment['PAYMENTREQUEST_0_AMT'] = $data['amount'];
             $storage->update($payment);
 
-            $notifyToken = $this->getTokenFactory()->createNotifyToken($gatewayName, $payment);
+            $notifyToken = $this->getPayum()->getTokenFactory()->createNotifyToken($gatewayName, $payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -356,7 +357,7 @@ class PurchaseExamplesController extends Controller
             $payment['PAYMENTREQUEST_0_AMT'] = $data['amount'];
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createAuthorizeToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createAuthorizeToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -390,18 +391,10 @@ class PurchaseExamplesController extends Controller
     }
 
     /**
-     * @return RegistryInterface
+     * @return Payum
      */
     protected function getPayum()
     {
         return $this->get('payum');
-    }
-
-    /**
-     * @return GenericTokenFactoryInterface
-     */
-    protected function getTokenFactory()
-    {
-        return $this->get('payum.security.token_factory');
     }
 }

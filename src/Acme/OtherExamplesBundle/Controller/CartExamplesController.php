@@ -2,8 +2,7 @@
 namespace Acme\OtherExamplesBundle\Controller;
 
 use Acme\OtherExamplesBundle\Model\Cart;
-use Payum\Core\Registry\RegistryInterface;
-use Payum\Core\Security\GenericTokenFactoryInterface;
+use Payum\Core\Payum;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,7 +33,7 @@ class CartExamplesController extends Controller
             $cart->setCurrency('USD');
             $cartStorage->update($cart);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $cart,
                 'acme_payment_details_view' // TODO
@@ -65,18 +64,10 @@ class CartExamplesController extends Controller
     }
 
     /**
-     * @return RegistryInterface
+     * @return Payum
      */
     protected function getPayum()
     {
         return $this->get('payum');
-    }
-
-    /**
-     * @return GenericTokenFactoryInterface
-     */
-    protected function getTokenFactory()
-    {
-        return $this->get('payum.security.token_factory');
     }
 }

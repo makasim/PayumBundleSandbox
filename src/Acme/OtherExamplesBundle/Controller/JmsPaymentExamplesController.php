@@ -42,7 +42,7 @@ class JmsPaymentExamplesController extends PayumController
             $this->getDoctrine()->getManager()->persist($payment);
             $this->getDoctrine()->getManager()->flush();
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_other_purchase_done_paypal_via_jms_plugin'
@@ -88,7 +88,7 @@ class JmsPaymentExamplesController extends PayumController
      */
     public function viewAction(Request $request)
     {
-        $token = $this->getHttpRequestVerifier()->verify($request);
+        $token = $this->getPayum()->getHttpRequestVerifier()->verify($request);
 
         $status = new GetHumanStatus($token);
 
@@ -128,13 +128,5 @@ class JmsPaymentExamplesController extends PayumController
             ->add('currency', null, array('data' => 'USD'))
             ->getForm()
         ;
-    }
-
-    /**
-     * @return GenericTokenFactoryInterface
-     */
-    protected function getTokenFactory()
-    {
-        return $this->get('payum.security.token_factory');
     }
 }

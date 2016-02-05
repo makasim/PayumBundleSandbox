@@ -54,7 +54,7 @@ class RecurringPaymentExamplesController extends PayumController
             $agreement['NOSHIPPING'] = 1;
             $storage->update($agreement);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $agreement,
                 'acme_paypal_express_checkout_create_recurring_payment'
@@ -82,7 +82,7 @@ class RecurringPaymentExamplesController extends PayumController
      */
     public function createRecurringPaymentAction(Request $request)
     {
-        $token = $this->getHttpRequestVerifier()->verify($request);
+        $token = $this->getPayum()->getHttpRequestVerifier()->verify($request);
 
         $gateway = $this->getPayum()->getGateway($token->getGatewayName());
 
@@ -150,7 +150,7 @@ class RecurringPaymentExamplesController extends PayumController
 
         $cancelToken = null;
         if ($recurringPaymentStatus->isCaptured()) {
-            $cancelToken = $this->getTokenFactory()->createToken(
+            $cancelToken = $this->getPayum()->getTokenFactory()->createToken(
                 $gatewayName,
                 $recurringPaymentDetails,
                 'acme_paypal_express_checkout_cancel_recurring_payment',
@@ -176,8 +176,8 @@ class RecurringPaymentExamplesController extends PayumController
      */
     public function cancelRecurringPaymentAction(Request $request)
     {
-        $token = $this->getHttpRequestVerifier()->verify($request);
-        $this->getHttpRequestVerifier()->invalidate($token);
+        $token = $this->getPayum()->getHttpRequestVerifier()->verify($request);
+        $this->getPayum()->getHttpRequestVerifier()->invalidate($token);
 
         $gateway = $this->getPayum()->getGateway($token->getGatewayName());
 
@@ -197,13 +197,5 @@ class RecurringPaymentExamplesController extends PayumController
         $gateway->execute(new Sync($payment));
 
         return $this->redirect($token->getAfterUrl());
-    }
-
-    /**
-     * @return GenericTokenFactoryInterface
-     */
-    protected function getTokenFactory()
-    {
-        return $this->get('payum.security.token_factory');
     }
 }

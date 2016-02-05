@@ -3,8 +3,7 @@ namespace Acme\OtherExamplesBundle\Controller;
 
 use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
-use Payum\Core\Registry\RegistryInterface;
-use Payum\Core\Security\GenericTokenFactoryInterface;
+use Payum\Core\Payum;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Range;
@@ -35,7 +34,7 @@ class DevelopPaymentGatewayOnTopOfPayumExampleController extends PayumController
             $payment['currency'] = $data['currency'];
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -66,18 +65,10 @@ class DevelopPaymentGatewayOnTopOfPayumExampleController extends PayumController
     }
 
     /**
-     * @return RegistryInterface
+     * @return Payum
      */
     protected function getPayum()
     {
         return $this->get('payum');
-    }
-
-    /**
-     * @return GenericTokenFactoryInterface
-     */
-    protected function getTokenFactory()
-    {
-        return $this->get('payum.security.token_factory');
     }
 }

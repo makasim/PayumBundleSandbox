@@ -2,6 +2,7 @@
 namespace Acme\PaymentBundle\Controller;
 
 use Acme\PaymentBundle\Entity\Payment;
+use Payum\Core\Payum;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,7 +28,7 @@ class PaymentPurchaseController extends Controller
             $storage = $this->getPayum()->getStorage($payment);
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $form->get('gateway_name')->getData(),
                 $payment,
                 'acme_payment_payment_done'
@@ -84,18 +85,10 @@ class PaymentPurchaseController extends Controller
     }
 
     /**
-     * @return RegistryInterface
+     * @return Payum
      */
     protected function getPayum()
     {
         return $this->get('payum');
-    }
-
-    /**
-     * @return GenericTokenFactoryInterface
-     */
-    protected function getTokenFactory()
-    {
-        return $this->get('payum.security.token_factory');
     }
 }
