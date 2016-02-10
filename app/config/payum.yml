@@ -37,161 +37,150 @@ payum:
         config_storage:
             Acme\PaymentBundle\Entity\GatewayConfig: { doctrine: orm }
 
-    gateways:
+    gateways_v2:
         paypal_express_checkout_and_doctrine_orm:
-            paypal_express_checkout_nvp:
-                username:  %paypal.express_checkout.username%
-                password:  %paypal.express_checkout.password%
-                signature: %paypal.express_checkout.signature%
-                sandbox: true
+            factory: paypal_express_checkout_nvp
+            username:  %paypal.express_checkout.username%
+            password:  %paypal.express_checkout.password%
+            signature: %paypal.express_checkout.signature%
+            sandbox: true
 
         paypal_express_checkout_and_doctrine_mongo_odm:
-            paypal_express_checkout_nvp:
-                username:  %paypal.express_checkout.username%
-                password:  %paypal.express_checkout.password%
-                signature: %paypal.express_checkout.signature%
-                sandbox: true
+            factory: paypal_express_checkout_nvp
+            username:  %paypal.express_checkout.username%
+            password:  %paypal.express_checkout.password%
+            signature: %paypal.express_checkout.signature%
+            sandbox: true
 
         paypal_express_checkout_recurring_payment_and_doctrine_orm:
-            paypal_express_checkout_nvp:
-                username:  %paypal.express_checkout.username%
-                password:  %paypal.express_checkout.password%
-                signature: %paypal.express_checkout.signature%
-                sandbox: true
+            factory: paypal_express_checkout_nvp
+            username:  %paypal.express_checkout.username%
+            password:  %paypal.express_checkout.password%
+            signature: %paypal.express_checkout.signature%
+            sandbox: true
 
         paypal_express_checkout_with_ipn_enabled:
-            paypal_express_checkout_nvp:
-                username:  %paypal.express_checkout.username%
-                password:  %paypal.express_checkout.password%
-                signature: %paypal.express_checkout.signature%
-                sandbox: true
-                actions:
-                    - acme.payment.payum.action.store_notification
+            factory: paypal_express_checkout_nvp
+            username:  %paypal.express_checkout.username%
+            password:  %paypal.express_checkout.password%
+            signature: %paypal.express_checkout.signature%
+            sandbox: true
+            payum.action.store_notifications: @acme.payment.payum.action.store_notification
 
         paypal_express_checkout_and_custom_api:
-            paypal_express_checkout_nvp:
-                username:  NOT NEEDED
-                password:  NOT NEEDED
-                signature: NOT NEEDED
-                sandbox: true
-                apis:
-                    - acme.payment.payum.paypal_express_checkout_api
+            factory: paypal_express_checkout_nvp
+            payum.api: @acme.payment.payum.paypal_express_checkout_api
 
         paypal_pro_checkout:
-            paypal_pro_checkout_nvp:
-                username: %paypal.pro_checkout.username%
-                password: %paypal.pro_checkout.password%
-                partner:  %paypal.pro_checkout.partner%
-                vendor:   %paypal.pro_checkout.vendor%
-                sandbox: true
+            factory: paypal_pro_checkout_nvp
+            username: %paypal.pro_checkout.username%
+            password: %paypal.pro_checkout.password%
+            partner:  %paypal.pro_checkout.partner%
+            vendor:   %paypal.pro_checkout.vendor%
+            sandbox: true
 
         authorize_net:
-            authorize_net_aim:
-                login_id: %authorize_net.login_id%
-                transaction_key: %authorize_net.transaction_key%
-                sandbox: true
+            factory: authorize_net_aim
+            login_id: %authorize_net.login_id%
+            transaction_key: %authorize_net.transaction_key%
+            sandbox: true
 
         be2bill:
-            be2bill_direct:
-                identifier: %be2bill.identifier%
-                password: %be2bill.password%
-                sandbox: true
+            factory: be2bill_direct
+            identifier: %be2bill.identifier%
+            password: %be2bill.password%
+            sandbox: true
 
         be2bill_offsite:
-            be2bill_offsite:
-                identifier: %be2bill.identifier%
-                password: %be2bill.password%
-                sandbox: true
-                actions:
-                    - acme.payex.payum.action.store_notification
+            factory: be2bill_offsite
+            identifier: %be2bill.identifier%
+            password: %be2bill.password%
+            sandbox: true
+            payum.action.store_notifications: @acme.payex.payum.action.store_notification
 
         klarna_invoice:
-            klarna_invoice:
-                secret: %klarna.invoice.secret%
-                eid: %klarna.invoice.eid%
-                sandbox: true
+            factory: klarna_invoice
+            secret: %klarna.invoice.secret%
+            eid: %klarna.invoice.eid%
+            sandbox: true
 
         klarna_checkout:
-            klarna_checkout:
-                secret: %klarna.checkout.secret%
-                merchant_id: %klarna.checkout.eid%
-                sandbox: true
-                extensions:
-                    - acme.payment.payum.extension.store_notification
+            factory: klarna_checkout
+            secret: %klarna.checkout.secret%
+            merchant_id: %klarna.checkout.eid%
+            sandbox: true
+            payum.extension.store_notification: @acme.payment.payum.extension.store_notification
 
         paypal_express_checkout_via_omnipay:
-            omnipay:
-                type: PayPal_Express
-                options:
-                    username:  %paypal.express_checkout.username%
-                    password:  %paypal.express_checkout.password%
-                    signature: %paypal.express_checkout.signature%
-                    testMode: true
+            factory: omnipay
+            type: PayPal_Express
+            username:  %paypal.express_checkout.username%
+            password:  %paypal.express_checkout.password%
+            signature: %paypal.express_checkout.signature%
+            testMode: true
 
         stripe_js:
-            stripe_js:
-                publishable_key: %stripe.publishable_key%
-                secret_key: %stripe.secret_key%
+            factory: stripe_js
+            publishable_key: %stripe.publishable_key%
+            secret_key: %stripe.secret_key%
 
         stripe_checkout:
-            stripe_checkout:
-                publishable_key: %stripe.publishable_key%
-                secret_key: %stripe.secret_key%
+            factory: stripe_checkout
+            publishable_key: %stripe.publishable_key%
+            secret_key: %stripe.secret_key%
 
         stripe_via_omnipay:
-            omnipay:
-                type: Stripe
-                options:
-                    apiKey:  %stripe.secret_key%
-                    testMode: true
+            factory: omnipay
+            type: Stripe
+            apiKey:  %stripe.secret_key%
+            testMode: true
 
         payex:
-            payex:
-                account_number:  %payex.account_number%
-                encryption_key:  %payex.encryption_key%
-                sandbox: true
-                actions:
-                    - acme.payex.payum.action.store_notification
+            factory: payex
+            account_number:  %payex.account_number%
+            encryption_key:  %payex.encryption_key%
+            sandbox: true
+            payum.action.store_notifications: @acme.payex.payum.action.store_notification
 
         payex_agreement:
-            payex:
-                account_number:  %payex.account_number%
-                encryption_key:  %payex.encryption_key%
-                sandbox: true
+            factory: payex
+            account_number:  %payex.account_number%
+            encryption_key:  %payex.encryption_key%
+            sandbox: true
 
         redsys:
-            redsys:
-                merchant_code:  %redsys.merchant_code%
-                terminal:  %redsys.terminal%
-                secret_key: %redsys.secret_key%
-                sandbox: true
+            factory: redsys
+            merchant_code:  %redsys.merchant_code%
+            terminal:  %redsys.terminal%
+            secret_key: %redsys.secret_key%
+            sandbox: true
 
         paypal_express_checkout_plus_cart:
-            paypal_express_checkout_nvp:
-                username:  %paypal.express_checkout.username%
-                password:  %paypal.express_checkout.password%
-                signature: %paypal.express_checkout.signature%
-                sandbox: true
-                actions:
-                    - other_examples.payum.action.capture_cart_with_paypal_express_checkout
-                    - other_examples.payum.action.status_details_aggregated_null_model
+            factory: paypal_express_checkout_nvp
+            username:  %paypal.express_checkout.username%
+            password:  %paypal.express_checkout.password%
+            signature: %paypal.express_checkout.signature%
+            sandbox: true
+            payum.action.capture_cart_with_paypal_express_checkout: @other_examples.payum.action.capture_cart_with_paypal_express_checkout
+            payum.action.status_details_aggregated_null_model: @other_examples.payum.action.status_details_aggregated_null_model
 
-#        authorize_net_plus_cart:
-#            authorize_net_aim:
-#                login_id: %authorize_net.login_id%
-#                transaction_key: %authorize_net.transaction_key%
-#                sandbox: true
-#                actions:
-#                    - other_examples.payum.action.capture_cart_with_authorize_net
-#                    - other_examples.payum.action.status_details_aggregated_null_model
+        authorize_net_plus_cart:
+            factory: authorize_net_aim
+            login_id: %authorize_net.login_id%
+            transaction_key: %authorize_net.transaction_key%
+            sandbox: true
+            payum.action.capture_cart_with_authorize_net: @other_examples.payum.action.capture_cart_with_authorize_net
+            payum.action.status_details_aggregated_null_model: @other_examples.payum.action.status_details_aggregated_null_model
 
         paypal_express_checkout_via_jms_plugin:
-            jms_payment_plugin: ~
+            factory: jms_payment_plugin
 
         offline:
-            offline: ~
+            factory: offline
 
         foo_bar_gateway:
-            foo_bar_gateway:
-                username: aName
-                password: aPass
+            payum.action.capture: @payum.foobar_gateway.action.capture
+            payum.action.status: @payum.foobar_gateway.action.status
+
+services:
+    redsys
