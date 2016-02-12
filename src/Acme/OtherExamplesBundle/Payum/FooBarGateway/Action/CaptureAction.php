@@ -6,23 +6,13 @@ use Payum\Core\Request\Capture;
 
 class CaptureAction implements ActionInterface
 {
-    protected $gatewayUsername;
-
-    protected $gatewayPassword;
-
-    public function __construct($gatewayUsername, $gatewayPassword)
-    {
-        $this->gatewayUsername = $gatewayUsername;
-        $this->gatewayPassword = $gatewayPassword;
-    }
-
     public function execute($request)
     {
         $model = $request->getModel();
 
         if (isset($model['amount']) && isset($model['currency'])) {
 
-            //do purchase call to the payment gateway using username and password.
+            //do purchase call to the payment gateway
 
             $model['status'] = 'captured';
         } else {

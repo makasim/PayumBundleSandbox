@@ -2,7 +2,6 @@
 
 namespace Acme\OtherExamplesBundle;
 
-use Acme\OtherExamplesBundle\Payum\FooBarGateway\FooBarGatewayPaymentFactory;
 use Payum\Bridge\JMSPayment\DependencyInjection\Factory\Gateway\JmsGatewayFactory;
 use Payum\Bundle\PayumBundle\DependencyInjection\PayumExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -19,6 +18,5 @@ class AcmeOtherExamplesBundle extends Bundle
         $payumExtension = $container->getExtension('payum');
 
         $payumExtension->addGatewayFactory(new JmsGatewayFactory());
-        $payumExtension->addGatewayFactory(new FooBarGatewayPaymentFactory());
     }
 }

@@ -5,24 +5,10 @@ use Acme\OtherExamplesBundle\Model\Cart;
 use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Core\Action\GatewayAwareAction;
 use Payum\Core\Exception\RequestNotSupportedException;
-use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Request\Capture;
 
 class CaptureCartWithPaypalExpressCheckoutAction extends GatewayAwareAction
 {
-    /**
-     * @var \Payum\Core\Registry\RegistryInterface
-     */
-    protected $payum;
-
-    /**
-     * @param RegistryInterface $payum
-     */
-    public function __construct(RegistryInterface $payum)
-    {
-        $this->payum = $payum;
-    }
-
     /**
      * {@inheritDoc}
      *

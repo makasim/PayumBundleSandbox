@@ -77,6 +77,7 @@ payum:
             password: %paypal.pro_checkout.password%
             partner:  %paypal.pro_checkout.partner%
             vendor:   %paypal.pro_checkout.vendor%
+            tender: "foo"
             sandbox: true
 
         authorize_net:
@@ -102,6 +103,9 @@ payum:
             factory: klarna_invoice
             secret: %klarna.invoice.secret%
             eid: %klarna.invoice.eid%
+            country: SE
+            language: SV
+            currency: SEK
             sandbox: true
 
         klarna_checkout:
@@ -179,8 +183,18 @@ payum:
             factory: offline
 
         foo_bar_gateway:
-            payum.action.capture: @payum.foobar_gateway.action.capture
-            payum.action.status: @payum.foobar_gateway.action.status
+            payum.action.capture: @acme_payment.foo_bar.capture
+            payum.action.status: @acme_payment.foo_bar.status
 
 services:
-    redsys
+    acme_payment.redsys.gateway_factory:
+        class: Crevillo\Payum\Redsys\RedsysGatewayFactory
+        arguments: [[], @payum.core_gateway_factory]
+        tags:
+            - { name: payum.gateway_factory, factory_name: redsys }
+
+    acme_payment.foo_bar.capture:
+        class: Acme\OtherExamplesBundle\Payum\FooBarGateway\Action\CaptureAction
+
+    acme_payment.foo_bar.status:
+        class: Acme\OtherExamplesBundle\Payum\FooBarGateway\Action\StatusAction
