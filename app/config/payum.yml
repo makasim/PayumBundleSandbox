@@ -39,28 +39,28 @@ payum:
 
     gateways_v2:
         paypal_express_checkout_and_doctrine_orm:
-            factory: paypal_express_checkout_nvp
+            factory: paypal_express_checkout
             username:  %paypal.express_checkout.username%
             password:  %paypal.express_checkout.password%
             signature: %paypal.express_checkout.signature%
             sandbox: true
 
         paypal_express_checkout_and_doctrine_mongo_odm:
-            factory: paypal_express_checkout_nvp
+            factory: paypal_express_checkout
             username:  %paypal.express_checkout.username%
             password:  %paypal.express_checkout.password%
             signature: %paypal.express_checkout.signature%
             sandbox: true
 
         paypal_express_checkout_recurring_payment_and_doctrine_orm:
-            factory: paypal_express_checkout_nvp
+            factory: paypal_express_checkout
             username:  %paypal.express_checkout.username%
             password:  %paypal.express_checkout.password%
             signature: %paypal.express_checkout.signature%
             sandbox: true
 
         paypal_express_checkout_with_ipn_enabled:
-            factory: paypal_express_checkout_nvp
+            factory: paypal_express_checkout
             username:  %paypal.express_checkout.username%
             password:  %paypal.express_checkout.password%
             signature: %paypal.express_checkout.signature%
@@ -68,11 +68,11 @@ payum:
             payum.action.store_notifications: @acme.payment.payum.action.store_notification
 
         paypal_express_checkout_and_custom_api:
-            factory: paypal_express_checkout_nvp
+            factory: paypal_express_checkout
             payum.api: @acme.payment.payum.paypal_express_checkout_api
 
         paypal_pro_checkout:
-            factory: paypal_pro_checkout_nvp
+            factory: paypal_pro_checkout
             username: %paypal.pro_checkout.username%
             password: %paypal.pro_checkout.password%
             partner:  %paypal.pro_checkout.partner%
@@ -160,7 +160,7 @@ payum:
             sandbox: true
 
         paypal_express_checkout_plus_cart:
-            factory: paypal_express_checkout_nvp
+            factory: paypal_express_checkout
             username:  %paypal.express_checkout.username%
             password:  %paypal.express_checkout.password%
             signature: %paypal.express_checkout.signature%
@@ -177,7 +177,7 @@ payum:
             payum.action.status_details_aggregated_null_model: @other_examples.payum.action.status_details_aggregated_null_model
 
         paypal_express_checkout_via_jms_plugin:
-            factory: jms_payment_plugin
+            factory: jms_payment
 
         offline:
             factory: offline
@@ -188,10 +188,16 @@ payum:
 
 services:
     acme_payment.redsys.gateway_factory:
-        class: Crevillo\Payum\Redsys\RedsysGatewayFactory
-        arguments: [[], @payum.core_gateway_factory]
+        class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
+        arguments: [Crevillo\Payum\Redsys\RedsysGatewayFactory]
         tags:
-            - { name: payum.gateway_factory, factory_name: redsys }
+            - { name: payum.gateway_factory_builder, factory: redsys }
+
+    acme_payment.jms_payment.gateway_factory:
+        class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
+        arguments: [Payum\Bridge\JMSPayment\JmsGatewayFactory]
+        tags:
+            - { name: payum.gateway_factory_builder, factory: jms_payment }
 
     acme_payment.foo_bar.capture:
         class: Acme\OtherExamplesBundle\Payum\FooBarGateway\Action\CaptureAction

@@ -95,7 +95,7 @@ class RecurringExamplesController extends PayumController
 
             $paymentStorage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payex_recurring_payment_details',
@@ -144,7 +144,7 @@ class RecurringExamplesController extends PayumController
 
         $cancelToken = null;
         if ($paymentStatus->isCaptured()) {
-            $cancelToken = $this->getTokenFactory()->createToken(
+            $cancelToken = $this->getPayum()->getTokenFactory()->createToken(
                 $gatewayName,
                 $paymentStatus->getModel(),
                 'acme_payex_cancel_recurring_payment',
@@ -188,13 +188,5 @@ class RecurringExamplesController extends PayumController
         $this->getHttpRequestVerifier()->invalidate($token);
 
         return $this->redirect($token->getAfterUrl());
-    }
-
-    /**
-     * @return GenericTokenFactoryInterface
-     */
-    protected function getTokenFactory()
-    {
-        return $this->get('payum.security.token_factory');
     }
 }

@@ -3,6 +3,7 @@ namespace Acme\PaymentBundle\Controller;
 
 use Acme\PaymentBundle\Entity\Payment;
 use Acme\PaymentBundle\Entity\PaymentDetails;
+use Payum\Core\Payum;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Core\Security\SensitiveValue;
@@ -39,7 +40,7 @@ class SimplePurchaseBe2BillController extends Controller
             $payment['CARDVALIDITYDATE'] = new SensitiveValue($data['card_expiration_date']);
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -78,7 +79,7 @@ class SimplePurchaseBe2BillController extends Controller
             $payment['ORDERID'] = 'orderId'.uniqid();
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -112,7 +113,7 @@ class SimplePurchaseBe2BillController extends Controller
             $payment->setDescription('Payment for digital stuff');
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_payment_done'
@@ -161,18 +162,10 @@ class SimplePurchaseBe2BillController extends Controller
     }
 
     /**
-     * @return RegistryInterface
+     * @return Payum
      */
     protected function getPayum()
     {
         return $this->get('payum');
-    }
-
-    /**
-     * @return GenericTokenFactoryInterface
-     */
-    protected function getTokenFactory()
-    {
-        return $this->get('payum.security.token_factory');
     }
 }

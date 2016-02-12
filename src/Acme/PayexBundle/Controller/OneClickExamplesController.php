@@ -3,6 +3,7 @@ namespace Acme\PayexBundle\Controller;
 
 use Acme\PaymentBundle\Entity\AgreementDetails;
 use Acme\PaymentBundle\Entity\PaymentDetails;
+use Payum\Core\Payum;
 use Payum\Core\Request\GetHumanStatus;
 use Payum\Core\Request\Sync;
 use Payum\Core\Registry\RegistryInterface;
@@ -73,7 +74,7 @@ class OneClickExamplesController extends Controller
 
                 $paymentStorage->update($payment);
 
-                $captureToken = $this->getTokenFactory()->createCaptureToken(
+                $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                     $gatewayName,
                     $payment,
                     'acme_payex_one_click_confirm_agreement',
@@ -154,7 +155,7 @@ class OneClickExamplesController extends Controller
 
             $paymentStorage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -188,18 +189,10 @@ class OneClickExamplesController extends Controller
     }
 
     /**
-     * @return RegistryInterface
+     * @return Payum
      */
     protected function getPayum()
     {
         return $this->get('payum');
-    }
-
-    /**
-     * @return GenericTokenFactoryInterface
-     */
-    protected function getTokenFactory()
-    {
-        return $this->get('payum.security.token_factory');
     }
 }

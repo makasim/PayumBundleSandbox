@@ -2,6 +2,7 @@
 namespace Acme\StripeBundle\Controller;
 
 use Acme\PaymentBundle\Entity\PaymentDetails;
+use Payum\Core\Payum;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Core\Registry\RegistryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
@@ -37,7 +38,7 @@ class PurchaseExamplesController extends Controller
             $payment["description"] = "a description";
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -77,7 +78,7 @@ class PurchaseExamplesController extends Controller
             $payment["card"] = $request->request->get('stripeToken');
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -119,7 +120,7 @@ class PurchaseExamplesController extends Controller
             $payment["description"] = "a description";
             $storage->update($payment);
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -150,18 +151,10 @@ class PurchaseExamplesController extends Controller
     }
 
     /**
-     * @return RegistryInterface
+     * @return Payum
      */
     protected function getPayum()
     {
         return $this->get('payum');
-    }
-
-    /**
-     * @return GenericTokenFactoryInterface
-     */
-    protected function getTokenFactory()
-    {
-        return $this->get('payum.security.token_factory');
     }
 }

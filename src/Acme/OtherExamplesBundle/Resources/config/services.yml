@@ -1,14 +1,11 @@
 services:
     other_examples.payum.action.capture_cart_with_paypal_express_checkout:
         class: Acme\OtherExamplesBundle\Payum\Action\CaptureCartWithPaypalExpressCheckoutAction
-        arguments:
-            - @payum
-            - @payum.security.token_factory
+        arguments: [@payum.static_registry]
             
     other_examples.payum.action.capture_cart_with_authorize_net:
         class: Acme\OtherExamplesBundle\Payum\Action\CaptureCartWithAuthorizeNetAction
-        arguments:
-            - @service_container
+        arguments: [@service_container]
             
     other_examples.payum.action.status_details_aggregated_null_model:
         class: Acme\OtherExamplesBundle\Payum\Action\StatusDetailsAggregatedNullModelAction

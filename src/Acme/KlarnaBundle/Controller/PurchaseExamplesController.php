@@ -2,6 +2,7 @@
 namespace Acme\KlarnaBundle\Controller;
 
 use Acme\PaymentBundle\Entity\PaymentDetails;
+use Payum\Core\Payum;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Klarna\Invoice\Request\Api\GetAddresses;
@@ -52,7 +53,7 @@ class PurchaseExamplesController extends Controller
             $payment['locale'] = 'sv-se';
             $storage->update($payment);
 
-            $authorizeToken = $this->getTokenFactory()->createAuthorizeToken(
+            $authorizeToken = $this->getPayum()->getTokenFactory()->createAuthorizeToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -62,7 +63,7 @@ class PurchaseExamplesController extends Controller
                 'terms_uri' => 'http://example.com/terms',
                 'checkout_uri' => 'http://example.com/fuck',
                 'confirmation_uri' => $authorizeToken->getTargetUrl(),
-                'push_uri' => $this->getTokenFactory()->createNotifyToken($gatewayName, $payment)->getTargetUrl()
+                'push_uri' => $this->getPayum()->getTokenFactory()->createNotifyToken($gatewayName, $payment)->getTargetUrl()
             );
             $payment['cart'] = array(
                 'items' => $cartItems
@@ -130,7 +131,7 @@ class PurchaseExamplesController extends Controller
 
             $storage->update($payment);
 
-            $captureToken = $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -197,7 +198,7 @@ class PurchaseExamplesController extends Controller
 
             $storage->update($payment);
 
-            $captureToken = $captureToken = $this->getTokenFactory()->createAuthorizeToken(
+            $captureToken = $captureToken = $this->getPayum()->getTokenFactory()->createAuthorizeToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -212,18 +213,11 @@ class PurchaseExamplesController extends Controller
     }
 
     /**
-     * @return RegistryInterface
+     * @return Payum
      */
     protected function getPayum()
     {
         return $this->get('payum');
     }
 
-    /**
-     * @return GenericTokenFactoryInterface
-     */
-    protected function getTokenFactory()
-    {
-        return $this->get('payum.security.token_factory');
-    }
 }

@@ -3,6 +3,7 @@ namespace Acme\RedsysBundle\Controller;
 
 use Acme\PaymentBundle\Entity\PaymentDetails;
 use Crevillo\Payum\Redsys\Api;
+use Payum\Core\Payum;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Core\Registry\RegistryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
@@ -44,10 +45,10 @@ class PurchaseExamplesController extends Controller
             $payment['Ds_Merchant_ConsumerLanguage'] = Api::CONSUMERLANGUAGE_SPANISH;
             $storage->update($payment);
 
-            $notifyToken = $this->getTokenFactory()->createNotifyToken($gatewayName, $payment);
+            $notifyToken = $this->getPayum()->getTokenFactory()->createNotifyToken($gatewayName, $payment);
             $payment['Ds_Merchant_MerchantURL'] = $notifyToken->getTargetUrl();
 
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
                 'acme_payment_details_view'
@@ -75,18 +76,10 @@ class PurchaseExamplesController extends Controller
     }
 
     /**
-     * @return RegistryInterface
+     * @return Payum
      */
     protected function getPayum()
     {
         return $this->get('payum');
-    }
-
-    /**
-     * @return GenericTokenFactoryInterface
-     */
-    protected function getTokenFactory()
-    {
-        return $this->get('payum.security.token_factory');
     }
 }
