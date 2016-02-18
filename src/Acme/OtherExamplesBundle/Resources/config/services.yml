@@ -2,7 +2,7 @@ services:
     other_examples.payum.action.capture_cart_with_paypal_express_checkout:
         class: Acme\OtherExamplesBundle\Payum\Action\CaptureCartWithPaypalExpressCheckoutAction
         arguments: [@payum.static_registry]
-            
+
     other_examples.payum.action.capture_cart_with_authorize_net:
         class: Acme\OtherExamplesBundle\Payum\Action\CaptureCartWithAuthorizeNetAction
         arguments: [@service_container]

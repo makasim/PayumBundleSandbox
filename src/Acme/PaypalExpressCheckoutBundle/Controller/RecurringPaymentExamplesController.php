@@ -82,7 +82,7 @@ class RecurringPaymentExamplesController extends PayumController
      */
     public function createRecurringPaymentAction(Request $request)
     {
-        $token = $this->getHttpRequestVerifier()->verify($request);
+        $token = $this->getPayum()->getHttpRequestVerifier()->verify($request);
 
         $gateway = $this->getPayum()->getGateway($token->getGatewayName());
 
@@ -176,8 +176,8 @@ class RecurringPaymentExamplesController extends PayumController
      */
     public function cancelRecurringPaymentAction(Request $request)
     {
-        $token = $this->getHttpRequestVerifier()->verify($request);
-        $this->getHttpRequestVerifier()->invalidate($token);
+        $token = $this->getPayum()->getHttpRequestVerifier()->verify($request);
+        $this->getPayum()->getHttpRequestVerifier()->invalidate($token);
 
         $gateway = $this->getPayum()->getGateway($token->getGatewayName());
 

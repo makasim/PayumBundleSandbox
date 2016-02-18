@@ -3,8 +3,6 @@ namespace Acme\StripeBundle\Controller;
 
 use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Core\Payum;
-use Payum\Core\Security\GenericTokenFactoryInterface;
-use Payum\Core\Registry\RegistryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

@@ -88,7 +88,7 @@ class JmsPaymentExamplesController extends PayumController
      */
     public function viewAction(Request $request)
     {
-        $token = $this->getHttpRequestVerifier()->verify($request);
+        $token = $this->getPayum()->getHttpRequestVerifier()->verify($request);
 
         $status = new GetHumanStatus($token);
 

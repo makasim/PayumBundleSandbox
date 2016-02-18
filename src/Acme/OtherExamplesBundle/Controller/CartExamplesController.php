@@ -3,8 +3,6 @@ namespace Acme\OtherExamplesBundle\Controller;
 
 use Acme\OtherExamplesBundle\Model\Cart;
 use Payum\Core\Payum;
-use Payum\Core\Registry\RegistryInterface;
-use Payum\Core\Security\GenericTokenFactoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

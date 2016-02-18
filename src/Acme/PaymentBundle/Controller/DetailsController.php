@@ -12,7 +12,7 @@ class DetailsController extends PayumController
 {
     public function viewAction(Request $request)
     {
-        $token = $this->getHttpRequestVerifier()->verify($request);
+        $token = $this->getPayum()->getHttpRequestVerifier()->verify($request);
 
         $gateway = $this->getPayum()->getGateway($token->getGatewayName());
 
@@ -24,7 +24,7 @@ class DetailsController extends PayumController
 
         $refundToken = null;
         if ($status->isCaptured() || $status->isAuthorized()) {
-            $refundToken = $this->getTokenFactory()->createRefundToken(
+            $refundToken = $this->getPayum()->getTokenFactory()->createRefundToken(
                 $token->getGatewayName(),
                 $status->getFirstModel(),
                 $request->getUri()
@@ -33,7 +33,7 @@ class DetailsController extends PayumController
 
         $captureToken = null;
         if ($status->isAuthorized()) {
-            $captureToken = $this->getTokenFactory()->createCaptureToken(
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $token->getGatewayName(),
                 $status->getFirstModel(),
                 $request->getUri()
@@ -54,7 +54,7 @@ class DetailsController extends PayumController
 
     public function viewPaymentAction(Request $request)
     {
-        $token = $this->getHttpRequestVerifier()->verify($request);
+        $token = $this->getPayum()->getHttpRequestVerifier()->verify($request);
 
         $gateway = $this->getPayum()->getGateway($token->getGatewayName());
 

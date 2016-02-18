@@ -3,8 +3,6 @@ namespace Acme\KlarnaBundle\Controller;
 
 use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Core\Payum;
-use Payum\Core\Registry\RegistryInterface;
-use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Klarna\Invoice\Request\Api\GetAddresses;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -219,5 +217,4 @@ class PurchaseExamplesController extends Controller
     {
         return $this->get('payum');
     }
-
 }
