@@ -1,3 +1,8 @@
+acme_redsys:
+    resource:   "@AcmePaymentBundle/Controller/"
+    type:       annotation
+    prefix:     /
+
 acme_payment_homepage:
     pattern:  /payment
     defaults: { _controller: AcmePaymentBundle:Default:index }
