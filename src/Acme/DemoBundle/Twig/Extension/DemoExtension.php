@@ -43,7 +43,7 @@ class DemoExtension extends \Twig_Extension
                     'payum' => array(
                         'security' => $config['payum']['security'],
                         'gateways' => array(
-                            $gatewayName => $config['payum']['gateways_v2'][$gatewayName]
+                            $gatewayName => $config['payum']['gateways'][$gatewayName]
                         )
                     )
                 ),

@@ -39,6 +39,7 @@
 
         "sonata-project/doctrine-orm-admin-bundle": "^2.3",
         "stripe/stripe-php": "^2.0",
+        "sofort/sofortlib-php": "^3.0",
         "phpunit/phpunit": "^4.0",
         "fabpot/php-cs-fixer": "^1.10"
     },

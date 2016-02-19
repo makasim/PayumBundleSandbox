@@ -46,6 +46,8 @@ parameters:
     redsys.terminal:  EDIT ME
     redsys.secret_key: EDIT ME
 
+    sofort.config_key: EDIT ME
+
     # configure if you want to use console create token commands
     router.request_context.host: sandbox.payum.org
     router.request_context.scheme: http

@@ -4,8 +4,6 @@ namespace Acme\RedsysBundle\Controller;
 use Acme\PaymentBundle\Entity\PaymentDetails;
 use Crevillo\Payum\Redsys\Api;
 use Payum\Core\Payum;
-use Payum\Core\Security\GenericTokenFactoryInterface;
-use Payum\Core\Registry\RegistryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
