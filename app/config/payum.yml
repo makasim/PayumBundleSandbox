@@ -186,6 +186,11 @@ payum:
             factory: sofort
             config_key: %sofort.config_key%
 
+        paytrail:
+            factory: paytrail
+            merchantId: %paytrail.merchant_id%
+            merchantSecret: %paytrail.merchant_secret%
+
         foo_bar_gateway:
             payum.action.capture: @acme_payment.foo_bar.capture
             payum.action.status: @acme_payment.foo_bar.status
@@ -196,6 +201,12 @@ services:
         arguments: [Crevillo\Payum\Redsys\RedsysGatewayFactory]
         tags:
             - { name: payum.gateway_factory_builder, factory: redsys }
+
+    acme_payment.paytrail.gateway_factory:
+        class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
+        arguments: [Paradigm\PayumPaytrail\PaytrailGatewayFactory]
+        tags:
+            - { name: payum.gateway_factory_builder, factory: paytrail }
 
     acme_payment.jms_payment.gateway_factory:
         class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder

@@ -48,6 +48,9 @@ parameters:
 
     sofort.config_key: EDIT ME
 
+    paytrail.merchant_id: EDIT ME
+    paytrail.merchant_secret: EDIT ME
+
     # configure if you want to use console create token commands
     router.request_context.host: sandbox.payum.org
     router.request_context.scheme: http
