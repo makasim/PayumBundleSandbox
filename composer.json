@@ -22,8 +22,8 @@
         "sensio/generator-bundle": "^2.3",
         "incenteev/composer-parameter-handler": "^2.0",
 
-        "payum/payum-bundle": "^1.2@dev",
-        "payum/payum": "^1.2@dev",
+        "payum/payum-bundle": "^2",
+        "payum/payum": "^1.2",
         "payum/jms-payment-bridge": "^1",
         "payum/omnipay-bridge": "^1",
 

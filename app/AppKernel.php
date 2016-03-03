@@ -1,6 +1,7 @@
 <?php
 
 use Doctrine\ODM\MongoDB\Types\Type;
+use Payum\Core\Bridge\Doctrine\Types\ObjectType;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -8,7 +9,9 @@ class AppKernel extends Kernel
 {
     public function boot()
     {
-        Type::addType('object', 'Payum\Core\Bridge\Doctrine\Types\ObjectType');
+        if (false == Type::hasType('object')) {
+            Type::addType('object', ObjectType::class);
+        }
 
         parent::boot();
     }
