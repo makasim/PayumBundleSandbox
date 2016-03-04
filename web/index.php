@@ -1,11 +1,25 @@
 <?php
 
-if (false == isset($_SERVER['SYMFONY_ENV'], $_SERVER['SYMFONY_DEBUG'])) {
-    http_response_code(500);
-    die('Internal error. The environment is not configured proper way.');
+$env = null;
+if (isset($_SERVER['SYMFONY_ENV'])) {
+    $env = (string) $_SERVER['SYMFONY_ENV'];
 }
-$env = (string) $_SERVER['SYMFONY_ENV'];
-$debug = (bool) $_SERVER['SYMFONY_DEBUG'];
+elseif (isset($_ENV['SYMFONY_ENV'])) {
+    $env = (string) $_ENV['SYMFONY_ENV'];
+}
+
+$debug = null;
+if (isset($_SERVER['SYMFONY_DEBUG'])) {
+    $debug = (bool) $_SERVER['SYMFONY_ENV'];
+}
+elseif (isset($_ENV['SYMFONY_ENV'])) {
+    $debug = (bool) $_ENV['SYMFONY_ENV'];
+}
+
+if (null === $env || null === $debug) {
+    http_response_code(500);
+    die('Internal error. The environment is not configured correctly. Please set SYMFONY_ENV and SYMFONY_DEBUG.');
+}
 
 use Symfony\Component\HttpFoundation\Request;
 
