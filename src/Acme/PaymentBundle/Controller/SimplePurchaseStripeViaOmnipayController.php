@@ -39,7 +39,7 @@ class SimplePurchaseStripeViaOmnipayController extends Controller
             ));
         }
 
-        return $this->render('AcmePaymentBundle:SimplePurchaseStripeViaOmnipay:prepare.html.twig', array(
+        return $this->render('AcmePaymentBundle::prepare.html.twig', array(
             'form' => $form->createView()
         ));
     }

@@ -51,7 +51,7 @@ class SimplePurchaseBe2BillController extends Controller
             ));
         }
 
-        return $this->render('AcmePaymentBundle:SimplePurchaseBe2Bill:prepare.html.twig', array(
+        return $this->render('AcmePaymentBundle::prepare.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -88,7 +88,7 @@ class SimplePurchaseBe2BillController extends Controller
             return $this->redirect($captureToken->getTargetUrl());
         }
 
-        return $this->render('AcmePaymentBundle:SimplePurchaseBe2Bill:prepare.html.twig', array(
+        return $this->render('AcmePaymentBundle::prepare.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -122,7 +122,7 @@ class SimplePurchaseBe2BillController extends Controller
             return $this->redirect($captureToken->getTargetUrl());
         }
 
-        return $this->render('AcmePaymentBundle:SimplePurchaseBe2Bill:prepare.html.twig', array(
+        return $this->render('AcmePaymentBundle::prepare.html.twig', array(
             'form' => $form->createView()
         ));
     }

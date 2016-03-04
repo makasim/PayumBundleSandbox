@@ -16,7 +16,7 @@ class PurchaseExamplesController extends Controller
      *   name="acme_redsys_prepare"
      * )
      *
-     * @Extra\Template("AcmeRedsysBundle:PurchaseExamples:prepare.html.twig")
+     * @Extra\Template("AcmeRedsysBundle::prepare.html.twig")
      */
     public function prepareAction(Request $request)
     {
@@ -55,7 +55,7 @@ class PurchaseExamplesController extends Controller
             return $this->redirect($captureToken->getTargetUrl());
         }
 
-        return $this->render('AcmePaymentBundle:SimplePurchaseBe2Bill:prepare.html.twig', array(
+        return $this->render('AcmePaymentBundle::prepare.html.twig', array(
             'form' => $form->createView()
         ));
     }

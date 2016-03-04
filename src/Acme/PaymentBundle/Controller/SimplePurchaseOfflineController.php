@@ -41,7 +41,7 @@ class SimplePurchaseOfflineController extends Controller
             ));
         }
 
-        return $this->render('AcmePaymentBundle:SimplePurchaseOffline:prepare.html.twig', array(
+        return $this->render('AcmePaymentBundle::prepare.html.twig', array(
             'form' => $form->createView()
         ));
     }

@@ -1,6 +1,7 @@
 <?php
 namespace Acme\PaymentBundle\Controller;
 
+use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Core\Payum;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
@@ -19,7 +20,7 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
 
             $payment = $storage->create();
             $payment['amount'] = (float) $data['amount'];
@@ -33,15 +34,10 @@ class SimplePurchasePaypalExpressViaOmnipayController extends Controller
                 'acme_payment_details_view'
             );
 
-            $payment['returnUrl'] = $captureToken->getTargetUrl();
-            $payment['cancelUrl'] = $captureToken->getTargetUrl();
-
-            $storage->update($payment);
-
             return $this->redirect($captureToken->getTargetUrl());
         }
 
-        return $this->render('AcmePaymentBundle:SimplePurchasePaypalExpressViaOmnipay:prepare.html.twig', array(
+        return $this->render('AcmePaymentBundle::prepare.html.twig', array(
             'form' => $form->createView()
         ));
     }

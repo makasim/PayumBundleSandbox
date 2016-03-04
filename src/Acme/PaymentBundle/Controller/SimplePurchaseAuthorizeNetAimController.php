@@ -39,7 +39,7 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
             ));
         }
 
-        return $this->render('AcmePaymentBundle:SimplePurchaseAuthorizeNetAim:prepare.html.twig', array(
+        return $this->render('AcmePaymentBundle::prepare.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -68,7 +68,7 @@ class SimplePurchaseAuthorizeNetAimController extends Controller
             return $this->redirect($captureToken->getTargetUrl());
         }
 
-        return $this->render('AcmePaymentBundle:SimplePurchaseAuthorizeNetAim:prepare.html.twig', array(
+        return $this->render('AcmePaymentBundle::prepare.html.twig', array(
             'form' => $form->createView()
         ));
     }

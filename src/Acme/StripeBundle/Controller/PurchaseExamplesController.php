@@ -16,7 +16,7 @@ class PurchaseExamplesController extends Controller
      *   name="acme_stripe_prepare_js"
      * )
      *
-     * @Extra\Template("AcmeStripeBundle:PurchaseExamples:prepare.html.twig")
+     * @Extra\Template("AcmePaymentBundle::prepare.html.twig")
      */
     public function prepareJsAction(Request $request)
     {
@@ -98,7 +98,7 @@ class PurchaseExamplesController extends Controller
      *   name="acme_stripe_prepare_checkout_delayed"
      * )
      *
-     * @Extra\Template("AcmeStripeBundle:PurchaseExamples:prepare.html.twig")
+     * @Extra\Template("AcmePaymentBundle::prepare.html.twig")
      */
     public function prepareCheckoutDelayedAction(Request $request)
     {

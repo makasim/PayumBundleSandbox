@@ -41,7 +41,7 @@ class SimplePurchasePaypalProController extends Controller
             ));
         }
 
-        return $this->render('AcmePaymentBundle:SimplePurchasePaypalPro:prepare.html.twig', array(
+        return $this->render('AcmePaymentBundle::prepare.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -71,7 +71,7 @@ class SimplePurchasePaypalProController extends Controller
             return $this->redirect($captureToken->getTargetUrl());
         }
 
-        return $this->render('AcmePaymentBundle:SimplePurchasePaypalPro:prepare.html.twig', array(
+        return $this->render('AcmePaymentBundle::prepare.html.twig', array(
             'form' => $form->createView(),
         ));
     }

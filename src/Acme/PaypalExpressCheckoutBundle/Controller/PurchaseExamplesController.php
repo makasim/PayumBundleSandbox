@@ -19,7 +19,7 @@ class PurchaseExamplesController extends Controller
      *   name="acme_paypal_express_checkout_prepare_simple_purchase_doctrine_orm"
      * )
      *
-     * @Extra\Template("AcmePaypalExpressCheckoutBundle:PurchaseExamples:prepare.html.twig")
+     * @Extra\Template("AcmePaymentBundle::prepare.html.twig")
      */
     public function prepareSimplePurchaseAndDoctrineOrmAction(Request $request)
     {
@@ -62,7 +62,7 @@ class PurchaseExamplesController extends Controller
      *   name="acme_paypal_express_checkout_prepare_simple_purchase_with_confirm_order_step"
      * )
      *
-     * @Extra\Template("AcmePaypalExpressCheckoutBundle:PurchaseExamples:prepare.html.twig")
+     * @Extra\Template("AcmePaymentBundle::prepare.html.twig")
      */
     public function prepareSimplePurchaseWithConfirmOrderStepAction(Request $request)
     {
@@ -106,7 +106,7 @@ class PurchaseExamplesController extends Controller
      *   name="acme_paypal_express_checkout_prepare_simple_purchase_doctrine_mongo_odm"
      * )
      *
-     * @Extra\Template("AcmePaypalExpressCheckoutBundle:PurchaseExamples:prepare.html.twig")
+     * @Extra\Template("AcmePaymentBundle::prepare.html.twig")
      */
     public function prepareSimplePurchaseAndDoctrineMongoOdmAction(Request $request)
     {
@@ -149,7 +149,7 @@ class PurchaseExamplesController extends Controller
      *   name="acme_paypal_prepare_purchase_configured_in_backend"
      * )
      *
-     * @Extra\Template("AcmePaypalExpressCheckoutBundle:PurchaseExamples:prepare.html.twig")
+     * @Extra\Template("AcmePaymentBundle::prepare.html.twig")
      */
     public function preparePurchaseConfiguredInBackendAction(Request $request)
     {
@@ -292,7 +292,7 @@ class PurchaseExamplesController extends Controller
      *   name="acme_paypal_express_checkout_prepare_purchase_with_ipn_enabled"
      * )
      *
-     * @Extra\Template("AcmePaypalExpressCheckoutBundle:PurchaseExamples:prepare.html.twig")
+     * @Extra\Template("AcmePaymentBundle::prepare.html.twig")
      */
     public function prepareWithIpnEnabledAction(Request $request)
     {
@@ -338,7 +338,7 @@ class PurchaseExamplesController extends Controller
      *   name="acme_paypal_express_checkout_prepare_simple_authorize"
      * )
      *
-     * @Extra\Template("AcmePaypalExpressCheckoutBundle:PurchaseExamples:prepare.html.twig")
+     * @Extra\Template("AcmePaymentBundle::prepare.html.twig")
      */
     public function prepareSimpleAuthorizeAction(Request $request)
     {
