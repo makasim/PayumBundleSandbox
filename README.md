@@ -53,8 +53,19 @@ If you get any warnings or recommendations, fix them before moving on.
 **Warning:**
 
 > Don't forget to configure a payment gateway options in `app/config/parameters.yml`.
- 
-3) Browsing the Demo Application
+
+
+3) Setting up the web server
+----------------------------
+
+If you run a web server make sure you set the server variables `SYMFONY_ENV` and `SYMFONY_DEBUG`.
+
+If you want to run the build-it web server you have to make sure that `variables_order` is set to `EGPCS`.
+Then run:
+
+    SYMFONY_ENV=dev SYMFONY_DEBUG=1 php app/console server:run
+
+4) Browsing the Demo Application
 --------------------------------
         
 Congratulations! You're now ready to use Symfony.
@@ -67,4 +78,4 @@ Symfony Application online" link of the `config.php` page.
 
 To see a list of payment demos access the following page:
 
-    /app_dev.php
+    /index.php
