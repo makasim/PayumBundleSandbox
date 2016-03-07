@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "72e88e688090df8ab451d846fce10912",
-    "content-hash": "f055648c66527508aa5f2eb9c6fe2a4e",
+    "hash": "dd2cc01169d1cd7b8dce82b249f5003d",
+    "content-hash": "38130badafa04c15c5973f35b75a50d4",
     "packages": [
         {
             "name": "authorizenet/authorizenet",
@@ -2739,21 +2739,21 @@
         },
         {
             "name": "payum/omnipay-bridge",
-            "version": "1.0.2",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/OmnipayBridge.git",
-                "reference": "c3f55ab053521d342dcc69e431f854d747687757"
+                "reference": "0e6d9a2a916ef8ee5af1473b6bfe5533a4f1bf44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/OmnipayBridge/zipball/c3f55ab053521d342dcc69e431f854d747687757",
-                "reference": "c3f55ab053521d342dcc69e431f854d747687757",
+                "url": "https://api.github.com/repos/Payum/OmnipayBridge/zipball/0e6d9a2a916ef8ee5af1473b6bfe5533a4f1bf44",
+                "reference": "0e6d9a2a916ef8ee5af1473b6bfe5533a4f1bf44",
                 "shasum": ""
             },
             "require": {
-                "omnipay/common": "~2.3",
-                "payum/core": "~1.0",
+                "omnipay/common": "^2.3",
+                "payum/core": "^1",
                 "php": ">=5.5.0"
             },
             "require-dev": {
@@ -2795,20 +2795,20 @@
                 "omnipay",
                 "payment"
             ],
-            "time": "2015-12-11 10:33:07"
+            "time": "2016-03-03 17:27:21"
         },
         {
             "name": "payum/payum",
-            "version": "dev-master",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "2d26dfaed2a7d780643fcae9fa8b4aaf7e6e2d80"
+                "reference": "85135397fa2210dfb0d3027ec1c809fd69a046a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/2d26dfaed2a7d780643fcae9fa8b4aaf7e6e2d80",
-                "reference": "2d26dfaed2a7d780643fcae9fa8b4aaf7e6e2d80",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/85135397fa2210dfb0d3027ec1c809fd69a046a5",
+                "reference": "85135397fa2210dfb0d3027ec1c809fd69a046a5",
                 "shasum": ""
             },
             "require": {
@@ -2846,7 +2846,9 @@
                 "phpunit/phpunit": "~4.0",
                 "propel/propel1": "~1.7",
                 "psr/log": "~1.0",
+                "sofort/sofortlib-php": "^3.0",
                 "stripe/stripe-php": "~2.0|~3.0",
+                "symfony/dependency-injection": "~2.8|~3.0",
                 "symfony/form": "~2.8|~3.0",
                 "symfony/http-foundation": "~2.8|~3.0",
                 "symfony/http-kernel": "~2.8|~3.0",
@@ -2866,7 +2868,9 @@
                 "paypal/rest-api-sdk-php": "0.5.* If you want to use PayPal REST API install paypal/rest-api-sdk-php:0.5.* library",
                 "propel/propel": "If you want to store models to Propel2 ORM",
                 "propel/propel1": "~1.7 If you want to store models to Propel1 ORM",
+                "sofort/sofortlib-php": "~3.0 If you want to use Sofort install sofort/sofortlib-php:^3.0 library",
                 "stripe/stripe-php": "~2.0|~3.0 If you want to use Stripe install stripe/stripe-php:~2.0|~3.0 library",
+                "symfony/dependency-injection": "~2.8|~3.0 If you want to use container aware stuff",
                 "symfony/form": "~2.8|~3.0 If you want to use forms",
                 "symfony/http-foundation": "~2.8|~3.0 If you want to use HttpRequestVerifier or HttpResponse reply from symfony's bridge",
                 "symfony/http-kernel": "~2.8|~3.0 If you want to use HttpRequestVerifier from symfony's bridge",
@@ -2922,24 +2926,24 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2016-02-04 11:59:15"
+            "time": "2016-03-04 20:04:43"
         },
         {
             "name": "payum/payum-bundle",
-            "version": "dev-master",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "faebf53f518aa5bd7bfe17b448cf48a3efe4fa79"
+                "reference": "83ff7158c84bde84d855484dcee9f2119861bea8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/faebf53f518aa5bd7bfe17b448cf48a3efe4fa79",
-                "reference": "faebf53f518aa5bd7bfe17b448cf48a3efe4fa79",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/83ff7158c84bde84d855484dcee9f2119861bea8",
+                "reference": "83ff7158c84bde84d855484dcee9f2119861bea8",
                 "shasum": ""
             },
             "require": {
-                "payum/core": "~1.1",
+                "payum/core": "^1.2",
                 "php": "^5.5.0|^7.0",
                 "symfony/form": "~2.8|~3.0",
                 "symfony/framework-bundle": "~2.8|~3.0",
@@ -2959,7 +2963,7 @@
                 "paypal/rest-api-sdk-php": "0.5.*",
                 "payum/jms-payment-bridge": "~1.0@dev",
                 "payum/omnipay-bridge": "~1.0@dev",
-                "payum/payum": "dev-master as 1.2.0",
+                "payum/payum": "^1.2@dev",
                 "phpunit/phpunit": "~4.0",
                 "sonata-project/admin-bundle": "~2.4@dev",
                 "stripe/stripe-php": "~1.0",
@@ -3022,7 +3026,7 @@
                 "stripe.js",
                 "symfony"
             ],
-            "time": "2016-02-05 15:06:33"
+            "time": "2016-02-16 20:25:50"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -5698,10 +5702,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "payum/payum-bundle": 20,
-        "payum/payum": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
