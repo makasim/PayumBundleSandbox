@@ -27,7 +27,7 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
 
             /** @var $payment PaymentDetails */
             $payment = $storage->create();
@@ -63,13 +63,14 @@ class PurchaseExamplesController extends Controller
     {
         $gatewayName = 'stripe_checkout';
 
-        $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
+        $storage = $this->getPayum()->getStorage(PaymentDetails::class);
 
         /** @var $payment PaymentDetails */
         $payment = $storage->create();
         $payment["amount"] = 100;
         $payment["currency"] = 'USD';
         $payment["description"] = "a description";
+        $payment['save_card'] = true;
 
         if ($request->isMethod('POST') && $request->request->get('stripeToken')) {
 
@@ -94,6 +95,42 @@ class PurchaseExamplesController extends Controller
 
     /**
      * @Extra\Route(
+     *   "/prepare_charge_stored_card",
+     *   name="acme_stripe_prepare_charge_stored_card"
+     * )
+     *
+     * @Extra\Template("AcmePaymentBundle::prepare.html.twig")
+     */
+    public function prepareChargeStoredCardAction(Request $request)
+    {
+        $gatewayName = 'stripe_checkout';
+
+        $storage = $this->getPayum()->getStorage(PaymentDetails::class);
+
+        $form = $this->createForm('form', null, ['method' => 'POST']);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var $payment PaymentDetails */
+            $payment = $storage->create();
+            $payment["amount"] = 100;
+            $payment["currency"] = 'USD';
+            $payment["customer"] = "cus_82aVMCgqBUtuLF";
+            $storage->update($payment);
+
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
+                $gatewayName,
+                $payment,
+                'acme_payment_details_view'
+            );
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        return ['form' => $form->createView()];
+    }
+
+    /**
+     * @Extra\Route(
      *   "/prepare_delayed_checkout",
      *   name="acme_stripe_prepare_checkout_delayed"
      * )
@@ -109,7 +146,7 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\PaymentDetails');
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
 
             /** @var $payment PaymentDetails */
             $payment = $storage->create();
