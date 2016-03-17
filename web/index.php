@@ -1,5 +1,8 @@
 <?php
 
+$env = (isset($env)) ? $env : null;
+$debug = (isset($debug)) ? $debug : null;
+
 if (isset($_SERVER['SYMFONY_ENV'])) {
     $env = (string) $_SERVER['SYMFONY_ENV'];
 }
