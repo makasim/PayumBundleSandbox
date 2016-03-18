@@ -38,6 +38,9 @@ payum:
             Acme\PaymentBundle\Entity\GatewayConfig: { doctrine: orm }
 
     gateways:
+        core:
+            payum.template.layout: AcmePaymentBundle::layout.html.twig
+
         paypal_express_checkout_and_doctrine_orm:
             factory: paypal_express_checkout
             username:  %paypal.express_checkout.username%
@@ -187,6 +190,7 @@ payum:
             config_key: %sofort.config_key%
 
         foo_bar_gateway:
+            factory: core
             payum.action.capture: @acme_payment.foo_bar.capture
             payum.action.status: @acme_payment.foo_bar.status
 
