@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4ebb778750cffab88465a0e72688da7f",
-    "content-hash": "6c563a4e4fedebe97bbfa3e3a108fe18",
+    "hash": "4cde79a6e61a29d945eac876812ae0b4",
+    "content-hash": "4ce49dc5b2bea35caa4ffed480ada3f3",
     "packages": [
         {
             "name": "authorizenet/authorizenet",
@@ -2522,6 +2522,49 @@
             "time": "2016-01-13 04:00:45"
         },
         {
+            "name": "paradigm/payum-paytrail",
+            "version": "dev-master",
+            "target-dir": "Paradigm/PayumPaytrail",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Paradigmfi/PayumPaytrail.git",
+                "reference": "d9399de8b29b2aea86af2e4dfb01c3637ec8c176"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Paradigmfi/PayumPaytrail/zipball/d9399de8b29b2aea86af2e4dfb01c3637ec8c176",
+                "reference": "d9399de8b29b2aea86af2e4dfb01c3637ec8c176",
+                "shasum": ""
+            },
+            "require": {
+                "payum/core": "^1.2.3"
+            },
+            "type": "project",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Paradigm\\PayumPaytrail": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "The Payum extension for Paytrail payment gateway",
+            "keywords": [
+                "payment",
+                "paytrail"
+            ],
+            "support": {
+                "source": "https://github.com/Paradigmfi/PayumPaytrail/tree/master",
+                "issues": "https://github.com/Paradigmfi/PayumPaytrail/issues"
+            },
+            "time": "2016-03-07 18:34:14"
+        },
+        {
             "name": "paragonie/random_compat",
             "version": "v1.2.1",
             "source": {
@@ -2802,16 +2845,16 @@
         },
         {
             "name": "payum/payum",
-            "version": "1.2.2",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "5724785027c1ac6ce5c9f25931af0dfdd907397a"
+                "reference": "85135397fa2210dfb0d3027ec1c809fd69a046a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/5724785027c1ac6ce5c9f25931af0dfdd907397a",
-                "reference": "5724785027c1ac6ce5c9f25931af0dfdd907397a",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/85135397fa2210dfb0d3027ec1c809fd69a046a5",
+                "reference": "85135397fa2210dfb0d3027ec1c809fd69a046a5",
                 "shasum": ""
             },
             "require": {
@@ -2929,7 +2972,7 @@
                 "stripe checkout",
                 "stripe.js"
             ],
-            "time": "2016-03-01 19:16:57"
+            "time": "2016-03-04 20:04:43"
         },
         {
             "name": "payum/payum-bundle",
@@ -5806,7 +5849,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "paradigm/payum-paytrail": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
