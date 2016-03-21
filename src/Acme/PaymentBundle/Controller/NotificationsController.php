@@ -21,6 +21,7 @@ class NotificationsController extends Controller
         foreach ($query->getResult() as $notification) {
             /** @var NotificationDetails $notification */
             $notifications[] = array(
+                'id' => $notification->getId(),
                 'gatewayName' => $notification->getGatewayName(),
                 'details' => var_export($notification->getDetails(), true),
                 'createdAt' => $notification->getCreatedAt(),
