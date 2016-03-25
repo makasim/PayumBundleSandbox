@@ -50,7 +50,6 @@
         "sofort/sofortlib-php": "^3.0",
         "phpunit/phpunit": "^4.0",
         "fabpot/php-cs-fixer": "^1.10",
-        "php-http/message": "^1",
         "php-http/guzzle6-adapter": "^1"
     },
     "scripts": {
@@ -82,10 +81,5 @@
             "dev-master": "1.2-dev"
         }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "git@github.com:Nyholm/Payum.git"
-        }
-    ]
+    "repositories": []
 }
