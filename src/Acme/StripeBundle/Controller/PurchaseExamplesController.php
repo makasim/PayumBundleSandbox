@@ -2,7 +2,10 @@
 namespace Acme\StripeBundle\Controller;
 
 use Acme\PaymentBundle\Entity\PaymentDetails;
+use Payum\Core\Bridge\Symfony\Form\Type\CreditCardType;
+use Payum\Core\Model\CreditCardInterface;
 use Payum\Core\Payum;
+use Payum\Core\Security\SensitiveValue;
 use Payum\Stripe\Request\Api\CreatePlan;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -137,6 +140,57 @@ class PurchaseExamplesController extends Controller
 
     /**
      * @Extra\Route(
+     *   "/prepare_direct",
+     *   name="acme_stripe_prepare_direct"
+     * )
+     *
+     * @Extra\Template("AcmePaymentBundle::prepare.html.twig")
+     */
+    public function prepareDirectAction(Request $request)
+    {
+        $gatewayName = 'stripe_js';
+
+        $form = $this->createPurchaseWithCreditCardForm();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
+            
+            /** @var CreditCardInterface $card */
+            $card = $data['creditCard'];
+
+            /** @var $payment PaymentDetails */
+            $payment = $storage->create();
+            $payment["amount"] = $data['amount'] * 100;
+            $payment["currency"] = $data['currency'];
+            $payment["card"] = SensitiveValue::ensureSensitive([
+                'number' => $card->getNumber(),
+                'exp_month' => $card->getExpireAt()->format('m'),
+                'exp_year' => $card->getExpireAt()->format('Y'),
+                'cvc' => $card->getSecurityCode(),
+            ]);
+            $storage->update($payment);
+
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
+                $gatewayName,
+                $payment,
+                'acme_payment_details_view'
+            );
+
+            return $this->forward('PayumBundle:Capture:do', array(
+                'payum_token' => $captureToken,
+            ));
+        }
+
+        return array(
+            'form' => $form->createView(),
+            'gatewayName' => $gatewayName
+        );
+    }
+
+    /**
+     * @Extra\Route(
      *   "/prepare_subscription",
      *   name="acme_stripe_prepare_subscription"
      * )
@@ -226,6 +280,23 @@ class PurchaseExamplesController extends Controller
                 'constraints' => array(new Range(array('max' => 2)))
             ))
             ->add('currency', null, array('data' => 'USD'))
+            ->getForm()
+        ;
+    }
+
+    /**
+     * @return \Symfony\Component\Form\Form
+     */
+    protected function createPurchaseWithCreditCardForm()
+    {
+        return $this->createFormBuilder()
+            ->add('amount', null, array(
+                'data' => 1.23,
+                'constraints' => array(new Range(array('max' => 2)))
+            ))
+            ->add('currency', null, array('data' => 'USD'))
+            ->add('creditCard', CreditCardType::class)
+
             ->getForm()
         ;
     }
