@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    <form method="POST">
+    <form method="{{ form_method|default('POST') }}"
+          {% if form_action|default %} action="{{ form_action }}" {% endif %} >
         {% if form|default %}
             {{ form_widget(form) }}
         {% endif %}

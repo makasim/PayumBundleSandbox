@@ -1,0 +1,21 @@
+{% extends "AcmePaymentBundle::layout.html.twig" %}
+
+{% block title %}
+    {{ pagetitle|default('Get token') }}
+{% endblock %}
+
+{% block content %}
+    <form method="{{ form_method|default('POST') }}"
+          {% if form_action|default %} action="{{ form_action }}" {% endif %} >
+        <div>
+            <label for="access_token">
+                Access token:
+            </label>
+            <input type="text" id="access_token" name="request_token">
+        </div>
+        <input type="hidden" id="cmd" name="cmd" value="_grant-permission">
+        <button type="submit">Get token</button>
+    </form>
+{% endblock %}
+
+{% set code = code(_self) %}

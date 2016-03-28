@@ -53,7 +53,7 @@ class PaypalPermissionsGetRequestTokenController extends Controller
             ));
         }
 
-        return $this->render('AcmePaymentBundle::permissionsGetToken.html.twig', array(
+        return $this->render('AcmePaymentBundle::permissionsGetRequestToken.html.twig', array(
             'pagetitle' => 'Get Request token',
             'form' => $form->createView()
         ));

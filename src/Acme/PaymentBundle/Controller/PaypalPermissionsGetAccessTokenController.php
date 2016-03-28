@@ -14,6 +14,7 @@ use Payum\Core\Payum;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\GenericTokenFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Validator\Constraints\Range;
 
@@ -33,24 +34,14 @@ class PaypalPermissionsGetAccessTokenController extends Controller
 
         $permissions = new PermissionsService($config);
 
-        if ($request->isMethod('POST')) {
-            $callbackUrl = $request->getUri(); // todo: url to captureAction here
-            $request = new RequestPermissionsRequest('EXPRESS_CHECKOUT', $callbackUrl);
-            $request->requestEnvelope = new RequestEnvelope('en_US');
-
-            $response = $permissions->RequestPermissions($request);
-            /** @var RequestPermissionsResponse */
-
-            if(strtoupper($response->responseEnvelope->ack) != 'SUCCESS') {
-                throw new BadCredentialsException('No token received! Response object: ' . json_encode((array) $response));
-            }
-            // no URI builder in SDK..
-            $payPalURL = 'https://www.sandbox.paypal.com/webscr&cmd='.'_grant-permission&request_token='.$response->token;
-            return $this->redirect($payPalURL);
-        }
-
         if (!$request->query->has('verification_code')) {
-            return $this->render('AcmePaymentBundle::permissionsGetToken.html.twig', array());
+            $payPalAction = 'https://www.sandbox.paypal.com/webscr';
+
+            return $this->render('AcmePaymentBundle::permissionsGetAccessToken.html.twig', array(
+                'pagetitle' => 'Get Access token',
+                'form_action' => $payPalAction,
+                'form_method' => 'GET',
+            ));
         }
 
         // validation is also needed..
@@ -65,21 +56,22 @@ class PaypalPermissionsGetAccessTokenController extends Controller
             'status' => $response->responseEnvelope->ack,
             'response' => json_encode($response, JSON_PRETTY_PRINT)
         ));
-
     }
 
     /**
      * @return \Symfony\Component\Form\Form
      */
-    protected function createPurchaseForm()
+    protected function createDetailsForm()
     {
         return $this->createFormBuilder()
-            ->add('Return URL', null, array(
-                'data' => 1.1,
-                'constraints' => array(new Range(array('max' => 2)))
+            ->add('request_token', null, array(
+                'data' => '',
+                'property_path' => 'request_token'
             ))
-//            ->add('currency', null, array('data' => 'USD'))
-
+            ->add('cmd', 'hidden', array(
+                'data' => '_grant-permission',
+                'property_path' => 'cmd',
+            ))
             ->getForm()
             ;
     }
