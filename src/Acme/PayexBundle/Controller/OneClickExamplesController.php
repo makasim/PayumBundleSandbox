@@ -3,12 +3,10 @@ namespace Acme\PayexBundle\Controller;
 
 use Acme\PaymentBundle\Entity\AgreementDetails;
 use Acme\PaymentBundle\Entity\PaymentDetails;
+use Payum\Core\Model\Identity;
 use Payum\Core\Payum;
 use Payum\Core\Request\GetHumanStatus;
 use Payum\Core\Request\Sync;
-use Payum\Core\Registry\RegistryInterface;
-use Payum\Core\Model\Identificator;
-use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Payex\Api\AgreementApi;
 use Payum\Payex\Api\OrderApi;
 use Payum\Payex\Request\Api\CreateAgreement;
@@ -32,12 +30,11 @@ class OneClickExamplesController extends Controller
     {
         $gatewayName = 'payex_agreement';
 
-        $agreementStorage = $this->getPayum()->getStorage('Acme\PaymentBundle\Entity\AgreementDetails');
+        $agreementStorage = $this->getPayum()->getStorage(AgreementDetails::class);
 
         if ($request->get('confirm')) {
-            $syncAgreement = new Sync(new Identificator(
-                $request->get('agreementId'),
-                'Acme\PaymentBundle\Entity\AgreementDetails'
+            $syncAgreement = new Sync(new Identity(
+                $request->get('agreementId'), AgreementDetails::class
             ));
 
             $this->getPayum()->getGateway($gatewayName)->execute($syncAgreement);
@@ -125,9 +122,9 @@ class OneClickExamplesController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
 
-            $agreementStatus = new GetHumanStatus(new Identificator(
+            $agreementStatus = new GetHumanStatus(new Identity(
                 $request->get('agreementId'),
-                'Acme\PaymentBundle\Entity\AgreementDetails'
+                AgreementDetails::class
             ));
             $this->getPayum()->getGateway($gatewayName)->execute($agreementStatus);
             if (false == $agreementStatus->isCaptured()) {
@@ -158,7 +155,7 @@ class OneClickExamplesController extends Controller
             $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
-                'acme_payment_details_view'
+                'acme_payment_done'
             );
 
             $payment['Returnurl'] = $captureToken->getTargetUrl();

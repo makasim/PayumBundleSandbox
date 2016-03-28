@@ -55,7 +55,7 @@ class PurchaseExamplesController extends Controller
             $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
-                'acme_payment_details_view'
+                'acme_payment_done'
             );
 
             $payment['returnUrl'] = $captureToken->getTargetUrl();
@@ -111,7 +111,7 @@ class PurchaseExamplesController extends Controller
             $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
-                'acme_payment_details_view'
+                'acme_payment_done'
             );
 
             $payment['returnUrl'] = $captureToken->getTargetUrl();

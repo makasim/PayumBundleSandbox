@@ -54,7 +54,7 @@ class PurchaseExamplesController extends Controller
             $authorizeToken = $this->getPayum()->getTokenFactory()->createAuthorizeToken(
                 $gatewayName,
                 $payment,
-                'acme_payment_details_view'
+                'acme_payment_done'
             );
 
             $payment['merchant'] = array(
@@ -132,7 +132,7 @@ class PurchaseExamplesController extends Controller
             $captureToken = $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
-                'acme_payment_details_view'
+                'acme_payment_done'
             );
 
             return $this->redirect($captureToken->getTargetUrl());
@@ -199,7 +199,7 @@ class PurchaseExamplesController extends Controller
             $captureToken = $captureToken = $this->getPayum()->getTokenFactory()->createAuthorizeToken(
                 $gatewayName,
                 $payment,
-                'acme_payment_details_view'
+                'acme_payment_done'
             );
 
             return $this->redirect($captureToken->getTargetUrl());

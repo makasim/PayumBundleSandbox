@@ -2,6 +2,7 @@ payum:
     storages:
         # the first storage is the main one
         Acme\PaymentBundle\Entity\Payment: { doctrine: orm }
+        Acme\PaymentBundle\Entity\Payout: { doctrine: orm }
 
         Acme\PaymentBundle\Entity\PaymentDetails: { doctrine: orm }
         Acme\PaymentBundle\Entity\AgreementDetails: { doctrine: orm }
@@ -40,6 +41,13 @@ payum:
     gateways:
         core:
             payum.template.layout: AcmePaymentBundle::layout.html.twig
+
+        paypal_masspay:
+            factory: paypal_masspay
+            username:  %paypal.masspay.username%
+            password:  %paypal.masspay.password%
+            signature: %paypal.masspay.signature%
+            sandbox: true
 
         paypal_express_checkout_and_doctrine_orm:
             factory: paypal_express_checkout

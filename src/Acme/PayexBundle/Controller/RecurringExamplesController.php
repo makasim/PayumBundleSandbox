@@ -4,10 +4,9 @@ namespace Acme\PayexBundle\Controller;
 use Acme\PaymentBundle\Entity\AgreementDetails;
 use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
+use Payum\Core\Model\Identity;
 use Payum\Core\Request\GetBinaryStatus;
 use Payum\Core\Request\Sync;
-use Payum\Core\Model\Identificator;
-use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Payex\Api\AgreementApi;
 use Payum\Payex\Api\RecurringApi;
 use Payum\Payex\Request\Api\CreateAgreement;
@@ -130,15 +129,15 @@ class RecurringExamplesController extends PayumController
     {
         $payment = $this->getPayum()->getGateway($gatewayName);
 
-        $payment->execute($syncAgreement = new Sync(new Identificator(
+        $payment->execute($syncAgreement = new Sync(new Identity(
             $agreementId,
-            'Acme\PaymentBundle\Entity\AgreementDetails'
+            AgreementDetails::class
         )));
         $payment->execute($agreementStatus = new GetBinaryStatus($syncAgreement->getModel()));
 
-        $paymentStatus = new GetBinaryStatus(new Identificator(
+        $paymentStatus = new GetBinaryStatus(new Identity(
             $paymentId,
-            'Acme\PaymentBundle\Entity\PaymentDetails'
+            PaymentDetails::class
         ));
         $payment->execute($paymentStatus);
 

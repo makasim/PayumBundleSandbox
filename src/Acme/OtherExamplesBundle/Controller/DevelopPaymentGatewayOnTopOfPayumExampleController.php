@@ -37,7 +37,7 @@ class DevelopPaymentGatewayOnTopOfPayumExampleController extends PayumController
             $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
-                'acme_payment_details_view'
+                'acme_payment_done'
             );
 
             return $this->redirect($captureToken->getTargetUrl());

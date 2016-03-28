@@ -51,11 +51,11 @@ acme_payment_prepare_obtain_credit_card_paypal_pro:
     pattern:  /payment/simple_purchase/paypal_pro_checkout/prepare-obtain-credit-card
     defaults: { _controller: AcmePaymentBundle:SimplePurchasePaypalPro:prepareObtainCreditCard }
 
-acme_payment_details_view:
+acme_payment_done:
     pattern:  /payment/details
     defaults: { _controller: AcmePaymentBundle:Details:view }
 
-acme_payment_payment_done:
+acme_payment_done:
     pattern:  /payment/order/done
     defaults: { _controller: AcmePaymentBundle:Details:viewPayment }
     

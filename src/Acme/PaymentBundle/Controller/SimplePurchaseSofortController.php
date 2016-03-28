@@ -38,7 +38,7 @@ class SimplePurchaseSofortController extends Controller
             $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $payment,
-                'acme_payment_payment_done'
+                'acme_payment_done'
             );
 
             return $this->redirect($captureToken->getTargetUrl());
