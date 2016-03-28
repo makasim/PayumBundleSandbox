@@ -65,8 +65,17 @@ acme_payment_notifications_list:
 
 # PayPal permissions SDK experiment
 
+# fixme: remove
 acme_payment_paypal_permissions_get_token:
     pattern:  /payment/paypal-permissions/get-token
     defaults: { _controller: AcmePaymentBundle:PaypalPermissions:prepare }
+
+acme_payment_paypal_permissions_get_request_token:
+    pattern:  /payment/paypal-permissions/get-request-token
+    defaults: { _controller: AcmePaymentBundle:PaypalPermissionsGetRequestToken:prepare }
+
+acme_payment_paypal_permissions_get_access_token:
+    pattern:  /payment/paypal-permissions/get-access-token
+    defaults: { _controller: AcmePaymentBundle:PaypalPermissionsGetAccessToken:prepare }
 
 # /end PayPal permissions SDK experiment
