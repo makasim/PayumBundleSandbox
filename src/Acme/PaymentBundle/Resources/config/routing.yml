@@ -62,3 +62,11 @@ acme_payment_payment_done:
 acme_payment_notifications_list:
     pattern:  /payment/notifications/list
     defaults: { _controller: AcmePaymentBundle:Notifications:list }
+
+# PayPal permissions SDK experiment
+
+acme_payment_paypal_permissions_get_token:
+    pattern:  /payment/paypal-permissions/get-token
+    defaults: { _controller: AcmePaymentBundle:PaypalPermissions:prepare }
+
+# /end PayPal permissions SDK experiment

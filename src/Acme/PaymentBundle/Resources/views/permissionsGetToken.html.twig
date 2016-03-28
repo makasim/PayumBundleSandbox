@@ -1,0 +1,11 @@
+{% extends "AcmePaymentBundle::layout.html.twig" %}
+
+{% block title "Prepare payment" %}
+
+{% block content %}
+    <form method="POST">
+        <input type="submit" value="Get access token for ExpressCheckout" />
+    </form>
+{% endblock %}
+
+{% set code = code(_self) %}
