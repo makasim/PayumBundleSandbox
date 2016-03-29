@@ -46,7 +46,7 @@ class PaypalPermissionsGetRequestTokenController extends Controller
             /** @var RequestPermissionsResponse */
             $response = $permissions->RequestPermissions($request);
 
-            return $this->render('AcmePaymentBundle:Details:accessToken.html.twig', array(
+            return $this->render('AcmePaymentBundle:Details:token.html.twig', array(
                 'pagetitle' => 'Request token',
                 'status' => $response->responseEnvelope->ack,
                 'response' => json_encode($response, JSON_PRETTY_PRINT),
