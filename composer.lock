@@ -1721,6 +1721,68 @@
             "time": "2014-01-12 16:20:24"
         },
         {
+            "name": "jeremykendall/php-domain-parser",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeremykendall/php-domain-parser.git",
+                "reference": "896e7e70f02bd4fd77190052799bc61e4d779672"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeremykendall/php-domain-parser/zipball/896e7e70f02bd4fd77190052799bc61e4d779672",
+                "reference": "896e7e70f02bd4fd77190052799bc61e4d779672",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-intl": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "jeremykendall/debug-die": "0.0.1.*",
+                "mikey179/vfsstream": "~1.4",
+                "phpunit/phpunit": "~4.4"
+            },
+            "bin": [
+                "bin/parse",
+                "bin/update-psl"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Pdp\\": "src/"
+                },
+                "files": [
+                    "src/pdp-parse-url.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Kendall",
+                    "homepage": "http://about.me/jeremykendall",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/jeremykendall/php-domain-parser/graphs/contributors"
+                }
+            ],
+            "description": "Public Suffix List based URL parsing implemented in PHP.",
+            "homepage": "https://github.com/jeremykendall/php-domain-parser",
+            "keywords": [
+                "Public Suffix List",
+                "domain parsing",
+                "url parsing"
+            ],
+            "time": "2015-03-30 12:49:45"
+        },
+        {
             "name": "jms/metadata",
             "version": "1.5.1",
             "source": {
@@ -2234,36 +2296,40 @@
             "time": "2015-11-12 13:51:40"
         },
         {
-            "name": "league/url",
-            "version": "3.3.5",
+            "name": "league/uri",
+            "version": "4.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/thephpleague/url.git",
-                "reference": "1ae2c3ce29a7c5438339ff6388225844e6479da8"
+                "url": "https://github.com/thephpleague/uri.git",
+                "reference": "0cbce9fe7d9808690ebda67b110ad96bcae9daee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/url/zipball/1ae2c3ce29a7c5438339ff6388225844e6479da8",
-                "reference": "1ae2c3ce29a7c5438339ff6388225844e6479da8",
+                "url": "https://api.github.com/repos/thephpleague/uri/zipball/0cbce9fe7d9808690ebda67b110ad96bcae9daee",
+                "reference": "0cbce9fe7d9808690ebda67b110ad96bcae9daee",
                 "shasum": ""
             },
             "require": {
+                "ext-fileinfo": "*",
+                "ext-intl": "*",
                 "ext-mbstring": "*",
-                "php": ">=5.3.0",
-                "true/punycode": "^2.0"
+                "jeremykendall/php-domain-parser": "^3.0",
+                "php": ">=5.5.9",
+                "psr/http-message": "^1.0"
             },
             "require-dev": {
+                "fabpot/php-cs-fixer": "^1.9",
                 "phpunit/phpunit": "^4.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.3-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "League\\Url\\": "src"
+                    "League\\Uri\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2274,18 +2340,24 @@
                 {
                     "name": "Ignace Nyamagana Butera",
                     "email": "nyamsprod@gmail.com",
-                    "homepage": "https://github.com/nyamsprod/",
-                    "role": "Developer"
+                    "homepage": "https://nyamsprod.com"
                 }
             ],
-            "description": "League/url is a lightweight PHP Url manipulating library",
+            "description": "URI manipulation library",
             "homepage": "http://url.thephpleague.com",
             "keywords": [
+                "data",
+                "data-uri",
+                "ftp",
+                "http",
                 "parse_url",
-                "php",
-                "url"
+                "psr-7",
+                "rfc3986",
+                "uri",
+                "url",
+                "ws"
             ],
-            "time": "2015-07-15 08:24:12"
+            "time": "2016-03-24 08:38:29"
         },
         {
             "name": "monolog/monolog",
@@ -2861,16 +2933,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "26151abe191b64814b4cbbf3291a0c6242d2ffe1"
+                "reference": "45634d2265c58aa97e29c8bdd8020394f3696d29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/26151abe191b64814b4cbbf3291a0c6242d2ffe1",
-                "reference": "26151abe191b64814b4cbbf3291a0c6242d2ffe1",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/45634d2265c58aa97e29c8bdd8020394f3696d29",
+                "reference": "45634d2265c58aa97e29c8bdd8020394f3696d29",
                 "shasum": ""
             },
             "require": {
-                "league/url": "~3.0",
+                "league/uri": "~4.0",
                 "payum/iso4217": "~1.0",
                 "php": "^5.5.0|^7.0",
                 "php-http/client-implementation": "^1.0",
@@ -2889,6 +2961,7 @@
                 "payum/paypal-ipn": "self.version",
                 "payum/paypal-pro-checkout-nvp": "self.version",
                 "payum/paypal-rest": "self.version",
+                "payum/sofort": "self.version",
                 "payum/stripe": "self.version"
             },
             "require-dev": {
@@ -2920,23 +2993,11 @@
             },
             "suggest": {
                 "authorizenet/authorizenet": "~1.8 If you want to use Authorizenet.NET install authorizenet/authorizenet:~1.8 library",
-                "doctrine/mongodb-odm": "~1.0 If you want to store models to mongo doctrin2 ODM",
-                "doctrine/orm": "~2.5 If you want to store models to database using doctrin2 ORM",
-                "ext-soap": "* If you want to use Payex extension you have to install soap extension",
                 "fp/klarna-invoice": "0.1.* If you want to use Klarna Invoice install fp/klarna-invoice:0.1.* library",
                 "klarna/checkout": "~1.0|~2.0 If you want to use Klarna Checkout install klarna/checkout:~1|~2.0 library",
-                "monolog/monolog": "~1.0 If you want to use PSR-3 logger",
                 "paypal/rest-api-sdk-php": "0.5.* If you want to use PayPal REST API install paypal/rest-api-sdk-php:0.5.* library",
-                "propel/propel": "If you want to store models to Propel2 ORM",
-                "propel/propel1": "~1.7 If you want to store models to Propel1 ORM",
                 "sofort/sofortlib-php": "~3.0 If you want to use Sofort install sofort/sofortlib-php:^3.0 library",
-                "stripe/stripe-php": "~2.0|~3.0 If you want to use Stripe install stripe/stripe-php:~2.0|~3.0 library",
-                "symfony/dependency-injection": "~2.8|~3.0 If you want to use container aware stuff",
-                "symfony/form": "~2.8|~3.0 If you want to use forms",
-                "symfony/http-foundation": "~2.8|~3.0 If you want to use HttpRequestVerifier or HttpResponse reply from symfony's bridge",
-                "symfony/http-kernel": "~2.8|~3.0 If you want to use HttpRequestVerifier from symfony's bridge",
-                "symfony/routing": "~2.8|~3.0 If you want to use TokenFactory from symfony's bridge",
-                "zendframework/zend-db": "~2.0 If you want to store models to Zend Db ORM"
+                "stripe/stripe-php": "~2.0|~3.0 If you want to use Stripe install stripe/stripe-php:~2.0|~3.0 library"
             },
             "type": "library",
             "extra": {
@@ -2977,6 +3038,7 @@
                 "jms payment",
                 "payex",
                 "payment",
+                "payout",
                 "paypal",
                 "paypal digital goods",
                 "paypal express",
@@ -2985,9 +3047,10 @@
                 "recurring payment",
                 "stripe",
                 "stripe checkout",
-                "stripe.js"
+                "stripe.js",
+                "withdrawal"
             ],
-            "time": "2016-03-25 09:35:14"
+            "time": "2016-03-29 09:09:24"
         },
         {
             "name": "payum/payum-bundle",
@@ -2995,12 +3058,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "8ac66011c78ffdcf8ca4838f62d276b2d6fa97e8"
+                "reference": "907a54dda51cda9708990caedbe09872b44cae52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/8ac66011c78ffdcf8ca4838f62d276b2d6fa97e8",
-                "reference": "8ac66011c78ffdcf8ca4838f62d276b2d6fa97e8",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/907a54dda51cda9708990caedbe09872b44cae52",
+                "reference": "907a54dda51cda9708990caedbe09872b44cae52",
                 "shasum": ""
             },
             "require": {
@@ -3088,7 +3151,7 @@
                 "stripe.js",
                 "symfony"
             ],
-            "time": "2016-03-25 10:25:53"
+            "time": "2016-03-28 15:08:02"
         },
         {
             "name": "php-http/guzzle6-adapter",
@@ -5853,16 +5916,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.8.3",
+            "version": "v2.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "7a9a5fce7ce6e448e527f635463dda00761e12c2"
+                "reference": "9e14f9f4869c19188a376eab61d9a1c1f1fee347"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/7a9a5fce7ce6e448e527f635463dda00761e12c2",
-                "reference": "7a9a5fce7ce6e448e527f635463dda00761e12c2",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/9e14f9f4869c19188a376eab61d9a1c1f1fee347",
+                "reference": "9e14f9f4869c19188a376eab61d9a1c1f1fee347",
                 "shasum": ""
             },
             "require": {
@@ -5949,11 +6012,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Symfony\\Bridge\\Doctrine\\": "src/Symfony/Bridge/Doctrine/",
-                    "Symfony\\Bridge\\Monolog\\": "src/Symfony/Bridge/Monolog/",
-                    "Symfony\\Bridge\\ProxyManager\\": "src/Symfony/Bridge/ProxyManager/",
-                    "Symfony\\Bridge\\Swiftmailer\\": "src/Symfony/Bridge/Swiftmailer/",
-                    "Symfony\\Bridge\\Twig\\": "src/Symfony/Bridge/Twig/",
+                    "Symfony\\Bridge\\": "src/Symfony/Bridge/",
                     "Symfony\\Bundle\\": "src/Symfony/Bundle/",
                     "Symfony\\Component\\": "src/Symfony/Component/"
                 },
@@ -5983,53 +6042,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-02-28 21:06:29"
-        },
-        {
-            "name": "true/punycode",
-            "version": "v2.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/true/php-punycode.git",
-                "reference": "74fa01d4de396c40e239794123b3874cb594a30c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/true/php-punycode/zipball/74fa01d4de396c40e239794123b3874cb594a30c",
-                "reference": "74fa01d4de396c40e239794123b3874cb594a30c",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.7",
-                "squizlabs/php_codesniffer": "~2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "TrueBV\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Renan Gonçalves",
-                    "email": "renan.saddam@gmail.com"
-                }
-            ],
-            "description": "A Bootstring encoding of Unicode for Internationalized Domain Names in Applications (IDNA)",
-            "homepage": "https://github.com/true/php-punycode",
-            "keywords": [
-                "idna",
-                "punycode"
-            ],
-            "time": "2016-01-07 17:12:58"
+            "time": "2016-03-27 12:57:53"
         },
         {
             "name": "twig/extensions",
