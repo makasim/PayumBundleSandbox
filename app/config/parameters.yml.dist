@@ -13,6 +13,10 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    paypal.masspay.username:  EDIT ME
+    paypal.masspay.password:  EDIT ME
+    paypal.masspay.signature: EDIT ME
     
     paypal.express_checkout.username:  EDIT ME
     paypal.express_checkout.password:  EDIT ME

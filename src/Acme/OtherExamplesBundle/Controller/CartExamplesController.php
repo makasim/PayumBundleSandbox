@@ -36,7 +36,7 @@ class CartExamplesController extends Controller
             $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $gatewayName,
                 $cart,
-                'acme_payment_details_view' // TODO
+                'acme_payment_done' // TODO
             );
 
             return $this->redirect($captureToken->getTargetUrl());

@@ -2933,12 +2933,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "45634d2265c58aa97e29c8bdd8020394f3696d29"
+                "reference": "3e56893ef5395a03c08f0da7fe58e4ee202d9a6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/45634d2265c58aa97e29c8bdd8020394f3696d29",
-                "reference": "45634d2265c58aa97e29c8bdd8020394f3696d29",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/3e56893ef5395a03c08f0da7fe58e4ee202d9a6b",
+                "reference": "3e56893ef5395a03c08f0da7fe58e4ee202d9a6b",
                 "shasum": ""
             },
             "require": {
@@ -3050,7 +3050,7 @@
                 "stripe.js",
                 "withdrawal"
             ],
-            "time": "2016-03-29 09:09:24"
+            "time": "2016-03-29 17:49:48"
         },
         {
             "name": "payum/payum-bundle",
@@ -3271,16 +3271,16 @@
         },
         {
             "name": "php-http/message",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/message.git",
-                "reference": "a3b45d51ae5a7e800b857d2424792fe26c7dcd63"
+                "reference": "c8fadec9533f5e34a8a730a947fa76363f3aa620"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/message/zipball/a3b45d51ae5a7e800b857d2424792fe26c7dcd63",
-                "reference": "a3b45d51ae5a7e800b857d2424792fe26c7dcd63",
+                "url": "https://api.github.com/repos/php-http/message/zipball/c8fadec9533f5e34a8a730a947fa76363f3aa620",
+                "reference": "c8fadec9533f5e34a8a730a947fa76363f3aa620",
                 "shasum": ""
             },
             "require": {
@@ -3305,7 +3305,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.3-dev"
                 }
             },
             "autoload": {
@@ -3333,7 +3333,7 @@
                 "message",
                 "psr-7"
             ],
-            "time": "2016-02-25 10:37:53"
+            "time": "2016-03-29 20:44:24"
         },
         {
             "name": "php-http/message-factory",

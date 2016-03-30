@@ -14,6 +14,10 @@ payum_capture:
 payum_authorize:
     resource: "@PayumBundle/Resources/config/routing/authorize.xml"
     prefix:   /
+
+payum_payout:
+    resource: "@PayumBundle/Resources/config/routing/payout.xml"
+    prefix:   /
     
 payum_sync:
     resource: "@PayumBundle/Resources/config/routing/sync.xml"
