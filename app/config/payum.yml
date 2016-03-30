@@ -187,6 +187,7 @@ payum:
             config_key: %sofort.config_key%
 
         foo_bar_gateway:
+            factory: core
             payum.action.capture: @acme_payment.foo_bar.capture
             payum.action.status: @acme_payment.foo_bar.status
 
