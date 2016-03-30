@@ -71,6 +71,11 @@ payum:
             factory: paypal_express_checkout
             payum.api: @acme.payment.payum.paypal_express_checkout_api
 
+        # note: there is also custom api
+        paypal_express_checkout_via_token:
+            factory: paypal_express_checkout
+            payum.api: @acme.payment.payum.paypal_express_checkout_api
+
         paypal_pro_checkout:
             factory: paypal_pro_checkout
             username: %paypal.pro_checkout.username%

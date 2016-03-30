@@ -20,6 +20,13 @@ parameters:
     paypal.express_checkout.usd_testuser_login: EDIT ME
     paypal.express_checkout.usd_testuser_password: EDIT ME
 
+    # note: it's another account
+    paypal.express_checkout_via_token.username: EDIT ME
+    paypal.express_checkout_via_token.password: EDIT ME
+    paypal.express_checkout_via_token.signature: EDIT ME
+    paypal.express_checkout_via_token.token: EDIT ME
+    paypal.express_checkout_via_token.secret: EDIT ME
+
     paypal.pro_checkout.username: EDIT ME
     paypal.pro_checkout.password: EDIT ME
     paypal.pro_checkout.partner:  EDIT ME
