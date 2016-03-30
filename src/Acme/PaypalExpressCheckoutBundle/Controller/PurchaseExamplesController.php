@@ -288,6 +288,49 @@ class PurchaseExamplesController extends Controller
 
     /**
      * @Extra\Route(
+     *   "/prepare_simple_purchase_via_token",
+     *   name="acme_paypal_express_checkout_prepare_simple_purchase_via_token"
+     * )
+     *
+     * @Extra\Template
+     */
+    public function prepareViaTokenAction(Request $request)
+    {
+        $gatewayName = 'paypal_express_checkout_via_token';
+
+        $form = $this->createPurchaseForm();
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
+
+            /** @var $payment PaymentDetails */
+            $payment = $storage->create();
+            $payment['PAYMENTREQUEST_0_CURRENCYCODE'] = $data['currency'];
+            $payment['PAYMENTREQUEST_0_AMT'] = $data['amount'];
+            $storage->update($payment);
+
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
+                $gatewayName,
+                $payment,
+                'acme_payment_details_view'
+            );
+
+            $payment['INVNUM'] = $payment->getId();
+            $storage->update($payment);
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        return array(
+            'form' => $form->createView(),
+            'gatewayName' => $gatewayName
+        );
+    }
+
+    /**
+     * @Extra\Route(
      *   "/prepare_purchase_with_ipn_enabled",
      *   name="acme_paypal_express_checkout_prepare_purchase_with_ipn_enabled"
      * )
