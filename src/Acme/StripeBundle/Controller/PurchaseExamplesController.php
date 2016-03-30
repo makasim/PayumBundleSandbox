@@ -74,7 +74,6 @@ class PurchaseExamplesController extends Controller
         $payment["amount"] = 100;
         $payment["currency"] = 'USD';
         $payment["description"] = "a description";
-        $payment['save_card'] = true;
 
         if ($request->isMethod('POST') && $request->request->get('stripeToken')) {
 
