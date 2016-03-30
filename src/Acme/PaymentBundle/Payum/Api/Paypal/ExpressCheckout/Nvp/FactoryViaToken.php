@@ -1,10 +1,11 @@
 <?php
 namespace Acme\PaymentBundle\Payum\Api\Paypal\ExpressCheckout\Nvp;
 
-use Payum\Paypal\ExpressCheckout\Nvp\Api;
+
+use Acme\PaymentBundle\Payum\Paypal\ExpressCheckout\Nvp\ApiViaToken;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class Factory
+class FactoryViaToken
 {
     /**
      * @var \Symfony\Component\DependencyInjection\ContainerInterface
@@ -20,11 +21,11 @@ class Factory
     }
 
     /**
-     * @return Api
+     * @return ApiViaToken
      */
     public function createPaypalExpressCheckoutApi()
     {
-        return new Api(array(
+        return new ApiViaToken(array(
             'username' => $this->container->getParameter('paypal.express_checkout_via_token.username'),
             'password' => $this->container->getParameter('paypal.express_checkout_via_token.password'),
             'signature' => $this->container->getParameter('paypal.express_checkout_via_token.signature'),

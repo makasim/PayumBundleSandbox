@@ -15,7 +15,7 @@ services:
             - @service_container
 
     acme.payment.payum.api.factory_via_token:
-        class: Acme\PaymentBundle\Payum\Api\Paypal\ExpressCheckout\Nvp\Factory
+        class: Acme\PaymentBundle\Payum\Api\Paypal\ExpressCheckout\Nvp\FactoryViaToken
         arguments:
             - @service_container
 

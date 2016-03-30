@@ -25,7 +25,7 @@ parameters:
     paypal.express_checkout_via_token.password: EDIT ME
     paypal.express_checkout_via_token.signature: EDIT ME
     paypal.express_checkout_via_token.token: EDIT ME
-    paypal.express_checkout_via_token.secret: EDIT ME
+    paypal.express_checkout_via_token.tokenSecret: EDIT ME
 
     paypal.pro_checkout.username: EDIT ME
     paypal.pro_checkout.password: EDIT ME
