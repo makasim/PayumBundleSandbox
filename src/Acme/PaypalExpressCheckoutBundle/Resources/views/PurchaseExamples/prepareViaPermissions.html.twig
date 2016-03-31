@@ -8,11 +8,11 @@
         This is a simple example with minimal amount of code and config.
     </p>
     <p>
-        This payment will be processed with another Paypal merchant account, that You can find in parameters.yml file (paypal.express_checkout_via_token section), and it also needs a token/tokenSecret pair, that was received for this account.
+        This payment will be processed in behalf of another Paypal merchant account, that You can define in parameters.yml file (paypal.express_checkout.third_party_subject field). This factory needs also a token/tokenSecret pair, that was given to your merchant account by the account You should work on behalf to.
     </p>
     <p>
-        More info in <a
-                href="https://developer.paypal.com/docs/classic/permissions-service/integration-guide/PermissionsAbout/" target="_blank">Official PayPal Permissions API guide</a>
+        More info about this feature You can find in <a
+                href="https://developer.paypal.com/docs/classic/permissions-service/integration-guide/PermissionsAbout/" target="_blank">Official PayPal Permissions API documentation</a>
     </p>
     <p>
         Use these credentials <strong>{{ paypal_usd_testuser_login }}/{{ paypal_usd_testuser_password }}</strong> to login on paypal side.
