@@ -26,6 +26,8 @@ parameters:
     paypal.express_checkout_via_token.signature: EDIT ME
     paypal.express_checkout_via_token.token: EDIT ME
     paypal.express_checkout_via_token.tokenSecret: EDIT ME
+    ## e-mail of the merchant you work in behalf of
+    paypal.express_checkout_via_token.third_party_subject: EDIT ME
 
     paypal.pro_checkout.username: EDIT ME
     paypal.pro_checkout.password: EDIT ME

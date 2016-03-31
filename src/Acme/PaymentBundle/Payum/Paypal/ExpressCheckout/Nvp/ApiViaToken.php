@@ -68,8 +68,14 @@ class ApiViaToken extends Api
      */
     protected function addAuthorizeFields(array &$fields)
     {
-        // we add nothing here; instead we use headers for this auth type
+//        parent::addAuthorizeFields($fields);
+        $fields['PWD'] = $this->options['password'];
+        $fields['USER'] = $this->options['username'];
+        $fields['SIGNATURE'] = $this->options['signature'];
+
+        $fields['SUBJECT'] = $this->options['third_party_subject'];
     }
+
 
     protected function addAuthorizeHeader(array &$headers, $method = 'POST')
     {
@@ -81,9 +87,6 @@ class ApiViaToken extends Api
             $method,
             $this->getApiEndpoint()
         );
-
-//        var_dump($this->options);
-//        die($authSignature);
 
         $headers['X-PAYPAL-AUTHORIZATION'] = $authSignature;
     }
