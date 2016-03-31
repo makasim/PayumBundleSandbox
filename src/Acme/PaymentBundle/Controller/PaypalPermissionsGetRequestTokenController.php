@@ -20,6 +20,7 @@ use Symfony\Component\Validator\Constraints\Range;
 
 class PaypalPermissionsGetRequestTokenController extends Controller
 {
+    const PAYPAL_SANDBOX_APP_ID = 'APP-80W284485P519543T';
 
     public function prepareAction(Request $request)
     {
@@ -29,7 +30,7 @@ class PaypalPermissionsGetRequestTokenController extends Controller
             'acct1.UserName' => $this->container->getParameter('paypal.express_checkout.username'),
             'acct1.Password' => $this->container->getParameter('paypal.express_checkout.password'),
             'acct1.Signature' => $this->container->getParameter('paypal.express_checkout.signature'),
-            'acct1.AppId' => 'APP-80W284485P519543T', // sandbox App Id
+            'acct1.AppId' => self::PAYPAL_SANDBOX_APP_ID,
         );
 
         $permissions = new PermissionsService($config);
