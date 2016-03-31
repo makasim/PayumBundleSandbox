@@ -23,6 +23,7 @@ framework:
     trusted_proxies: ~
     session:         { save_path: /tmp }
     fragments:       ~
+    translator: { fallbacks: [en] }
 
 # Twig Configuration
 twig:
