@@ -71,10 +71,15 @@ payum:
             factory: paypal_express_checkout
             payum.api: @acme.payment.payum.paypal_express_checkout_api
 
-        # note: there is also custom api
-        paypal_express_checkout_via_token:
-            factory: paypal_express_checkout
-            payum.api: @acme.payment.payum.paypal_express_checkout_api_via_token
+        paypal_express_checkout_permission:
+            factory: paypal_express_checkout_permission
+            username:  %paypal.express_checkout.username%
+            password:  %paypal.express_checkout.password%
+            signature: %paypal.express_checkout.signature%
+            token: %paypal.express_checkout.token%
+            tokenSecret: %paypal.express_checkout.tokenSecret%
+            third_party_subject: %paypal.express_checkout.third_party_subject%
+            sandbox: true
 
         paypal_pro_checkout:
             factory: paypal_pro_checkout

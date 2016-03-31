@@ -288,15 +288,15 @@ class PurchaseExamplesController extends Controller
 
     /**
      * @Extra\Route(
-     *   "/prepare_simple_purchase_via_token",
-     *   name="acme_paypal_express_checkout_prepare_simple_purchase_via_token"
+     *   "/prepare_simple_purchase_via_permissions",
+     *   name="acme_paypal_express_checkout_prepare_simple_purchase_via_permissions"
      * )
      *
      * @Extra\Template
      */
-    public function prepareViaTokenAction(Request $request)
+    public function prepareViaPermissionsAction(Request $request)
     {
-        $gatewayName = 'paypal_express_checkout_via_token';
+        $gatewayName = 'paypal_express_checkout_permission';
 
         $form = $this->createPurchaseForm();
         $form->handleRequest($request);
