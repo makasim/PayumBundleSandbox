@@ -3,8 +3,6 @@
 /app/cache/*
 /app/logs/*
 /app/config/config_dev_local.yml
-/app/config/config_prod_local.yml
-/app/config/config_test_local.yml
 /app/config/parameters.yml
 /app/Resources/payments
 /build/
