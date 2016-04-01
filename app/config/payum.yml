@@ -77,7 +77,7 @@ payum:
             password:  %paypal.express_checkout.password%
             signature: %paypal.express_checkout.signature%
             token: %paypal.express_checkout.token%
-            tokenSecret: %paypal.express_checkout.tokenSecret%
+            token_secret: %paypal.express_checkout.token_secret%
             third_party_subject: %paypal.express_checkout.third_party_subject%
             sandbox: true
 

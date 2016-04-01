@@ -26,7 +26,7 @@ parameters:
     # required only for authorization by merchant token
     # see: https://developer.paypal.com/docs/classic/permissions-service/integration-guide/PermissionsAbout/
     paypal.express_checkout.token: EDIT ME
-    paypal.express_checkout.tokenSecret: EDIT ME
+    paypal.express_checkout.token_secret: EDIT ME
     ## e-mail of the merchant you work in behalf of
     paypal.express_checkout.third_party_subject: EDIT ME
 
