@@ -13,6 +13,9 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    # always the same
+    paypal.sandbox_app_id: APP-80W284485P519543T
     
     paypal.express_checkout.username:  EDIT ME
     paypal.express_checkout.password:  EDIT ME
