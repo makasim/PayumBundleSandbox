@@ -91,6 +91,15 @@ payum:
             tender: "foo"
             sandbox: true
 
+        paypal_pro_hosted:
+            factory: paypal_pro_hosted
+            username:  %paypal.pro_hosted.username%
+            password:  %paypal.pro_hosted.password%
+            signature:  %paypal.pro_hosted.signature%
+            business:  %paypal.pro_hosted.business%
+            sandbox: true
+            payum.action.store_notifications: @acme.payex.payum.action.store_notification
+
         authorize_net:
             factory: authorize_net_aim
             login_id: %authorize_net.login_id%
