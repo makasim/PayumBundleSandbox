@@ -13,6 +13,9 @@ class DetailsController extends PayumController
 {
     public function viewAction(Request $request)
     {
+        // THIS AN EXAMPLE ACTION. YOU HAVE TO OVERWRITE THIS WITH YOUR OWN ACTION.
+        // CHECK THE PAYMENT STATUS AND ACT ACCORDING TO IT.
+
         $token = $this->getPayum()->getHttpRequestVerifier()->verify($request);
 
         $gateway = $this->getPayum()->getGateway($token->getGatewayName());
@@ -44,13 +47,11 @@ class DetailsController extends PayumController
         $details = $status->getFirstModel();
         if ($details instanceof  DetailsAggregateInterface) {
             $details = $details->getDetails();
-
-            if ($details instanceof  \Traversable) {
-                $details = iterator_to_array($details);
-            }
         }
 
-        
+        if ($details instanceof  \Traversable) {
+            $details = iterator_to_array($details);
+        }
 
         return $this->render('AcmePaymentBundle:Details:view.html.twig', array(
             'status' => $status->getValue(),
