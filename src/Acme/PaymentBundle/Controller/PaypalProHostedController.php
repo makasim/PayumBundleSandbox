@@ -30,7 +30,6 @@ class PaypalProHostedController extends Controller
             $payment                  = $storage->create();
             $payment['currency_code'] = $data['currency'];
             $payment['subtotal']      = $data['amount'];
-            $payment['bn']            = 'FR_Test_H3S';
 
             $payment['address_override']    = 'true';
             $payment['showShippingAddress'] = 'false';
