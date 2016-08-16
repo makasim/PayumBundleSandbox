@@ -91,6 +91,12 @@ payum:
             tender: "foo"
             sandbox: true
 
+        paypal_rest:
+            factory: paypal_rest
+            client_id: %paypal.rest.client_id%
+            client_secret: %paypal.rest.client_secret%
+            config_path: '%kernel.root_dir%/config/paypal_rest_sdk_config.ini'
+
         authorize_net:
             factory: authorize_net_aim
             login_id: %authorize_net.login_id%
