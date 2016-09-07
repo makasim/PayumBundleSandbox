@@ -12,27 +12,27 @@ For a more detailed explanation, see:
  * [Index document][3] of the PayumBundle.
 
 [1]:  https://github.com/symfony/symfony-standard
-[2]:  http://symfony.com/doc/2.1/book/installation.html
+[2]:  http://symfony.com/doc/2.8/setup.html
 [3]:  https://github.com/Payum/PayumBundle/blob/master/Resources/doc/index.md
 [4]:  http://getcomposer.org
 
 1) Installation
 ---------------
 
-As Symfony and PayumBundle uses [Composer][4] to manage its dependencies, the recommended way
-to create a new project is to use it.
+First of all clone this repository on your local machine:
+
+    git clone git@github.com:makasim/PayumBundleSandbox.git folder-name
+
+As Symfony and PayumBundle uses [Composer][4] to manage its dependencies, now it's time to install them.
 
 If you don't have Composer yet, download it following the instructions on
 http://getcomposer.org/ or just run the following command:
 
     curl -s http://getcomposer.org/installer | php
 
-Then, use the `create-project` command to generate a new Symfony application:
+Then go to the folder where you downloaded the repository and symply run
 
-    php composer.phar create-project payum/payum-bundle-sandbox path/to/install --stability=dev
-
-Composer will install Symfony and all its dependencies under the
-`path/to/install` directory.
+    composer install
 
 2) Checking your System Configuration
 -------------------------------------
@@ -44,38 +44,43 @@ Execute the `check.php` script from the command line:
 
     php app/check.php
 
-Access the `config.php` script from a browser:
-
-    http://localhost/path/to/symfony/app/web/config.php
-
-If you get any warnings or recommendations, fix them before moving on.
-
 **Warning:**
 
 > Don't forget to configure a payment gateway options in `app/config/parameters.yml`.
 
-
-3) Setting up the web server
+3) Configure the application
 ----------------------------
 
-If you run a web server make sure you set the server variables `SYMFONY_ENV` and `SYMFONY_DEBUG`.
+To make the images, css files and other files needed to display the web pages, you need to install them.
 
-If you want to run the build-it web server you have to make sure that `variables_order` is set to `EGPCS`.
-Then run:
+Run:
 
-    SYMFONY_ENV=dev SYMFONY_DEBUG=1 php app/console server:run
+    app/console assets:install
 
-4) Browsing the Demo Application
+In the folder `web/bundles` will be copied all the required files that are used to render the web pages.
+
+Then create the database and its schema
+
+    app/console doctrine:database:create && app/console doctrine:schema:update --force
+
+4) Run the web server
+---------------------
+
+To use the app, you have to run the php built-in webserver using the Symfony's command
+
+    app/console server:start
+
+5) Browsing the Demo Application
 --------------------------------
         
-Congratulations! You're now ready to use Symfony.
+Congratulations! You're now using Symfony! :)
 
-From the `config.php` page, click the "Bypass configuration and go to the
-Welcome page" link to load up your first Symfony page.
+Go to `http://127.0.0.1` and you will see the Symfony's Welcome Page that tells you 
 
-You can also use a web-based configurator by clicking on the "Configure your
-Symfony Application online" link of the `config.php` page.
+    Your application is now ready. You can start working on it at
 
-To see a list of payment demos access the following page:
+Now you can start navigating the app.
 
-    /index.php
+Go to `http://127.0.0.1:8000/demo/` and you will se a list of available demos created by Symfony itself.
+
+To see the list of demos of payment gateways, instead, go to `http://127.0.0.1:8000/payment`.

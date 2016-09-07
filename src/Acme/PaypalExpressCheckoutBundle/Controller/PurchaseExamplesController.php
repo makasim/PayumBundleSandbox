@@ -282,7 +282,9 @@ class PurchaseExamplesController extends Controller
 
         return array(
             'form' => $form->createView(),
-            'gatewayName' => $gatewayName
+            'gatewayName' => $gatewayName,
+            'paypal_usd_testuser_login' => $this->getParameter('paypal.express_checkout.usd_testuser_login'),
+            'paypal_usd_testuser_password' => $this->getParameter('paypal.express_checkout.usd_testuser_password')
         );
     }
 
