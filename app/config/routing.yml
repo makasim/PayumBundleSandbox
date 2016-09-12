@@ -1,12 +1,12 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
 _demo:
     resource: "@AcmeDemoBundle/Controller/DemoController.php"
     type:     annotation
     prefix:   /demo
 
-_welcome:
-    pattern:  /
-    defaults: { _controller: AcmePaymentBundle:Default:index }
-    
 payum_capture:
     resource: "@PayumBundle/Resources/config/routing/capture.xml"
     prefix:   /
@@ -18,11 +18,11 @@ payum_authorize:
 payum_payout:
     resource: "@PayumBundle/Resources/config/routing/payout.xml"
     prefix:   /
-    
+
 payum_sync:
     resource: "@PayumBundle/Resources/config/routing/sync.xml"
     prefix:   /
-    
+
 payum_notify:
     resource: "@PayumBundle/Resources/config/routing/notify.xml"
     prefix:   /
