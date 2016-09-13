@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "67425d7a8743360d4893b3f42f273373",
-    "content-hash": "160661d2db569f8e0301ef7f74a6d12a",
+    "hash": "9c0af74126fa4e6d7cefc82549fa5309",
+    "content-hash": "4be99a12493cfe4bb53f98a1b0536177",
     "packages": [
         {
             "name": "authorizenet/authorizenet",
@@ -2307,6 +2307,54 @@
             "time": "2015-11-12 13:51:40"
         },
         {
+            "name": "kriswallsmith/buzz",
+            "version": "v0.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kriswallsmith/Buzz.git",
+                "reference": "f802a9b9d01b53496f50c9c5e09b5c779cbbd300"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/f802a9b9d01b53496f50c9c5e09b5c779cbbd300",
+                "reference": "f802a9b9d01b53496f50c9c5e09b5c779cbbd300",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "ext-curl": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Buzz": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kris Wallsmith",
+                    "email": "kris.wallsmith@gmail.com",
+                    "homepage": "http://kriswallsmith.net/"
+                }
+            ],
+            "description": "Lightweight HTTP client",
+            "homepage": "https://github.com/kriswallsmith/Buzz",
+            "keywords": [
+                "curl",
+                "http client"
+            ],
+            "time": "2015-06-02 16:48:29"
+        },
+        {
             "name": "league/uri",
             "version": "4.1.1",
             "source": {
@@ -2369,6 +2417,103 @@
                 "ws"
             ],
             "time": "2016-03-24 08:38:29"
+        },
+        {
+            "name": "locastic/tcompayway",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/locastic/TcomPayWay.git",
+                "reference": "02f85a928f965a0157e1f3425f42781d1f97f308"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/locastic/TcomPayWay/zipball/02f85a928f965a0157e1f3425f42781d1f97f308",
+                "reference": "02f85a928f965a0157e1f3425f42781d1f97f308",
+                "shasum": ""
+            },
+            "require": {
+                "kriswallsmith/buzz": "^0.14.0",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Locastic\\TcomPayWay": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "locastic",
+                    "email": "info@locastic.com",
+                    "homepage": "http://locastic.com"
+                },
+                {
+                    "name": "Antonio Peric-Mazar",
+                    "email": "antonio@locastic.com"
+                }
+            ],
+            "description": "T-com PayWay Library (HT PayWay API)",
+            "homepage": "https://github.com/locastic/TcomPayWay",
+            "time": "2016-04-07 22:39:05"
+        },
+        {
+            "name": "locastic/tcompayway-payum-bundle",
+            "version": "dev-newpayum",
+            "target-dir": "Locastic/TcomPayWayPayumBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/formapro-forks/TcomPayWayPayumBundle.git",
+                "reference": "84cdc00376b90af14999509441e4051f4c5c8fa3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/formapro-forks/TcomPayWayPayumBundle/zipball/84cdc00376b90af14999509441e4051f4c5c8fa3",
+                "reference": "84cdc00376b90af14999509441e4051f4c5c8fa3",
+                "shasum": ""
+            },
+            "require": {
+                "locastic/tcompayway": "dev-master",
+                "payum/payum": "^1.3",
+                "payum/payum-bundle": "^2.1",
+                "php": "^5.5.9|^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Locastic\\TcomPayWayPayumBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "locastic",
+                    "homepage": "http://locastic.com",
+                    "email": "info@locastic.com"
+                },
+                {
+                    "name": "Antonio Perić",
+                    "email": "antonio@locastic.com"
+                }
+            ],
+            "description": "Symfony2 Integration for TcomPayWay with Payum",
+            "homepage": "https://github.com/locastic/TcomPayWayPayumBundle",
+            "support": {
+                "source": "https://github.com/formapro-forks/TcomPayWayPayumBundle/tree/newpayum"
+            },
+            "time": "2016-07-28 15:56:26"
         },
         {
             "name": "monolog/monolog",
@@ -6334,7 +6479,11 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "payum/payum-bundle": 20,
-        "payum/payum": 20
+        "payum/payum": 20,
+        "jms/payment-paypal-bundle": 20,
+        "jms/payment-core-bundle": 20,
+        "locastic/tcompayway-payum-bundle": 20,
+        "locastic/tcompayway": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

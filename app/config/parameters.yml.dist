@@ -56,3 +56,12 @@ parameters:
     router.request_context.host: sandbox.payum.org
     router.request_context.scheme: http
     router.request_context.port: 80
+
+    tcompayway.username: EDIT ME
+    tcompayway.password: EDIT ME
+    tcompayway.shop_name: 'A name'
+    tcompayway.shop_id: EDIT ME
+    tcompayway.secret_key: EDIT ME
+    tcompayway.authorization_type: 0
+    tcompayway.sandbox: true
+    tcompayway.disable_installments: 0

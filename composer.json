@@ -36,7 +36,8 @@
         "payum/payum": "^1.3@dev",
         "payum/jms-payment-bridge": "^1",
         "payum/omnipay-bridge": "^1",
-        "jms/payment-paypal-bundle": "~1",
+        "jms/payment-paypal-bundle": "~1@dev",
+        "jms/payment-core-bundle": "~1@dev",
         "crevillo/payum-redsys": "^1",
         "authorizenet/authorizenet": "^1.8",
         "paypal/rest-api-sdk-php": "^1.0",
@@ -50,7 +51,9 @@
         "sofort/sofortlib-php": "^3.0",
         "phpunit/phpunit": "^4.0",
         "fabpot/php-cs-fixer": "^1.10",
-        "php-http/guzzle6-adapter": "^1"
+        "php-http/guzzle6-adapter": "^1",
+        "locastic/tcompayway-payum-bundle": "dev-newpayum@dev",
+        "locastic/tcompayway": "@dev"
     },
     "scripts": {
         "post-install-cmd": [
@@ -81,5 +84,10 @@
             "dev-master": "1.2-dev"
         }
     },
-    "repositories": []
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:formapro-forks/TcomPayWayPayumBundle.git"
+        }
+    ]
 }

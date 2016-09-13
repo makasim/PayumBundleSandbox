@@ -7,6 +7,7 @@ payum:
         Acme\PaymentBundle\Entity\PaymentDetails: { doctrine: orm }
         Acme\PaymentBundle\Entity\AgreementDetails: { doctrine: orm }
         Acme\PaymentBundle\Entity\RecurringPaymentDetails: { doctrine: orm }
+        Locastic\TcomPayWayPayumBundle\Entity\Payment: { doctrine: orm }
 
         Acme\PaymentBundle\Document\PaymentDetails:
             doctrine: mongodb
@@ -201,6 +202,26 @@ payum:
             factory: core
             payum.action.capture: @acme_payment.foo_bar.capture
             payum.action.status: @acme_payment.foo_bar.status
+
+        tcompayway_offsite:
+            factory: tcompayway_offsite
+            shop_id: '%tcompayway.shop_id%'
+            shop_name: '%tcompayway.shop_name%'
+            secret_key: '%tcompayway.secret_key%'
+            authorization_type: '%tcompayway.authorization_type%'
+            sandbox: '%tcompayway.sandbox%'
+            disable_installments: '%tcompayway.disable_installments%'
+
+        tcompayway_direct:
+            factory: tcompayway_direct
+            shop_id: '%tcompayway.shop_id%'
+            shop_name: '%tcompayway.shop_name%'
+            username: '%tcompayway.username%'
+            password: '%tcompayway.password%'
+            secret_key: '%tcompayway.secret_key%'
+            authorization_type: '%tcompayway.authorization_type%'
+            sandbox: '%tcompayway.sandbox%'
+            disable_installments: '%tcompayway.disable_installments%'
 
 services:
     acme_payment.redsys.gateway_factory:
