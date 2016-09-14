@@ -22,10 +22,10 @@ COPY ./docker/container/php/payum_fpm.ini /etc/php/7.0/fpm/conf.d/1-payum_fpm.in
 COPY ./docker/container/php/payum-fpm.conf /etc/php/7.0/fpm/pool.d/payum_fpm.conf
 COPY ./docker/container/nginx/payum.dev /etc/nginx/sites-enabled/payum.dev
 COPY ./docker/container/supervisor/payum_app.conf /etc/supervisor/conf.d/payum_app.conf
-COPY ./docker/container/bin/container-run.sh /usr/local/bin/container-run.sh
+COPY ./docker/container/bin/entrypoint.sh /entrypoint.sh
 COPY ./docker/container/phpstorm/ide-phpunit.php /usr/local/bin/ide-phpunit.php
 COPY ./docker/container/phpstorm/ide-phpinfo.php /usr/local/bin/ide-phpinfo.php
 
 WORKDIR /payum
 
-CMD /usr/local/bin/container-run.sh
+CMD /entrypoint.sh

@@ -1,11 +1,6 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
-
-_demo:
-    resource: "@AcmeDemoBundle/Controller/DemoController.php"
-    type:     annotation
-    prefix:   /demo
+_homepage:
+    path:  /
+    defaults: { _controller: AcmePaymentBundle:Default:index }
 
 payum_capture:
     resource: "@PayumBundle/Resources/config/routing/capture.xml"
@@ -50,6 +45,11 @@ acme_payex:
 acme_klarna:
     resource: "@AcmeKlarnaBundle/Resources/config/routing.yml"
     prefix:   /
+
+acme_redsys:
+    resource:   "@AcmePaymentBundle/Controller/"
+    type:       annotation
+    prefix:     /
 
 acme_other_examples:
     resource: "@AcmeOtherExamplesBundle/Resources/config/routing.yml"
