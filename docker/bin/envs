@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+PAYUM_DEBUG=${PAYUM_DEBUG:-false}
+if [ "$PAYUM_DEBUG" = true ] ; then
+    set -x
+    set -e
+fi
+
+PAYUM_ROOT_DIR="$( pwd )"
+
+COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME:-payum}
+
+PAYUM_EXTRA_ARGS="$@"
+PAYUM_WEB_CONTAINER=$COMPOSE_PROJECT_NAME"_web_1"

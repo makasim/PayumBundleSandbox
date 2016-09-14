@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+. docker/bin/envs
+
+PAYUM_ROOT_DIR=$PAYUM_ROOT_DIR docker-compose -p $COMPOSE_PROJECT_NAME build $PAYUM_EXTRA_ARGS

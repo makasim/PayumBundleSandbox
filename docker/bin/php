@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+. docker/bin/envs
+
+PAYUM_EXTRA_ARGS=$(echo "$PAYUM_EXTRA_ARGS" | sed -e "s/[^ ]*ide-phpunit.php/\/usr\/local\/bin\/ide-phpunit\.php/g")
+PAYUM_EXTRA_ARGS=$(echo "$PAYUM_EXTRA_ARGS" | sed -e "s/[^ ]*ide-phpinfo.php/\/usr\/local\/bin\/ide-phpinfo.php/g")
+
+
+#fix for --filter /::testShouldImplementMessageProcessorInterface( .*)?$/
+PAYUM_EXTRA_ARGS=$(echo "$PAYUM_EXTRA_ARGS" | sed -e "s/\/\:\:/\"\/\:\:/g")
+PAYUM_EXTRA_ARGS=$(echo "$PAYUM_EXTRA_ARGS" | sed -e "s/\?\$\//\?\$\/\"/g")
+
+IDE_PHPUNIT_ENVS=$(printenv | grep IDE_PHPUNIT | cat)
+
+docker exec -i "$PAYUM_WEB_CONTAINER" /bin/bash -c "cd $(pwd);$IDE_PHPUNIT_ENVS php $PAYUM_EXTRA_ARGS"
