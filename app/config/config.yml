@@ -75,9 +75,9 @@ sonata_block:
 doctrine_mongodb:
     connections:
         default:
-            server: mongodb://localhost:27017
+            server: 'mongodb://%mongodb_host%:mongodb_port'
             options: {}
-    default_database: "%database_name%"
+    default_database: "%mongodb_name%"
     document_managers:
         default:
             auto_mapping: true

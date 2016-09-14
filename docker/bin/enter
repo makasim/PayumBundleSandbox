@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+. docker/bin/envs
+
+docker exec -it ${1:-$PAYUM_WEB_CONTAINER} env TERM=xterm /bin/bash
