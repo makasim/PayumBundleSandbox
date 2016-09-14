@@ -5,7 +5,6 @@ use Acme\PaymentBundle\Entity\AgreementDetails;
 use Acme\PaymentBundle\Entity\RecurringPaymentDetails;
 use Payum\Bundle\PayumBundle\Controller\PayumController;
 use Payum\Core\Request\Cancel;
-use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfile;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Core\Request\Sync;
