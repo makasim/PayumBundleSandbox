@@ -27,22 +27,30 @@ class DetailsController extends PayumController
         $gateway->execute($status = new GetHumanStatus($token));
 
         $refundToken = null;
-        if ($status->isCaptured() || $status->isAuthorized()) {
+        $captureToken = null;
+        $cancelToken = null;
+
+        if ($status->isCaptured()) {
             $refundToken = $this->getPayum()->getTokenFactory()->createRefundToken(
                 $token->getGatewayName(),
                 $status->getFirstModel(),
                 $request->getUri()
             );
         }
-
-        $captureToken = null;
         if ($status->isAuthorized()) {
             $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
                 $token->getGatewayName(),
                 $status->getFirstModel(),
                 $request->getUri()
             );
+
+            $cancelToken = $this->getPayum()->getTokenFactory()->createCancelToken(
+                $token->getGatewayName(),
+                $status->getFirstModel(),
+                $request->getUri()
+            );
         }
+
         
         $details = $status->getFirstModel();
         if ($details instanceof  DetailsAggregateInterface) {
@@ -59,6 +67,7 @@ class DetailsController extends PayumController
             'gatewayTitle' => ucwords(str_replace(array('_', '-'), ' ', $token->getGatewayName())),
             'refundToken' => $refundToken,
             'captureToken' => $captureToken,
+            'cancelToken' => $cancelToken,
         ));
     }
 }
