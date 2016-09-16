@@ -12,7 +12,8 @@
                 data-image="{{ model.image|default("") }}"
                 data-name="{{ model.name|default("") }}"
                 data-description="{{ model.description }}"
-                data-amount="{{ model.amount }}">
+                {#data-amount="{{ model.amount }}">#}
+                data-amount="{{ model.totalAmount }}">
         </script>
     </form>
 {% endblock %}

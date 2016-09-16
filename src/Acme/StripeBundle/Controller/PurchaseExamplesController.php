@@ -1,8 +1,10 @@
 <?php
 namespace Acme\StripeBundle\Controller;
 
+use Acme\PaymentBundle\Entity\Payment;
 use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Core\Bridge\Symfony\Form\Type\CreditCardType;
+use Payum\Core\Model\CreditCard;
 use Payum\Core\Model\CreditCardInterface;
 use Payum\Core\Payum;
 use Payum\Core\Security\SensitiveValue;
@@ -31,13 +33,13 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
+            $storage = $this->getPayum()->getStorage(Payment::class);
 
-            /** @var $payment PaymentDetails */
+            /** @var $payment Payment */
             $payment = $storage->create();
-            $payment["amount"] = $data['amount'] * 100;
-            $payment["currency"] = $data['currency'];
-            $payment["description"] = "a description";
+            $payment->setTotalAmount($data['amount'] * 100);
+            $payment->setCurrencyCode($data['currency']);
+            $payment->setDescription('A stripe.js example payment.');
             $storage->update($payment);
 
             $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
@@ -67,17 +69,44 @@ class PurchaseExamplesController extends Controller
     {
         $gatewayName = 'stripe_checkout';
 
+        /*
         $storage = $this->getPayum()->getStorage(PaymentDetails::class);
 
-        /** @var $payment PaymentDetails */
+        /** @var $payment PaymentDetails *
         $payment = $storage->create();
         $payment["amount"] = 100;
         $payment["currency"] = 'USD';
-        $payment["description"] = "a description";
+        $payment["description"] = "A Stripe Checkout example payment.";
 
         if ($request->isMethod('POST') && $request->request->get('stripeToken')) {
 
             $payment["card"] = $request->request->get('stripeToken');
+            $storage->update($payment);
+
+            $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
+                $gatewayName,
+                $payment,
+                'acme_payment_done'
+            );
+
+            return $this->redirect($captureToken->getTargetUrl());
+        }
+
+        */
+
+        $storage = $this->getPayum()->getStorage(Payment::class);
+
+        /** @var $payment Payment */
+        $payment = $storage->create();
+        $payment->setTotalAmount(100);
+        $payment->setCurrencyCode('USD');
+        $payment->setDescription('A Stripe Checkout example payment.');
+
+        if ($request->isMethod('POST') && $request->request->get('stripeToken')) {
+            $card = new CreditCard();
+            $card->setToken($request->request->get('stripeToken'));
+
+            $payment->setCreditCard($card);
             $storage->update($payment);
 
             $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
@@ -113,13 +142,13 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
+            $storage = $this->getPayum()->getStorage(Payment::class);
 
-            /** @var $payment PaymentDetails */
+            /** @var $payment Payment */
             $payment = $storage->create();
-            $payment["amount"] = $data['amount'] * 100;
-            $payment["currency"] = $data['currency'];
-            $payment["description"] = "a description";
+            $payment->setTotalAmount($data['amount'] * 100);
+            $payment->setCurrencyCode($data['currency']);
+            $payment->setDescription('A Stripe Checkout example delayed payment.');
             $storage->update($payment);
 
             $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
@@ -154,21 +183,16 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
+            $storage = $this->getPayum()->getStorage(Payment::class);
             
             /** @var CreditCardInterface $card */
             $card = $data['creditCard'];
 
-            /** @var $payment PaymentDetails */
+            /** @var $payment Payment */
             $payment = $storage->create();
-            $payment["amount"] = $data['amount'] * 100;
-            $payment["currency"] = $data['currency'];
-            $payment["card"] = SensitiveValue::ensureSensitive([
-                'number' => $card->getNumber(),
-                'exp_month' => $card->getExpireAt()->format('m'),
-                'exp_year' => $card->getExpireAt()->format('Y'),
-                'cvc' => $card->getSecurityCode(),
-            ]);
+            $payment->setTotalAmount($data['amount'] * 100);
+            $payment->setCurrencyCode($data['currency']);
+            $payment->setCreditCard($card);
             $storage->update($payment);
 
             $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
@@ -200,24 +224,36 @@ class PurchaseExamplesController extends Controller
     {
         $gatewayName = 'stripe_checkout';
 
-//        $this->getPayum()->getGateway($gatewayName)->execute($plan = new CreatePlan([
-//            "amount" => 2000,
-//            "interval" => "month",
-//            "name" => "Amazing Gold Plan",
-//            "currency" => "usd",
-//            "id" => "gold"
-//        ]));
+        /**
+         * Uncomment this the first time you try to create a subscription.
+         * It creates the "gold" plan to which the customer will be subscribed.
 
-        $storage = $this->getPayum()->getStorage(PaymentDetails::class);
+        $this->getPayum()->getGateway($gatewayName)->execute($plan = new CreatePlan([
+            "amount" => 2000,
+            "interval" => "month",
+            "name" => "Amazing Gold Plan",
+            "currency" => "usd",
+            "id" => "gold"
+        ]));
+
+         */
+
+        $storage = $this->getPayum()->getStorage(Payment::class);
 
         $form = $this->createForm('form', null, ['method' => 'POST']);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var $payment PaymentDetails */
+            /** @var $payment Payment */
             $payment = $storage->create();
-            $payment["amount"] = 100;
-            $payment["currency"] = 'USD';
-            $payment["local"] = ['save_card' => true, 'customer' => ['plan' => 'gold']];
+            $payment->setTotalAmount(100);
+            $payment->setCurrencyCode('USD');
+            $payment->setDescription('Stripe: a subscrition.');
+            $payment->setDetails([
+                'local' => [
+                    'save_card' => true,
+                    'customer' => ['plan' => 'gold']
+                ]
+            ]);
             $storage->update($payment);
 
             $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
@@ -244,26 +280,31 @@ class PurchaseExamplesController extends Controller
     {
         $gatewayName = 'stripe_checkout';
 
-        $storage = $this->getPayum()->getStorage(PaymentDetails::class);
+        $storage = $this->getPayum()->getStorage(Payment::class);
 
         $form = $this->createForm('form', null, ['method' => 'POST']);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var $payment PaymentDetails */
+            /** @var $payment Payment */
             $payment = $storage->create();
-            $payment["amount"] = 100;
-            $payment["currency"] = 'USD';
-            $payment["customer"] = "cus_82aVMCgqBUtuLF";
+            $payment->setTotalAmount(100);
+            $payment->setCurrencyCode('USD');
+            $payment->setClientId('cus_9ClvuGk84Vfepc');
+            $payment->setDescription('Stripe: Charge a stored card.');
+            $payment->setDetails([
+                'customer' => 'cus_9ClvuGk84Vfepc'
+            ]);
             $storage->update($payment);
 
             $captureToken = $this->getPayum()->getTokenFactory()->createCaptureToken(
-                $gatewayName,
-                $payment,
-                'acme_payment_done'
+            $gatewayName,
+            $payment,
+            'acme_payment_done'
             );
 
             return $this->redirect($captureToken->getTargetUrl());
-        }
+            }
 
         return ['form' => $form->createView()];
     }
