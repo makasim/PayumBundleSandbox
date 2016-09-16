@@ -3,9 +3,7 @@ namespace Acme\PaypalExpressCheckoutBundle\Controller;
 
 use Acme\PaymentBundle\Entity\PaymentDetails;
 use Payum\Core\Payum;
-use Payum\Core\Security\GenericTokenFactoryInterface;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
-use Payum\Core\Registry\RegistryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -282,7 +280,9 @@ class PurchaseExamplesController extends Controller
 
         return array(
             'form' => $form->createView(),
-            'gatewayName' => $gatewayName
+            'gatewayName' => $gatewayName,
+            'paypal_usd_testuser_login' => $this->getParameter('paypal.express_checkout.usd_testuser_login'),
+            'paypal_usd_testuser_password' => $this->getParameter('paypal.express_checkout.usd_testuser_password')
         );
     }
 

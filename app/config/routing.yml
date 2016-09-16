@@ -1,34 +1,9 @@
-_demo:
-    resource: "@AcmeDemoBundle/Controller/DemoController.php"
-    type:     annotation
-    prefix:   /demo
-
-_welcome:
-    pattern:  /
+_homepage:
+    path:  /
     defaults: { _controller: AcmePaymentBundle:Default:index }
-    
-payum_capture:
-    resource: "@PayumBundle/Resources/config/routing/capture.xml"
-    prefix:   /
 
-payum_authorize:
-    resource: "@PayumBundle/Resources/config/routing/authorize.xml"
-    prefix:   /
-
-payum_payout:
-    resource: "@PayumBundle/Resources/config/routing/payout.xml"
-    prefix:   /
-    
-payum_sync:
-    resource: "@PayumBundle/Resources/config/routing/sync.xml"
-    prefix:   /
-    
-payum_notify:
-    resource: "@PayumBundle/Resources/config/routing/notify.xml"
-    prefix:   /
-
-payum_refund:
-    resource: "@PayumBundle/Resources/config/routing/refund.xml"
+payum_all:
+    resource: "@PayumBundle/Resources/config/routing/all.xml"
     prefix:   /
 
 acme_paypal_express_checkout:
@@ -50,6 +25,11 @@ acme_payex:
 acme_klarna:
     resource: "@AcmeKlarnaBundle/Resources/config/routing.yml"
     prefix:   /
+
+acme_redsys:
+    resource:   "@AcmePaymentBundle/Controller/"
+    type:       annotation
+    prefix:     /
 
 acme_other_examples:
     resource: "@AcmeOtherExamplesBundle/Resources/config/routing.yml"

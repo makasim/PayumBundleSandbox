@@ -1,11 +1,13 @@
 /web/bundles/
 /app/bootstrap.php.cache
 /app/cache/*
-/app/logs/*
-/app/config/config_dev_local.yml
 /app/config/parameters.yml
-/app/Resources/payments
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+/app/phpunit.xml
 /build/
 /vendor/
 /bin/
 /composer.phar
+/app/Resources/payments

@@ -10,6 +10,9 @@
         {% if refundToken %}
             <a href="{{ refundToken.targetUrl }}">Refund</a>
         {% endif %}
+        {% if cancelToken %}
+            <a href="{{ cancelToken.targetUrl }}">Cancel</a>
+        {% endif %}
         {% if captureToken %}
             <a href="{{ captureToken.targetUrl }}">Capture</a>
         {% endif %}

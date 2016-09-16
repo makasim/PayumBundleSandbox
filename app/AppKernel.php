@@ -9,6 +9,11 @@ class AppKernel extends Kernel
 {
     public function boot()
     {
+        /**
+         * DEFINE THE CUSTOM OBJECT TYPE AS DESCRIBED IN THE PAYUMBUNDLE DOCUMENTATION:
+         *
+         * @see https://github.com/Payum/PayumBundle/blob/master/Resources/doc/storages.md
+         */
         if (false == Type::hasType('object')) {
             Type::addType('object', ObjectType::class);
         }
@@ -24,15 +29,15 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-            new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new JMS\Payment\CoreBundle\JMSPaymentCoreBundle(),
-            new JMS\Payment\PaypalBundle\JMSPaymentPaypalBundle(),
 
+            /**
+             * HERE ALL THE BUNDLES REQUIRED TO MAKE PAYUMBUNDLE WORK
+             */
             new Payum\Bundle\PayumBundle\PayumBundle(),
 
+            new AppBundle\AppBundle(),
             new Acme\DemoBundle\AcmeDemoBundle(),
             new Acme\PaymentBundle\AcmePaymentBundle(),
             new Acme\PaypalExpressCheckoutBundle\AcmePaypalExpressCheckoutBundle(),
@@ -42,14 +47,17 @@ class AppKernel extends Kernel
             new Acme\KlarnaBundle\AcmeKlarnaBundle(),
             new Acme\OtherExamplesBundle\AcmeOtherExamplesBundle(),
 
-            new Sonata\CoreBundle\SonataCoreBundle(),
-            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
         );
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+        if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
+            $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
@@ -60,6 +68,6 @@ class AppKernel extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+        $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
     }
 }
