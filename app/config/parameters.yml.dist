@@ -69,4 +69,4 @@ parameters:
     router.request_context.host: payum.dev
     router.request_context.scheme: http
     router.request_context.port: 80
-    defuse.secert_key: 'def000003f125cbd07bfce7748bf501fa3f5ebb6b8a4d785ddb7b328948ea4e88973d5c1cdf79a5a2784b723ad2fb9d802111d73ec98be7ef55e47966a89e9b1fcfa35b0'
+    defuse.secret_key: 'def000003f125cbd07bfce7748bf501fa3f5ebb6b8a4d785ddb7b328948ea4e88973d5c1cdf79a5a2784b723ad2fb9d802111d73ec98be7ef55e47966a89e9b1fcfa35b0'

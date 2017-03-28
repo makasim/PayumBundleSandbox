@@ -36,7 +36,7 @@ payum:
     dynamic_gateways:
         sonata_admin: true
         encryption:
-            defuse_secret_key: '%defuse.secert_key%'
+            defuse_secret_key: '%defuse.secret_key%'
         config_storage:
             Acme\PaymentBundle\Entity\GatewayConfig: { doctrine: orm }
 
