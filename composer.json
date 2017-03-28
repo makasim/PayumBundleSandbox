@@ -43,16 +43,17 @@
         "payum/jms-payment-bridge": "^1",
         "php-http/guzzle6-adapter": "^1",
         "phpxmlrpc/phpxmlrpc": "^4",
-        "sensio/distribution-bundle": "~5.0",
-        "sensio/framework-extra-bundle": "^3.0.2",
+        "sensio/distribution-bundle": "~5",
+        "sensio/framework-extra-bundle": "^3",
         "sofort/sofortlib-php": "^3",
         "sonata-project/doctrine-orm-admin-bundle": "^3",
         "stripe/stripe-php": "^3",
-        "symfony/assetic-bundle": "^2.3",
-        "symfony/monolog-bundle": "~2.4",
+        "symfony/assetic-bundle": "^2.8",
+        "symfony/monolog-bundle": "^2.8",
         "symfony/symfony": "^2.8",
-        "symfony/swiftmailer-bundle": "~2.3",
-        "twig/extensions": "^1"
+        "symfony/swiftmailer-bundle": "^2.5",
+        "twig/extensions": "^1",
+        "defuse/php-encryption": "^2"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "*",

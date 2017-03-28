@@ -26,8 +26,8 @@ class DemoExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'code' => new \Twig_Function_Method($this, 'getCode', array('is_safe' => array('html'))),
-            'payum_context' => new \Twig_Function_Method($this, 'getPayumContext'),
+            new \Twig_SimpleFunction('code', [$this, 'getCode'], array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('payum_context', [$this, 'getPayumContext']),
         );
     }
 
@@ -57,7 +57,7 @@ class DemoExtension extends \Twig_Extension
         $controller = highlight_string("<?php" . $this->getControllerCode(), true);
         $controller = str_replace('<span style="color: #0000BB">&lt;?php&nbsp;&nbsp;&nbsp;&nbsp;</span>', '&nbsp;&nbsp;&nbsp;&nbsp;', $controller);
 
-        $template = htmlspecialchars($this->getTemplateCode($template), ENT_QUOTES, 'UTF-8');
+        $template = htmlspecialchars($template, ENT_QUOTES, 'UTF-8');
 
         // remove the code block
         $template = str_replace('{% set code = code(_self) %}', '', $template);
@@ -92,7 +92,7 @@ EOF;
 
     protected function getTemplateCode($template)
     {
-        return $this->loader->getSource($template->getTemplateName());
+        return $this->loader->getSourceContext($template->getTemplateName())->getCode();
     }
 
     /**

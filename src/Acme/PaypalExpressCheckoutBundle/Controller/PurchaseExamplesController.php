@@ -158,7 +158,7 @@ class PurchaseExamplesController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $storage = $this->getPayum()->getStorage('Acme\PaymentBundle\Document\PaymentDetails');
+            $storage = $this->getPayum()->getStorage(PaymentDetails::class);
 
             /** @var $payment PaymentDetails */
             $payment = $storage->create();

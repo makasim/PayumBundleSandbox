@@ -1,18 +1,21 @@
 version: '2'
+
 services:
   web:
-    build: .
-    ports:
-      - "80:80"
+    image: formapro/nginx-php-fpm:latest-all-exts
+    working_dir: /payum
     depends_on:
       - mongodb
       - mysql
     volumes:
-      - .:${PAYUM_ROOT_DIR}
-      - ${PAYUM_ROOT_DIR}/app/cache
-      - ${PAYUM_ROOT_DIR}/app/logs
+      - .:/payum
+      - /payumapp/cache
+      - /payumapp/logs
     environment:
-      - PAYUM_ROOT_DIR=${PAYUM_ROOT_DIR}
+      - VIRTUAL_HOST=payum.sandbox.loc
+      - NGINX_WEB_ROOT=/payum/web
+      - NGINX_PHP_FALLBACK=/app_dev.php
+      - NGINX_PHP_LOCATION=^/app_dev\.php(/|$$)
       - SYMFONY__ENV_DATABASE_HOST=mysql
       - SYMFONY__ENV_DATABASE_PORT=3306
       - SYMFONY__ENV_DATABASE_NAME=payum
@@ -38,6 +41,13 @@ services:
       - mongo-data:/data/db
     ports:
       - "27017:27017"
+
+  front:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - '/var/run/docker.sock:/tmp/docker.sock:ro'
 
 volumes:
   mysql-data:
